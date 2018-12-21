@@ -1,0 +1,106 @@
+.action-sheet.ios {
+  position: fixed;
+  width: 100%;
+  box-sizing: border-box;
+  height: 100%;
+  bottom: 0;
+  transform: translateY(100%);
+  transition: all 0.2s ease-in-out;
+  z-index: 900;
+  visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.action-sheet.android {
+  position: fixed;
+  width: 100%;
+  box-sizing: border-box;
+  height: 100%;
+  bottom: 0;
+  transform-origin: 50% 50%;
+  opacity: 0;
+  transition: all 0.2s ease-in-out;
+  z-index: 900;
+  visibility: hidden;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center
+}
+
+
+
+.action-sheet.action-sheet-show.ios {
+  transform: translateY(0);
+  visibility: visible;
+}
+.action-sheet.action-sheet-show.android{
+  display: flex;
+  opacity: 1;
+  visibility: visible;
+}
+
+.actions.android, .cancel.android {
+  width: 80%;
+}
+
+.mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 900;
+  transition: all 0.2s ease-in-out;
+  opacity: 0;
+  visibility: hidden;
+  display: none;
+}
+
+.mask.mask-show {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+}
+
+.action-item {
+  position: relative;
+}
+
+.action-item.android {
+  border-radius: 4rpx;
+}
+
+.bottom-line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 200%;
+  height: 2rpx;
+  transform: scale(0.5);
+  transform-origin: 0 0;
+  pointer-events: none;
+  box-sizing: border-box;
+  background: #e9eaec;
+  z-index: 2;
+}
+
+.btn-text {
+  display: block;
+}
+.btn-text.android {
+  text-align: left;
+  padding: 0 44rpx;
+}
+.action-button{
+  font-size: 34rpx;
+  border-radius: 0;
+  line-height: 2.88;
+  z-index: 1;
+}
+.action-button:before, .action-button:after{
+  display: none;
+}

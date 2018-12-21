@@ -1,0 +1,77 @@
+/* components/merchantoverview/merchantoverview.wxss */
+@import "../../app.wxss";
+.top{
+  display: flex;
+  padding-top: 27rpx;
+}
+.image{
+  width: 180rpx;
+  height: 180rpx;
+  border-radius: 4rpx;
+  margin-right: 32rpx;
+  margin-top: 5rpx;
+  margin-bottom: 10rpx;
+}
+.overview{
+  flex: 1;
+  overflow: hidden;
+  margin-bottom: 5rpx;
+}
+.title-and-distance{
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333;
+  line-height: 40rpx;
+  display: flex;
+}
+.title{
+  flex: 1;
+  overflow : hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.distance{
+  margin-left: 20rpx;
+  font-size: 26rpx;
+  color: #999;
+}
+
+.merchant-star{
+  height: 54rpx;
+}
+
+.merchant-act{
+  height: 42rpx;
+  display: flex;
+  align-items: center;
+}
+.act-icon{
+  margin-right: 10rpx;
+}
+.act-text{
+  font-size: 26rpx;
+  color: #999;
+  line-height: 30rpx;
+  flex: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.bottom{
+  padding-bottom: 17rpx;
+}
+
+.notice{
+  display: flex;
+  height: 34rpx;
+  line-height: 28rpx;
+  font-size: 24rpx;
+  color: #999;
+  padding-bottom: 5rpx;
+  box-sizing: content-box;
+}
+.icon-notice{
+  font-size: 24rpx;
+  color: #FF9500;
+  margin-right: 10rpx;
+}

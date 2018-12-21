@@ -1,0 +1,41 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/login/login",
+    "pages/bindphone/bindphone",
+    "pages/scanpay/scanpay",
+    "pages/usercenter/usercenter"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#999",
+    "selectedColor": "#FF9500",
+    "backgroundColor": "#FAFAFA",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/scanpay/scanpay",
+        "text": "扫码付款",
+        "iconPath": "assets/images/scan_disable.png",
+        "selectedIconPath": "assets/images/scan_able.png"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "text": "乐享优惠",
+        "iconPath": "assets/images/discount_disable.png",
+        "selectedIconPath": "assets/images/discount_able.png"
+      },
+      {
+        "pagePath": "pages/usercenter/usercenter",
+        "text": "个人中心",
+        "iconPath": "assets/images/user_disable.png",
+        "selectedIconPath": "assets/images/user_able.png"
+      }
+    ]
+  }
+}

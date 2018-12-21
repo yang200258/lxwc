@@ -1,0 +1,7 @@
+<!--components/textIcon/textIcon.wxml-->
+<view class='wrapper' style="width:{{size.width}}rpx;height:{{size.height}}rpx;">
+  <view class='container' style="color:{{color}}">
+    <view class='bg' style="background:{{color}}"></view>
+    <text class='text' style="font-size:{{fontSize * 2}}rpx">{{text}}</text>
+  </view>
+</view>

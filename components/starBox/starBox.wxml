@@ -1,0 +1,8 @@
+<!--components/starBox/starBox.wxml-->
+<view class='star-wrapper'>
+  <view class='star-item' wx:for="{{star}}" wx:for-item="score" wx:for-index="idx" style="width:{{size}}rpx;height:{{size}}rpx;margin-left:{{idx === 0 ? 0 : (size / 4)}}rpx">
+    <view class='star-bg' style="width:{{score * 100}}%"></view>
+    <image class='star-image' src="/assets/images/empty_star.png"></image>
+  </view>
+  <text class='score-text' style="font-size:{{size}}rpx;line-height:{{size}}rpx;">{{scoreText}}</text>
+</view>

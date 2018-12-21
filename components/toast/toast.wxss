@@ -1,0 +1,40 @@
+/* components/toast/toast.wxss */
+
+.ft-toast{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: -100%;
+  background: transparent;
+  overflow: visible;
+  z-index: 99999;
+  text-align: center;
+}
+.ft-toast-content{
+  max-width: 80%;
+  margin-top: 266.66%;
+  transform: translateY(-50%);
+  background: rgba(50, 50, 51, 0.85);
+  border-radius: 6rpx;
+  padding: 24rpx 72rpx;
+  font-size: 30rpx;
+  line-height: 38rpx;
+  color: #fff;
+  box-sizing: border-box;
+  display: inline-block;
+  white-space: pre-wrap;
+  word-break: break-all;
+  text-align: center;
+  animation: fadeUp 400ms;
+}
+@keyframes fadeUp {
+  from {
+    transform: translateY(250rpx);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(-50%);
+    opacity: 1;
+  }
+}

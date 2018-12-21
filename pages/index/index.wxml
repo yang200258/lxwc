@@ -1,0 +1,81 @@
+<!--index.wxml-->
+<view class="page-index">
+  <!-- <view catchtap="goBindPhone">支付</view> -->
+  <!-- 定位及消息 -->
+  <view class='location-and-message'>
+    <view class='location-box'>
+      <text class='iconfont icon-location_xcx'></text>
+      <text class='location-text'>{{location.address}}</text>
+      <text class='iconfont icon-next'></text>
+    </view>
+    <view class='message-box'>
+      <text class='iconfont icon-message'></text>
+      <view class='message-count'>
+        <text class='message-text'>{{messageCount > 99 ? '99+' : messageCount}}</text>
+      </view>
+    </view>
+  </view>
+  <!-- 搜索框 -->
+  <view class='search-box'>
+    <text class='iconfont icon-search'></text>
+    <text class='search-text'>搜索品牌、门店、商品...</text>
+  </view>
+  <!-- 活动 -->
+  <view class='activity-box'>
+    <swiper class='activity-swiper' duration="{{300}}" bindchange="changeActivityCurrent">
+      <swiper-item wx:for="{{activitys}}" wx:for-item="activity" wx:key="id">
+        <view class='activity-item-content'>
+          <image class='activity-banner' src="{{activity.banner}}" mode="aspectFill"></image>
+        </view>
+      </swiper-item>
+    </swiper>
+    <view class='activity-indicator'>
+      <view class="activity-indicator-item {{activityCurrent === idx ? 'current' : ''}}" wx:for="{{activitys}}" wx:for-index="idx" wx:for-item="activity" wx:key="id"></view>
+    </view>
+  </view>
+  <!-- 商家分类 -->
+  <scroll-view class='merchant-cate' scroll-x>
+    <view class='merchant-cate-content'>
+      <view class="cate{{idx === 0 ? ' first' : ''}}{{(idx === (merchantCates.length - 1)) ? ' last' : ''}}" wx:for="{{merchantCates}}" wx:for-item="cate" wx:for-index="idx" wx:key="id">
+        <image class='cate-image' src="{{cate.banner}}" mode="aspectFill"></image>
+        <view class='cate-text'>{{cate.title}}</view>
+      </view>
+    </view>
+  </scroll-view>
+  <!-- 推荐商家 -->
+  <view class='rec-merchants' wx:if="{{recommendTabs && recommendTabs.length}}">
+    <view class='rec-merchants-header'>
+      <view class="rec-merchants-header-title {{recommendCurrent === idx ? 'current' : ''}}" wx:for="{{recommendTabs}}" wx:for-item="recommendTab" wx:for-index="idx" wx:key="title" catchtap="changeRecommendTab" data-idx="{{idx}}">
+        <text>{{recommendTab.title}}</text>
+        <view hidden="{{recommendCurrent !== idx}}" class='rec-merchants-header-title-line'></view>
+      </view>
+      <view class='rec-merchants-header-line'></view>
+    </view>
+    <view class='rec-merchants-container'>
+      <merchant-card class="merchant-card" wx:for="{{recommendTabs[recommendCurrent].merchants}}" style="width:49.27%;" wx:for-item="merchant" wx:key="id" merchant="{{merchant}}" />
+    </view>
+  </view>
+  <view class='lx-merchants'>
+    <view class='lx-merchants-header'>
+      <view class="lx-merchants-header-title current">
+        <text>乐享商家</text>
+        <view class='lx-merchants-header-title-line'></view>
+      </view>
+      <view class='lx-filter'>
+        <picker bindchange="changeIndexCate" value="{{currentCate}}" range="{{indexCates}}" range-key="title">
+          <text class='lx-filter-text'>{{indexCates[currentCate].title}}</text>
+        </picker>
+        <text class='iconfont icon-pull_down'></text>
+      </view>
+      <view class='sort-type'>
+        <view catchtap="changeSort" data-sort="{{0}}" class="sort-type-distance {{currentSort === 0 ? 'current' : ''}}">距离</view>
+        <view class='line-separator-v' style="height:24rpx;"></view>
+        <view catchtap="changeSort" data-sort="{{1}}" class="sort-type-hot {{currentSort === 1 ? 'current' : ''}}">人气</view>
+      </view>
+      <view class='lx-merchants-header-line'></view>
+    </view>
+    <view class='lx-merchants-body'>
+      <merchant-overview wx:for="{{indexMerchants}}" wx:for-item="merchant" wx:key="id" merchant="{{merchant}}" />
+    </view>
+  </view>
+</view>

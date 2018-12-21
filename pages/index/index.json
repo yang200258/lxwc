@@ -1,0 +1,9 @@
+{
+  "navigationBarBackgroundColor": "#FAFAFA",
+  "navigationBarTitleText": "乐享文昌",
+  "backgroundColor": "#FFFFFF",
+  "usingComponents": {
+    "merchant-card": "/components/merchantCard/merchantCard",
+    "merchant-overview": "/components/merchantOverview/merchantOverview"
+  }
+}

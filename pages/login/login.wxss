@@ -1,0 +1,26 @@
+/* pages/login/login.wxss */
+@import "../../assets/styles/common-flex.wxss";
+
+.icon {
+  margin-top: 138rpx;
+  width: 216rpx;
+  height: 216rpx;
+  margin-bottom: 40rpx;
+}
+
+.tip {
+  color: #666;
+  font-size: 28rpx;
+  margin-bottom: 84rpx;
+}
+
+.login-button {
+  width: 630rpx;
+  height: 90rpx;
+  background-color: #1eb0fd;
+  /* border-radius: 8rpx; */
+  font-size: 34rpx;
+  color: #fff;
+  border-width: 0;
+  border-style: none;
+}
