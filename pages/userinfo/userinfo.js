@@ -11,6 +11,7 @@ Page({
     avatar: {
       id: '',
       url: '',
+      uploading: false,
       extraData: {
         btn: 'avatar'
       }
@@ -25,6 +26,7 @@ Page({
     name: {
       value: '',
       text: '',
+      filled: false,
       extraData: {
         btn: 'name'
       }
@@ -32,6 +34,7 @@ Page({
     gender: { // value   1:表示男，2:表示女
       value: '',
       text: '',
+      filled: false,
       extraData: {
         btn: 'gender'
       }
@@ -39,19 +42,85 @@ Page({
     birthday: {
       value: '',
       text: '',
+      filled: false,
       extraData: {
         btn: 'birthday'
       }
     },
     nameInputValue: '',
-    nameBox: false
+    nameBox: false,
+    requiredSubmitting: false
+  },
+
+  saveUserInfo: function () {
+    console.log('saveUserInfo')
+    let {name, gender, birthday} = this.data
+    let arr = [name, gender, birthday]
+    let dataArr = arr.filter(item => !item.filled)
+    if (dataArr && dataArr[0]) {
+      let obj = {}
+      dataArr.forEach(item => {
+        obj[item.extraData.btn] = item
+      })
+      wx.setStorageSync('userInfoLocal', JSON.stringify(obj))
+    }
+  },
+
+  getUserInfo: function () {
+    const userInfoLocal = wx.getStorageSync('userInfoLocal') ? JSON.parse(wx.getStorageSync('userInfoLocal')) : null
+    const { name, gender, birthday } = this.data
+    let arr = [name, gender, birthday]
+    if (userInfoLocal && Object.keys(userInfoLocal).length) {
+      let obj = {}
+      let len = 0
+      arr.forEach(item => {
+        if (!item.filled && userInfoLocal[item.extraData.btn]) {
+          len += 1
+          obj[item.extraData.btn] = userInfoLocal[item.extraData.btn]
+        }
+      })
+      if (len > 0) {
+        this.setData(obj)
+      }
+    }
+  },
+
+  submitRequiredInfo: function () {
+    const {name, gender, birthday, requiredSubmitting} = this.data
+    if (requiredSubmitting) {
+      return false
+    }
+    if (!(name.value && name.text)) { // 未填写姓名
+      wx.showToast({
+        title: '请填写姓名',
+        icon: 'none'
+      })
+      return false
+    }
+    if (!(gender.value && gender.text)) { // 未填写姓名
+      wx.showToast({
+        title: '请填写性别',
+        icon: 'none'
+      })
+      return false
+    }
+    if (!(birthday.value && birthday.text)) { // 未填写姓名
+      wx.showToast({
+        title: '请填写生日',
+        icon: 'none'
+      })
+      return false
+    }
+
+    // 请求提交用户信息
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getUserInfo()
   },
 
   /**
@@ -79,7 +148,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    this.saveUserInfo()
   },
 
   /**
@@ -105,6 +174,45 @@ Page({
 
   entranceTap: function (e) {
     console.log('点击了按钮', e.detail.btn)
+  },
+
+  chooseImage: function (e) {
+    // 选择图片
+    wx.chooseImage({
+      count: 1,
+      sizeType: ['compressed', 'original'],
+      sourceType: ['album', 'camera'],
+      success: res => {
+        console.log('tempFilePaths', res.tempFilePaths[0])
+        if (res && res.tempFilePaths && res.tempFilePaths[0]) {
+          this.setData({
+            'avatar.url': res.tempFilePaths[0],
+            'avatar.uploading': true
+          })
+          const app = getApp()
+          if (this.uploadTask && this.uploadTask.abort) {
+            this.uploadTask.abort()
+          }
+          this.uploadTask = wx.uploadFile({
+            url: app.config.baseUrl + (app.config.apiVersion || '/v1') + '/user/uploadavatar',
+            filePath: res.tempFilePaths[0],
+            name: 'image',
+            success: res => {
+              console.log('上传成功', res)
+            },
+            fail: res => {
+              console.log('上传失败', res)
+            },
+            complete: res => {
+              this.uploadTask = null
+              this.setData({
+                'avatar.uploading': false
+              })
+            }
+          })
+        }
+      }
+    })
   },
 
   showGenderActions: function (e) {

@@ -16,7 +16,7 @@ Page({
       usernum: '9527'
     },
     userWallet: {
-      balance: 200,
+      balance: '200.00',
       redPacket: 8,
       voucher: 9
     },
@@ -42,7 +42,7 @@ Page({
         image: '/assets/images/order_icon.png',
         title: '我的订单',
         extraData: {
-          route: '/pages/order/order'
+          route: '/pages/orderlist/orderlist'
         }
       },
       {

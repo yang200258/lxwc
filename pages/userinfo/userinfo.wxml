@@ -1,7 +1,7 @@
 <!--pages/userinfo/userinfo.wxml-->
 <view class='page-userinfo'>
   <view class="info-entrance">
-    <entrance sub-image="{{avatar.url || '/assets/images/user_avatar.png'}}" title="头像" extra-data="{{avatar.extraData}}" bindentrancetap="entranceTap" />
+    <entrance sub-image="{{avatar.url || '/assets/images/user_avatar.png'}}" title="头像" subMask="{{avatar.uploading}}" extra-data="{{avatar.extraData}}" bindentrancetap="chooseImage" />
     <view class='line-separator-h' style="width:718rpx;margin-left:32rpx;"></view>
   </view>
   <view class="info-entrance">
@@ -9,15 +9,15 @@
     <view class='line-separator-h' style="width:718rpx;margin-left:32rpx;"></view>
   </view>
   <view class="info-entrance">
-    <entrance required="{{true}}" sub-title="{{name.text || '未填写'}}" title="姓名" extra-data="{{name.extraData}}" bindentrancetap="showNameBox" />
+    <entrance required="{{!name.filled}}" sub-title="{{name.text || '未填写'}}" title="姓名" next-icon="{{!name.filled}}" extra-data="{{name.extraData}}" bindentrancetap="showNameBox" />
     <view class='line-separator-h' style="width:718rpx;margin-left:32rpx;"></view>
   </view>
   <view class="info-entrance">
-    <entrance required="{{true}}" sub-title="{{gender.text || '未填写'}}" title="性别" extra-data="{{gender.extraData}}" bindentrancetap="showGenderActions" />
+    <entrance required="{{!gender.filled}}" sub-title="{{gender.text || '未填写'}}" title="性别" next-icon="{{!gender.filled}}" extra-data="{{gender.extraData}}" bindentrancetap="showGenderActions" />
     <view class='line-separator-h' style="width:718rpx;margin-left:32rpx;"></view>
   </view>
   <view class="info-entrance">
-    <entrance required="{{true}}" sub-title="{{birthday.text || '未填写'}}" title="生日" extra-data="{{birthday.extraData}}" bindentrancetap="entranceTap" />
+    <entrance required="{{!birthday.filled}}" sub-title="{{birthday.text || '未填写'}}" title="生日" next-icon="{{!birthday.filled}}" extra-data="{{birthday.extraData}}" bindentrancetap="entranceTap" />
     <picker class='birthday-picker' value="{{birthday.value || '1991-10-10'}}" mode="date" bindchange="birthdayChange">
       <view class='birthday-picker-content'>.</view>
     </picker>
@@ -25,6 +25,9 @@
   </view>
   <view class='tip'>
     <text>姓名、性别、生日等信息一旦提交、不可更改</text>
+  </view>
+  <view wx:if="{{!name.filled || !gender.filled || !birthday.filled}}" class='submit-btn' catchtap="submitRequiredInfo">
+    <text>提交</text>
   </view>
   <!-- 填写姓名窗口 -->
   <view class="name-wrapper {{nameBox ? 'show' : 'hide'}}" catchtap="hideNameBox" catchtouchmove="stopPropagation">

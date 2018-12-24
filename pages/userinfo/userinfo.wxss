@@ -25,6 +25,18 @@
   opacity: 0;
 }
 
+.submit-btn{
+  margin: 28rpx 32rpx;
+  height: 94rpx;
+  color: #FF9500;
+  font-size: 36rpx;
+  border: 2rpx solid #FF9500;
+  border-radius: 8rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 /* 填写姓名弹窗 */
 .name-wrapper{
   position: fixed;

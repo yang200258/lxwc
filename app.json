@@ -10,8 +10,10 @@
     "pages/merchantcate/merchantcate",
     "pages/merchantdetail/merchantdetail",
     "pages/userinfo/userinfo",
-    "pages/order/order",
-    "pages/bill/bill"
+    "pages/bill/bill",
+    "pages/orderlist/orderlist",
+    "pages/orderdetail/orderdetail",
+    "pages/ticketlist/ticketlist"
   ],
   "window": {
     "backgroundTextStyle": "light",

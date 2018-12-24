@@ -74,7 +74,24 @@ Page({
         type: '2',
         url: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3737093608,1532771841&fm=200&gp=0.jpg'
       }
-    ]
+    ],
+    merchantData: {
+      shopid: 1,
+      name: '锦江之星',
+      notice: '商家公告内容商家公告内容商家公告内容',
+      pic: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2125263106,3163730844&fm=26&gp=0.jpg',
+      business_time: '',
+      position: '', // 有时间就做
+      huodong: [
+        {
+          type: '1', // 1为优惠券
+          cond_count: 28,
+          value: 3,
+          status: '1' // 1为未领取，2为已领取
+        }
+        // 下面的商家优惠这星期先不做
+      ]
+    }
   },
 
   /**

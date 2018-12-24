@@ -1,0 +1,20 @@
+/* pages/orderlist/orderlist.wxss */
+page{
+  background: #F4F4F4;
+}
+.empty-orders{
+  overflow: hidden;
+}
+.empty-image{
+  display: block;
+  width: 292rpx;
+  height: 234rpx;
+  margin: 380rpx auto 0;
+}
+.empty-tip{
+  font-size: 32rpx;
+  color: #999;
+  line-height: 44rpx;
+  padding-top: 30rpx;
+  text-align: center;
+}

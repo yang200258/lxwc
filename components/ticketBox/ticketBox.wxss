@@ -1,0 +1,120 @@
+/* components/ticketBox/ticketBox.wxss */
+@import "../../assets/styles/iconfont.wxss";
+
+.wrapper{
+  display: flex;
+  height: 184rpx;
+  padding: 0 0 0 18rpx;
+  justify-content: space-between;
+  align-items: stretch;
+  border-radius: 16rpx;
+  overflow: hidden;
+  background: #FFEED7;
+  position: relative;
+}
+.left{
+  flex: 1;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+.image{
+  display: block;
+  width: 124rpx;
+  height: 124rpx;
+  border-radius: 12rpx;
+  margin-right: 18rpx;
+  flex-shrink: 0;
+}
+.overview{
+  flex: 1;
+  height: 134rpx;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+}
+.value-and-title{
+  font-size: 30rpx;
+  color: #FF9500;
+  line-height: 40rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.icon-renminbi{
+  font-size: 26rpx;
+  color: #FF9500;
+}
+.value{
+  font-size: 54rpx;
+  line-height: 58rpx;
+}
+.title{
+  margin-left: 10rpx;
+  padding-right: 18rpx;
+}
+.content{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 26rpx;
+  line-height: 36rpx;
+  color: #999;
+  flex: 1;
+  padding-right: 18rpx;
+}
+.time{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 24rpx;
+  line-height: 34rpx;
+  color: #999;
+  padding-right: 18rpx;
+}
+.separator{
+  width: 0;
+  height: 100%;
+  border-left: 2rpx dashed #fff;
+}
+.top-white{
+  width: 14rpx;
+  height: 28rpx;
+  border-radius: 50%;
+  background: #fff;
+  position: absolute;
+  top: -14rpx;
+  right: 164rpx;
+  transform: translateX(50%);
+}
+.bottom-white{
+  width: 14rpx;
+  height: 28rpx;
+  border-radius: 50%;
+  background: #fff;
+  position: absolute;
+  bottom: -14rpx;
+  right: 164rpx;
+  transform: translateX(50%);
+}
+.right{
+  flex-shrink: 0;
+  width: 164rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.use-btn{
+  display: flex;
+  width: 112rpx;
+  height: 56rpx;
+  justify-content: center;
+  align-items: center;
+  border-radius: 28rpx;
+  background: linear-gradient(#FFB751, #FF9500);
+  color: #fff;
+  font-size: 26rpx;
+  line-height: 30rpx;
+}

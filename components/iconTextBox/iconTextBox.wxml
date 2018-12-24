@@ -1,0 +1,11 @@
+<!--components/iconTextBox/iconTextBox.wxml-->
+<view class='wrapper'>
+  <view wx:if="{{textIcon}}" class='text-icon'>
+    <text-icon size="{{actIconSize}}" font-size="{{24}}" color="{{textIconColor}}" text="{{textIcon}}" />
+  </view>
+  <image wx:if="{{imageIcon}}" class='image-icon' style="width:{{actIconSize.width}}rpx;height:{{actIconSize.height}}rpx" src="{{imageIcon}}" mode="aspectFit"></image>
+  <text wx:if="{{title}}" class='title'>{{title}}</text>
+  <text wx:if="{{showMoneySign}}" class='minus-sign'>-</text>
+  <text wx:if="{{showMoneySign}}" class='iconfont icon-renminbi' style="font-size:20rpx"></text>
+  <text wx:if="{{subTitle}}" class='sub-title'>{{subTitle}}</text>
+</view>

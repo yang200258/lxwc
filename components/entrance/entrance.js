@@ -35,6 +35,14 @@ Component({
     bottomBorder: {
       type: Boolean,
       value: false
+    },
+    subMask: {
+      type: Boolean,
+      value: false
+    },
+    nextIcon: {
+      type: Boolean,
+      value: true
     }
   },
 

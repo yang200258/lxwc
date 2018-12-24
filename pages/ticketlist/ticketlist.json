@@ -1,0 +1,8 @@
+{
+  "navigationBarBackgroundColor": "#FAFAFA",
+  "navigationBarTitleText": "我的卡券",
+  "backgroundColor": "#FFFFFF",
+  "usingComponents": {
+    "ticket-box": "/components/ticketBox/ticketBox"
+  }
+}

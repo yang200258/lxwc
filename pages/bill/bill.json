@@ -1,1 +1,6 @@
-{}
+{
+  "navigationBarBackgroundColor": "#FAFAFA",
+  "navigationBarTitleText": "我的账单",
+  "backgroundColor": "#FFFFFF",
+  "usingComponents": {}
+}

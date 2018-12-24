@@ -4,7 +4,7 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": false,
+		"urlCheck": true,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
@@ -37,7 +37,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 6,
+			"current": 10,
 			"list": [
 				{
 					"id": -1,
@@ -79,6 +79,30 @@
 					"id": -1,
 					"name": "会员信息",
 					"pathName": "pages/userinfo/userinfo",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "订单列表",
+					"pathName": "pages/orderlist/orderlist",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "订单详情",
+					"pathName": "pages/orderdetail/orderdetail",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "我的账单",
+					"pathName": "pages/bill/bill",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "我的卡券",
+					"pathName": "pages/ticketlist/ticketlist",
 					"query": ""
 				}
 			]

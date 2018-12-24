@@ -1,2 +1,34 @@
 <!--pages/bill/bill.wxml-->
-<text>pages/bill/bill.wxml</text>
+<view class='page-bill'>
+  <view class='header'>
+    <view wx:for="{{header}}" wx:for-item="head" wx:for-index="idx" wx:key="type" class="header-item {{selected === idx ? 'current' : ''}}" data-idx="{{idx}}" catchtap="tabChange">
+      <text>{{head.title}}</text>
+    </view>
+    <view class='indicator-box'>
+      <view class='line-separator-h'></view>
+      <view class='indicator' style="transform:translateX({{(selected + 0.5) * 250}}rpx)"></view>
+    </view>
+  </view>
+  <view class='tab-content-wrapper'>
+    <swiper class='tab-swiper' current="{{selected}}" bindchange="swiperChange">
+      <swiper-item wx:for="{{tabData}}" wx:for-item="data" wx:for-index="idx" wx:key="type">
+        <scroll-view wx:if="{{data.bills && data.bills[0]}}" scroll-y class='tab-scroll-view' bindscrolltolower="reachBottom" data-idx="{{idx}}">
+          <view wx:for="{{data.bills}}" wx:for-item="bill" wx:for-index="bIdx" wx:key="id" class='bill-item-wrapper'>
+            <view class='bill-item'>
+              <view class='left'>
+                <view class='title'>{{bill.name}}</view>
+                <view class='time'>{{bill.date}}</view>
+              </view>
+              <view class="right {{bill.type == '1' ? 'out' : 'in'}}">{{bill.type == '1' ? '-' : '+'}}{{bill.amount}}</view>
+            </view>
+            <view class='line-separator-h'></view>
+          </view>
+        </scroll-view>
+        <view wx:if="{{!data.bills || (data.bills && !data.bills[0]) && data.loaded}}" class='empty-bill'>
+        <image class='empty-image' src="/assets/images/empty_bill.png"></image>
+        <view class='empty-tip'>暂无数据</view>
+        </view>
+      </swiper-item>
+    </swiper>
+  </view>
+</view>

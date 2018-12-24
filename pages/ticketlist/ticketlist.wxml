@@ -1,0 +1,6 @@
+<!--pages/ticketlist/ticketlist.wxml-->
+<view class='page-ticketlist'>
+  <view wx:for="{{tickets}}" wx:for-item="ticket" wx:for-index="idx" wx:key="id" class='ticket-item'>
+    <ticket-box ticket="{{ticket}}" />
+  </view>
+</view>

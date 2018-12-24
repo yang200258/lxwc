@@ -1,0 +1,8 @@
+{
+  "navigationBarBackgroundColor": "#FAFAFA",
+  "navigationBarTitleText": "我的订单",
+  "backgroundColor": "#FFFFFF",
+  "usingComponents": {
+    "icon-text-box": "/components/iconTextBox/iconTextBox"
+  }
+}

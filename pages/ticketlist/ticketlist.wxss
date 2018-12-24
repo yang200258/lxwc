@@ -1,0 +1,8 @@
+/* pages/ticketlist/ticketlist.wxss */
+
+.page-ticketlist{
+  padding-top: 14rpx;
+}
+.ticket-item{
+  padding: 14rpx 32rpx;
+}
