@@ -1,0 +1,8 @@
+{
+  "navigationBarBackgroundColor": "#FAFAFA",
+  "navigationBarTitleText": "商家分类",
+  "backgroundColor": "#FFFFFF",
+  "usingComponents": {
+    "merchant-overview": "/components/merchantOverview/merchantOverview"
+  }
+}

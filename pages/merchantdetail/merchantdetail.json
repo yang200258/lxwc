@@ -1,0 +1,8 @@
+{
+  "navigationBarBackgroundColor": "#FAFAFA",
+  "navigationBarTitleText": "",
+  "backgroundColor": "#FFFFFF",
+  "usingComponents": {
+    "star-box": "/components/starBox/starBox"
+  }
+}

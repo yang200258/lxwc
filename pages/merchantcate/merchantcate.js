@@ -1,119 +1,45 @@
-//index.js
-import util from '../../utils/util.js'
-
+// pages/merchantcate/merchantcate.js
 Page({
+
+  /**
+   * 页面的初始数据
+   */
   data: {
-    location: {
-      address: '正在定位',
-      lng: null,
-      lat: null
-    },
-    messageCount: 55,
-    activityCurrent: 0,
-    activitys: [
-      {
-        id: 1,
-        banner: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3023308141,3535526767&fm=200&gp=0.jpg'
-      },
-      {
-        id: 2,
-        banner: 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1383599882,3589720252&fm=200&gp=0.jpg'
-      },
-      {
-        id: 3,
-        banner: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=335081894,2281243220&fm=200&gp=0.jpg'
-      },
-      {
-        id: 4,
-        banner: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2478955624,2967016924&fm=26&gp=0.jpg'
-      },
-      {
-        id: 5,
-        banner: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1243655571,2094742982&fm=200&gp=0.jpg'
-      },
-      {
-        id: 6,
-        banner: 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2757423851,547269891&fm=26&gp=0.jpg'
-      }
-    ],
     merchantCates: [
       {
         id: 1,
-        title: '餐饮',
+        title: '快餐小吃',
         banner: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3023308141,3535526767&fm=200&gp=0.jpg'
       },
       {
         id: 2,
-        title: '酒店',
+        title: '中国地方菜',
         banner: 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1383599882,3589720252&fm=200&gp=0.jpg'
       },
       {
         id: 3,
-        title: '超市',
+        title: '异国料理',
         banner: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=335081894,2281243220&fm=200&gp=0.jpg'
       },
       {
         id: 4,
-        title: 'KTV',
+        title: '休闲茶饮',
         banner: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2478955624,2967016924&fm=26&gp=0.jpg'
       },
       {
         id: 5,
-        title: '洗车',
+        title: '火锅',
         banner: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1243655571,2094742982&fm=200&gp=0.jpg'
       },
       {
         id: 6,
-        title: 'xxx',
+        title: '意面披萨',
         banner: 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2757423851,547269891&fm=26&gp=0.jpg'
-      }
-    ],
-    recommendCurrent: 0,
-    recommendTabs: [
-      {
-        title: '为您优选',
-        merchants: [
-          {
-            id: 1,
-            image: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3737093608,1532771841&fm=200&gp=0.jpg',
-            title: '大润发(文昌店）',
-            intro: '乐享会员支付立减10元'
-          },
-          {
-            id: 2,
-            image: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3737093608,1532771841&fm=200&gp=0.jpg',
-            title: 'CoCo茶饮',
-            intro: '乐享会员支付1元喝奶茶'
-          },
-          {
-            id: 3,
-            image: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3737093608,1532771841&fm=200&gp=0.jpg',
-            title: '欢乐迪KTV',
-            intro: '乐享会员欢唱2小时'
-          },
-          {
-            id: 4,
-            image: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3737093608,1532771841&fm=200&gp=0.jpg',
-            title: '车之翼汽车服务中心',
-            intro: '乐享会员洗车立减10元'
-          }
-        ]
-      },
-      {
-        title: '新店优选',
-        merchants: [
-          {
-            id: 1,
-            image: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3737093608,1532771841&fm=200&gp=0.jpg',
-            title: '新店优选',
-            intro: '乐享会员支付立减10元'
-          }
-        ]
       }
     ],
     currentSort: 0, // 0:按距离排序，    1:按人气排序
     currentCate: 0,
-    indexCates: [
+    lxCates: [
       {
         id: '1',
         title: '分类1'
@@ -135,7 +61,7 @@ Page({
         title: '分类5'
       }
     ],
-    indexMerchants: [
+    lxMerchants: [
       {
         id: '1',
         title: '香港满记甜品(文三路店）收到了饭就文三路店）收到了饭就随大流风景随大流风景',
@@ -191,30 +117,71 @@ Page({
         notice: '公告：乐享会员支付送中乐一杯'
       }
     ]
-    
   },
 
-  onLoad: function () {
-    
-  },
-  
-  goBindPhone: function () {
-    const goBindPage = () => {
-      console.log('跳转支付')
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    if (options && options.title) { // 传入标题时设置顶部标题
+      wx.setNavigationBarTitle({
+        title: options.title
+      })
     }
-    util.checkPhone(goBindPage)
   },
 
-  changeActivityCurrent: function (e) {
-    this.setData({
-      activityCurrent: e.detail.current
-    })
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
   },
 
-  changeRecommendTab: function (e) {
-    const { idx } = e.currentTarget.dataset
-    this.setData({
-      recommendCurrent: idx
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
+  },
+
+  goSearchPage: function () {
+    wx.navigateTo({
+      url: '/pages/search/search'
     })
   },
 
@@ -224,7 +191,7 @@ Page({
     })
   },
 
-  changeIndexCate: function (e) {
+  changeLxCate: function (e) {
     this.setData({
       currentCate: parseInt(e.detail.value)
     })

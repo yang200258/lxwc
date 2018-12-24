@@ -4,7 +4,14 @@
     "pages/login/login",
     "pages/bindphone/bindphone",
     "pages/scanpay/scanpay",
-    "pages/usercenter/usercenter"
+    "pages/usercenter/usercenter",
+    "pages/search/search",
+    "pages/message/message",
+    "pages/merchantcate/merchantcate",
+    "pages/merchantdetail/merchantdetail",
+    "pages/userinfo/userinfo",
+    "pages/order/order",
+    "pages/bill/bill"
   ],
   "window": {
     "backgroundTextStyle": "light",

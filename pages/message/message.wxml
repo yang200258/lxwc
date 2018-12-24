@@ -1,0 +1,19 @@
+<!--pages/message/message.wxml-->
+<view class='page-message'>
+  <view wx:for="{{messages}}" wx:for-item="message" wx:for-index="idx" wx:key="id" class='message-item'>
+    <view wx:if="{{!message.readed}}" class='unread-sign'></view>
+    <view class='title-and-time'>
+      <view class='title'>{{message.title}}</view>
+      <view class='time'>{{message.time}}</view>
+    </view>
+    <view class='content'>{{message.content}}</view>
+    <view wx:if="{{idx !== (messages.length - 1)}}" class='line-separator-h'></view>
+  </view>
+</view>
+<view wx:if="{{!loading && loaded && (!messages || !(messages && messages.length))}}" class='empty-message'>
+<image class='empty-image' src="/assets/images/empty_message.png"></image>
+<view class='empty-tip'>暂无任何消息</view>
+</view>
+<view wx:if="{{loading && (!messages || !(messages && messages.length))}}">
+<view class='loading-tip'>正在加载消息...</view>
+</view>

@@ -1,0 +1,13 @@
+<!--components/entrance/entrance.wxml-->
+<view catchtap="boxTap" class='entrance-wrapper'>
+  <view wx:if="{{topBorder}}" class='line-separator-h'></view>
+  <view class='entrance-box'>
+  <image wx:if="{{image}}" class='entrance-image' src="{{image}}" mode='aspectFit'></image>
+  <text wx:if="{{required}}" class='iconfont icon-xinghao'></text>
+  <text class='entrance-title'>{{title}}</text>
+  <text wx:if="{{subTitle}}" class='entrance-sub-title'>{{subTitle}}</text>
+  <image wx:if="{{subImage}}" class='entrance-sub-image' src="{{subImage}}" mode="aspectFill"></image>
+  <text class='iconfont icon-next'></text>
+  </view>
+  <view wx:if="{{bottomBorder}}" class='line-separator-h'></view>
+</view>

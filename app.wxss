@@ -39,7 +39,7 @@
 .block-separator{
   width: 100%;
   height: 16rpx;
-  background: #E1E1E6;
+  background: #F4F4F4;
 }
 .txt-area-bg{
   background: #EBEBEB;

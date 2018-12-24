@@ -1,9 +1,7 @@
 {
   "navigationBarBackgroundColor": "#FAFAFA",
-  "navigationBarTitleText": "个人中心",
+  "navigationBarTitleText": "会员信息",
   "backgroundColor": "#FFFFFF",
-  "backgroundColorTop": "#FF9500",
-  "backgroundColorBottom": "#FFFFFF",
   "usingComponents": {
     "entrance": "/components/entrance/entrance"
   }

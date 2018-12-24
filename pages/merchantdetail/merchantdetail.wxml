@@ -1,0 +1,97 @@
+<!--pages/merchantdetail/merchantdetail.wxml-->
+<view class='merchant-detail'>
+  <!-- 商家概览 -->
+  <view class='merchant-overview'>
+    <view class='title'>{{overview.title}}</view>
+    <view class='star'>
+      <star-box score="{{overview.star}}" />
+    </view>
+    <!-- 商家图片轮播 -->
+    <view wx:if="{{overview.covers && overview.covers.length}}" class='merchant-covers'>
+      <swiper class='covers-swiper' indicator-dots indicator-color="#D8D8D8" indicator-active-color="#A3A3A3" duration="{{300}}">
+        <swiper-item wx:for="{{overview.covers}}" wx:for-item="cover" wx:key="id">
+          <image class='cover-image' src="{{cover.url}}" mode="aspectFill"></image>
+        </swiper-item>
+      </swiper>
+    </view>
+    <!-- 商家公告 -->
+    <view class='notice' wx:if="{{overview.notice}}">
+      <view class='notice-header'>
+        <text class='iconfont icon-notice'></text>
+        <text class='notice-header-title'>商家公告</text>
+      </view>
+      <view class='notice-content'>{{overview.notice}}</view>
+      <view class='line-separator-h'></view>
+    </view>
+    <!-- 商家营业时间 -->
+    <view wx:if="{{overview.businessTimeText}}" class='business-time-wrapper'>
+      <view class='business-time'>
+        <text class='iconfont icon-iconfontshangjia'></text>
+        <text class='business-time-text'>{{overview.businessTimeText}}</text>
+      </view>
+      <view class='line-separator-h'></view>
+    </view>
+    <!-- 商家地址及电话 -->
+    <view wx:if="{{overview.addressText}}" class='location-and-phone'>
+      <text class='iconfont icon-location_xcx'></text>
+      <text class='location-text'>{{overview.addressText}}</text>
+      <view class='line-separator-v' style="height:28rpx;"></view>
+      <text class='iconfont icon-phone'></text>
+    </view>
+  </view>
+  <!-- 商家优惠活动 -->
+  <view wx:if="{{(activitys.voucher && activitys.voucher.length) || (activitys.fullcut && activitys.fullcut.length) || (activitys.fullgift && activitys.fullgift.length)}}" class='merchant-activity'>
+    <view class='block-separator'></view>
+    <view class='activity-header'>商家优惠</view>
+    <!-- 代金券 -->
+    <view wx:if="{{activitys.voucher && activitys.voucher.length}}" class='voucher-box'>
+      <view class='line-separator-h'></view>
+      <view class='voucher-content-wrapper'>
+        <view wx:for="{{activitys.voucher}}" wx:for-item="voucher" wx:key="id" class='voucher-item'>
+          <view class='voucher-text'>{{voucher.title}}</view>
+          <view class="voucher-btn {{voucher.received ? 'disabled' : ''}}">
+            <text>{{voucher.received ? '已领取' : '领取'}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <!-- 满减 -->
+    <view wx:if="{{activitys.fullcut && activitys.fullcut.length}}" class='fullcut-box'>
+      <view class='line-separator-h'></view>
+      <view class='fullcut-content-wrapper'>
+        <view wx:for="{{activitys.fullcut}}" wx:for-item="fullcut" wx:key="id" class='fullcut-item'>
+          <view class='fullcut-text'>{{fullcut.title}}</view>
+        </view>
+      </view>
+    </view>
+    <!-- 满赠 -->
+    <view wx:if="{{activitys.fullgift && activitys.fullgift.length}}" class='fullgift-box'>
+      <view class='line-separator-h'></view>
+      <view class='fullgift-content-wrapper'>
+        <view wx:for="{{activitys.fullgift}}" wx:for-item="fullgift" wx:key="id" class='fullgift-item'>
+          <view class='fullgift-text'>{{fullgift.title}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 商家简介 -->
+  <view wx:if="{{intro && intro.length}}" class='merchant-intro'>
+    <view class='block-separator'></view>
+    <view class='intro-header'>
+      <text>商家简介</text>
+      <view class='line-separator-h'></view>
+    </view>
+    <view class='intro-detail'>
+      <block wx:for="{{intro}}" wx:for-item="introItem" wx:key="*this">
+        <!-- 文字 -->
+        <view wx:if="{{introItem.type == 1}}" class='intro-text'>{{introItem.content}}</view>
+        <!-- 图片 -->
+        <image wx:if="{{introItem.type == 2}}" class='intro-image' src="{{introItem.url}}" mode="widthFix"></image>
+      </block>
+    </view>
+  </view>
+  <!-- 优惠买单 -->
+  <view class='pay-btn'>
+    <text>优惠买单</text>
+  </view>
+</view>

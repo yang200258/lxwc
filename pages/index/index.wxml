@@ -55,6 +55,7 @@
       <merchant-card class="merchant-card" wx:for="{{recommendTabs[recommendCurrent].merchants}}" style="width:49.27%;" wx:for-item="merchant" wx:key="id" merchant="{{merchant}}" />
     </view>
   </view>
+  <!-- 乐享商家 -->
   <view class='lx-merchants'>
     <view class='lx-merchants-header'>
       <view class="lx-merchants-header-title current">

@@ -1,0 +1,50 @@
+<!--pages/userinfo/userinfo.wxml-->
+<view class='page-userinfo'>
+  <view class="info-entrance">
+    <entrance sub-image="{{avatar.url || '/assets/images/user_avatar.png'}}" title="头像" extra-data="{{avatar.extraData}}" bindentrancetap="entranceTap" />
+    <view class='line-separator-h' style="width:718rpx;margin-left:32rpx;"></view>
+  </view>
+  <view class="info-entrance">
+    <entrance sub-title="{{phone.text || '未填写'}}" title="手机号" extra-data="{{phone.extraData}}" bindentrancetap="entranceTap" />
+    <view class='line-separator-h' style="width:718rpx;margin-left:32rpx;"></view>
+  </view>
+  <view class="info-entrance">
+    <entrance required="{{true}}" sub-title="{{name.text || '未填写'}}" title="姓名" extra-data="{{name.extraData}}" bindentrancetap="showNameBox" />
+    <view class='line-separator-h' style="width:718rpx;margin-left:32rpx;"></view>
+  </view>
+  <view class="info-entrance">
+    <entrance required="{{true}}" sub-title="{{gender.text || '未填写'}}" title="性别" extra-data="{{gender.extraData}}" bindentrancetap="showGenderActions" />
+    <view class='line-separator-h' style="width:718rpx;margin-left:32rpx;"></view>
+  </view>
+  <view class="info-entrance">
+    <entrance required="{{true}}" sub-title="{{birthday.text || '未填写'}}" title="生日" extra-data="{{birthday.extraData}}" bindentrancetap="entranceTap" />
+    <picker class='birthday-picker' value="{{birthday.value || '1991-10-10'}}" mode="date" bindchange="birthdayChange">
+      <view class='birthday-picker-content'>.</view>
+    </picker>
+    <view class='line-separator-h' style="width:718rpx;margin-left:32rpx;"></view>
+  </view>
+  <view class='tip'>
+    <text>姓名、性别、生日等信息一旦提交、不可更改</text>
+  </view>
+  <!-- 填写姓名窗口 -->
+  <view class="name-wrapper {{nameBox ? 'show' : 'hide'}}" catchtap="hideNameBox" catchtouchmove="stopPropagation">
+    <view class="name-box-bg {{nameBox ? 'show' : 'hide'}}"></view>
+    <view class="name-box {{nameBox ? 'show' : 'hide'}}" catchtap="stopPropagation">
+    <view class='name-box-content'>
+    <view class='name-title'>会员名称</view>
+      <view class='name-tip'>长度限制10个字</view>
+      <input class='name-input' placeholder="请输入姓名" value="{{nameInputValue || name.text}}" bindinput="nameInputValueChange" maxlength="{{10}}" cursor-spacing="{{120}}" />
+    </view>
+      <view class='line-separator-h' style="background:#C0C0C0"></view>
+      <view class='name-buttons'>
+        <view class='button-item name-cancel' catchtap="hideNameBox">
+          <text>取消</text>
+        </view>
+        <view class='line-separator-v' style="background:#C0C0C0"></view>
+        <view class='button-item name-confirm' catchtap="nameChange">
+          <text>确定</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

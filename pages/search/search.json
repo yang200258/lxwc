@@ -1,0 +1,8 @@
+{
+  "navigationBarBackgroundColor": "#FAFAFA",
+  "navigationBarTitleText": "搜索",
+  "backgroundColor": "#FFFFFF",
+  "usingComponents": {
+    "merchant-overview": "/components/merchantOverview/merchantOverview"
+  }
+}

@@ -19,28 +19,28 @@ Component({
    */
   data: {
     maxStar: 5,
-    star: [],
+    stars: [],
     scoreText: ''
   },
 
   ready: function () {
     const { maxStar, score} = this.data
-    let star = []
+    let stars = []
     const scoreText = score.toFixed(1)
     let fullLen = parseInt(score)
     let decimal = score - fullLen
     for (let i = 0; i < maxStar; i++) {
       if (i < fullLen) {
-        star.push(1)
+        stars.push({key: i, rate: 1})
       } else if (i === fullLen) {
-        star.push(decimal)
+        stars.push({ key: i, rate: decimal })
       } else {
-        star.push(0)
+        stars.push({ key: i, rate: 0 })
       }
     }
-    console.log('star', star)
+    console.log('stars', stars)
     this.setData({
-      star,
+      stars,
       scoreText
     })
   },
