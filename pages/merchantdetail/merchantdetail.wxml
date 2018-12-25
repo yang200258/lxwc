@@ -51,6 +51,7 @@
           <view class='voucher-text'>{{voucher.title}}</view>
           <view class="voucher-btn {{voucher.status == 2 ? 'disabled' : ''}}" catchtap="getVoucher" data-voucher="{{voucher}}">
             <text>{{voucher.status == 2 ? '已领取' : '领取'}}</text>
+            <button wx:if="{{!phone}}" class='bindphone-btn' open-type="getPhoneNumber" bindgetphonenumber="getPhone"></button>
           </view>
         </view>
       </view>
@@ -93,5 +94,6 @@
   <!-- 优惠买单 -->
   <view class='pay-btn' catchtap="goPay">
     <text>优惠买单</text>
+    <button wx:if="{{!phone}}" class='bindphone-btn' open-type="getPhoneNumber" bindgetphonenumber="getPhone"></button>
   </view>
 </view>
