@@ -6,14 +6,16 @@
     "pages/scanpay/scanpay",
     "pages/usercenter/usercenter",
     "pages/search/search",
-    "pages/message/message",
+    "pages/messagelist/messagelist",
     "pages/merchantcate/merchantcate",
     "pages/merchantdetail/merchantdetail",
     "pages/userinfo/userinfo",
     "pages/bill/bill",
     "pages/orderlist/orderlist",
     "pages/orderdetail/orderdetail",
-    "pages/ticketlist/ticketlist"
+    "pages/ticketlist/ticketlist",
+    "pages/redpacketlist/redpacketlist",
+    "pages/pay/pay"
   ],
   "window": {
     "backgroundTextStyle": "light",

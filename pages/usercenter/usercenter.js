@@ -174,6 +174,24 @@ Page({
 
   },
 
+  goMessageList: function () {
+    wx.navigateTo({
+      url: '/pages/messagelist/messagelist'
+    })
+  },
+
+  goRedPacketList: function () {
+    wx.navigateTo({
+      url: '/pages/redpacketlist/redpacketlist'
+    })
+  },
+
+  goTicketList: function () {
+    wx.navigateTo({
+      url: '/pages/ticketlist/ticketlist'
+    })
+  },
+
   entranceTap: function (e) {
     wx.navigateTo({
       url: e.detail.route

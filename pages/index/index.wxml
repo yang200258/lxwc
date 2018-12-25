@@ -8,7 +8,7 @@
       <text class='location-text'>{{location.address}}</text>
       <text class='iconfont icon-next'></text>
     </view>
-    <view class='message-box'>
+    <view class='message-box' catchtap="goMessageList">
       <text class='iconfont icon-message'></text>
       <view class='message-count'>
         <text class='message-text'>{{messageCount > 99 ? '99+' : messageCount}}</text>
@@ -16,16 +16,16 @@
     </view>
   </view>
   <!-- 搜索框 -->
-  <view class='search-box'>
+  <view class='search-box' catchtap="goSearch">
     <text class='iconfont icon-search'></text>
     <text class='search-text'>搜索品牌、门店、商品...</text>
   </view>
   <!-- 活动 -->
-  <view class='activity-box'>
+  <view wx:if="{{activitys && activitys[0]}}" class='activity-box'>
     <swiper class='activity-swiper' duration="{{300}}" bindchange="changeActivityCurrent">
-      <swiper-item wx:for="{{activitys}}" wx:for-item="activity" wx:key="id">
-        <view class='activity-item-content'>
-          <image class='activity-banner' src="{{activity.banner}}" mode="aspectFill"></image>
+      <swiper-item wx:for="{{activitys}}" wx:for-item="activity" wx:key="shopid">
+        <view class='activity-item-content' catchtap="activityTap" data-activity="{{activity}}">
+          <image class='activity-banner' src="{{activity.img_url}}" mode="aspectFill"></image>
         </view>
       </swiper-item>
     </swiper>
@@ -34,16 +34,17 @@
     </view>
   </view>
   <!-- 商家分类 -->
-  <scroll-view class='merchant-cate' scroll-x>
+  <scroll-view wx:if="{{merchantCates && merchantCates[0]}}" class='merchant-cate' scroll-x>
     <view class='merchant-cate-content'>
-      <view class="cate{{idx === 0 ? ' first' : ''}}{{(idx === (merchantCates.length - 1)) ? ' last' : ''}}" wx:for="{{merchantCates}}" wx:for-item="cate" wx:for-index="idx" wx:key="id">
-        <image class='cate-image' src="{{cate.banner}}" mode="aspectFill"></image>
-        <view class='cate-text'>{{cate.title}}</view>
+      <view class="cate{{idx === 0 ? ' first' : ''}}{{(idx === (merchantCates.length - 1)) ? ' last' : ''}}" wx:for="{{merchantCates}}" wx:for-item="cate" wx:for-index="idx" wx:key="id" catchtap="goMerchantCate" data-cate="{{cate}}">
+        <image class='cate-image' src="{{cate.pic}}" mode="aspectFill"></image>
+        <view class='cate-text'>{{cate.name}}</view>
       </view>
     </view>
   </scroll-view>
   <!-- 推荐商家 -->
-  <view class='rec-merchants' wx:if="{{recommendTabs && recommendTabs.length}}">
+  <view class='rec-merchants' wx:if="{{recommendTabs && recommendTabs[0] && recommendTabs[0].merchants && recommendTabs[0].merchants[0]}}">
+    <view class='block-separator'></view>
     <view class='rec-merchants-header'>
       <view class="rec-merchants-header-title {{recommendCurrent === idx ? 'current' : ''}}" wx:for="{{recommendTabs}}" wx:for-item="recommendTab" wx:for-index="idx" wx:key="title" catchtap="changeRecommendTab" data-idx="{{idx}}">
         <text>{{recommendTab.title}}</text>
@@ -62,12 +63,12 @@
         <text>乐享商家</text>
         <view class='lx-merchants-header-title-line'></view>
       </view>
-      <view class='lx-filter'>
+      <!-- <view class='lx-filter'>
         <picker bindchange="changeIndexCate" value="{{currentCate}}" range="{{indexCates}}" range-key="title">
           <text class='lx-filter-text'>{{indexCates[currentCate].title}}</text>
         </picker>
         <text class='iconfont icon-pull_down'></text>
-      </view>
+      </view> -->
       <view class='sort-type'>
         <view catchtap="changeSort" data-sort="{{0}}" class="sort-type-distance {{currentSort === 0 ? 'current' : ''}}">距离</view>
         <view class='line-separator-v' style="height:24rpx;"></view>

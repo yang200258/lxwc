@@ -1,15 +1,15 @@
-/* pages/ticketlist/ticketlist.wxss */
+/* pages/redpacketlist/redpacketlist.wxss */
 
-.page-ticketlist{
+.page-redpacketlist{
   padding-top: 14rpx;
 }
-.ticket-item{
+.redpacket-item{
   padding: 14rpx 32rpx;
 }
 
 
 /* 没有卡券 */
-.empty-ticket{
+.empty-redpacket{
   padding-top: 410rpx;
 }
 .empty-image{

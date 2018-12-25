@@ -24,19 +24,23 @@
 .title{
   font-size: 30rpx;
   line-height: 42rpx;
+  min-height: 42rpx;
   padding: 14rpx 14rpx 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   font-weight: bold;
   color: #333;
+  box-sizing: content-box;
 }
 .intro{
   font-size: 24rpx;
   line-height: 34rpx;
+  min-height: 34rpx;
   padding: 0rpx 14rpx 14rpx;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   color: #999;
+  box-sizing: content-box;
 }

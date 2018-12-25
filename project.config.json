@@ -37,7 +37,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 10,
+			"current": 4,
 			"list": [
 				{
 					"id": -1,
@@ -52,9 +52,9 @@
 					"query": ""
 				},
 				{
-					"id": -1,
-					"name": "扫码页面",
-					"pathName": "pages/message/message",
+					"id": 2,
+					"name": "消息列表",
+					"pathName": "pages/messagelist/messagelist",
 					"query": ""
 				},
 				{
@@ -67,7 +67,7 @@
 					"id": 4,
 					"name": "商家详情页面",
 					"pathName": "pages/merchantdetail/merchantdetail",
-					"query": ""
+					"query": "id=100003"
 				},
 				{
 					"id": -1,
@@ -103,6 +103,18 @@
 					"id": -1,
 					"name": "我的卡券",
 					"pathName": "pages/ticketlist/ticketlist",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "我的红包",
+					"pathName": "pages/redpacketlist/redpacketlist",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "支付页面",
+					"pathName": "pages/pay/pay",
 					"query": ""
 				}
 			]

@@ -12,13 +12,13 @@
 }
 .star{
   margin-left: 32rpx;
-  padding-bottom: 22rpx;
 }
 
 /* 商家图片轮播 */
 .merchant-covers{
   width: 100%;
   height: 400rpx;
+  padding-top: 22rpx;
 }
 .covers-swiper{
   width: 100%;
@@ -33,12 +33,19 @@
 /* 商家公告 */
 .notice{
   margin: 0 32rpx;
-  padding: 22rpx 0 0;
 }
 .notice-header{
+  padding-top: 22rpx;
   padding-bottom: 12rpx;
   display: flex;
   align-items: center;
+}
+.notice-image, .shop-image, .location-image{
+  display: block;
+  width: 28rpx;
+  height: 28rpx;
+  margin-right: 10rpx;
+  flex-shrink: 0;
 }
 .icon-notice{
   font-size: 28rpx;
@@ -61,6 +68,7 @@
 
 /* 商家营业时间 */
 .business-time-wrapper{
+  overflow: hidden;
   margin: 0 32rpx;
 }
 .business-time{
@@ -98,7 +106,8 @@
   font-weight: bold;
   color: #666;
   line-height: 36rpx;
-  margin-right: 32rpx;
+  margin-right: 4rpx;
+  flex: 1;
 }
 .icon-phone{
   font-size: 36rpx;

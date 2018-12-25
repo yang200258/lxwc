@@ -28,18 +28,20 @@ const formatSecondToTime = seconds => { // 把秒转为 '时:分:秒' 的格式
 const request = (url, data, config = {}) => {
   const app = getApp()
   const apiVersion = (config && config.apiVersion) ? config.apiVersion : (app.config.apiVersion || '/v1')
+  const token = (config && config.token) || storageUtil.getStorage('token') || ''
+  let _data = Object.assign({}, data, {token: token})
   console.log('apiVersion', apiVersion)
   return new Promise((resolve, reject) => {
     if (!config.isMock) {
       wx.request({
         url: app.config.baseUrl + apiVersion + url,
-        data: data,
+        data: _data,
         method: (config && config.method) || 'POST', // 使用传入的method值，或者默认的post
         header: {
           'fromOrigin': 'miniapp',
           'version': apiVersion,
           'content-type': (config && config.contentType) || 'application/json', // 使用传入的contentType值，或者默认的application/json
-          'token': (config && config.token) || storageUtil.getStorage('token') || '', // 使用传入的token值，或者全局的token，都没有则默认空字符串
+          'token': token, // 使用传入的token值，或者全局的token，都没有则默认空字符串
         },
         success: function (res) {
           if (res.data.error && (res.data.error == 401 || res.data.error == 403)) {

@@ -2,41 +2,41 @@
 <view class='merchant-detail'>
   <!-- 商家概览 -->
   <view class='merchant-overview'>
-    <view class='title'>{{overview.title}}</view>
-    <view class='star'>
-      <star-box score="{{overview.star}}" />
+    <view class='title'>{{merchantData.name}}</view>
+    <view wx:if="{{merchantData.star}}" class='star'>
+      <star-box score="{{merchantData.star}}" />
     </view>
     <!-- 商家图片轮播 -->
-    <view wx:if="{{overview.covers && overview.covers.length}}" class='merchant-covers'>
+    <view wx:if="{{merchantData.covers && merchantData.covers.length}}" class='merchant-covers'>
       <swiper class='covers-swiper' indicator-dots indicator-color="#D8D8D8" indicator-active-color="#A3A3A3" duration="{{300}}">
-        <swiper-item wx:for="{{overview.covers}}" wx:for-item="cover" wx:key="id">
-          <image class='cover-image' src="{{cover.url}}" mode="aspectFill"></image>
+        <swiper-item wx:for="{{merchantData.covers}}" wx:for-item="cover" wx:key="id">
+          <image class='cover-image' src="{{cover.src}}" mode="aspectFill"></image>
         </swiper-item>
       </swiper>
     </view>
     <!-- 商家公告 -->
-    <view class='notice' wx:if="{{overview.notice}}">
+    <view class='notice' wx:if="{{merchantData.notice}}">
+      <view class='line-separator-h'></view>
       <view class='notice-header'>
-        <text class='iconfont icon-notice'></text>
+        <image class='notice-image' src="/assets/images/notice_icon.png" mode="aspectFit"></image>
         <text class='notice-header-title'>商家公告</text>
       </view>
-      <view class='notice-content'>{{overview.notice}}</view>
-      <view class='line-separator-h'></view>
+      <view class='notice-content'>{{merchantData.notice}}</view>
     </view>
     <!-- 商家营业时间 -->
-    <view wx:if="{{overview.businessTimeText}}" class='business-time-wrapper'>
-      <view class='business-time'>
-        <text class='iconfont icon-iconfontshangjia'></text>
-        <text class='business-time-text'>{{overview.businessTimeText}}</text>
-      </view>
+    <view wx:if="{{merchantData.business_time}}" class='business-time-wrapper'>
       <view class='line-separator-h'></view>
+      <view class='business-time'>
+        <image class='shop-image' src="/assets/images/merchant_icon.png" mode="aspectFit"></image>
+        <text class='business-time-text'>{{merchantData.business_time}}</text>
+      </view>
     </view>
     <!-- 商家地址及电话 -->
-    <view wx:if="{{overview.addressText}}" class='location-and-phone'>
-      <text class='iconfont icon-location_xcx'></text>
-      <text class='location-text'>{{overview.addressText}}</text>
-      <view class='line-separator-v' style="height:28rpx;"></view>
-      <text class='iconfont icon-phone'></text>
+    <view wx:if="{{merchantData.position}}" class='location-and-phone'>
+      <image class='location-image' src="/assets/images/location_icon.png" mode="aspectFit"></image>
+      <text class='location-text'>{{merchantData.position}}</text>
+      <view wx:if="{{merchantData.phone}}" class='line-separator-v' style="height:28rpx;margin-left:28rpx;"></view>
+      <text wx:if="{{merchantData.phone}}" class='iconfont icon-phone' catchtap="callMerchant"></text>
     </view>
   </view>
   <!-- 商家优惠活动 -->
@@ -49,8 +49,8 @@
       <view class='voucher-content-wrapper'>
         <view wx:for="{{activitys.voucher}}" wx:for-item="voucher" wx:key="id" class='voucher-item'>
           <view class='voucher-text'>{{voucher.title}}</view>
-          <view class="voucher-btn {{voucher.received ? 'disabled' : ''}}">
-            <text>{{voucher.received ? '已领取' : '领取'}}</text>
+          <view class="voucher-btn {{voucher.status == 2 ? 'disabled' : ''}}" catchtap="getVoucher" data-voucher="{{voucher}}">
+            <text>{{voucher.status == 2 ? '已领取' : '领取'}}</text>
           </view>
         </view>
       </view>
@@ -91,7 +91,7 @@
     </view>
   </view>
   <!-- 优惠买单 -->
-  <view class='pay-btn'>
+  <view class='pay-btn' catchtap="goPay">
     <text>优惠买单</text>
   </view>
 </view>

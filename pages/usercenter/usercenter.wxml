@@ -5,7 +5,7 @@
     <!-- 用户基本信息 -->
     <view class='user-info'>
       <image class='user-info-bg' src="/assets/images/usercenter_banner.png" mode="aspectFill"></image>
-      <view class='message-box'>
+      <view class='message-box' catchtap="goMessageList">
         <image class='message-image' src="/assets/images/message_icon.png" mode="aspectFit"></image>
         <view wx:if="{{userInfo.unreadMessage}}" class='message-count'>
           <text>{{userInfo.unreadMessage > 99 ? '99+' : userInfo.unreadMessage}}</text>
@@ -31,14 +31,14 @@
           <view class='wallet-title'>余额</view>
           <view class='wallet-text'>{{userWallet.balance || 0.00}}</view>
         </view>
-        <view class='wallet-item'>
+        <view class='wallet-item' catchtap="goRedPacketList">
           <view class='wallet-image-box'>
             <image class='wallet-image' src="/assets/images/red_packet_icon.png" mode="aspectFit"></image>
           </view>
           <view class='wallet-title'>红包</view>
           <view class='wallet-text'>{{userWallet.redPacket || 0}}个</view>
         </view>
-        <view class='wallet-item'>
+        <view class='wallet-item' catchtap="goTicketList">
           <view class='wallet-image-box'>
             <image class='wallet-image' src="/assets/images/voucher_icon.png" mode="aspectFit"></image>
           </view>

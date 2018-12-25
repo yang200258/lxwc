@@ -115,7 +115,65 @@ Page({
         ],
         distance: '912m',
         notice: '公告：乐享会员支付送中乐一杯'
-      }
+      },
+      {
+        id: '3',
+        title: '香港满记甜品(文三路店）收到了饭就文三路店）收到了饭就随大流风景随大流风景',
+        image: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3737093608,1532771841&fm=200&gp=0.jpg',
+        star: 4.5,
+        activitys: [
+          {
+            id: 1,
+            type: '1', // type: 1(首减), 2(满减), 3(折扣), 4(满赠),
+            title: '平台新用户立减10元'
+          },
+          {
+            id: 2,
+            type: '2', // type: 1(首减), 2(满减), 3(折扣), 4(满赠),
+            title: '满20减5，满30减10'
+          },
+          {
+            id: 3,
+            type: '3', // type: 1(首减), 2(满减), 3(折扣), 4(满赠),
+            title: '到店消费8折'
+          },
+          {
+            id: 4,
+            type: '4', // type: 1(首减), 2(满减), 3(折扣), 4(满赠),
+            title: '满100赠送大米一包'
+          }
+        ],
+        distance: '300m',
+      },
+      {
+        id: '4',
+        title: '香港满记甜品(文三路店）收到了饭就文三路店）收到了饭就随大流风景随大流风景',
+        image: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3737093608,1532771841&fm=200&gp=0.jpg',
+        star: 4.5,
+        activitys: [
+          {
+            id: 1,
+            type: '1', // type: 1(首减), 2(满减), 3(折扣), 4(满赠),
+            title: '平台新用户立减10元'
+          },
+          {
+            id: 2,
+            type: '2', // type: 1(首减), 2(满减), 3(折扣), 4(满赠),
+            title: '满20减5，满30减10'
+          },
+          {
+            id: 3,
+            type: '3', // type: 1(首减), 2(满减), 3(折扣), 4(满赠),
+            title: '到店消费8折'
+          },
+          {
+            id: 4,
+            type: '4', // type: 1(首减), 2(满减), 3(折扣), 4(满赠),
+            title: '满100赠送大米一包'
+          }
+        ],
+        distance: '300m',
+      },
     ]
   },
 
@@ -123,9 +181,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if (options && options.title) { // 传入标题时设置顶部标题
+    if (options && options.name) { // 传入标题时设置顶部标题
       wx.setNavigationBarTitle({
-        title: options.title
+        title: options.name
       })
     }
   },

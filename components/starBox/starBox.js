@@ -38,7 +38,6 @@ Component({
         stars.push({ key: i, rate: 0 })
       }
     }
-    console.log('stars', stars)
     this.setData({
       stars,
       scoreText

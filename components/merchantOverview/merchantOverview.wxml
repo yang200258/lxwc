@@ -1,5 +1,5 @@
 <!--components/merchantoverview/merchantoverview.wxml-->
-<view class='merchant-wrapper'>
+<view class='merchant-wrapper box-thin-border'>
   <view class='top'>
     <image class='image' src="{{merchant.image}}" mode="aspectFill"></image>
     <view class='overview'>
@@ -7,18 +7,20 @@
         <view class='title'>{{merchant.title}}</view>
         <view class='distance' wx:if="{{merchant.distance}}">{{merchant.distance}}</view>
       </view>
-      <star-box score="{{merchant.star}}" />
+      <star-box wx:if="{{merchant.star}}" score="{{merchant.star}}" />
+      <view wx:else style="height:6rpx"></view>
       <view class='merchant-act' wx:for="{{merchant.activitys}}" wx:for-item="activity" wx:key="id">
         <text-icon class='act-icon' size="{{actIconSize}}" font-size="{{24}}" color="{{colorObj[activity.type]}}" text="{{textObj[activity.type]}}" />
         <text class='act-text'>{{activity.title}}</text>
       </view>
     </view>
   </view>
-  <view class='bottom'>
-    <view class='notice' wx:if="{{merchant.notice}}">
+  <view wx:if="{{merchant.notice}}" class='bottom'>
+    <view class='line-separator-h'></view>
+    <view class='notice'>
       <text class='iconfont icon-notice'></text>
       <text class='notice-text'>{{merchant.notice}}</text>
     </view>
   </view>
-  <view class='line-separator-h'></view>
+  <!-- <view class='merchant-border box-thin-border'></view> -->
 </view>

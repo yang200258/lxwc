@@ -1,4 +1,4 @@
-// pages/ticketlist/ticketlist.js
+// pages/redpacketlist/redpacketlist.js
 Page({
 
   /**
@@ -6,13 +6,13 @@ Page({
    */
   data: {
     loaded: false,
-    tickets: [
-      {
+    redpackets: [
+      { // 假设红包的type 为7
         id: '1',
         title: '满100减5',
-        content: '文昌便利店优惠券',
+        content: '文昌便利店的红包',
         shopid: '1234',
-        type: '1',
+        type: '7',
         shopname: '文昌便利店',
         pic: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3023308141,3535526767&fm=200&gp=0.jpg',
         value: 5,
@@ -22,14 +22,14 @@ Page({
         valid: 1, // 有效为1，失效为0
         status: '1' // 1为未使用,2为已使用
       },
-      {
+      { // 假设红包的type 为7
         id: '2',
         title: '满80减5',
-        content: '文昌便利店1优惠券',
+        content: '文昌便利店的红包',
         shopid: '1234',
-        type: '1',
-        shopname: '文昌便利店1',
-        pic: 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1383599882,3589720252&fm=200&gp=0.jpg',
+        type: '7',
+        shopname: '文昌便利店',
+        pic: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3023308141,3535526767&fm=200&gp=0.jpg',
         value: 5,
         cond_count: 80,
         valid_btime: '2018.12.08',
@@ -96,17 +96,17 @@ Page({
 
   },
 
-  getTicketTitle: function (ticket) {
+  getRedpacketTitle: function (ticket) { // 假设红包的type 为7
     let title = ''
-    if (ticket.type == 1) { // 满减优惠券
+    if (ticket.type == 7) { // 满减优惠券
       title = '满' + ticket.cond_count + '减' + ticket.value
     }
   },
 
-  getTicketContent: function (ticket) {
+  getRedpacketContent: function (ticket) { // 假设红包的type 为7
     let title = ''
-    if (ticket.type == 1) { // 满减优惠券
-      title = ticket.shopname + '优惠券'
+    if (ticket.type == 7) { // 满减优惠券
+      title = ticket.shopname + '的红包'
     }
   }
 })
