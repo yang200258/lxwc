@@ -1,0 +1,33 @@
+/* pages/choosevoucher/choosevoucher.wxss */
+
+.page-choosevoucher{
+  padding-top: 14rpx;
+}
+.voucher-item{
+  padding: 14rpx 32rpx;
+}
+
+.fixed-button{
+  width: 100%;
+  height: 158rpx;
+  background: #fff;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.confirm-btn{
+  width: 686rpx;
+  height: 94rpx;
+  background: #FF9500;
+  color: #fff;
+  font-size: 36rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8rpx;
+}

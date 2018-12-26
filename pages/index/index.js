@@ -135,63 +135,75 @@ Page({
         title: '分类5'
       }
     ],
-    indexMerchants: [
-      {
-        id: '1',
-        title: '香港满记甜品(文三路店）收到了饭就文三路店）收到了饭就随大流风景随大流风景',
-        image: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3737093608,1532771841&fm=200&gp=0.jpg',
-        // star: 4.5,
-        activitys: [
-          {
-            id: 1,
-            type: '1', // type: 1(首减), 2(满减), 3(折扣), 4(满赠),
-            title: '平台新用户立减10元'
-          },
-          {
-            id: 2,
-            type: '2', // type: 1(首减), 2(满减), 3(折扣), 4(满赠),
-            title: '满20减5，满30减10'
-          },
-          {
-            id: 3,
-            type: '3', // type: 1(首减), 2(满减), 3(折扣), 4(满赠),
-            title: '到店消费8折'
-          },
-          {
-            id: 4,
-            type: '4', // type: 1(首减), 2(满减), 3(折扣), 4(满赠),
-            title: '满100赠送大米一包'
-          }
-        ],
-        distance: '300m',
-      },
-      {
-        id: '2',
-        title: '华莱士(文昌店）',
-        image: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3737093608,1532771841&fm=200&gp=0.jpg',
-        star: 4,
-        activitys: [
-          {
-            id: 5,
-            type: '1', // type: 1(首减), 2(满减), 3(折扣), 4(满赠),
-            title: '平台新用户立减10元'
-          },
-          {
-            id: 6,
-            type: '2', // type: 1(首减), 2(满减), 3(折扣), 4(满赠),
-            title: '满20减5，满30减10'
-          }
-        ],
-        distance: '912m',
-        notice: '公告：乐享会员支付送中乐一杯'
-      }
-    ]
+    // indexMerchants: [
+    //   {
+    //     shopid: '1',
+    //     name: '香港满记甜品(文三路店）收到了饭就文三路店）收到了饭就随大流风景随大流风景',
+    //     pic: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3737093608,1532771841&fm=200&gp=0.jpg',
+    //     // star: 4.5,
+    //     activitys: [
+    //       {
+    //         id: 1,
+    //         type: '1', // type: 1(首减), 2(满减), 3(折扣), 4(满赠),
+    //         title: '平台新用户立减10元'
+    //       },
+    //       {
+    //         id: 2,
+    //         type: '2', // type: 1(首减), 2(满减), 3(折扣), 4(满赠),
+    //         title: '满20减5，满30减10'
+    //       },
+    //       {
+    //         id: 3,
+    //         type: '3', // type: 1(首减), 2(满减), 3(折扣), 4(满赠),
+    //         title: '到店消费8折'
+    //       },
+    //       {
+    //         id: 4,
+    //         type: '4', // type: 1(首减), 2(满减), 3(折扣), 4(满赠),
+    //         title: '满100赠送大米一包'
+    //       }
+    //     ],
+    //     distance: '300m',
+    //   },
+    //   {
+    //     shopid: '2',
+    //     name: '华莱士(文昌店）',
+    //     pic: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3737093608,1532771841&fm=200&gp=0.jpg',
+    //     star: 4,
+    //     activitys: [
+    //       {
+    //         id: 5,
+    //         type: '1', // type: 1(首减), 2(满减), 3(折扣), 4(满赠),
+    //         title: '平台新用户立减10元'
+    //       },
+    //       {
+    //         id: 6,
+    //         type: '2', // type: 1(首减), 2(满减), 3(折扣), 4(满赠),
+    //         title: '满20减5，满30减10'
+    //       }
+    //     ],
+    //     distance: '912m',
+    //     notice: '公告：乐享会员支付送中乐一杯'
+    //   }
+    // ],
+    loadingIndexMerchants: false
     
   },
 
   onLoad: function () {
-    const app = getApp()
-    console.log('globalData', app.globalData)
+    this.fetchLxMerchant(0, 0)
+  },
+
+  onPullDownRefresh: function () {
+    this.fetchLxMerchant(0, 0)
+  },
+
+  onReachBottom: function () {
+    const {page, loadingIndexMerchants} = this.data
+    if (page.isend || loadingIndexMerchants) {
+      return false
+    }
+    this.fetchLxMerchant(page.pn + 1, 0)
   },
 
   goMessageList: function () {
@@ -250,6 +262,49 @@ Page({
   changeIndexCate: function (e) {
     this.setData({
       currentCate: parseInt(e.detail.value)
+    })
+  },
+
+  fetchLxMerchant: function (page, type) { // 获取乐享商家
+    let { loadingIndexMerchants} = this.data
+    if (loadingIndexMerchants) { // 如果正在加载乐享商家列表，则中断
+      return false
+    }
+    let rData = {
+      type,
+      page,
+      limit: 20
+    }
+    this.setData({
+      loadingIndexMerchants: true
+    })
+    util.request('/shop/list', rData).then(res => {
+      if (res && res.data && !res.error) { // 成功获取数据
+        let {indexMerchants} = this.data
+        let {list, page} = res.data
+        let _obj = {}
+        _obj.page = page
+        if (page && page.pn && page.pn.toString() !== '0') { // 不是第一页
+          console.log('不是第一页')
+          let len = (indexMerchants && indexMerchants.length) ? indexMerchants.length : 0
+          if (list && list.length) {
+            list.forEach((item, idx) => {
+              _obj['indexMerchants[' + (len + idx) + ']'] = item
+            })
+          }
+        } else { // 第一页
+          console.log('第一页')
+          _obj['indexMerchants'] = list
+        }
+        this.setData(_obj)
+      }
+    }).finally(res => {
+      if (!page) { // 第一页
+        wx.stopPullDownRefresh()
+      }
+      this.setData({
+        loadingIndexMerchants: false
+      })
     })
   }
 })

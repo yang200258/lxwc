@@ -1,0 +1,13 @@
+/* components/listFooter/listFooter.wxss */
+
+.loadmore-tip{
+  height: 92rpx;
+  text-align: center;
+  font-size: 24rpx;
+  line-height: 32rpx;
+  color: #999;
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

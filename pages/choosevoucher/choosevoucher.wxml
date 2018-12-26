@@ -1,0 +1,11 @@
+<!--pages/choosevoucher/choosevoucher.wxml-->
+<view class='page-choosevoucher'>
+  <view wx:for="{{vouchers}}" wx:for-item="voucher" wx:for-index="idx" wx:key="id" class='voucher-item'>
+    <choose-voucher voucher="{{voucher}}" bindvouchertap="choosevoucher" />
+  </view>
+</view>
+<view class='fixed-button'>
+  <view class='confirm-btn' catchtap="conform">
+    <text>完成</text>
+  </view>
+</view>

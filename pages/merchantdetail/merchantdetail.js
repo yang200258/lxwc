@@ -7,6 +7,13 @@ Page({
    * 页面的初始数据
    */
   data: {
+    balance: null,
+    rechargeBox: false,
+    rechargeData: {
+      ad: '/assets/images/recharge_banner.png',
+      rechargeList: []
+    },
+    rechargeCurrent: 1,
     phone: '',
     activitys: {
       // voucher: [ // 代金券
@@ -66,10 +73,13 @@ Page({
    */
   onLoad: function(options) {
     const phone = wx.getStorageSync('phone')
+    this.getRechargeData()
+    this.checkBalance()
     if (phone) {
       this.setData({phone})
     }
     if (options && options.id) {
+      this.shopid = options.id // 立即记录当前商家id,不可删掉，页面其他地方需要
       util.request('/shop/info', {
         id: options.id
       }).then(res => {
@@ -152,34 +162,33 @@ Page({
     if (!phone || this.voucherGetting[voucherId.toString()]) { // 正在获取对应的优惠券时，中断当前操作
       return false
     }
-    const app = getApp()
-    if (!app.globalData.balance) {
-      this.showRechargeModal()
-      return false
+    const goNext = () => {
+      if (voucherId) {
+        this.voucherGetting[voucherId.toString()] = true
+        util.request('/shop/get_coupon', {
+          id: voucherId
+        }).then(res => {
+          this.voucherGetting[voucherId.toString()] = false
+          if (res && res.data && !res.msg) { // 领取成功
+            let { activitys: { voucher } } = this.data
+            let _voucher = JSON.parse(JSON.stringify(voucher))
+            _voucher.forEach(item => {
+              if (item.id.toString() === voucherId.toString()) {
+                item.status = '2'
+              }
+            })
+            this.setData({
+              'activitys.voucher': _voucher
+            })
+          }
+        }).catch(err => {
+          this.voucherGetting[voucherId.toString()] = false
+          console.log('领取优惠券失败', err)
+        })
+      }
     }
-    if (voucherId) {
-      this.voucherGetting[voucherId.toString()] = true
-      util.request('/shop/get_coupon', {
-        id: voucherId
-      }).then(res => {
-        this.voucherGetting[voucherId.toString()] = false
-        if (res && res.data && !res.msg) { // 领取成功
-          let {activitys: {voucher}} = this.data
-          let _voucher = JSON.parse(JSON.stringify(voucher))
-          _voucher.forEach(item => {
-            if (item.id.toString() === voucherId.toString()) {
-              item.status = '2'
-            }
-          })
-          this.setData({
-            'activitys.voucher': _voucher
-          })
-        }
-      }).catch(err => {
-        this.voucherGetting[voucherId.toString()] = false
-        console.log('领取优惠券失败', err)
-      })
-    }
+    
+    this.checkBalance(goNext)
   },
 
   getVoucherView: function (vouchers) { // 向满减优惠券数组中添加title字段
@@ -200,20 +209,46 @@ Page({
     }
   },
 
+  checkBalance: function (validBalanceCallback) { // validBalanceCallback是在balance有效时执行的回调
+    let {merchantData, balance} = this.data
+    if (balance === null) { // 最初始的值，未请求过接口获取balance
+      util.request('/user/info').then(res => { // 获取用户数据
+        if (res && res.data && !res.msg) { // 获取数据成功
+          let { id, avatar, phone, name, gender, birthday, balance } = res.data
+          const app = getApp()
+          app.globalData.userInfo = Object.assign({}, app.globalData.userInfo, res.data)
+          this.setData({
+            balance,
+            phone 
+          })
+          if (balance) {
+            validBalanceCallback && validBalanceCallback()
+          }
+        }
+      }).catch(err => {
+        console.log('获取数据失败', err)
+      })
+    } else if (!balance) { // 已请求过接口并且用户余额为0
+      if (validBalanceCallback) { // 下一步操作是跳转到优惠买单 或 领取优惠券   弹出充值弹窗
+        this.showRechargeModal()
+        return false
+      }
+    } else if (balance) { // 已请求过接口并且用户余额不为0
+      validBalanceCallback && validBalanceCallback()
+    }
+  },
+
   goPay: function () {
-    let { merchantData, phone} = this.data
-    if (!phone || !merchantData.shopid) {
+    let { merchantData, phone, balance} = this.data
+    if (!phone || !this.shopid) {
       return false
     }
-    const app = getApp()
-    console.log('app.globalData.balance', app.globalData.balance)
-    if (!app.globalData.balance) {
-      this.showRechargeModal()
-      return false
+    const goNext = () => {
+      wx.navigateTo({
+        url: '/pages/pay/pay?id=' + this.shopid
+      })
     }
-    wx.navigateTo({
-      url: '/pages/pay/pay?id=' + merchantData.shopid
-    })
+    this.checkBalance(goNext)
   },
 
   getPhone: function (res) {
@@ -291,13 +326,54 @@ Page({
       success: res => {
         if (res.confirm) {
           console.log('用户点击确定')
-          wx.switchTab({
-            url: '/pages/usercenter/usercenter'
-          })
+          if (this.data.rechargeData.rechargeList && this.data.rechargeData.rechargeList[0]) { // 存在充值数据
+            this.showRechargeBox()
+          } else { // 获取充值数据
+            this.getRechargeData()
+          }
         } else if (res.cancel) {
           console.log('用户点击取消')
         }
       }
+    })
+  },
+
+  changeCurrentRecharge: function (e) {
+    this.setData({
+      rechargeCurrent: e.currentTarget.dataset.idx
+    })
+  },
+
+  getRechargeData: function () { // 获取充值数据
+    util.request('/pay/type').then(res => {
+      console.log('获取充值数据', res)
+      if (res && res.data && !res.msg) { // 获取数据成功
+        this.setData({
+          'rechargeData.rechargeList': res.data
+        })
+      }
+    }).catch(err => {
+      console.log('获取数据失败', err)
+    })
+  },
+
+  rechargeSubmit: function () {
+    console.log('点击了充值')
+  },
+
+  stopPropagation: function () {
+    console.log('阻止冒泡')
+  },
+
+  hideRechargeBox: function () {
+    this.setData({
+      rechargeBox: false
+    })
+  },
+
+  showRechargeBox: function () {
+    this.setData({
+      rechargeBox: true
     })
   }
 })

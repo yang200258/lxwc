@@ -55,39 +55,8 @@ Page({
     ],
     rechargeBox: false,
     rechargeData: {
-      ad: 'http://img1.imgtn.bdimg.com/it/u=399629391,3776353984&fm=26&gp=0.jpg',
-      rechargeList: [
-        {
-          id: '1',
-          originalPrice: 100,
-          price: 99.8
-        },
-        {
-          id: '2',
-          originalPrice: 200,
-          price: 199.8
-        },
-        {
-          id: '3',
-          originalPrice: 300,
-          price: 299.8
-        },
-        {
-          id: '4',
-          originalPrice: 500,
-          price: 499.8
-        },
-        {
-          id: '5',
-          originalPrice: 800,
-          price: 799.8
-        },
-        {
-          id: '6',
-          originalPrice: 1000,
-          price: 999.8
-        }
-      ]
+      ad: '/assets/images/recharge_banner.png',
+      rechargeList: []
     },
     rechargeCurrent: 1,
     promotionCards: [
@@ -122,7 +91,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getRechargeData()
   },
 
   /**
@@ -201,6 +170,19 @@ Page({
   changeCurrentRecharge: function (e) {
     this.setData({
       rechargeCurrent: e.currentTarget.dataset.idx
+    })
+  },
+
+  getRechargeData: function () { // 获取充值数据
+    util.request('/pay/type').then(res => {
+      console.log('获取充值数据', res)
+      if (res && res.data && !res.msg) { // 获取数据成功
+        this.setData({
+          'rechargeData.rechargeList': res.data
+        })
+      }
+    }).catch(err => {
+      console.log('获取数据失败', err)
     })
   },
 

@@ -36,6 +36,11 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    merchantTap: function (e) {
+      const {id} = e.currentTarget.dataset
+      wx.navigateTo({
+        url: '/pages/merchantdetail/merchantdetail?id=' + id
+      })
+    }
   }
 })

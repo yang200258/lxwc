@@ -15,7 +15,8 @@
     "pages/orderdetail/orderdetail",
     "pages/ticketlist/ticketlist",
     "pages/redpacketlist/redpacketlist",
-    "pages/pay/pay"
+    "pages/pay/pay",
+    "pages/choosevoucher/choosevoucher"
   ],
   "window": {
     "backgroundTextStyle": "light",

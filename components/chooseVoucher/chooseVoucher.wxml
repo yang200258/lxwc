@@ -1,0 +1,23 @@
+<!--components/chooseVoucher/chooseVoucher.wxml-->
+<view class="wrapper {{voucher.useful ? '' : 'disabled'}}" catchtap="chooseVoucher">
+  <view class='left'>
+    <image class='image' src="{{voucher.pic}}" mode="aspectFill"></image>
+    <view class='overview'>
+      <view class='value-and-title'>
+        <text class='iconfont icon-renminbi'></text>
+        <text class='value'>{{voucher.value}}</text>
+        <text class='title'>{{voucher.title}}</text>
+      </view>
+      <view class='content'>{{voucher.content}}</view>
+      <view class='time'>{{voucher.valid_btime}}-{{voucher.valid_etime}}</view>
+    </view>
+  </view>
+  <view class='separator'></view>
+  <view class='top-white'></view>
+  <view class='bottom-white'></view>
+  <view class='right'>
+    <view class='use-btn' wx:if="{{voucher.useful}}">
+      <view wx:if="{{voucher.selected}}" class='checked-sign'></view>
+    </view>
+  </view>
+</view>

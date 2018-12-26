@@ -114,6 +114,9 @@ page {
 .icon-next{
   margin-left: 10rpx;
   font-size: 18rpx;
+  color: #666666;
+}
+.icon-next.disabled{
   color: #BBBBBB;
 }
 

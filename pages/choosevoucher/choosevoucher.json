@@ -1,0 +1,8 @@
+{
+  "navigationBarBackgroundColor": "#FAFAFA",
+  "navigationBarTitleText": "选择优惠券",
+  "backgroundColor": "#FFFFFF",
+  "usingComponents": {
+    "choose-voucher": "/components/chooseVoucher/chooseVoucher"
+  }
+}

@@ -77,7 +77,8 @@
       <view class='lx-merchants-header-line'></view>
     </view>
     <view class='lx-merchants-body'>
-      <merchant-overview wx:for="{{indexMerchants}}" wx:for-item="merchant" wx:key="id" merchant="{{merchant}}" />
+      <merchant-overview wx:for="{{indexMerchants}}" wx:for-item="merchant" wx:key="shopid" merchant="{{merchant}}" />
     </view>
   </view>
 </view>
+<list-footer loading="{{loadingIndexMerchants}}" page="{{page}}" />

@@ -1,0 +1,3 @@
+<!--components/listFooter/listFooter.wxml-->
+<view wx:if="{{page && (page.pn || page.pn === 0) && !page.isend}}" class='loadmore-tip'><text>{{loading ? '加载中...' : '上拉加载更多'}}</text></view>
+<view wx:if="{{showNoMore && page && (page.pn || page.pn === 0) && page.isend}}" class='loadmore-tip'><text>优惠是有底线的</text></view>

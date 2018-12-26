@@ -1,6 +1,12 @@
 /**index.wxss**/
 
 /* 头部定位及消息 */
+page{
+  background: #F4F4F4;
+}
+.page-index{
+  background: #fff;
+}
 .location-and-message{
   display: flex;
   justify-content: space-between;
@@ -276,5 +282,5 @@
 }
 
 .lx-merchants-body{
-  padding: 16rpx 32rpx 16rpx;
+  padding: 16rpx 32rpx 46rpx;
 }
