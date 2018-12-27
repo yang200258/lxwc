@@ -8,12 +8,6 @@ Page({
    */
   data: {
     balance: null,
-    rechargeBox: false,
-    rechargeData: {
-      ad: '/assets/images/recharge_banner.png',
-      rechargeList: []
-    },
-    rechargeCurrent: 1,
     phone: '',
     activitys: {
       // voucher: [ // 代金券
@@ -73,7 +67,6 @@ Page({
    */
   onLoad: function(options) {
     const phone = wx.getStorageSync('phone')
-    this.getRechargeData()
     this.checkBalance()
     if (phone) {
       this.setData({phone})
@@ -230,7 +223,7 @@ Page({
       })
     } else if (!balance) { // 已请求过接口并且用户余额为0
       if (validBalanceCallback) { // 下一步操作是跳转到优惠买单 或 领取优惠券   弹出充值弹窗
-        this.showRechargeModal()
+        this.showRechargeDialog()
         return false
       }
     } else if (balance) { // 已请求过接口并且用户余额不为0
@@ -314,10 +307,10 @@ Page({
   },
 
   refreshPage: function () {
-    // 执行刷新页面操作
+    // 执行刷新页面操作,比如在该页面充值成功后,会自动执行该方法
   },
 
-  showRechargeModal: function () {
+  showRechargeDialog: function () {
     wx.showModal({
       title: '',
       content: '余额不足，请充值！',
@@ -326,54 +319,11 @@ Page({
       success: res => {
         if (res.confirm) {
           console.log('用户点击确定')
-          if (this.data.rechargeData.rechargeList && this.data.rechargeData.rechargeList[0]) { // 存在充值数据
-            this.showRechargeBox()
-          } else { // 获取充值数据
-            this.getRechargeData()
-          }
+          util.showRechargeModal()
         } else if (res.cancel) {
           console.log('用户点击取消')
         }
       }
-    })
-  },
-
-  changeCurrentRecharge: function (e) {
-    this.setData({
-      rechargeCurrent: e.currentTarget.dataset.idx
-    })
-  },
-
-  getRechargeData: function () { // 获取充值数据
-    util.request('/pay/type').then(res => {
-      console.log('获取充值数据', res)
-      if (res && res.data && !res.msg) { // 获取数据成功
-        this.setData({
-          'rechargeData.rechargeList': res.data
-        })
-      }
-    }).catch(err => {
-      console.log('获取数据失败', err)
-    })
-  },
-
-  rechargeSubmit: function () {
-    console.log('点击了充值')
-  },
-
-  stopPropagation: function () {
-    console.log('阻止冒泡')
-  },
-
-  hideRechargeBox: function () {
-    this.setData({
-      rechargeBox: false
-    })
-  },
-
-  showRechargeBox: function () {
-    this.setData({
-      rechargeBox: true
     })
   }
 })

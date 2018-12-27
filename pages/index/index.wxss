@@ -2,7 +2,7 @@
 
 /* 头部定位及消息 */
 page{
-  background: #F4F4F4;
+  background: #FFFFFF;
 }
 .page-index{
   background: #fff;

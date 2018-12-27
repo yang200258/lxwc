@@ -10,15 +10,15 @@ Page({
   data: {
     phone: phone,
     userInfo: {
-      unreadMessage: 34,
-      avatar: 'http://img0.imgtn.bdimg.com/it/u=2488756281,1175523747&fm=26&gp=0.jpg',
-      username: '你的莉莉安',
-      usernum: '9527'
+      unreadMessage: 0,
+      avatar: '',
+      name: '',
+      id: ''
     },
     userWallet: {
-      balance: '200.00',
-      redPacket: 8,
-      voucher: 9
+      balance: '',
+      redPacket: 0,
+      voucher: 0
     },
     promotion: [
       {
@@ -53,12 +53,6 @@ Page({
         }
       }
     ],
-    rechargeBox: false,
-    rechargeData: {
-      ad: '/assets/images/recharge_banner.png',
-      rechargeList: []
-    },
-    rechargeCurrent: 1,
     promotionCards: [
       {
         title: '超低价促销',
@@ -91,7 +85,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getRechargeData()
+    
   },
 
   /**
@@ -105,7 +99,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.fetchUserInfo()
   },
 
   /**
@@ -149,7 +143,8 @@ Page({
     })
   },
 
-  goRedPacketList: function () {
+  goRedPacketList: function () { // 红包功能还没做好，暂时不给入口
+    return false
     wx.navigateTo({
       url: '/pages/redpacketlist/redpacketlist'
     })
@@ -167,43 +162,8 @@ Page({
     })
   },
 
-  changeCurrentRecharge: function (e) {
-    this.setData({
-      rechargeCurrent: e.currentTarget.dataset.idx
-    })
-  },
-
-  getRechargeData: function () { // 获取充值数据
-    util.request('/pay/type').then(res => {
-      console.log('获取充值数据', res)
-      if (res && res.data && !res.msg) { // 获取数据成功
-        this.setData({
-          'rechargeData.rechargeList': res.data
-        })
-      }
-    }).catch(err => {
-      console.log('获取数据失败', err)
-    })
-  },
-
-  rechargeSubmit: function () {
-    console.log('点击了充值')
-  },
-
-  stopPropagation: function () {
-    console.log('阻止冒泡')
-  },
-
-  hideRechargeBox: function () {
-    this.setData({
-      rechargeBox: false
-    })
-  },
-
   showRechargeBox: function () {
-    this.setData({
-      rechargeBox: true
-    })
+    util.showRechargeModal()
   },
 
   // 获取手机号
@@ -269,7 +229,30 @@ Page({
     })
   },
 
+  fetchUserInfo: function () {
+    util.request('/user/center').then(res => {
+      if (res && res.data && !res.error) { // 获取用户数据成功
+        console.log('用户数据', res.data)
+        let { phone, avatar, balance, id, name, coupons} = res.data
+        let _obj = {}
+        wx.setStorageSync('phone', phone)
+        _obj.phone = phone
+        _obj['userInfo.avatar'] = avatar
+        _obj['userInfo.name'] = name
+        _obj['userInfo.id'] = id
+        _obj['userWallet.balance'] = balance
+        _obj['userWallet.voucher'] = coupons
+        this.setData(_obj)
+      }
+    }).catch(err => {
+
+    }).finally(res => {
+
+    })
+  },
+
   refreshPage: function () {
-    // 执行刷新页面操作
+    // 执行刷新页面操作,比如在该页面充值成功后,会自动执行该方法
+    this.fetchUserInfo()
   }
 })

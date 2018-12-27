@@ -3,6 +3,7 @@
   "navigationBarTitleText": "",
   "backgroundColor": "#FFFFFF",
   "usingComponents": {
-    "star-box": "/components/starBox/starBox"
+    "star-box": "/components/starBox/starBox",
+    "recharge-box": "/components/rechargeBox/rechargeBox"
   }
 }

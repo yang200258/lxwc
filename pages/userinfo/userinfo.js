@@ -1,4 +1,5 @@
 // pages/userinfo/userinfo.js
+import util from '../../utils/util.js'
 const phone = wx.getStorageSync('phone')
 const phoneText = phone ? (phone.slice(0, 3) + '******' + phone.slice(-2)) : ''
 
@@ -8,6 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    loaded: false,
     avatar: {
       id: '',
       url: '',
@@ -52,7 +54,7 @@ Page({
     requiredSubmitting: false
   },
 
-  saveUserInfo: function () {
+  saveLocalUserInfo: function () {
     console.log('saveUserInfo')
     let {name, gender, birthday} = this.data
     let arr = [name, gender, birthday]
@@ -66,7 +68,7 @@ Page({
     }
   },
 
-  getUserInfo: function () {
+  getLocalUserInfo: function () {
     const userInfoLocal = wx.getStorageSync('userInfoLocal') ? JSON.parse(wx.getStorageSync('userInfoLocal')) : null
     const { name, gender, birthday } = this.data
     let arr = [name, gender, birthday]
@@ -85,6 +87,44 @@ Page({
     }
   },
 
+  getOriginUserInfo: function () {
+    util.request('/user/info').then(res => {
+      if (res && res.data && !res.error) { // 获取信息成功
+        let {avatar, phone, name, gender, birthday} = res.data
+        let genderValue = ''
+        if (gender === '男') {
+          genderValue = '1'
+        } else if (gender === '女') {
+          genderValue = '2'
+        }
+        this.setData({
+          'avatar.url': avatar,
+          'phone.value': phone,
+          'phone.text': phone ? (phone.slice(0, 3) + '******' + phone.slice(-2)) : '',
+          'name.value': name,
+          'name.text': name,
+          'name.filled': Boolean(name),
+          'gender.value': genderValue,
+          'gender.text': gender,
+          'gender.filled': Boolean(gender),
+          'birthday.value': birthday,
+          'birthday.text': birthday,
+          'birthday.filled': Boolean(birthday)
+        })
+        if (name && gender && birthday) {
+          wx.removeStorageSync('userInfoLocal')
+        }
+      }
+    }).catch(err => {
+      console.log('获取用户信息出错', err)
+    }).finally(res => {
+      console.log('finally')
+      this.setData({
+        loaded: true
+      })
+    })
+  },
+
   submitRequiredInfo: function () {
     const {name, gender, birthday, requiredSubmitting} = this.data
     if (requiredSubmitting) {
@@ -97,14 +137,14 @@ Page({
       })
       return false
     }
-    if (!(gender.value && gender.text)) { // 未填写姓名
+    if (!(gender.value && gender.text)) { // 未填写性别
       wx.showToast({
         title: '请填写性别',
         icon: 'none'
       })
       return false
     }
-    if (!(birthday.value && birthday.text)) { // 未填写姓名
+    if (!(birthday.value && birthday.text)) { // 未填写生日
       wx.showToast({
         title: '请填写生日',
         icon: 'none'
@@ -113,14 +153,39 @@ Page({
     }
 
     // 请求提交用户信息
+    let rData = {
+      name: name.value,
+      gender: gender.value,
+      birthday: birthday.value
+    }
+    this.setData({
+      requiredSubmitting: true
+    })
+    util.request('/user/saveinfo', rData).then(res => {
+      if (res && !res.error) { // 保存成功
+        this.setData({
+          'name.filled': true,
+          'gender.filled': true,
+          'birthday.filled': true
+        })
+        wx.removeStorageSync('userInfoLocal')
+      }
+    }).catch(err => {
 
+    }).finally(res => {
+      console.log('finally')
+      this.setData({
+        requiredSubmitting: false
+      })
+    })
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getUserInfo()
+    this.getLocalUserInfo()
+    this.getOriginUserInfo()
   },
 
   /**
@@ -148,7 +213,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    this.saveUserInfo()
+    this.saveLocalUserInfo()
   },
 
   /**
@@ -193,12 +258,35 @@ Page({
           if (this.uploadTask && this.uploadTask.abort) {
             this.uploadTask.abort()
           }
+          console.log('res.tempFilePaths[0]', res)
           this.uploadTask = wx.uploadFile({
-            url: app.config.baseUrl + (app.config.apiVersion || '/v1') + '/user/uploadavatar',
+            url: app.config.baseUrl + app.config.apiVersion + '/user/uploadavatar',
             filePath: res.tempFilePaths[0],
             name: 'image',
+            header: {
+              "content-type": 'multipart/form-data',
+              "token": wx.getStorageSync('token')
+            },
+            formData: {
+              "token": wx.getStorageSync('token')
+            },
             success: res => {
               console.log('上传成功', res)
+              let _obj = {}
+              if (res && res.msg && res.error) {
+                wx.showToast({
+                  title: res.msg,
+                  icon: 'none'
+                })
+              }
+              if (res && res.data && !res.error) {
+                let { avatar, id } = res.data
+                _obj['avatar.id'] = id
+                _obj['avatar.url'] = avatar
+              } else {
+                _obj['avatar.url'] = ''
+              }
+              this.setData(_obj)
             },
             fail: res => {
               console.log('上传失败', res)
@@ -216,6 +304,10 @@ Page({
   },
 
   showGenderActions: function (e) {
+    let {gender} = this.data
+    if (gender && gender.filled) { // 已成功提交过性别
+      return false
+    }
     wx.showActionSheet({
       itemList: [
         '男',
@@ -259,6 +351,10 @@ Page({
   },
   
   showNameBox: function () {
+    let {name} = this.data
+    if (name && name.filled) { // 已成功提交过姓名
+      return false
+    }
     this.setData({
       nameBox: true
     })
@@ -272,12 +368,10 @@ Page({
 
   nameChange: function () {
     const { nameInputValue} = this.data
-    if (nameInputValue) { // 有值时才更改
-      this.setData({
-        'name.value': nameInputValue,
-        'name.text': nameInputValue
-      })
-    }
+    this.setData({
+      'name.value': nameInputValue,
+      'name.text': nameInputValue
+    })
     this.hideNameBox()
   }
 })

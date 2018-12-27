@@ -1,0 +1,4 @@
+<!--components/pageLoading/pageLoading.wxml-->
+<view class="loading-wrapper{{visible ? '' : ' hide'}}" style="height:{{size ? (size * 1.8 + 'rpx') : '120rpx'}}">
+  <text>加载中...</text>
+</view>

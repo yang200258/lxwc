@@ -3,6 +3,7 @@
   "navigationBarTitleText": "我的订单",
   "backgroundColor": "#FFFFFF",
   "usingComponents": {
+    "list-loader": "/components/listLoader/listLoader",
     "icon-text-box": "/components/iconTextBox/iconTextBox"
   }
 }

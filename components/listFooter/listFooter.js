@@ -4,6 +4,10 @@ Component({
    * 组件的属性列表
    */
   properties: {
+    bg: {
+      type: String,
+      value: 'transparent'
+    },
     page: {
       type: Object,
       value: {}
@@ -15,6 +19,10 @@ Component({
     showNoMore: {
       type: Boolean,
       value: true
+    },
+    noMoreText: {
+      type: String,
+      value: '优惠是有底线的'
     }
   },
 

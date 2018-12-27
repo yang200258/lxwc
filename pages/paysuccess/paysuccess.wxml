@@ -1,0 +1,30 @@
+<!--pages/paysuccess/paysuccess.wxml-->
+<view class='page-paysuccess'>
+  <view class='info-box'>
+    <image class='success-icon' src="/assets/images/success_icon.png" mode="aspectFit"></image>
+    <view class='success-tip'>支付成功</view>
+    <view class='actual'>
+      <text class='iconfont icon-renminbi'></text>
+      <text class='actual-text'>281.00</text>
+    </view>
+    <view class='discount-box'>
+      <view class='line-separator-h' style="width:{{622}}rpx;margin-left:32rpx"></view>
+      <view class='discount-item'>
+        <text style="color:#FF3B30">优惠</text>
+        <text>
+          <text class='iconfont icon-renminbi' style="font-size:24rpx;color:#FF3B30"></text>
+        <text style="color:#FF3B30">10.00</text>
+        </text>
+      </view>
+      <view class='discount-item'>
+        <text>收款方</text>
+        <text>华莱士(文昌店)</text>
+      </view>
+    </view>
+  </view>
+  <view class="repacket-open-banner-wrapper">
+    <image class="repacket-open-banner"></image>
+    <view class='repacket-open-btn'></view>
+  </view>
+  <view class='confirm-bt'><text>完成</text></view>
+</view>

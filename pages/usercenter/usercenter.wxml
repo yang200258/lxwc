@@ -5,17 +5,18 @@
     <!-- 用户基本信息 -->
     <view class='user-info'>
       <image class='user-info-bg' src="/assets/images/usercenter_banner.png" mode="aspectFill"></image>
-      <view class='message-box' catchtap="goMessageList">
+      <!-- 消息模块未做好，暂时隐藏入口 -->
+      <!-- <view class='message-box' catchtap="goMessageList">
         <image class='message-image' src="/assets/images/message_icon.png" mode="aspectFit"></image>
         <view wx:if="{{userInfo.unreadMessage}}" class='message-count'>
           <text>{{userInfo.unreadMessage > 99 ? '99+' : userInfo.unreadMessage}}</text>
         </view>
-      </view>
+      </view> -->
       <image class='user-avatar' src="{{userInfo.avatar}}" mode="aspectFill"></image>
       <view class='username-and-usernum'>
-        <text class='username'>{{userInfo.username}}</text>
+        <text class='username'>{{userInfo.name}}</text>
         <view class='line-separator-v' style="height:28rpx;background:#fff;margin:0 16rpx;"></view>
-        <text class='usernum'>{{userInfo.usernum}}</text>
+        <text class='usernum'>{{userInfo.id}}</text>
       </view>
       <view class='recharge-btn' catchtap="showRechargeBox">
         <text>我要充值</text>
@@ -53,41 +54,17 @@
     </view>
   </view>
   <!-- 推广banner -->
-  <view wx:if="{{promotion && promotion.length}}" class='promotion-box'>
+  <!-- 暂无该功能暂不展示 -->
+  <!-- <view wx:if="{{promotion && promotion.length}}" class='promotion-box'>
     <swiper class='promotion-swiper' indicator-dots indicator-color="#D8D8D8" indicator-active-color="#A3A3A3" duration="{{300}}">
       <swiper-item wx:for="{{promotion}}" wx:for-item="banner" wx:key="id">
         <image class='promotion-image' src="{{banner.banner}}" mode="aspectFill"></image>
       </swiper-item>
     </swiper>
-  </view>
+  </view> -->
   <!-- 页面入口 -->
   <view class='entrances'>
     <entrance wx:for="{{entrances}}" wx:key="title" wx:for-item="entrance" wx:for-index="idx" image="{{entrance.image}}" title="{{entrance.title}}" bottom-border="{{true}}" extra-data="{{entrance.extraData}}" bindentrancetap="entranceTap" />
-  </view>
-  <!-- 充值弹窗 -->
-  <view class="recharge-wrapper {{rechargeBox ? 'show' : 'hide'}}" catchtap="hideRechargeBox" catchtouchmove="stopPropagation">
-    <view class="recharge-box-bg {{rechargeBox ? 'show' : 'hide'}}"></view>
-    <view class="recharge-box {{rechargeBox ? 'show' : 'hide'}}" catchtap="stopPropagation">
-      <image wx:if="{{rechargeData.ad}}" class='recharge-ad' src="{{rechargeData.ad}}" mode="aspectFill"></image>
-      <view class='title'>
-        <text>充值额</text>
-        <text class='iconfont icon-guanbi' catchtap="hideRechargeBox"></text>
-      </view>
-      <view class='recharge-list'>
-        <view class="recharge-item {{rechargeCurrent === idx ? 'current' : ''}}" wx:for="{{rechargeData.rechargeList}}" wx:for-item="recharge" wx:for-index="idx" wx:key="sale" catchtap="changeCurrentRecharge" data-idx="{{idx}}">
-          <view class="original-price {{rechargeCurrent === idx ? 'current' : ''}}">
-            <text class='iconfont icon-renminbi' style="font-size:32rpx;"></text>
-            <text>{{recharge.sale}}</text>
-          </view>
-          <view wx:if="{{recharge.value && recharge.sale && (recharge.value - recharge.sale) > 0}}" class="price {{rechargeCurrent === idx ? 'current' : ''}}">
-            <text>增{{recharge.value - recharge.sale}}元</text>
-          </view>
-        </view>
-      </view>
-      <view class='rechage-submit-btn' catchtap="rechargeSubmit">
-        <text>立即充值</text>
-      </view>
-    </view>
   </view>
 </view>
 <!-- 非会员 -->
@@ -122,3 +99,4 @@
   </view>
   <view class='tech-tip'>乐享文昌由文昌乐享科技有限公司提供</view>
 </view>
+<recharge-box id="recharge-box" />

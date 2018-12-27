@@ -25,6 +25,7 @@
   border-radius: 12rpx;
   margin-right: 18rpx;
   flex-shrink: 0;
+  background: #F4F4F4;
 }
 .overview{
   flex: 1;

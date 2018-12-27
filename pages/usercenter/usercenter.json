@@ -5,6 +5,7 @@
   "backgroundColorTop": "#FF9500",
   "backgroundColorBottom": "#FFFFFF",
   "usingComponents": {
-    "entrance": "/components/entrance/entrance"
+    "entrance": "/components/entrance/entrance",
+    "recharge-box": "/components/rechargeBox/rechargeBox"
   }
 }

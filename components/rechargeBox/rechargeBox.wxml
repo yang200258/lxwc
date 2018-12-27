@@ -1,0 +1,25 @@
+<!--components/rechargeBox/rechargeBox.wxml-->
+<view class="recharge-wrapper {{rechargeBox ? 'show' : 'hide'}}" catchtap="hideRechargeBox" catchtouchmove="stopPropagation">
+  <view class="recharge-box-bg {{rechargeBox ? 'show' : 'hide'}}"></view>
+  <view class="recharge-box {{rechargeBox ? 'show' : 'hide'}}" catchtap="stopPropagation">
+    <image wx:if="{{rechargeData.ad}}" class='recharge-ad' src="{{rechargeData.ad}}" mode="aspectFill"></image>
+    <view class='title'>
+      <text>充值额</text>
+      <text class='iconfont icon-guanbi' catchtap="hideRechargeBox"></text>
+    </view>
+    <view class='recharge-list'>
+      <view class="recharge-item {{rechargeCurrent === idx ? 'current' : ''}}" wx:for="{{rechargeData.rechargeList}}" wx:for-item="recharge" wx:for-index="idx" wx:key="sale" catchtap="changeCurrentRecharge" data-idx="{{idx}}">
+        <view class="original-price {{rechargeCurrent === idx ? 'current' : ''}}">
+          <text class='iconfont icon-renminbi' style="font-size:32rpx;"></text>
+          <text>{{recharge.sale}}</text>
+        </view>
+        <view wx:if="{{recharge.value && recharge.sale && (recharge.value - recharge.sale) > 0}}" class="price {{rechargeCurrent === idx ? 'current' : ''}}">
+          <text>增{{recharge.value - recharge.sale}}元</text>
+        </view>
+      </view>
+    </view>
+    <view class='rechage-submit-btn' catchtap="rechargeSubmit">
+      <text>立即充值</text>
+    </view>
+  </view>
+</view>

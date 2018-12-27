@@ -6,12 +6,7 @@ Component({
   properties: {
     merchant: {
       type: Object,
-      value: {
-        shopid: '1',
-        pic: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3737093608,1532771841&fm=200&gp=0.jpg',
-        name: '大润发(文昌店）',
-        tip: '乐享会员支付立减10元'
-      }
+      value: {}
     }
   },
 

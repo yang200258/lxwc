@@ -9,106 +9,26 @@ Page({
       lat: null
     },
     messageCount: 55,
+    activityLoaded: false,
+    activityFetching: false,
     activityCurrent: 0,
-    activitys: [
-      {
-        shopid: 1,
-        img_url: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3023308141,3535526767&fm=200&gp=0.jpg'
-      },
-      {
-        shopid: 2,
-        img_url: 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1383599882,3589720252&fm=200&gp=0.jpg'
-      },
-      {
-        shopid: 3,
-        img_url: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=335081894,2281243220&fm=200&gp=0.jpg'
-      },
-      {
-        shopid: 4,
-        img_url: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2478955624,2967016924&fm=26&gp=0.jpg'
-      },
-      {
-        shopid: 5,
-        img_url: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1243655571,2094742982&fm=200&gp=0.jpg'
-      },
-      {
-        shopid: 6,
-        img_url: 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2757423851,547269891&fm=26&gp=0.jpg'
-      }
-    ],
-    merchantCates: [
-      {
-        id: 1,
-        name: '餐饮',
-        pic: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3023308141,3535526767&fm=200&gp=0.jpg'
-      },
-      {
-        id: 2,
-        name: '酒店',
-        pic: 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1383599882,3589720252&fm=200&gp=0.jpg'
-      },
-      {
-        id: 3,
-        name: '超市',
-        pic: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=335081894,2281243220&fm=200&gp=0.jpg'
-      },
-      {
-        id: 4,
-        name: 'KTV',
-        pic: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2478955624,2967016924&fm=26&gp=0.jpg'
-      },
-      {
-        id: 5,
-        name: '洗车',
-        pic: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1243655571,2094742982&fm=200&gp=0.jpg'
-      },
-      {
-        id: 6,
-        name: 'xxx',
-        pic: 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2757423851,547269891&fm=26&gp=0.jpg'
-      }
-    ],
+    activitys: [],
+    catesLoaded: false,
+    catesFetching: false,
+    merchantCates: [],
     recommendCurrent: 0,
+    recommendUserLoaded: false,
+    recommendUserFetching: false,
+    recommendNewLoaded: false,
+    recommendNewFetching: false,
     recommendTabs: [
       {
         title: '为您优选',
-        merchants: [
-          {
-            shopid: 1,
-            pic: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3737093608,1532771841&fm=200&gp=0.jpg',
-            name: '大润发(文昌店）',
-            tip: '乐享会员支付立减10元'
-          },
-          {
-            shopid: 2,
-            pic: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3737093608,1532771841&fm=200&gp=0.jpg',
-            name: 'CoCo茶饮',
-            tip: '乐享会员支付1元喝奶茶'
-          },
-          {
-            shopid: 3,
-            pic: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3737093608,1532771841&fm=200&gp=0.jpg',
-            name: '欢乐迪KTV',
-            tip: '乐享会员欢唱2小时'
-          },
-          {
-            shopid: 4,
-            pic: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3737093608,1532771841&fm=200&gp=0.jpg',
-            name: '车之翼汽车服务中心',
-            tip: '乐享会员洗车立减10元'
-          }
-        ]
+        merchants: []
       },
       {
         title: '新店优选',
-        merchants: [
-          {
-            shopid: 1,
-            pic: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3737093608,1532771841&fm=200&gp=0.jpg',
-            name: '新店优选',
-            tip: '乐享会员支付立减10元'
-          }
-        ]
+        merchants: []
       }
     ],
     currentSort: 0, // 0:按距离排序，    1:按人气排序
@@ -194,13 +114,20 @@ Page({
     this.fetchLxMerchant(0, 0)
   },
 
+  onShow: function () {
+    this.fetchBanner()
+    this.fetchMerchantCates()
+    this.fetchRecommendUser()
+    this.fetchRecommendNew()
+  },
+
   onPullDownRefresh: function () {
     this.fetchLxMerchant(0, 0)
   },
 
   onReachBottom: function () {
     const {page, loadingIndexMerchants} = this.data
-    if (page.isend || loadingIndexMerchants) {
+    if ((page && page.isend) || loadingIndexMerchants) {
       return false
     }
     this.fetchLxMerchant(page.pn + 1, 0)
@@ -226,7 +153,8 @@ Page({
     })
   },
 
-  goMerchantCate: function (e) {
+  goMerchantCate: function (e) { // 商家分类相关的接口未实现，赞不允许进入
+    return false
     const {id, name} = e.currentTarget.dataset.cate
     wx.navigateTo({
       url: '/pages/merchantcate/merchantcate?id=' + id + '&name=' + name
@@ -265,9 +193,109 @@ Page({
     })
   },
 
+  fetchBanner: function () { // 横幅
+    const { activityFetching, activityLoaded} = this.data
+    if (activityFetching || activityLoaded) {
+      return false
+    }
+    this.setData({
+      activityFetching: true
+    })
+    util.request('/index/banner').then(res => {
+      if (res && res.data && !res.error) {
+        this.setData({
+          activityCurrent: 0,
+          activitys: res.data,
+          activityLoaded: true
+        })
+      }
+    }).catch(err => {
+
+    }).finally(res => {
+      this.setData({
+        activityFetching: false
+      })
+    })
+  },
+
+  fetchMerchantCates: function () {
+    const { catesFetching, catesLoaded } = this.data
+    if (catesFetching || catesLoaded) {
+      return false
+    }
+    this.setData({
+      catesFetching: true
+    })
+    util.request('/index/cate').then(res => {
+      if (res && res.data && !res.error) {
+        this.setData({
+          merchantCates: res.data,
+          catesLoaded: true
+        })
+      }
+    }).catch(err => {
+
+    }).finally(res => {
+      this.setData({
+        catesFetching: false
+      })
+    })
+  },
+
+  fetchRecommendUser: function () { // 拉取为您优选数据
+    const { recommendUserFetching, recommendUserLoaded } = this.data
+    if (recommendUserFetching || recommendUserLoaded) {
+      return false
+    }
+    this.setData({
+      recommendUserFetching: true
+    })
+    util.request('/shop/goodlist').then(res => {
+      if (res && res.data && !res.error) {
+        this.setData({
+          'recommendTabs[0].merchants': res.data,
+          recommendUserLoaded: true
+        })
+      }
+    }).catch(err => {
+
+    }).finally(res => {
+      this.setData({
+        recommendUserFetching: false
+      })
+    })
+  },
+
+  fetchRecommendNew: function () { // 拉取新店优选数据
+    const { recommendNewFetching, recommendNewLoaded } = this.data
+    if (recommendNewFetching || recommendNewLoaded) {
+      return false
+    }
+    this.setData({
+      recommendNewFetching: true
+    })
+    util.request('/shop/newlist').then(res => {
+      if (res && res.data && !res.error) {
+        this.setData({
+          'recommendTabs[1].merchants': res.data,
+          recommendNewLoaded: true
+        })
+      }
+    }).catch(err => {
+
+    }).finally(res => {
+      this.setData({
+        recommendNewFetching: false
+      })
+    })
+  },
+
   fetchLxMerchant: function (page, type) { // 获取乐享商家
     let { loadingIndexMerchants} = this.data
     if (loadingIndexMerchants) { // 如果正在加载乐享商家列表，则中断
+      if (!page || page === '0') {
+        wx.stopPullDownRefresh()
+      }
       return false
     }
     let rData = {
@@ -279,6 +307,7 @@ Page({
       loadingIndexMerchants: true
     })
     util.request('/shop/list', rData).then(res => {
+      console.log('乐享商家', res)
       if (res && res.data && !res.error) { // 成功获取数据
         let {indexMerchants} = this.data
         let {list, page} = res.data
@@ -298,8 +327,10 @@ Page({
         }
         this.setData(_obj)
       }
+    }).catch(err => {
+      console.log('获取数据失败', err)
     }).finally(res => {
-      if (!page) { // 第一页
+      if (!page || page === '0') { // 第一页
         wx.stopPullDownRefresh()
       }
       this.setData({

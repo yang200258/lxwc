@@ -37,7 +37,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 4,
+			"current": 13,
 			"list": [
 				{
 					"id": -1,
@@ -112,10 +112,16 @@
 					"query": ""
 				},
 				{
-					"id": -1,
+					"id": 12,
 					"name": "支付页面",
 					"pathName": "pages/pay/pay",
-					"query": ""
+					"query": "id=100003"
+				},
+				{
+					"id": 13,
+					"name": "付款成功页面",
+					"pathName": "pages/paysuccess/paysuccess",
+					"query": "title=店铺名称"
 				}
 			]
 		}

@@ -1,5 +1,4 @@
 import storageUtil from './storageUtil.js'
-import Mock from '../lib/mock-min.js'
 
 const formatDateToTime = date => { // 把Date格式的时间转为 '年-月-日 时:分:秒' 的格式
   const year = date.getFullYear()
@@ -32,65 +31,46 @@ const request = (url, data, config = {}) => {
   let _data = Object.assign({}, data, {token: token})
   console.log('apiVersion', apiVersion)
   return new Promise((resolve, reject) => {
-    if (!config.isMock) {
-      wx.request({
-        url: app.config.baseUrl + apiVersion + url,
-        data: _data,
-        method: (config && config.method) || 'POST', // 使用传入的method值，或者默认的post
-        header: {
-          'fromOrigin': 'miniapp',
-          'version': apiVersion,
-          'content-type': (config && config.contentType) || 'application/json', // 使用传入的contentType值，或者默认的application/json
-          'token': token, // 使用传入的token值，或者全局的token，都没有则默认空字符串
-        },
-        success: function (res) {
-          if (res.data.error && (res.data.error == 401 || res.data.error == 403)) {
-            storageUtil.setStorage('token', '')
-            checkLogin(app.globalData.launchOptions)
-            reject(res.data || res) // 返回错误提示信息
-            return
+    wx.request({
+      url: app.config.baseUrl + apiVersion + url,
+      data: _data,
+      method: (config && config.method) || 'POST', // 使用传入的method值，或者默认的post
+      header: {
+        'fromOrigin': 'miniapp',
+        'version': apiVersion,
+        'content-type': (config && config.contentType) || 'application/json', // 使用传入的contentType值，或者默认的application/json
+        'token': token, // 使用传入的token值，或者全局的token，都没有则默认空字符串
+      },
+      success: function (res) {
+        if (res.data.error && (res.data.error == 401 || res.data.error == 403)) {
+          storageUtil.setStorage('token', '')
+          checkLogin(app.globalData.launchOptions)
+          reject(res.data || res) // 返回错误提示信息
+          return
+        }
+        if (res.data.msg && res.data.error !== 0 && res.data.error !== '0') {
+          if (!config.dontToast) {
+            wx.showToast({
+              title: res.data.msg,
+              icon: 'none',
+              duration: 2000
+            })
           }
-          if (res.data.msg && res.data.error !== 0 && res.data.error !== '0') {
-            if (!config.dontToast) {
-              wx.showToast({
-                title: res.data.msg,
-                icon: 'none',
-                duration: 2000
-              })
-            }
-            reject(res.data || res) // 返回错误提示信息
-            return
-          }
-          resolve(res.data || res)
-        },
-        fail: function (res) {
-          if (res && res.errMsg && res.errMsg === 'request:fail') { // 小程序请求失败，可以在这里检查是否联网，处理断网
-
-          }
-          reject(res) // 返回错误提示信息
-        },
-        complete: function (res) {
+          reject(res.data || res) // 返回错误提示信息
+          return
+        }
+        resolve(res.data || res)
+      },
+      fail: function (res) {
+        if (res && res.errMsg && res.errMsg === 'request:fail') { // 小程序请求失败，可以在这里检查是否联网，处理断网
 
         }
-      })
-    } else {
-      const res = Mock.mock({
-        error: 0,
-        msg: '',
-        'data|10': [{
-          'id|+1': 1,
-          'img': "@image('200x100', '#4A7BF7','#fff','pic')",
-          'title': '@ctitle(3,8)',
-          'city': "@county(true)",
-          'stock_num': '@integer(0,100)', // 库存数量  
-          'marketing_start': '@datetime()',
-          'marketing_stop': '@now()',
-          'price': '@integer(100,2000)', // 现价，单位：分  
-          'original_price': '@integer(100,3000)'
-        }]
-      })
-      resolve(res)
-    }
+        reject(res) // 返回错误提示信息
+      },
+      complete: function (res) {
+
+      }
+    })
   })
 }
 
@@ -161,6 +141,13 @@ dialog.hide = function (selector = '#dialog') {
 //   ],
 //   selector: '#dialoghaha' // 页面上dialog组件的id，组件上必须有id，否则无法定位到该组件，如果组件的id为dialog则，该selector字段可以不传，否则必传
 // })
+
+const showRechargeModal = (options) => {
+  let selector = (options && options.selector) ? options.selector : '#recharge-box'
+  const ctx = getCtx(selector)
+
+  ctx.showRechargeBox(options)
+}
 
 const actionSheet = (options) => {
   const {
@@ -263,6 +250,7 @@ module.exports = {
   request: request, // 封装api请求
   toast: toast, // 自定义toast
   dialog: dialog, // 自定义弹窗
+  showRechargeModal: showRechargeModal,
   actionSheet: actionSheet, // 自定义actionSheet
   isLaterVersion: isLaterVersion, // 判断小程序基础库是否高于某个版本
   checkLogin: checkLogin, // 检查是否登录

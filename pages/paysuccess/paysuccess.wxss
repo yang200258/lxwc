@@ -1,0 +1,52 @@
+/* pages/paysuccess/paysuccess.wxss */
+
+page{
+  background: #F4F4F4;
+}
+.info-box{
+  margin: 50rpx 32rpx 0;
+  padding-top: 50rpx;
+  background: #fff;
+  border-radius: 8rpx;
+}
+.success-icon{
+  display: block;
+  width: 130rpx;
+  height: 130rpx;
+  margin: 0 auto;
+}
+.success-tip{
+  font-size: 40rpx;
+  line-height: 50rpx;
+  padding-top: 27rpx;
+  text-align: center;
+}
+.actual{
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  height: 100rpx;
+  margin-top: 10rpx;
+  box-sizing: content-box;
+  padding-bottom: 90rpx;
+}
+.icon-renminbi{
+  font-size: 56rpx;
+  line-height: 80rpx;
+  margin-right: 10rpx;
+}
+.actual-text{
+  font-size: 90rpx;
+  line-height: 90rpx;
+}
+.discount-box{
+  padding: 30rpx 0;
+}
+.discount-item{
+  height: 48rpx;
+  font-size: 28rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 32rpx;
+}

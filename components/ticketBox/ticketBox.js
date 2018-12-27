@@ -21,6 +21,8 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    useTap: function () {
+      this.triggerEvent('usetap', this.data.ticket)
+    }
   }
 })

@@ -139,6 +139,11 @@ Page({
     if (options.id) {
       this.getUserDiscountInfo(options.id)
     }
+    if (options.title) {
+      wx.setNavigationBarTitle({
+        title: optiohs.title
+      })
+    }
   },
 
   /**
@@ -159,7 +164,7 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function() {
-    
+
   },
 
   /**
@@ -206,6 +211,11 @@ Page({
         let userVouchers = []
         if (huodong && huodong[0]) {
           userVouchers = huodong.filter(item => item.type.toString() === '1') // type为1的表示满减优惠券
+        }
+        if (name) {
+          wx.setNavigationBarTitle({
+            title: name
+          })
         }
         this.setData({
           balance,
@@ -424,16 +434,38 @@ Page({
       })
       if (res && !res.error) { // 支付成功，跳转成功页面
         console.lig('付款成功')
-      } else if (res && res.msg && res.error) {
-        wx.showToast({
-          title: res.msg,
-          icon: 'none'
-        })
+      } else if (res && res.error) {
+        if (res.msg) {
+          wx.showToast({
+            title: res.msg,
+            icon: 'none'
+          })
+        }
+        if (res.error.toString() === '300') { // 协定好的余额不足错误码
+          this.showRechargeDialog()
+        }
       }
     }).catch(err => {
       this.setData({
         paying: false
       })
+    })
+  },
+
+  showRechargeDialog: function () {
+    wx.showModal({
+      title: '',
+      content: '余额不足，请充值！',
+      confirmText: '去充值',
+      confirmColor: '#108EE9',
+      success: res => {
+        if (res.confirm) {
+          console.log('用户点击确定')
+          util.showRechargeModal()
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
     })
   }
 })

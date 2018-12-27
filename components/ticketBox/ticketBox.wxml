@@ -16,7 +16,7 @@
   <view class='top-white'></view>
   <view class='bottom-white'></view>
   <view class='right'>
-    <view class='use-btn'>
+    <view class='use-btn' catchtap="useTap">
       <text>去使用</text>
     </view>
   </view>
