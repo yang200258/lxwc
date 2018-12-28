@@ -14,7 +14,7 @@
           <text>{{recharge.sale}}</text>
         </view>
         <view wx:if="{{recharge.value && recharge.sale && (recharge.value - recharge.sale) > 0}}" class="price {{rechargeCurrent === idx ? 'current' : ''}}">
-          <text>增{{recharge.value - recharge.sale}}元</text>
+          <text>赠{{recharge.value - recharge.sale}}元</text>
         </view>
       </view>
     </view>

@@ -8,7 +8,7 @@
   <view class='step-item'>
     <image class='step-num' src="/assets/images/step2_num.png"></image>
     <image class='step-image' src="/assets/images/step2_image.png"></image>
-    <view class='step-text'>微信支付</view>
+    <view class='step-text'>余额支付</view>
   </view>
   <view class='step-item'>
     <image class='step-num' src="/assets/images/step3_num.png"></image>
@@ -17,5 +17,5 @@
   </view>
   <view class='line-separator-h' style="position:absolute;left:0;bottom:0;"></view>
 </view>
-<image class='scan-btn' src="/assets/images/scan_btn.png"></image>
+<image class='scan-btn' src="/assets/images/scan_btn.png" catchtap="scanCode"></image>
 <view class='scan-tip'>点击此处扫描商家二维码</view>

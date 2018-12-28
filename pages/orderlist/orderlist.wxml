@@ -10,4 +10,4 @@
   </view>
 </view>
 <!-- 大于5条信息才展示没有更多的提示 -->
-<list-footer loading="{{fetching}}" page="{{page}}" show-no-more="{{orders && orders.length > 5}}" no-more-text="没有更多了~" />
+<list-footer loading="{{fetching}}" page="{{page}}" show-no-more="{{orders && orders[5]}}" no-more-text="没有更多了~" />

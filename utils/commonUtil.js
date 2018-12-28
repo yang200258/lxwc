@@ -242,6 +242,25 @@ const syncGlobalData = (page) => {
   })
 }
 
+const getParams = (path) => {
+  let params = new Object()
+  const idx = path.indexOf('?')
+  if (idx !== -1) { // path中带有？
+    console.log('string', path.substring(idx + 1))
+    let str = path.substring(idx + 1)
+    let arr = str.split('&')
+    for (let i = 0; i < arr.length; i++) {
+      params[arr[i].split("=")[0]] = decodeURIComponent(arr[i].split("=")[1])
+    }
+  } else { // 传入的不是完整的path，只是参数部分的字符串
+    let arr = path.split('&')
+    for (let i = 0; i < arr.length; i++) {
+      params[arr[i].split("=")[0]] = decodeURIComponent(arr[i].split("=")[1])
+    }
+  }
+  return params
+}
+
 
 module.exports = {
   formatDateToTime: formatDateToTime, // 把Date格式的时间转为 '年-月-日 时:分:秒' 的格式
@@ -255,5 +274,6 @@ module.exports = {
   isLaterVersion: isLaterVersion, // 判断小程序基础库是否高于某个版本
   checkLogin: checkLogin, // 检查是否登录
   checkPhone: checkPhone, // 检查本地是否保存手机号
-  syncGlobalData: syncGlobalData // 将全局数据同步到某个页面
+  syncGlobalData: syncGlobalData, // 将全局数据同步到某个页面
+  getParams: getParams // 获取path中的参数
 }

@@ -6,6 +6,6 @@
 </view>
 <view class='fixed-button'>
   <view class='confirm-btn' catchtap="conform">
-    <text>完成</text>
+    <text>确定</text>
   </view>
 </view>

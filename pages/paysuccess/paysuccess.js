@@ -1,11 +1,13 @@
 // pages/paysuccess/paysuccess.js
+import util from '../../utils/util.js'
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    order: {}
   },
 
   /**
@@ -15,6 +17,24 @@ Page({
     if (options.title) {
       wx.setNavigationBarTitle({
         title: options.title
+      })
+    }
+    if (options.id) {
+      this.setData({
+        'order.id': options.id
+      })
+      let rData = {
+        id: options.id
+      }
+      util.request('/order/info', rData).then(res => {
+        if (res && res.data && !res.error) {
+          console.log('支付成功订单', res.data)
+          this.setData({
+            order: res.data
+          })
+        }
+      }).catch(err => {
+
       })
     }
   },
@@ -66,5 +86,16 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  getRedpacket: function () { // 领取红包
+    console.log('领取红包')
+  },
+
+  goOrderDetail: function () {
+    let {order: {id}} = this.data
+    wx.redirectTo({
+      url: '/pages/orderdetail/orderdetail?id=' + id
+    })
   }
 })

@@ -24,16 +24,17 @@ page{
 .actual{
   display: flex;
   justify-content: center;
-  align-items: flex-end;
+  align-items: center;
   height: 100rpx;
   margin-top: 10rpx;
   box-sizing: content-box;
   padding-bottom: 90rpx;
 }
 .icon-renminbi{
-  font-size: 56rpx;
-  line-height: 80rpx;
-  margin-right: 10rpx;
+  font-size: 90rpx;
+  line-height: 90rpx;
+  transform: scale(0.6, 0.6);
+  transform-origin: 50% 70%;
 }
 .actual-text{
   font-size: 90rpx;
@@ -49,4 +50,56 @@ page{
   justify-content: space-between;
   align-items: center;
   padding: 0 32rpx;
+}
+.repacket-open-banner-wrapper{
+  display: block;
+  width: 100%;
+  height: 154rpx;
+  margin-top: 20rpx;
+  position: relative;
+}
+.repacket-open-banner{
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 1;
+}
+.repacket-open-btn{
+  width: 220rpx;
+  height: 50rpx;
+  position: absolute;
+  left: 50%;
+  bottom: 15rpx;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+.confirm-wrapper{
+  position: relative;
+  width: 100%;
+  height: 158rpx;
+}
+.confirm-box{
+  position: fixed;
+  width: 100%;
+  height: 158rpx;
+  left: 0;
+  bottom: 0;
+  background: #F4F4F4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.confirm-btn{
+  margin: 0 32rpx;
+  flex: 1;
+  height: 94rpx;
+  border-radius: 8rpx;
+  background: #FF9500;
+  color: #fff;
+  font-size: 36rpx;
+  line-height: 50rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

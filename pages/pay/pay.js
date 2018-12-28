@@ -7,125 +7,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-    // merchantDiscounts: [{ // 假设type:5表示满减活动
-    //     id: '1',
-    //     title: '满100减5',
-    //     shopid: '1234',
-    //     type: '5',
-    //     shopname: '文昌便利店',
-    //     pic: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3023308141,3535526767&fm=200&gp=0.jpg',
-    //     value: 5,
-    //     cond_count: 100,
-    //     valid_btime: '2018.12.08',
-    //     valid_etime: '2018.12.15',
-    //     valid: 1, // 有效为1，失效为0
-    //     status: '1' // 1为未使用,2为已使用
-    //   },
-    //   { // 假设type:7表示满赠活动
-    //     id: '1',
-    //     title: '满100送果盘一份',
-    //     shopid: '1234',
-    //     type: '5',
-    //     shopname: '文昌便利店',
-    //     pic: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3023308141,3535526767&fm=200&gp=0.jpg',
-    //     value: 5,
-    //     cond_count: 100,
-    //     valid_btime: '2018.12.08',
-    //     valid_etime: '2018.12.15',
-    //     valid: 1, // 有效为1，失效为0
-    //     status: '1' // 1为未使用,2为已使用
-    //   }
-    // ],
     canUseVoucher: 0,
     selectedVoucher: null,
-    userVouchers: [{
-        id: '1',
-        title: '满100减20',
-        shopid: '1234',
-        type: '1',
-        shopname: '文昌便利店',
-        pic: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3023308141,3535526767&fm=200&gp=0.jpg',
-        value: 20,
-        cond_count: 100,
-        valid_btime: '2018.12.08',
-        valid_etime: '2018.12.15',
-        valid: 1, // 有效为1，失效为0
-        status: '1' // 1为未使用,2为已使用
-      },
-      {
-        id: '2',
-        title: '满30减5',
-        shopid: '1234',
-        type: '1',
-        shopname: '文昌便利店',
-        pic: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3023308141,3535526767&fm=200&gp=0.jpg',
-        value: 5,
-        cond_count: 30,
-        valid_btime: '2018.12.08',
-        valid_etime: '2018.12.15',
-        valid: 1, // 有效为1，失效为0
-        status: '1' // 1为未使用,2为已使用
-      },
-      {
-        id: '3',
-        title: '满50减9',
-        shopid: '1234',
-        type: '1',
-        shopname: '文昌便利店',
-        pic: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3023308141,3535526767&fm=200&gp=0.jpg',
-        value: 9,
-        cond_count: 50,
-        valid_btime: '2018.12.08',
-        valid_etime: '2018.12.15',
-        valid: 1, // 有效为1，失效为0
-        status: '1' // 1为未使用,2为已使用
-      }
-    ],
+    userVouchers: [],
     canUseRedpacket: 0,
-    userRedpackets: [ // 假如type:8是红包
-      {
-        id: '1',
-        title: '满100减20',
-        shopid: '1234',
-        type: '8',
-        shopname: '文昌便利店',
-        pic: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3023308141,3535526767&fm=200&gp=0.jpg',
-        value: 20,
-        cond_count: 100,
-        valid_btime: '2018.12.08',
-        valid_etime: '2018.12.15',
-        valid: 1, // 有效为1，失效为0
-        status: '1' // 1为未使用,2为已使用
-      },
-      {
-        id: '2',
-        title: '满30减5',
-        shopid: '1234',
-        type: '8',
-        shopname: '文昌便利店',
-        pic: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3023308141,3535526767&fm=200&gp=0.jpg',
-        value: 5,
-        cond_count: 30,
-        valid_btime: '2018.12.08',
-        valid_etime: '2018.12.15',
-        valid: 1, // 有效为1，失效为0
-        status: '1' // 1为未使用,2为已使用
-      },
-      {
-        id: '3',
-        title: '满50减9',
-        shopid: '1234',
-        type: '8',
-        shopname: '文昌便利店',
-        pic: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3023308141,3535526767&fm=200&gp=0.jpg',
-        value: 9,
-        cond_count: 50,
-        valid_btime: '2018.12.08',
-        valid_etime: '2018.12.15',
-        valid: 1, // 有效为1，失效为0
-        status: '1' // 1为未使用,2为已使用
-      }
-    ],
+    userRedpackets: [],
     total: '',
     ignore: '',
     actual: '',
@@ -137,11 +23,14 @@ Page({
    */
   onLoad: function(options) {
     if (options.id) {
+      this.setData({
+        shopid: options.id
+      })
       this.getUserDiscountInfo(options.id)
     }
     if (options.title) {
       wx.setNavigationBarTitle({
-        title: optiohs.title
+        title: options.title
       })
     }
   },
@@ -211,6 +100,11 @@ Page({
         let userVouchers = []
         if (huodong && huodong[0]) {
           userVouchers = huodong.filter(item => item.type.toString() === '1') // type为1的表示满减优惠券
+          if (userVouchers && userVouchers[0]) {
+            userVouchers.forEach(item => {
+              item.shopname = name
+            })
+          }
         }
         if (name) {
           wx.setNavigationBarTitle({
@@ -389,7 +283,7 @@ Page({
 
   updateVoucher: function (userVouchers) {
     let selectedVoucher = userVouchers.filter(item => item.selected)[0]
-    this.setData({ selectedVoucher, userVouchers }, () => {
+    this.setData({ selectedVoucher: selectedVoucher || null, userVouchers }, () => {
       const {total, ignore} = this.data
       this.getUseableVoucher(total || 0, ignore || 0)
     })
@@ -414,7 +308,7 @@ Page({
 
   pay: function () {
     let {total, ignore, actual, shopid, selectedVoucher, paying} = this.data
-    if (paying || !actual) { // 正在付款时中断
+    if (paying || !actual || (actual && parseFloat(actual) < 0.01)) { // 正在付款时中断
       return false
     }
     let coupon_id = selectedVoucher ? selectedVoucher.id : ''
@@ -428,24 +322,37 @@ Page({
     this.setData({
       paying: true
     })
-    util.request('/pay/request', rData).then(res => {
-      this.setData({
-        paying: false
-      })
+    util.request('/pay/request', rData, { dontToast: true}).then(res => {
       if (res && !res.error) { // 支付成功，跳转成功页面
-        console.lig('付款成功')
-      } else if (res && res.error) {
-        if (res.msg) {
-          wx.showToast({
-            title: res.msg,
-            icon: 'none'
-          })
+        // console.lig('付款成功', res.data)
+        let url = ''
+        let {name} = this.data
+        if (name) {
+          url = '/pages/paysuccess/paysuccess?id=' + res.data.order_id + '&title=' + name
+        } else {
+          url = '/pages/paysuccess/paysuccess?id=' + res.data.order_id
         }
+        wx.redirectTo({
+          url: url
+        })
+      } else if (res && res.error) {
         if (res.error.toString() === '300') { // 协定好的余额不足错误码
           this.showRechargeDialog()
+        } else {
+          if (res.msg) {
+            wx.showToast({
+              title: res.msg,
+              icon: 'none'
+            })
+          }
         }
       }
     }).catch(err => {
+      console.log('支付失败', err)
+      if (err && err.error && err.error.toString() === '300') {
+        this.showRechargeDialog()
+      }
+    }).finally(res => {
       this.setData({
         paying: false
       })
@@ -453,6 +360,7 @@ Page({
   },
 
   showRechargeDialog: function () {
+    console.log('showRechargeDialog')
     wx.showModal({
       title: '',
       content: '余额不足，请充值！',

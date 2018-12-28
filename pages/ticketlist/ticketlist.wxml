@@ -10,4 +10,4 @@
   <view class='empty-tip'>暂时没有可用的优惠券哦</view>
 </view>
 <!-- 大于10条信息才展示没有更多的提示 -->
-<list-footer loading="{{fetching}}" page="{{page}}" show-no-more="{{tickets && tickets.length > 10}}" no-more-text="没有更多了~" />
+<list-footer loading="{{fetching}}" page="{{page}}" show-no-more="{{tickets && tickets[10]}}" no-more-text="没有更多了~" />

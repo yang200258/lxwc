@@ -15,6 +15,7 @@ Page({
     let currentPages = getCurrentPages()
     let prePage = currentPages[currentPages.length - 2]
     let vouchers = prePage.getUserVouchers()
+    vouchers = JSON.parse(JSON.stringify(vouchers))
     vouchers.forEach(item => {
       item.title = this.getVoucherTitle(item)
       item.content = this.getVoucherContent(item)

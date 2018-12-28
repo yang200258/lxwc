@@ -117,7 +117,7 @@ page {
   color: #666666;
 }
 .icon-next.disabled{
-  color: #BBBBBB;
+  color: #999;
 }
 
 .fixed-button-box{
@@ -142,12 +142,22 @@ page {
   font-size: 32rpx;
   color: #333;
 }
+.price-text{
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
 .icon-renminbi{
-  font-size: 26rpx;
+  font-size: 36rpx;
+  line-height: 36rpx;
+  margin-top: 4rpx;
   color: #333;
   font-weight: bold;
 }
 .actual-price{
+  font-size: 48rpx;
+  line-height: 48rpx;
   font-weight: bold;
 }
 .order-btn{
@@ -162,5 +172,5 @@ page {
   align-items: center;
 }
 .order-btn.disabled{
-  background: #999;
+  background: #FFCA7F;
 }

@@ -66,35 +66,20 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    const phone = wx.getStorageSync('phone')
-    this.checkBalance()
+    console.log('options', options)
+    const phone = wx.getStorageSync('phone') // 获取phone
     if (phone) {
-      this.setData({phone})
+      this.setData({ phone })
+    }
+    this.checkBalance() // 拉取用户余额数据
+    if (options.scene) { // 扫码进入
+      const sceneParams = util.getParams(decodeURIComponent(options.scene))
+      if (sceneParams.id) {
+        this.fetchMerchantData(sceneParams.id)
+      }
     }
     if (options && options.id) {
-      this.shopid = options.id // 立即记录当前商家id,不可删掉，页面其他地方需要
-      util.request('/shop/info', {
-        id: options.id
-      }).then(res => {
-        console.log('商家详情数据', res)
-        if (res && res.data && !res.msg) { // 获取成功
-          let {huodong} = res.data
-          let voucher = []
-          if (huodong && huodong[0]) {
-            voucher = huodong.filter(item => item.type.toString() === '1') // type为1的活动表示 满减优惠券
-            if (voucher && voucher.length) {
-              voucher = this.getVoucherView(voucher)
-            }
-          }
-          let _obj = {
-            merchantData: res.data,
-            'activitys.voucher': voucher
-          }
-          this.setData(_obj)
-        }
-      }).catch(err => {
-        console.log('获取商家数据失败', err)
-      })
+      this.fetchMerchantData(options.id)
     }
   },
 
@@ -102,7 +87,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
-
+    
   },
 
   /**
@@ -149,10 +134,37 @@ Page({
 
   voucherGetting: {},
 
+  fetchMerchantData: function (id) {
+    this.shopid = id // 立即记录当前商家id,不可删掉，页面其他地方需要
+    util.request('/shop/info', {
+      id
+    }).then(res => {
+      console.log('商家详情数据', res)
+      if (res && res.data && !res.msg) { // 获取成功
+        let { huodong } = res.data
+        let voucher = []
+        if (huodong && huodong[0]) {
+          voucher = huodong.filter(item => item.type.toString() === '1') // type为1的活动表示 满减优惠券
+          if (voucher && voucher.length) {
+            voucher = this.getVoucherView(voucher)
+          }
+        }
+        let _obj = {
+          merchantData: res.data,
+          'activitys.voucher': voucher
+        }
+        this.setData(_obj)
+      }
+    }).catch(err => {
+      console.log('获取商家数据失败', err)
+    })
+  },
+
   getVoucher: function (e) { // 领取满减优惠券
     const voucherId = e.currentTarget.dataset.voucher.id
+    const status = e.currentTarget.dataset.voucher.status
     const {phone} = this.data
-    if (!phone || this.voucherGetting[voucherId.toString()]) { // 正在获取对应的优惠券时，中断当前操作
+    if (!phone || this.voucherGetting[voucherId.toString()] || status.toString() !== '1') { // 正在获取对应的优惠券时，中断当前操作，未领取状态才能再次领取
       return false
     }
     const goNext = () => {
@@ -238,7 +250,7 @@ Page({
     }
     const goNext = () => {
       wx.navigateTo({
-        url: '/pages/pay/pay?id=' + this.shopid
+        url: '/pages/pay/pay?id=' + this.shopid + '&title=' + merchantData.name
       })
     }
     this.checkBalance(goNext)

@@ -1,0 +1,74 @@
+/* pages/rechargesuccess/rechargesuccess.wxss */
+
+page{
+  background: #F4F4F4;
+}
+
+.page-rechargesuccess{
+  padding-top: 50rpx;
+}
+
+.overview{
+  margin: 0 32rpx;
+  border-radius: 8rpx;
+  height: 464rpx;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.success-icon{
+  display: block;
+  width: 130rpx;
+  height: 130rpx;
+}
+
+.success-text{
+  font-size: 40rpx;
+  line-height: 40rpx;
+  padding-top: 32rpx;
+  color: #333;
+}
+
+.ad-banner{
+  margin: 20rpx 32rpx;
+  height: 250rpx;
+  border-radius: 8rpx;
+}
+.ad-banner-image{
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.confirm-wrapper{
+  position: relative;
+  width: 100%;
+  height: 158rpx;
+}
+.confirm-box{
+  position: fixed;
+  width: 100%;
+  height: 158rpx;
+  left: 0;
+  bottom: 0;
+  background: #F4F4F4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.confirm-btn{
+  margin: 0 32rpx;
+  flex: 1;
+  height: 94rpx;
+  border-radius: 8rpx;
+  background: #FF9500;
+  color: #fff;
+  font-size: 36rpx;
+  line-height: 50rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -5,7 +5,7 @@ import expand from '/utils/expand.js'
 App({
   onLaunch: function (options) {
     this.globalData.launchOptions = options
-    // util.checkLogin(options)
+    util.checkLogin(options)
     this.config = config
     let systemInfo = wx.getSystemInfoSync()
     this.globalData.systemInfo = systemInfo

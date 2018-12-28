@@ -37,7 +37,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 13,
+			"current": 4,
 			"list": [
 				{
 					"id": -1,
@@ -67,7 +67,7 @@
 					"id": 4,
 					"name": "商家详情页面",
 					"pathName": "pages/merchantdetail/merchantdetail",
-					"query": "id=100003"
+					"query": "scene=id%3D100003"
 				},
 				{
 					"id": -1,
@@ -88,10 +88,10 @@
 					"query": ""
 				},
 				{
-					"id": -1,
+					"id": 8,
 					"name": "订单详情",
 					"pathName": "pages/orderdetail/orderdetail",
-					"query": ""
+					"query": "id=100000015"
 				},
 				{
 					"id": -1,
@@ -121,7 +121,13 @@
 					"id": 13,
 					"name": "付款成功页面",
 					"pathName": "pages/paysuccess/paysuccess",
-					"query": "title=店铺名称"
+					"query": "title=店铺名称&id=100000020"
+				},
+				{
+					"id": -1,
+					"name": "充值成功页面",
+					"pathName": "pages/rechargesuccess/rechargesuccess",
+					"query": ""
 				}
 			]
 		}

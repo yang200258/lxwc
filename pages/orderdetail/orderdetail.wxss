@@ -46,17 +46,17 @@
 .overview{
   padding: 20rpx 32rpx 140rpx;
 }
-.total, .discounted{
+.total, .discounted, .actual{
   font-size: 30rpx;
   line-height: 50rpx;
   color: #6E6E6E;
   text-align: right;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
-.actual{
-  font-size: 32rpx;
-  line-height: 52rpx;
-  color: #F24724;
-  text-align: right;
+.right-text{
+  min-width: 100rpx;
 }
 
 .empty-order{

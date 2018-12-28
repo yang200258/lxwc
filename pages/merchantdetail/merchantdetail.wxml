@@ -8,7 +8,7 @@
     </view>
     <!-- 商家图片轮播 -->
     <view wx:if="{{merchantData.covers && merchantData.covers.length}}" class='merchant-covers'>
-      <swiper class='covers-swiper' indicator-dots="{{merchantData.covers.length > 1}}" indicator-color="#D8D8D8" indicator-active-color="#A3A3A3" duration="{{300}}">
+      <swiper class='covers-swiper' autoplay circular interval="{{2500}}" indicator-dots="{{merchantData.covers.length > 1}}" indicator-color="#D8D8D8" indicator-active-color="#A3A3A3" duration="{{300}}">
         <swiper-item wx:for="{{merchantData.covers}}" wx:for-item="cover" wx:key="id">
           <image class='cover-image' src="{{cover.src}}" mode="aspectFill"></image>
         </swiper-item>
@@ -49,8 +49,8 @@
       <view class='voucher-content-wrapper'>
         <view wx:for="{{activitys.voucher}}" wx:for-item="voucher" wx:key="id" class='voucher-item'>
           <view class='voucher-text'>{{voucher.title}}</view>
-          <view class="voucher-btn {{voucher.status == 2 ? 'disabled' : ''}}" catchtap="getVoucher" data-voucher="{{voucher}}">
-            <text>{{voucher.status == 2 ? '已领取' : '领取'}}</text>
+          <view class="voucher-btn {{voucher.status == 1 ? '' : 'disabled'}}" catchtap="getVoucher" data-voucher="{{voucher}}">
+            <text>{{voucher.status == 1 ? '领取' : '已领取'}}</text>
             <button wx:if="{{!phone}}" class='bindphone-btn' open-type="getPhoneNumber" bindgetphonenumber="getPhone"></button>
           </view>
         </view>

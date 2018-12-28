@@ -24,7 +24,7 @@
   </view> -->
   <!-- 活动 -->
   <view wx:if="{{activitys && activitys[0]}}" class='activity-box'>
-    <swiper class='activity-swiper' duration="{{300}}" bindchange="changeActivityCurrent">
+    <swiper class='activity-swiper' autoplay circular interval="{{2500}}" duration="{{300}}" bindchange="changeActivityCurrent">
       <swiper-item wx:for="{{activitys}}" wx:for-item="activity" wx:key="shopid">
         <view class='activity-item-content' catchtap="activityTap" data-activity="{{activity}}">
           <image class='activity-banner' src="{{activity.img_url}}" mode="aspectFill"></image>
@@ -84,4 +84,4 @@
     </view>
   </view>
 </view>
-<list-footer bg="#F4F4F4" loading="{{loadingIndexMerchants}}" page="{{page}}" show-no-more="{{indexMerchants && indexMerchants.length > 5}}" />
+<list-footer bg="#F4F4F4" loading="{{loadingIndexMerchants}}" page="{{page}}" show-no-more="{{indexMerchants && indexMerchants[5]}}" />
