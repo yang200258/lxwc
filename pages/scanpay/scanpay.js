@@ -21,7 +21,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    setTimeout(this.scanCode, 500)
+    // setTimeout(this.scanCode, 500)
   },
 
   /**
@@ -74,9 +74,11 @@ Page({
   scanCode: function () {
     wx.scanCode({
       success: res => {
-        let params = util.getParams(res.path)
-        if (params.scene) { // 扫场景二维码得到的scene
-          let sceneParams = util.getParams(params.scene)
+        let idx = res.path.indexOf('scene=')
+        if (idx !== -1) { // path里带有scene值，获取scene值
+          let scene = decodeURIComponent(res.path.split('scene=')[1])
+          let sceneParams = util.getParams(scene)
+          console.log(scene, sceneParams)
           if (sceneParams.id) { // 获取到id
             if (res.path.indexOf('/merchantdetail/merchantdetail') > -1) { // 匹配商家详情页，避免扫描其他页面的码时跳转到商家详情
               wx.navigateTo({
@@ -85,6 +87,17 @@ Page({
             }
           }
         }
+        // let params = util.getParams(res.path)
+        // if (params.scene) { // 扫场景二维码得到的scene
+        //   let sceneParams = util.getParams(params.scene)
+        //   if (sceneParams.id) { // 获取到id
+        //     if (res.path.indexOf('/merchantdetail/merchantdetail') > -1) { // 匹配商家详情页，避免扫描其他页面的码时跳转到商家详情
+        //       wx.navigateTo({
+        //         url: '/pages/merchantdetail/merchantdetail?id=' + sceneParams.id
+        //       })
+        //     }
+        //   }
+        // }
       }
     })
   }

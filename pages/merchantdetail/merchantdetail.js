@@ -87,7 +87,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
-    
+
   },
 
   /**
@@ -331,7 +331,7 @@ Page({
       success: res => {
         if (res.confirm) {
           console.log('用户点击确定')
-          util.showRechargeModal()
+          util.showRechargeModal(this.checkBalance)
         } else if (res.cancel) {
           console.log('用户点击取消')
         }

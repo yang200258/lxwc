@@ -1,27 +1,29 @@
 <!--index.wxml-->
 <view class="page-index">
-  <!-- <view catchtap="goBindPhone">支付</view> -->
   <!-- 定位及消息 -->
-  <!-- 该模块功能暂未实现，先隐藏入口 -->
-  <!-- <view class='location-and-message'>
-    <view class='location-box'>
+  <view class='location-and-message' id="locatlion-wrapper">
+    <view class='location-box' catchtap="locationTap">
       <text class='iconfont icon-location_xcx'></text>
       <text class='location-text'>{{location.address}}</text>
       <text class='iconfont icon-next'></text>
     </view>
     <view class='message-box' catchtap="goMessageList">
-      <text class='iconfont icon-message'></text>
-      <view class='message-count'>
+      <image class='message-icon' src="/assets/images/message_icon2.png" mode="aspectFit"></image>
+      <view wx:if="{{messageCount}}" class='message-count'>
         <text class='message-text'>{{messageCount > 99 ? '99+' : messageCount}}</text>
       </view>
     </view>
-  </view> -->
+  </view>
   <!-- 搜索框 -->
-  <!-- 该模块功能暂未实现，先隐藏入口 -->
-  <!-- <view class='search-box' catchtap="goSearch">
-    <text class='iconfont icon-search'></text>
-    <text class='search-text'>搜索品牌、门店、商品...</text>
-  </view> -->
+  <view class='search-box-wrapper'>
+    <view class="search-box-content {{searchFixed ? 'fixed' : ''}}">
+      <view class='search-box' catchtap="goSearch">
+        <text class='iconfont icon-search'></text>
+        <text class='search-text'>搜索品牌、门店、商品...</text>
+      </view>
+      <view hidden="{{!searchFixed}}" class='line-separator-h' style="position:absolute;left:0;bottom:0"></view>
+    </view>
+  </view>
   <!-- 活动 -->
   <view wx:if="{{activitys && activitys[0]}}" class='activity-box'>
     <swiper class='activity-swiper' autoplay circular interval="{{2500}}" duration="{{300}}" bindchange="changeActivityCurrent">
@@ -48,17 +50,21 @@
   <view class='rec-merchants' wx:if="{{recommendTabs && (recommendTabs[0] || recommendTabs[1]) && ((recommendTabs[0].merchants && recommendTabs[0].merchants[0]) || (recommendTabs[1].merchants && recommendTabs[1].merchants[1]))}}">
     <view class='block-separator'></view>
     <view class='rec-merchants-header'>
-      <view class="rec-merchants-header-title {{recommendCurrent === idx ? 'current' : ''}}" wx:for="{{recommendTabs}}" wx:for-item="recommendTab" wx:for-index="idx" wx:if="{{recommendTabs[idx] && recommendTabs[idx].merchants && recommendTabs[idx].merchants[0]}}" wx:key="title" catchtap="changeRecommendTab" data-idx="{{idx}}">
+      <view class="rec-merchants-header-title {{recommendCurrent === idx ? 'current' : ''}}" wx:for="{{recommendTabs}}" wx:for-item="recommendTab" wx:for-index="idx" wx:if="{{recommendTabs[idx] && recommendTabs[idx].merchants && recommendTabs[idx].merchants[0]}}"
+        wx:key="title" catchtap="changeRecommendTab" data-idx="{{idx}}">
         <text>{{recommendTab.title}}</text>
         <view hidden="{{recommendCurrent !== idx}}" class='rec-merchants-header-title-line'></view>
       </view>
       <view class='rec-merchants-header-line'></view>
     </view>
     <view class='rec-merchants-container'>
-      <merchant-card class="merchant-card" wx:for="{{recommendTabs[recommendCurrent].merchants}}" style="width:49.27%;" wx:for-item="merchant" wx:key="id" merchant="{{merchant}}" />
+      <view class='merchant-card' wx:for="{{recommendTabs[recommendCurrent].merchants}}" wx:for-item="merchant" wx:key="id">
+        <merchant-card merchant="{{merchant}}" />
+      </view>
     </view>
   </view>
   <!-- 乐享商家 -->
+  <view class='block-separator'></view>
   <view class='lx-merchants'>
     <view class='lx-merchants-header'>
       <view class="lx-merchants-header-title current">
@@ -72,11 +78,11 @@
         <text class='iconfont icon-pull_down'></text>
       </view> -->
       <!-- 距离、分类暂未实现筛选、先隐藏 -->
-      <!-- <view class='sort-type'>
+      <view class='sort-type'>
         <view catchtap="changeSort" data-sort="{{0}}" class="sort-type-distance {{currentSort === 0 ? 'current' : ''}}">距离</view>
         <view class='line-separator-v' style="height:24rpx;"></view>
         <view catchtap="changeSort" data-sort="{{1}}" class="sort-type-hot {{currentSort === 1 ? 'current' : ''}}">人气</view>
-      </view> -->
+      </view>
       <view class='lx-merchants-header-line'></view>
     </view>
     <view class='lx-merchants-body'>

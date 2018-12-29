@@ -16,6 +16,25 @@ const formatNumber = n => { // 不足2位数的数字，自动在前面补0
   return n[1] ? n : '0' + n
 }
 
+const getSecureText = (str, start, end) => { // 传入字符串 和 起始位置 和 结束位置, s 和 e为非负整数
+  if (!str) {
+    return false
+  }
+  start = start || 0
+  end = end || 0
+  let len = str.length - start - end
+  let centerStr = ''
+  let rText = ''
+  if (len < 0) {
+    return false
+  }
+  for (let i = 0; i < len; i++) {
+    centerStr += '*'
+  }
+  rText = str.slice(0, start) + centerStr + str.slice(-end)
+  return rText
+}
+
 const formatSecondToTime = seconds => { // 把秒转为 '时:分:秒' 的格式
   const hour = formatNumber(parseInt(seconds / 3600))
   const minute = formatNumber(parseInt(seconds / 60) % 60)
@@ -265,6 +284,7 @@ const getParams = (path) => {
 module.exports = {
   formatDateToTime: formatDateToTime, // 把Date格式的时间转为 '年-月-日 时:分:秒' 的格式
   formatNumber: formatNumber, // 不足2位数的数字，自动在前面补0
+  getSecureText: getSecureText, //获取加*号的文字
   formatSecondToTime: formatSecondToTime, // 把秒转为 '时:分:秒' 的格式
   request: request, // 封装api请求
   toast: toast, // 自定义toast

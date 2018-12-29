@@ -62,8 +62,8 @@ Component({
     },
 
     rechargeSubmit: function () {
-      let {rechargeData: {rechargeList}, rechargeCurrent, submitting} = this.data
-      if (submitting) { // 正在请求，中断当前请求
+      let { rechargeData: { rechargeList }, rechargeCurrent, submitting, requestPayment} = this.data
+      if (submitting || requestPayment) { // 正在请求 或 正在支付，中断当前请求
         return false
       }
       if (!rechargeList || (rechargeList && !rechargeList[0])) { // 无相关数据
@@ -73,6 +73,7 @@ Component({
       console.log('rechargeCurrent', rechargeCurrent)
       console.log('submit', rechargeList[rechargeCurrent])
       let rData = rechargeList[rechargeCurrent]
+      // let rData = {sale: 0.01, value: 0.02}
       this.setData({
         submitting: true
       })
@@ -85,6 +86,31 @@ Component({
         }
         if (res && res.data && !res.error) { // 请求获取支付数据成功
           console.log('请求获取支付数据成功', res.data)
+          let { timeStamp, nonceStr, signType, paySign, out_trade_no} = res.data
+          this.setData({
+            requestPayment: true
+          })
+          wx.requestPayment({
+            timeStamp,
+            nonceStr,
+            package: res.data.package,
+            signType,
+            paySign,
+            success: res => {
+              console.log('支付成功', res)
+              this.rechargeSuccess()
+              this.hideRechargeBox()
+            },
+            fail: res => {
+              console.log('支付失败', res)
+            },
+            complete: res => {
+              console.log('支付结束')
+              this.setData({
+                requestPayment: false
+              })
+            }
+          })
         }
       }).catch(err => {
         console.log('请求获取支付数据失败', err)
@@ -105,11 +131,15 @@ Component({
       })
     },
 
-    showRechargeBox: function () { // 如果没有充值数据，则不弹出，并且尝试重新获取数据
+    showRechargeBox: function (callback) { // 如果没有充值数据，则不弹出，并且尝试重新获取数据
+
       let { rechargeData: { rechargeList}} = this.data
       if (!rechargeList || (rechargeList && !rechargeList[0])) {
         this.getRechargeData()
         return false
+      }
+      if (callback) { // 如果传入了callback
+        this.rechargeSuccess = callback
       }
       this.setData({
         rechargeBox: true
@@ -117,7 +147,6 @@ Component({
     },
 
     rechargeSuccess: function () {
-      console.log('rechargeSuccess')
       let currentPages = getCurrentPages()
       let currentPage = currentPages[currentPages.length - 1]
       if (currentPage && currentPage.refreshPage) { // refreshPage是在页面上的方法，刷新页面数据，如果页面上有该方法，则充值成功后调用该方法刷新数据

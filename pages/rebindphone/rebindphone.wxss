@@ -1,0 +1,46 @@
+/* pages/rebindphone/rebindphone.wxss */
+.page-rebindphone{
+  padding: 0 32rpx;
+}
+.phone-box, .code-box{
+  font-size: 34rpx;
+  line-height: 44rpx;
+  height: 110rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.title{
+  color: #333;
+  flex-shrink: 0;
+  flex-grow: 0;
+  margin-right: 32rpx;
+}
+.content{
+  color: #6E6E6E;
+  flex: 1;
+}
+.code-button-wrapper{
+  flex-shrink: 0;
+  flex-grow: 0;
+}
+.phone-input, .code-input{
+  height: 100%;
+  line-height: 110rpx;
+  padding: 0;
+}
+
+.confirm-button{
+  margin: 60rpx 0 0;
+  height: 94rpx;
+  border: 1px solid #FF9500;
+  color: #FF9500;
+  border-radius: 8rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.confirm-button.disabled{
+  border-color: #999;
+  color: #999;
+}

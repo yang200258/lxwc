@@ -1,7 +1,7 @@
 // pages/userinfo/userinfo.js
 import util from '../../utils/util.js'
 const phone = wx.getStorageSync('phone')
-const phoneText = phone ? (phone.slice(0, 3) + '******' + phone.slice(-2)) : ''
+const phoneText = phone ? util.getSecureText(phone, 3, 2) : ''
 
 Page({
 
@@ -13,6 +13,7 @@ Page({
     avatar: {
       id: '',
       url: '',
+      originUrl: '',
       uploading: false,
       extraData: {
         btn: 'avatar'
@@ -100,7 +101,7 @@ Page({
         this.setData({
           'avatar.url': avatar,
           'phone.value': phone,
-          'phone.text': phone ? (phone.slice(0, 3) + '******' + phone.slice(-2)) : '',
+          'phone.text': phone ? util.getSecureText(phone, 3, 2) : '',
           'name.value': name,
           'name.text': name,
           'name.filled': Boolean(name),
@@ -241,6 +242,16 @@ Page({
     console.log('点击了按钮', e.detail.btn)
   },
 
+  goConfirmPhone: function () {
+    let {phone} = this.data
+    if (!(phone && phone.value && phone.value.length === 11)) { // 如果手机号不存在 或 不是11位，则终止
+      return false
+    }
+    wx.navigateTo({
+      url: '/pages/confirmphone/confirmphone?phone=' + phone.value
+    })
+  },
+
   chooseImage: function (e) {
     // 选择图片
     wx.chooseImage({
@@ -272,17 +283,18 @@ Page({
             },
             success: res => {
               console.log('上传成功', res)
+              let uploadRes = JSON.parse(res.data)
               let _obj = {}
-              if (res && res.msg && res.error) {
+              if (uploadRes && uploadRes.msg && uploadRes.error) {
                 wx.showToast({
                   title: res.msg,
                   icon: 'none'
                 })
               }
-              if (res && res.data && !res.error) {
-                let { avatar, id } = res.data
+              if (uploadRes && uploadRes.data && !uploadRes.error) {
+                let { avatar, id } = uploadRes.data
                 _obj['avatar.id'] = id
-                _obj['avatar.url'] = avatar
+                _obj['avatar.originUrl'] = avatar
               } else {
                 _obj['avatar.url'] = ''
               }
@@ -373,5 +385,12 @@ Page({
       'name.text': nameInputValue
     })
     this.hideNameBox()
+  },
+
+  updatePhone: function (phone) {
+    this.setData({
+      'phone.value': phone,
+      'phone.text': util.getSecureText(phone, 3, 2)
+    })
   }
 })

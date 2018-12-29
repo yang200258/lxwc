@@ -1,0 +1,19 @@
+<!--pages/rebindphone/rebindphone.wxml-->
+<view class='page-rebindphone'>
+  <view class='phone-box'>
+    <view class='title'>手机号</view>
+    <input class='content phone-input' placeholder='请输入新的手机号' placeholder-style='color:#CCCCCC' value="{{phone}}" bindinput='phoneInput' type="number" />
+    <view class='code-button-wrapper'>
+      <get-code-button max-second="{{60}}" phone="{{phone}}" />
+    </view>
+  </view>
+  <view class='line-separator-h'></view>
+  <view class='code-box'>
+    <view class='title'>验证码</view>
+    <input class='content code-input' placeholder='请输入验证码' placeholder-style='color:#CCCCCC' value="{{code}}" bindinput='codeInput' type="number" />
+  </view>
+  <view class='line-separator-h'></view>
+  <view class="confirm-button {{(phone && phone.length === 11 && code && code.length === 6) ? '' : 'disabled'}}" catchtap="confirm">
+    <text>立即绑定</text>
+  </view>
+</view>

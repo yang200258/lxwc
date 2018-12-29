@@ -5,6 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    cateFixed: false,
     merchantCates: [
       {
         id: 1,
@@ -186,6 +187,7 @@ Page({
         title: options.name
       })
     }
+    this.setCatesBoxFixed()
   },
 
   /**
@@ -193,6 +195,23 @@ Page({
    */
   onReady: function () {
 
+  },
+
+  setCatesBoxFixed: function () {
+    if (wx.createIntersectionObserver) {
+      wx.createIntersectionObserver().relativeToViewport({ top: 0 }).observe('#search-box-wrapper', (res) => {
+        let { intersectionRatio } = res
+        if (intersectionRatio > 0) { // 可见
+          this.setData({
+            cateFixed: false
+          })
+        } else { // 不可见
+          this.setData({
+            cateFixed: true
+          })
+        }
+      })
+    }
   },
 
   /**

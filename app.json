@@ -18,7 +18,9 @@
     "pages/pay/pay",
     "pages/choosevoucher/choosevoucher",
     "pages/paysuccess/paysuccess",
-    "pages/rechargesuccess/rechargesuccess"
+    "pages/rechargesuccess/rechargesuccess",
+    "pages/confirmphone/confirmphone",
+    "pages/rebindphone/rebindphone"
   ],
   "window": {
     "backgroundTextStyle": "light",

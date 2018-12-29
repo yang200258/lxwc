@@ -10,7 +10,7 @@ Page({
   data: {
     phone: phone,
     userInfo: {
-      unreadMessage: 0,
+      unreadMessage: 888,
       avatar: '',
       name: '',
       id: ''
@@ -163,7 +163,7 @@ Page({
   },
 
   showRechargeBox: function () {
-    util.showRechargeModal()
+    util.showRechargeModal(this.fetchUserInfo)
   },
 
   // 获取手机号
@@ -230,6 +230,7 @@ Page({
   },
 
   fetchUserInfo: function () {
+    console.log('fetchUserInfo')
     util.request('/user/center').then(res => {
       if (res && res.data && !res.error) { // 获取用户数据成功
         console.log('用户数据', res.data)
@@ -252,6 +253,7 @@ Page({
   },
 
   refreshPage: function () {
+    console.log('refreshPage')
     // 执行刷新页面操作,比如在该页面充值成功后,会自动执行该方法
     this.fetchUserInfo()
   }

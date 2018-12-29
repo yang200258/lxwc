@@ -5,6 +5,9 @@
 }
 
 /* 搜索框 */
+.search-box-wrapper{
+  overflow: hidden;
+}
 .search-box{
   margin: 10rpx 32rpx 20rpx;
   height: 74rpx;
@@ -24,6 +27,22 @@
 }
 
 /* 商家分类 */
+.merchant-cate-wrapper{
+  position: relative;
+  height: 182rpx;
+}
+.merchant-cate-box{
+  position: absolute;
+  width: 100%;
+  height: 182rpx;
+  left: 0;
+  top: 0;
+  z-index: 99;
+  background: #fff;
+}
+.merchant-cate-box.fixed{
+  position: fixed;
+}
 .merchant-cate{
   padding: 20rpx 0 2rpx;
 }
@@ -132,6 +151,7 @@
 }
 .sort-type-distance.current,.sort-type-hot.current{
   font-weight: bold;
+  color: #FF9500;
 }
 .sort-type-hot{
   padding-right: 0;

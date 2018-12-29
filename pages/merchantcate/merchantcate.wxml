@@ -1,19 +1,26 @@
 <!--pages/merchantcate/merchantcate.wxml-->
 <view class='page-merchantcate'>
   <!-- 搜索框 -->
-  <view class='search-box' catchtap="goSearchPage">
-    <text class='iconfont icon-search'></text>
-    <text class='search-text'>搜索品牌、门店、商品...</text>
+  <view class='search-box-wrapper' id="search-box-wrapper">
+    <view class='search-box' catchtap="goSearchPage">
+      <text class='iconfont icon-search'></text>
+      <text class='search-text'>搜索品牌、门店、商品...</text>
+    </view>
   </view>
   <!-- 二级分类 -->
-  <scroll-view class='merchant-cate' scroll-x>
-    <view class='merchant-cate-content'>
-      <view class="cate{{idx === 0 ? ' first' : ''}}{{(idx === (merchantCates.length - 1)) ? ' last' : ''}}" wx:for="{{merchantCates}}" wx:for-item="cate" wx:for-index="idx" wx:key="id">
-        <image class='cate-image' src="{{cate.banner}}" mode="aspectFill"></image>
-        <view class='cate-text'>{{cate.title}}</view>
-      </view>
+  <view class='merchant-cate-wrapper'>
+    <view class="merchant-cate-box {{cateFixed ? 'fixed' : ''}}">
+      <scroll-view class='merchant-cate' scroll-x>
+        <view class='merchant-cate-content'>
+          <view class="cate{{idx === 0 ? ' first' : ''}}{{(idx === (merchantCates.length - 1)) ? ' last' : ''}}" wx:for="{{merchantCates}}" wx:for-item="cate" wx:for-index="idx" wx:key="id">
+            <image class='cate-image' src="{{cate.banner}}" mode="aspectFill"></image>
+            <view class='cate-text'>{{cate.title}}</view>
+          </view>
+        </view>
+      </scroll-view>
+      <view hidden="{{!cateFixed}}" class='line-separator-h'></view>
     </view>
-  </scroll-view>
+  </view>
   <!-- 乐享商家 -->
   <view class='lx-merchants'>
     <view class='lx-merchants-header'>
@@ -21,12 +28,12 @@
         <text>乐享商家</text>
         <view class='lx-merchants-header-title-line'></view>
       </view>
-      <view class='lx-filter'>
+      <!-- <view class='lx-filter'>
         <picker bindchange="changeLxCate" value="{{currentCate}}" range="{{lxCates}}" range-key="title">
           <text class='lx-filter-text'>{{lxCates[currentCate].title}}</text>
         </picker>
         <text class='iconfont icon-pull_down'></text>
-      </view>
+      </view> -->
       <view class='sort-type'>
         <view catchtap="changeSort" data-sort="{{0}}" class="sort-type-distance {{currentSort === 0 ? 'current' : ''}}">距离</view>
         <view class='line-separator-v' style="height:24rpx;"></view>

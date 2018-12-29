@@ -3,12 +3,14 @@ import util from '../../utils/util.js'
 
 Page({
   data: {
+    locationGetting: false,
     location: {
-      address: '正在定位',
+      address: '定位中...',
       lng: null,
       lat: null
     },
-    messageCount: 55,
+    searchFixed: false,
+    messageCount: 100,
     activityLoaded: false,
     activityFetching: false,
     activityCurrent: 0,
@@ -33,85 +35,16 @@ Page({
     ],
     currentSort: 0, // 0:按距离排序，    1:按人气排序
     currentCate: 0,
-    indexCates: [
-      {
-        id: '1',
-        title: '分类1'
-      },
-      {
-        id: '2',
-        title: '分类2'
-      },
-      {
-        id: '3',
-        title: '分类3'
-      },
-      {
-        id: '4',
-        title: '分类4'
-      },
-      {
-        id: '5',
-        title: '分类5'
-      }
-    ],
-    // indexMerchants: [
-    //   {
-    //     shopid: '1',
-    //     name: '香港满记甜品(文三路店）收到了饭就文三路店）收到了饭就随大流风景随大流风景',
-    //     pic: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3737093608,1532771841&fm=200&gp=0.jpg',
-    //     // star: 4.5,
-    //     activitys: [
-    //       {
-    //         id: 1,
-    //         type: '1', // type: 1(首减), 2(满减), 3(折扣), 4(满赠),
-    //         title: '平台新用户立减10元'
-    //       },
-    //       {
-    //         id: 2,
-    //         type: '2', // type: 1(首减), 2(满减), 3(折扣), 4(满赠),
-    //         title: '满20减5，满30减10'
-    //       },
-    //       {
-    //         id: 3,
-    //         type: '3', // type: 1(首减), 2(满减), 3(折扣), 4(满赠),
-    //         title: '到店消费8折'
-    //       },
-    //       {
-    //         id: 4,
-    //         type: '4', // type: 1(首减), 2(满减), 3(折扣), 4(满赠),
-    //         title: '满100赠送大米一包'
-    //       }
-    //     ],
-    //     distance: '300m',
-    //   },
-    //   {
-    //     shopid: '2',
-    //     name: '华莱士(文昌店）',
-    //     pic: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3737093608,1532771841&fm=200&gp=0.jpg',
-    //     star: 4,
-    //     activitys: [
-    //       {
-    //         id: 5,
-    //         type: '1', // type: 1(首减), 2(满减), 3(折扣), 4(满赠),
-    //         title: '平台新用户立减10元'
-    //       },
-    //       {
-    //         id: 6,
-    //         type: '2', // type: 1(首减), 2(满减), 3(折扣), 4(满赠),
-    //         title: '满20减5，满30减10'
-    //       }
-    //     ],
-    //     distance: '912m',
-    //     notice: '公告：乐享会员支付送中乐一杯'
-    //   }
-    // ],
+    indexCates: [],
+    indexMerchants: [],
     loadingIndexMerchants: false
     
   },
 
   onLoad: function () {
     this.fetchLxMerchant(0, 0)
+    this.getUserLocation()
+    this.setSearchBoxFixed()
   },
 
   onShow: function () {
@@ -119,6 +52,152 @@ Page({
     this.fetchMerchantCates()
     this.fetchRecommendUser()
     this.fetchRecommendNew()
+  },
+
+  setSearchBoxFixed: function () {
+    if (wx.createIntersectionObserver) {
+      wx.createIntersectionObserver().relativeToViewport({ top: 0 }).observe('#locatlion-wrapper', (res) => {
+        let { intersectionRatio} = res
+        if (intersectionRatio > 0) { // 可见
+          this.setData({
+            searchFixed: false
+          })
+        } else { // 不可见
+          this.setData({
+            searchFixed: true
+          })
+        }
+      })
+    }
+  },
+
+  locationTap: function () {
+    this.getUserLocation(true)
+  },
+
+  getUserLocation: function (isChooseLocation) { // isChooseLocation: true表示用户点击获取，false表示自动获取当前位置，所执行的回调不一致
+    if (this.data.locationGetting) {
+      return false
+    }
+    wx.getSetting({
+      success: (res) => {
+        if (!res.authSetting['scope.userLocation']) {
+          if (res.authSetting['scope.userLocation'] === false) { // 用户拒绝过授权时，res.authSetting['scope.userLocation']字段为false,否则该字段不存在
+            this.setData({
+              locationGetting: true
+            })
+            wx.showModal({
+              title: '',
+              content: '我们需要您授权获取地理位置',
+              confirmText: '去授权',
+              confirmColor: '#108EE9',
+              success: res => {
+                if (res.confirm) {
+                  console.log('用户点击确定')
+                  wx.openSetting({
+                    success: (res) => {
+                      console.log('去授权', res)
+                      if (res.authSetting['scope.userLocation']) { // 授权地理位置
+                        this.runGetLocation(isChooseLocation)
+                      } else {
+                        this.resetLocation()
+                      }
+                    },
+                    fail: () => {
+                      this.resetLocation()
+                    },
+                    complete: () => {
+                      this.setData({
+                        locationGetting: false
+                      })
+                    }
+                  })
+                } else if (res.cancel) {
+                  this.resetLocation()
+                  console.log('用户点击取消')
+                }
+              },
+              fail: res => {
+                this.resetLocation()
+              }
+            })
+            
+          } else {
+            wx.authorize({
+              scope: 'scope.userLocation',
+              success: () => {
+                this.runGetLocation(isChooseLocation)
+              },
+              fail: (res) => {
+                this.resetLocation()
+              }
+            })
+          }
+        } else {
+          this.runGetLocation(isChooseLocation)
+        }
+      }
+    })
+  },
+
+  getLngLat: function () {
+    wx.getLocation({
+      type: 'gcj02',
+      success: res => {
+        let { longitude, latitude} = res
+        let {location} = this.data
+        if (location.lng && location.lat) { // 已存在经纬度时，终止操作(考虑到当正在定位中时，手动获取位置并已返回结果))
+          return false
+        }
+        this.setData({
+          'location.lng': longitude,
+          'location.lat': latitude,
+          locationGetting: false
+        })
+        // 请求接口拿到地理位置
+      },
+      fail: res => {
+        this.resetLocation()
+      }
+    })
+  },
+
+  setCurrentAddress: function () {
+    wx.chooseLocation({
+      success: (res) => {
+        console.log('setCurrentAddress', res)
+        let {address, longitude: lng, latitude: lat} = res
+        this.setData({
+          location: { address, lng, lat},
+          locationGetting: false
+        })
+        // this.setData({
+        //   address: res
+        // })
+      },
+      fail: res => {
+        this.resetLocation()
+      }
+    })
+  },
+
+  runGetLocation: function (isChooseLocation) {
+    if (isChooseLocation) {
+      this.setCurrentAddress()
+    } else {
+      this.getLngLat()
+    }
+  },
+
+  resetLocation: function () { // 重置位置为空
+    this.setData({
+      location: {
+        address: '选择位置',
+        lng: null,
+        lat: null
+      },
+      locationGetting: false
+    })
   },
 
   onPullDownRefresh: function () {
@@ -154,7 +233,7 @@ Page({
   },
 
   goMerchantCate: function (e) { // 商家分类相关的接口未实现，赞不允许进入
-    return false
+    // return false
     const {id, name} = e.currentTarget.dataset.cate
     wx.navigateTo({
       url: '/pages/merchantcate/merchantcate?id=' + id + '&name=' + name

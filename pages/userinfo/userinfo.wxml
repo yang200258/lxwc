@@ -6,7 +6,7 @@
   </view>
   <!-- 换绑手机功能暂未做，不给入口 -->
   <view class="info-entrance">
-    <entrance sub-title="{{phone.text || '未填写'}}" title="手机号" next-icon="{{false}}" extra-data="{{phone.extraData}}" bindentrancetap="entranceTap" />
+    <entrance sub-title="{{phone.text || '未填写'}}" title="手机号" extra-data="{{phone.extraData}}" bindentrancetap="goConfirmPhone" />
     <view class='line-separator-h' style="width:718rpx;margin-left:32rpx;"></view>
   </view>
   <view class="info-entrance">

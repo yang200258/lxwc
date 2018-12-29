@@ -1,0 +1,19 @@
+/* components/getCodeButton/getCodeButton.wxss */
+
+.button-box{
+  width: 186rpx;
+  height: 60rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  flex-grow: 0;
+  border: 1px solid #979797;
+  border-radius: 9rpx;
+  font-size: 30rpx;
+  line-height: 38rpx;
+  color: #666;
+}
+.button-box.disabled{
+  color: #999;
+}

@@ -11,7 +11,7 @@ page{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 30rpx 0 20rpx;
+  padding: 30rpx 0 0;
 }
 .location-box{
   display: flex;
@@ -35,11 +35,12 @@ page{
 }
 .message-box{
   position: relative;
-  padding: 7rpx 40rpx 7rpx 7rpx;
+  padding: 7rpx 32rpx 7rpx 7rpx;
 }
-.icon-message{
-  font-size: 50rpx;
-  color: #CCCCCC;
+.message-icon{
+  display: block;
+  width: 50rpx;
+  height: 44rpx;
 }
 .message-count{
   line-height: 36rpx;
@@ -55,8 +56,28 @@ page{
 }
 
 /* 搜索框 */
+.search-box-wrapper{
+  height: 114rpx;
+  margin-bottom: 10rpx;
+  position: relative;
+}
+.search-box-content{
+  width: 100%;
+  height: 114rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: #fff;
+  z-index: 99;
+}
+.search-box-content.fixed{
+  position: fixed;
+}
 .search-box{
-  margin: 0 32rpx 30rpx;
+  flex: 1;
   height: 74rpx;
   display: flex;
   align-items: center;
@@ -66,6 +87,7 @@ page{
   background: #F2F1EF;
   border-radius: 16rpx;
   padding: 0 45rpx;
+  margin: 0 32rpx;
 }
 .icon-search{
   font-size: 30rpx;
@@ -149,14 +171,14 @@ page{
 
 /* 推荐商家 */
 .rec-merchants{
-  padding-bottom: 24rpx;
+  padding-bottom: 16rpx;
 }
 .rec-merchants-header{
   display: flex;
   margin: 28rpx 32rpx 32rpx;
   height: 70rpx;
   line-height: 70rpx;
-  font-size: 34rpx;
+  font-size: 36rpx;
   color: #999;
   position: relative;
 }
@@ -200,19 +222,20 @@ page{
   overflow: hidden;
 }
 .merchant-card{
-  margin-bottom: 22rpx;
+  width: 48%;
+  margin-bottom: 30rpx;
 }
 
 /* 乐享商家 */
 .lx-merchants{
-  padding-top: 10rpx;
+  padding-top: 28rpx;
 }
 .lx-merchants-header{
   display: flex;
   margin: 0 32rpx 1rpx;
   height: 70rpx;
   line-height: 70rpx;
-  font-size: 34rpx;
+  font-size: 36rpx;
   color: #999;
   position: relative;
 }

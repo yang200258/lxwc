@@ -98,6 +98,7 @@
   box-sizing: border-box;
   border: 1px solid #FF9500;
   color: #FF9500;
+  transition: all 0.2s;
 }
 .recharge-item.current{
   background: #FF9500;

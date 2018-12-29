@@ -1,0 +1,4 @@
+<!--components/getCodeButton/getCodeButton.wxml-->
+<view class="button-box {{(!phone || phone.length !== 11) ? 'disabled' : ''}} {{count ? 'disabled' : ''}}" catchtap="getCode">
+  <text>{{count ? (count + 's后重试') : '获取验证码'}}</text>
+</view>

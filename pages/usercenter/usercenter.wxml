@@ -6,12 +6,12 @@
     <view class='user-info'>
       <image class='user-info-bg' src="/assets/images/usercenter_banner.png" mode="aspectFill"></image>
       <!-- 消息模块未做好，暂时隐藏入口 -->
-      <!-- <view class='message-box' catchtap="goMessageList">
+      <view class='message-box' catchtap="goMessageList">
         <image class='message-image' src="/assets/images/message_icon.png" mode="aspectFit"></image>
         <view wx:if="{{userInfo.unreadMessage}}" class='message-count'>
           <text>{{userInfo.unreadMessage > 99 ? '99+' : userInfo.unreadMessage}}</text>
         </view>
-      </view> -->
+      </view>
       <image class='user-avatar' src="{{userInfo.avatar}}" mode="aspectFill"></image>
       <view class='username-and-usernum'>
         <text class='username'>{{userInfo.name}}</text>
