@@ -62,6 +62,8 @@ Page({
         title: '分类5'
       }
     ],
+    loadingLxMerchants: false, // 是否正在加载乐享商家
+    page: {},
     lxMerchants: [
       {
         id: '1',

@@ -158,5 +158,5 @@
 }
 
 .lx-merchants-body{
-  padding: 0 32rpx;
+  padding: 16rpx 32rpx 46rpx;
 }

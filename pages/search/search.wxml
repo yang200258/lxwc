@@ -21,14 +21,15 @@
       <view class='line-separator-h' style="position:absolute;left:0;bottom:0;"></view>
     </view>
   </view>
-  <view class='result-body'>
+  <scroll-view class='result-body'>
     <block wx:if="{{!merchants || (merchants && !merchants.length)}}">
       <view class='empty-tip'>暂无搜索结果~</view>
     </block>
     <block wx:else>
       <merchant-overview wx:for="{{merchants}}" wx:for-item="merchant" wx:key="id" merchant="{{merchant}}" />
     </block>
-  </view>
+    <iphone-bottom-adapter />
+  </scroll-view>
   <view class='result-loading' wx:if="{{loading}}">
     <view class='loading-tip'>正在搜索商家...</view>
   </view>

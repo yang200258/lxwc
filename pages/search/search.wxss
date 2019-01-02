@@ -185,4 +185,5 @@ page{
 .result-body{
   margin: 0 32rpx;
   padding-top: 182rpx;
+  width: auto;
 }

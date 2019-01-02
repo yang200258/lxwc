@@ -3,11 +3,12 @@
 <view class='page-orderlist'>
   <view wx:if="{{orders && orders[0]}}" class='orders'>
     <order-box wx:for="{{orders}}" wx:for-item="order" wx:for-index="idx" wx:key="id" order="{{order}}" top-separator="{{idx !== 0}}" bindordertap="orderTap" />
+    <!-- 大于5条信息才展示没有更多的提示 -->
+    <list-footer loading="{{fetching}}" page="{{page}}" show-no-more="{{orders && orders[5]}}" no-more-text="没有更多了~" />
+    <iphone-bottom-adapter />
   </view>
   <view wx:if="{{(!orders || (orders && !orders[0])) && loaded}}" class='empty-orders'>
     <image class='empty-image' src="/assets/images/empty_order.png"></image>
     <view class='empty-tip'>暂无订单</view>
   </view>
 </view>
-<!-- 大于5条信息才展示没有更多的提示 -->
-<list-footer loading="{{fetching}}" page="{{page}}" show-no-more="{{orders && orders[5]}}" no-more-text="没有更多了~" />

@@ -8,10 +8,14 @@
     <image class='ad-banner-image' src="/assets/images/recharge_success_banner.png" mode="aspectFit"></image>
   </view>
   <view class='confirm-wrapper'>
-    <view class='confirm-box'>
-      <view class='confirm-btn'>
-        <text>完成</text>
+    <view class='confirm-content'>
+      <view class='confirm-box'>
+        <view class='confirm-btn'>
+          <text>完成</text>
+        </view>
       </view>
+      <iphone-bottom-adapter />
     </view>
+    <iphone-bottom-adapter />
   </view>
 </view>

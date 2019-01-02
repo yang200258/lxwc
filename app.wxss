@@ -53,6 +53,10 @@
   background: #ebebeb;
 }
 
+.image-bg{
+  background: #D8D8D8;
+}
+
 /* 去掉scroll-view滚动条 */
 /* ::-webkit-scrollbar{
   width: 0;

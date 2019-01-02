@@ -3,6 +3,7 @@
   "navigationBarTitleText": "选择优惠券",
   "backgroundColor": "#FFFFFF",
   "usingComponents": {
-    "choose-voucher": "/components/chooseVoucher/chooseVoucher"
+    "choose-voucher": "/components/chooseVoucher/chooseVoucher",
+    "iphone-bottom-adapter": "/components/iphoneBottomAdapter/iphoneBottomAdapter"
   }
 }

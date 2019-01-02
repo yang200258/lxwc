@@ -26,6 +26,7 @@
           </view>
           <!-- 大于15条信息才展示没有更多的提示 -->
           <list-footer loading="{{data.fetching}}" page="{{data.page}}" show-no-more="{{data.bills && data.bills[15]}}" no-more-text="没有更多了~" />
+          <iphone-bottom-adapter />
         </scroll-view>
         <view wx:if="{{!data.bills || (data.bills && !data.bills[0]) && data.loaded}}" class='empty-bill'>
         <image class='empty-image' src="/assets/images/empty_bill.png"></image>

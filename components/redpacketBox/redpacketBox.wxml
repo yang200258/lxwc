@@ -1,0 +1,20 @@
+<!--components/redpacketBox/redpacketBox.wxml-->
+<view class="redpacket-wrapper {{redpacketBox ? 'show' : 'hide'}}" catchtouchmove="stopPropagation">
+  <view class="redpacket-box-bg {{redpacketBox ? 'show' : 'hide'}}"></view>
+  <view class=''></view>
+  <view class="redpacket-box {{redpacketBox ? 'show' : 'hide'}}" catchtap="stopPropagation">
+    <image src="/assets/images/redpacket_box.png" class='repacket-image' mode="aspectFit" />
+    <view class='overview'>
+      <view class='price'>
+        <text class='iconfont icon-renminbi'></text>
+        <text>10.08</text>
+      </view>
+      <view class='right'>
+        <view class='title'>乐享红包</view>
+        <view class='condition'>满100减10.08</view>
+        <view class='time'>2018.12.13-2018.12.31</view>
+      </view>
+    </view>
+  </view>
+  <text class='iconfont icon-close_icon' catchtap="hideRedpacketBox"></text>
+</view>

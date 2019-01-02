@@ -243,6 +243,8 @@ Page({
   },
 
   goConfirmPhone: function () {
+    // 目前没有相关接口，暂不支持进入修改页面
+    return false
     let {phone} = this.data
     if (!(phone && phone.value && phone.value.length === 11)) { // 如果手机号不存在 或 不是11位，则终止
       return false

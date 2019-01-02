@@ -1,7 +1,7 @@
 <!--components/merchantoverview/merchantoverview.wxml-->
 <view class='merchant-wrapper box-thin-border' catchtap="merchantTap" data-id="{{merchant.shopid}}">
   <view class='top'>
-    <image class='image' src="{{merchant.pic}}" mode="aspectFill"></image>
+    <image class='image image-bg' src="{{merchant.pic}}" mode="aspectFill"></image>
     <view class='overview'>
       <view class='title-and-distance'>
         <view class='title'>{{merchant.name}}</view>

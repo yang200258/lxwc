@@ -46,14 +46,18 @@ page{
 .confirm-wrapper{
   position: relative;
   width: 100%;
-  height: 158rpx;
+  padding-top: 158rpx;
 }
-.confirm-box{
+.confirm-content{
   position: fixed;
   width: 100%;
-  height: 158rpx;
   left: 0;
   bottom: 0;
+  background: #F4F4F4;
+}
+.confirm-box{
+  width: 100%;
+  height: 158rpx;
   background: #F4F4F4;
   display: flex;
   justify-content: center;

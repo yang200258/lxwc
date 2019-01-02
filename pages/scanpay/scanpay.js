@@ -87,17 +87,6 @@ Page({
             }
           }
         }
-        // let params = util.getParams(res.path)
-        // if (params.scene) { // 扫场景二维码得到的scene
-        //   let sceneParams = util.getParams(params.scene)
-        //   if (sceneParams.id) { // 获取到id
-        //     if (res.path.indexOf('/merchantdetail/merchantdetail') > -1) { // 匹配商家详情页，避免扫描其他页面的码时跳转到商家详情
-        //       wx.navigateTo({
-        //         url: '/pages/merchantdetail/merchantdetail?id=' + sceneParams.id
-        //       })
-        //     }
-        //   }
-        // }
       }
     })
   }

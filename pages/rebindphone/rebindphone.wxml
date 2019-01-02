@@ -16,4 +16,5 @@
   <view class="confirm-button {{(phone && phone.length === 11 && code && code.length === 6) ? '' : 'disabled'}}" catchtap="confirm">
     <text>立即绑定</text>
   </view>
+  <iphone-bottom-adapter />
 </view>

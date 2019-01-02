@@ -1,6 +1,6 @@
 /* pages/merchantdetail/merchantdetail.wxss */
 
-.merchant-detail{
+.page-merchantdetail{
   padding-bottom: 180rpx;
 }
 .title{
@@ -223,13 +223,21 @@
 }
 
 /* 优惠买单 */
-.pay-btn{
+.pay-btn-wrapper{
+  padding-top: 94rpx;
+  position: position;
+  width: 100%;
+}
+.pay-btn-content{
   position: fixed;
+  width: 100%;
   left: 0;
   bottom: 0;
-  width: 100%;
+  z-index: 999;
+  background: #fff;
+}
+.pay-btn{
   height: 94rpx;
-  z-index: 9;
   background: #FF9500;
   font-size: 36rpx;
   color: #fff;
@@ -237,7 +245,11 @@
   justify-content: center;
   align-items: center;
 }
-
+/* 底部按钮样式适配，如果是iphone x等有下巴的异形屏，则按钮宽度收窄 */
+.pay-btn.adapt-iphone-bottom{
+  margin: 0 32rpx;
+  border-radius: 8rpx;
+}
 .bindphone-btn{
   position: absolute;
   width: 100%;

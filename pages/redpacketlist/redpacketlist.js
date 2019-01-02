@@ -6,6 +6,8 @@ Page({
    */
   data: {
     loaded: false,
+    fetching: false,
+    page: {},
     redpackets: [
       { // 假设红包的type 为7
         id: '1',

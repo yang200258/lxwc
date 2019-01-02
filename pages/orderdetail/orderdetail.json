@@ -4,6 +4,7 @@
   "backgroundColor": "#FFFFFF",
   "usingComponents": {
     "list-loader": "/components/listLoader/listLoader",
-    "icon-text-box": "/components/iconTextBox/iconTextBox"
+    "icon-text-box": "/components/iconTextBox/iconTextBox",
+    "iphone-bottom-adapter": "/components/iphoneBottomAdapter/iphoneBottomAdapter"
   }
 }

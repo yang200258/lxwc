@@ -3,6 +3,7 @@
   "navigationBarTitleText": "搜索",
   "backgroundColor": "#FFFFFF",
   "usingComponents": {
-    "merchant-overview": "/components/merchantOverview/merchantOverview"
+    "merchant-overview": "/components/merchantOverview/merchantOverview",
+    "iphone-bottom-adapter": "/components/iphoneBottomAdapter/iphoneBottomAdapter"
   }
 }

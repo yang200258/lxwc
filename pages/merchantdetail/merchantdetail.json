@@ -4,6 +4,7 @@
   "backgroundColor": "#FFFFFF",
   "usingComponents": {
     "star-box": "/components/starBox/starBox",
-    "recharge-box": "/components/rechargeBox/rechargeBox"
+    "recharge-box": "/components/rechargeBox/rechargeBox",
+    "iphone-bottom-adapter": "/components/iphoneBottomAdapter/iphoneBottomAdapter"
   }
 }

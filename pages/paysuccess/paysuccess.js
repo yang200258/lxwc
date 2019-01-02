@@ -90,6 +90,7 @@ Page({
 
   getRedpacket: function () { // 领取红包
     console.log('领取红包')
+    util.showRedpacketModal()
   },
 
   goOrderDetail: function () {

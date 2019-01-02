@@ -6,6 +6,7 @@
   "enablePullDownRefresh": true,
   "onReachBottomDistance": 100,
   "usingComponents": {
+    "list-loader": "/components/listLoader/listLoader",
     "list-footer": "/components/listFooter/listFooter",
     "merchant-card": "/components/merchantCard/merchantCard",
     "merchant-overview": "/components/merchantOverview/merchantOverview"

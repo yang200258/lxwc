@@ -168,6 +168,13 @@ const showRechargeModal = (options) => {
   ctx.showRechargeBox(options)
 }
 
+const showRedpacketModal = (options) => {
+  let selector = (options && options.selector) ? options.selector : '#redpacket-box'
+  const ctx = getCtx(selector)
+
+  ctx.showRedpacketBox(options)
+}
+
 const actionSheet = (options) => {
   const {
     selector = '#action-sheet'
@@ -198,6 +205,7 @@ const isLaterVersion = (version) => { // 比较当前版本号跟指定版本号
   return true
 }
 
+// 目前这个方法没用上
 const checkPhone = (hasPhoneCallback) => {
   if (storageUtil.getStorage('phone')) { // 缓存phone字段有值，则直接执行回调
     hasPhoneCallback && hasPhoneCallback()
@@ -290,6 +298,7 @@ module.exports = {
   toast: toast, // 自定义toast
   dialog: dialog, // 自定义弹窗
   showRechargeModal: showRechargeModal,
+  showRedpacketModal: showRedpacketModal,
   actionSheet: actionSheet, // 自定义actionSheet
   isLaterVersion: isLaterVersion, // 判断小程序基础库是否高于某个版本
   checkLogin: checkLogin, // 检查是否登录

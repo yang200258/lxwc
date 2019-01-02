@@ -1,4 +1,6 @@
 // pages/rechargesuccess/rechargesuccess.js
+import util from '../../utils/util.js'
+
 Page({
 
   /**
@@ -12,7 +14,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getAdbanner()
   },
 
   /**
@@ -62,5 +64,13 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  getAdbanner: function () { // 获取充值成功页面广告banner
+    util.request('/pay/done').then(res => {
+      console.log('banner数据', res)
+    }).catch(err => {
+      console.log('err', err)
+    })
   }
 })

@@ -54,6 +54,7 @@
         </view>
       </view>
     </view>
+    <iphone-bottom-adapter />
   </view>
   <!-- 查不到该订单 -->
   <view wx:if="{{(!order || (order && (!order.id || !order.name))) && loaded}}" class='empty-order'>

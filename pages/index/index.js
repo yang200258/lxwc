@@ -37,8 +37,8 @@ Page({
     currentCate: 0,
     indexCates: [],
     indexMerchants: [],
-    loadingIndexMerchants: false
-    
+    loadingIndexMerchants: false,
+    indexMerchantsLoaded: false
   },
 
   onLoad: function () {
@@ -239,13 +239,6 @@ Page({
       url: '/pages/merchantcate/merchantcate?id=' + id + '&name=' + name
     })
   },
-  
-  goBindPhone: function () {
-    const goBindPage = () => {
-      console.log('跳转支付')
-    }
-    util.checkPhone(goBindPage)
-  },
 
   changeActivityCurrent: function (e) {
     this.setData({
@@ -392,6 +385,7 @@ Page({
         let {list, page} = res.data
         let _obj = {}
         _obj.page = page
+        _obj.indexMerchantsLoaded = true
         if (page && page.pn && page.pn.toString() !== '0') { // 不是第一页
           console.log('不是第一页')
           let len = (indexMerchants && indexMerchants.length) ? indexMerchants.length : 0

@@ -1,5 +1,6 @@
 /* components/merchantCard/merchantCard.wxss */
 @import "../../assets/styles/common-flex.wxss";
+@import "../../app.wxss";
 
 .wrapper{
   overflow: hidden;

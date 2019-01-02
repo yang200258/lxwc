@@ -7,6 +7,7 @@ Page({
   data: {
     loaded: false,
     loading: false,
+    page: {},
     messages: [
       {
         id: '1',

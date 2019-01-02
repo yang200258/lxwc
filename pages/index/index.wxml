@@ -29,7 +29,7 @@
     <swiper class='activity-swiper' autoplay circular interval="{{2500}}" duration="{{300}}" bindchange="changeActivityCurrent">
       <swiper-item wx:for="{{activitys}}" wx:for-item="activity" wx:key="shopid">
         <view class='activity-item-content' catchtap="activityTap" data-activity="{{activity}}">
-          <image class='activity-banner' src="{{activity.img_url}}" mode="aspectFill"></image>
+          <image class='activity-banner image-bg' src="{{activity.img_url}}" mode="aspectFill"></image>
         </view>
       </swiper-item>
     </swiper>
@@ -41,7 +41,7 @@
   <scroll-view wx:if="{{merchantCates && merchantCates[0]}}" class='merchant-cate' scroll-x>
     <view class='merchant-cate-content'>
       <view class="cate{{idx === 0 ? ' first' : ''}}{{(idx === (merchantCates.length - 1)) ? ' last' : ''}}" wx:for="{{merchantCates}}" wx:for-item="cate" wx:for-index="idx" wx:key="id" catchtap="goMerchantCate" data-cate="{{cate}}">
-        <image class='cate-image' src="{{cate.icon}}" mode="aspectFill"></image>
+        <image class='cate-image image-bg' src="{{cate.icon}}" mode="aspectFill"></image>
         <view class='cate-text'>{{cate.name}}</view>
       </view>
     </view>
@@ -86,6 +86,7 @@
       <view class='lx-merchants-header-line'></view>
     </view>
     <view class='lx-merchants-body'>
+      <list-loader visible="{{!indexMerchantsLoaded}}" />
       <merchant-overview wx:for="{{indexMerchants}}" wx:for-item="merchant" wx:key="shopid" merchant="{{merchant}}" />
     </view>
   </view>

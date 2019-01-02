@@ -81,6 +81,8 @@ Page({
     if (options && options.id) {
       this.fetchMerchantData(options.id)
     }
+    // 底部按钮样式适配，如果是iphone x等有下巴的异形屏，则按钮宽度收窄
+    this.bottomButtonAdapt()
   },
 
   /**
@@ -130,6 +132,17 @@ Page({
    */
   onShareAppMessage: function() {
 
+  },
+
+  bottomButtonAdapt: function () {
+    const systemInfo = wx.getSystemInfoSync()
+    const isIos = systemInfo.system.indexOf('iOS') !== -1
+    const higher = systemInfo.screenHeight > 736
+    if (isIos && higher) {
+      this.setData({
+        extraBottom: true
+      })
+    }
   },
 
   voucherGetting: {},

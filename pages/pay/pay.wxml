@@ -38,19 +38,25 @@
       <text class="iconfont icon-next {{canUseRedpacket ? '' : 'disabled'}}"></text>
     </view>
   </view>
-  <view class='fixed-button-box'>
-    <view class='price-box'>
-      <view class='price-title'>
-        <text>实际付款：</text>
+  <view class='fixed-button-wrapper'>
+    <view class='fixed-button-content'>
+      <view class='fixed-button-box'>
+        <view class='price-box'>
+          <view class='price-title'>
+            <text>实际付款：</text>
+          </view>
+          <view class='price-text'>
+            <text class='iconfont icon-renminbi'></text>
+            <text class='actual-price'>{{actual || '0.00'}}</text>
+          </view>
+        </view>
+        <view class="order-btn {{(actual && actual !== '0.00' && actual !== '0') ? '' : 'disabled'}}" catchtap="pay">
+          <text>优惠买单</text>
+        </view>
       </view>
-      <view class='price-text'>
-        <text class='iconfont icon-renminbi'></text>
-        <text class='actual-price'>{{actual || '0.00'}}</text>
-      </view>
+      <iphone-bottom-adapter />
     </view>
-    <view class="order-btn {{(actual && actual !== '0.00' && actual !== '0') ? '' : 'disabled'}}" catchtap="pay">
-      <text>优惠买单</text>
-    </view>
+    <iphone-bottom-adapter />
   </view>
 </view>
 <recharge-box id="recharge-box" />
