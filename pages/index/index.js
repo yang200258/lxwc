@@ -42,8 +42,11 @@ Page({
   },
 
   onLoad: function () {
+    console.log('index---------------')
     this.fetchLxMerchant(0, 0)
-    this.getUserLocation()
+    if (wx.getStorageSync('token')) { // 存在token才弹出获取位置弹窗
+      this.getUserLocation()
+    }
     this.setSearchBoxFixed()
   },
 

@@ -6,6 +6,8 @@
   "backgroundColorBottom": "#FFFFFF",
   "usingComponents": {
     "entrance": "/components/entrance/entrance",
+    "user-avatar": "/components/userAvatar/userAvatar",
+    "user-name": "/components/userName/userName",
     "recharge-box": "/components/rechargeBox/rechargeBox"
   }
 }

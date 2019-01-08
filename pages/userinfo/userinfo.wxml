@@ -1,7 +1,7 @@
 <!--pages/userinfo/userinfo.wxml-->
 <view class='page-userinfo'>
   <view class="info-entrance">
-    <entrance sub-image="{{avatar.url || '/assets/images/user_avatar.png'}}" title="头像" subMask="{{avatar.uploading}}" extra-data="{{avatar.extraData}}" bindentrancetap="chooseImage" />
+    <entrance sub-image="{{avatar.url || 'wx-avatar'}}" title="头像" subMask="{{avatar.uploading}}" extra-data="{{avatar.extraData}}" bindentrancetap="chooseImage" />
     <view class='line-separator-h' style="width:718rpx;margin-left:32rpx;"></view>
   </view>
   <!-- 换绑手机功能暂未做，不给入口 -->
@@ -10,7 +10,7 @@
     <view class='line-separator-h' style="width:718rpx;margin-left:32rpx;"></view>
   </view>
   <view class="info-entrance">
-    <entrance required="{{!name.filled}}" sub-title="{{name.text || '未填写'}}" title="姓名" next-icon="{{!name.filled}}" extra-data="{{name.extraData}}" bindentrancetap="showNameBox" />
+    <entrance required="{{!name.filled}}" sub-title="{{name.text || 'wx-name'}}" title="姓名" next-icon="{{!name.filled}}" extra-data="{{name.extraData}}" bindentrancetap="showNameBox" />
     <view class='line-separator-h' style="width:718rpx;margin-left:32rpx;"></view>
   </view>
   <view class="info-entrance">

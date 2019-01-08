@@ -12,9 +12,11 @@
           <text>{{userInfo.unreadMessage > 99 ? '99+' : userInfo.unreadMessage}}</text>
         </view>
       </view>
-      <image class='user-avatar' src="{{userInfo.avatar}}" mode="aspectFill"></image>
+      <view class='user-avatar'>
+        <user-avatar avatar="{{userInfo.avatar}}" />
+      </view>
       <view class='username-and-usernum'>
-        <text class='username'>{{userInfo.name}}</text>
+        <user-name name="{{userInfo.name}}" />
         <view class='line-separator-v' style="height:28rpx;background:#fff;margin:0 16rpx;"></view>
         <text class='usernum'>{{userInfo.id}}</text>
       </view>

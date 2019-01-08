@@ -21,8 +21,9 @@ Page({
           if (res && res.data && !res.msg) { // 登录成功
             wx.setStorageSync('token', res.data.token)
             wx.setStorageSync('phone', res.data.phone)
+            let url = this.getLoginBack()
             wx.reLaunch({
-              url: this.getLoginBack()
+              url
             })
           }
         }).catch(err => {
