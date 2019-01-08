@@ -1,7 +1,8 @@
 /* pages/pay/pay.wxss */
+@import "../../assets/styles/common-page.wxss";
 
 page {
-  background: #f4f4f4;
+  background: #F7F7F7;
 }
 
 .page-pay {

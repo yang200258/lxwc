@@ -2,17 +2,18 @@
 @import "../../app.wxss";
 
 .merchant-wrapper {
+  width: 100%;
   padding: 27rpx 16rpx;
   margin-top: 30rpx;
   position: relative;
   overflow: visible;
   border-radius: 12rpx;
-  border: 1px solid #999;
+  border: 1px solid #D8D8D8;
 }
 
 @media screen and (min-resolution: 2dppx) {
   .merchant-wrapper {
-    border: 1rpx solid #999;
+    border: 1rpx solid #D8D8D8;
   }
 }
 
@@ -45,7 +46,7 @@
 .image {
   width: 180rpx;
   height: 180rpx;
-  border-radius: 4rpx;
+  border-radius: 10rpx;
   margin-right: 20rpx;
   margin-top: 5rpx;
   margin-bottom: 5rpx;

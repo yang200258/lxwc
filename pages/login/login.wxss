@@ -1,5 +1,6 @@
 /* pages/login/login.wxss */
 @import "../../assets/styles/common-flex.wxss";
+@import "../../assets/styles/common-page.wxss";
 
 .icon {
   margin-top: 138rpx;

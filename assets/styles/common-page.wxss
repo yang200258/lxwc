@@ -1,0 +1,8 @@
+/* 每个页面都引用的样式模块 */
+
+/* 去掉scroll-view滚动条 */
+::-webkit-scrollbar{
+  width: 0;
+  height: 0;
+  color: transparent;
+}

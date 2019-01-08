@@ -1,4 +1,5 @@
 /* pages/redpacketlist/redpacketlist.wxss */
+@import "../../assets/styles/common-page.wxss";
 
 .page-redpacketlist{
   padding-top: 14rpx;

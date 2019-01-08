@@ -1,4 +1,5 @@
 /* pages/choosevoucher/choosevoucher.wxss */
+@import "../../assets/styles/common-page.wxss";
 
 .page-choosevoucher{
   padding-top: 14rpx;

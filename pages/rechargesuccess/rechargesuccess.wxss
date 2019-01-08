@@ -1,7 +1,8 @@
 /* pages/rechargesuccess/rechargesuccess.wxss */
+@import "../../assets/styles/common-page.wxss";
 
 page{
-  background: #F4F4F4;
+  background: #F7F7F7;
 }
 
 .page-rechargesuccess{
@@ -53,12 +54,12 @@ page{
   width: 100%;
   left: 0;
   bottom: 0;
-  background: #F4F4F4;
+  background: #F7F7F7;
 }
 .confirm-box{
   width: 100%;
   height: 158rpx;
-  background: #F4F4F4;
+  background: #F7F7F7;
   display: flex;
   justify-content: center;
   align-items: center;

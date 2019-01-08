@@ -91,4 +91,4 @@
     </view>
   </view>
 </view>
-<list-footer bg="#F4F4F4" loading="{{loadingIndexMerchants}}" page="{{page}}" show-no-more="{{indexMerchants && indexMerchants[5]}}" />
+<list-footer bg="#F7F7F7" loading="{{loadingIndexMerchants}}" page="{{page}}" show-no-more="{{indexMerchants && indexMerchants[5]}}" />

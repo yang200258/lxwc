@@ -1,1 +1,2 @@
 /* pages/bindphone/bindphone.wxss */
+@import "../../assets/styles/common-page.wxss";

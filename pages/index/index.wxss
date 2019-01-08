@@ -1,4 +1,5 @@
 /**index.wxss**/
+@import "../../assets/styles/common-page.wxss";
 
 /* 头部定位及消息 */
 page{

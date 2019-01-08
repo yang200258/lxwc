@@ -1,4 +1,6 @@
 /* pages/orderdetail/orderdetail.wxss */
+@import "../../assets/styles/common-page.wxss";
+
 .header{
   padding: 0 32rpx;
   display: flex;

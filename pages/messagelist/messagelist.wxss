@@ -1,6 +1,8 @@
 /* pages/message/message.wxss */
+@import "../../assets/styles/common-page.wxss";
+
 page{
-  background: #F4F4F4;
+  background: #F7F7F7;
 }
 .page-message{
   background: #fff

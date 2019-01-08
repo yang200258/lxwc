@@ -1,4 +1,5 @@
 /* pages/merchantdetail/merchantdetail.wxss */
+@import "../../assets/styles/common-page.wxss";
 
 .page-merchantdetail{
   padding-bottom: 180rpx;

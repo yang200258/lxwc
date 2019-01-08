@@ -46,7 +46,7 @@
 .block-separator {
   width: 100%;
   height: 16rpx;
-  background: #f4f4f4;
+  background: #F7F7F7;
 }
 
 .txt-area-bg {
@@ -56,10 +56,3 @@
 .image-bg{
   background: #D8D8D8;
 }
-
-/* 去掉scroll-view滚动条 */
-/* ::-webkit-scrollbar{
-  width: 0;
-  height: 0;
-  color: transparent;
-} */

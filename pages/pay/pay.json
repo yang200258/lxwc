@@ -1,7 +1,7 @@
 {
   "navigationBarBackgroundColor": "#FAFAFA",
   "navigationBarTitleText": "支付页面",
-  "backgroundColor": "#F4F4F4",
+  "backgroundColor": "#F7F7F7",
   "usingComponents": {
     "recharge-box": "/components/rechargeBox/rechargeBox",
     "iphone-bottom-adapter": "/components/iphoneBottomAdapter/iphoneBottomAdapter"

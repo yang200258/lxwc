@@ -1,4 +1,6 @@
 /* pages/userinfo/userinfo.wxss */
+@import "../../assets/styles/common-page.wxss";
+
 .tip{
   font-size: 24rpx;
   line-height: 32rpx;

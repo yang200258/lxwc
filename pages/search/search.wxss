@@ -1,4 +1,6 @@
 /* pages/search/search.wxss */
+@import "../../assets/styles/common-page.wxss";
+
 page{
   min-height: 100%;
 }

@@ -1,4 +1,5 @@
 /* pages/ticketlist/ticketlist.wxss */
+@import "../../assets/styles/common-page.wxss";
 
 .page-ticketlist{
   padding-top: 14rpx;

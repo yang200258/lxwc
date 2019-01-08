@@ -1,4 +1,6 @@
 /* pages/rebindphone/rebindphone.wxss */
+@import "../../assets/styles/common-page.wxss";
+
 .page-rebindphone{
   padding: 0 32rpx;
 }

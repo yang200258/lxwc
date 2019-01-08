@@ -1,6 +1,8 @@
 /* pages/orderlist/orderlist.wxss */
+@import "../../assets/styles/common-page.wxss";
+
 page{
-  background: #F4F4F4;
+  background: #F7F7F7;
 }
 .empty-orders{
   overflow: hidden;

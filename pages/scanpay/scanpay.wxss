@@ -1,4 +1,6 @@
 /* pages/scanpay/scanpay.wxss */
+@import "../../assets/styles/common-page.wxss";
+
 .steps{
   margin: 0 32rpx;
   height: 324rpx;
