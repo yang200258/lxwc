@@ -85,6 +85,11 @@ Page({
                 url: '/pages/merchantdetail/merchantdetail?id=' + sceneParams.id
               })
             }
+            if (res.path.indexOf('/pay/pay') > -1) { // 匹配付款页，避免扫描其他页面的码时跳转到付款页面
+              wx.navigateTo({
+                url: '/pages/pay/pay?id=' + sceneParams.id
+              })
+            }
           }
         }
       }

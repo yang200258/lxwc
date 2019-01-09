@@ -50,7 +50,7 @@
             <text class='actual-price'>{{actual || '0.00'}}</text>
           </view>
         </view>
-        <view class="order-btn {{(actual && actual !== '0.00' && actual !== '0') ? '' : 'disabled'}}" catchtap="pay">
+        <view class="order-btn {{(actual && actual !== '0.00' && actual !== '0' && phone) ? '' : 'disabled'}}" catchtap="pay">
           <text>优惠买单</text>
         </view>
       </view>

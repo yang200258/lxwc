@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    phone: '',
     canUseVoucher: 0,
     selectedVoucher: null,
     userVouchers: [],
@@ -23,6 +24,7 @@ Page({
    */
   onLoad: function(options) {
     if (options.id) {
+      this.shopid = options.id
       this.setData({
         shopid: options.id
       })
@@ -32,6 +34,13 @@ Page({
       wx.setNavigationBarTitle({
         title: options.title
       })
+    }
+    if (options.scene) { // 扫码进入
+      const sceneParams = util.getParams(decodeURIComponent(options.scene))
+      if (sceneParams.id) {
+        this.shopid = sceneParams.id
+        this.getUserDiscountInfo(sceneParams.id)
+      }
     }
   },
 
@@ -84,6 +93,20 @@ Page({
 
   },
 
+  goMerchant: function () { // 跳转商家
+    let currentPages = getCurrentPages()
+    let prePage = (currentPages && currentPages[currentPages.length - 2]) ? currentPages[currentPages.length - 2] : null
+    if (prePage && ((prePage.route && prePage.route.indexOf('/merchantdetail/merchantdetail') !== -1) || (prePage.__route__ && prePage.__route__.indexOf('/merchantdetail/merchantdetail') !== -1))) { // 上一页是商家详情页,直接返回上一页
+      wx.navigateBack({
+        delta: 1
+      })
+    } else { // 重定向到商家详情页
+      wx.redirectTo({
+        url: '/pages/merchantdetail/merchantdetail?id=' + this.shopid
+      })
+    }
+  },
+
   getUserDiscountInfo: function(shopid) { // 获取用户支付相关的优惠信息
     shopid = shopid || this.data.shopid
     util.request('/pay/show', {
@@ -95,7 +118,8 @@ Page({
           balance,
           huodong,
           name,
-          shopid
+          shopid,
+          phone
         } = res.data
         let userVouchers = []
         if (huodong && huodong[0]) {
@@ -115,11 +139,23 @@ Page({
           balance,
           userVouchers,
           name,
-          shopid
+          shopid,
+          phone
         })
+        if (name) { // 有店家名称，设置title
+          wx.setNavigationBarTitle({
+            title: name
+          })
+        }
+        if (!phone) {
+          this.goMerchant()
+        }
+      } else {
+        this.goMerchant()
       }
     }).catch(err => {
       console.log('err', err)
+      this.goMerchant()
     })
   },
 
@@ -309,6 +345,9 @@ Page({
   pay: function () {
     let {total, ignore, actual, shopid, selectedVoucher, paying} = this.data
     if (paying || !actual || (actual && parseFloat(actual) < 0.01)) { // 正在付款时中断
+      return false
+    }
+    if (!phone) { // 无手机号，不是会员
       return false
     }
     let coupon_id = selectedVoucher ? selectedVoucher.id : ''
