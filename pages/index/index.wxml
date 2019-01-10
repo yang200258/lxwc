@@ -41,7 +41,7 @@
   <scroll-view wx:if="{{merchantCates && merchantCates[0]}}" class='merchant-cate' scroll-x>
     <view class='merchant-cate-content'>
       <view class="cate{{idx === 0 ? ' first' : ''}}{{(idx === (merchantCates.length - 1)) ? ' last' : ''}}" wx:for="{{merchantCates}}" wx:for-item="cate" wx:for-index="idx" wx:key="name" catchtap="goMerchantCate" data-cate="{{cate}}">
-        <image class='cate-image image-bg' src="{{cate.icon}}" mode="aspectFill"></image>
+        <image class='cate-image' src="{{cate.icon}}" mode="aspectFill"></image>
         <view class='cate-text'>{{cate.name}}</view>
       </view>
     </view>

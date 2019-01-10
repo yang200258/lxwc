@@ -157,7 +157,7 @@ page{
   display: block;
   width: 106rpx;
   height: 106rpx;
-  border-radius: 50%;
+  /* border-radius: 50%; */
 }
 .cate-text{
   width: 100%;
