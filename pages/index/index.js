@@ -205,6 +205,10 @@ Page({
 
   onPullDownRefresh: function () {
     this.fetchLxMerchant(0, 0)
+    this.fetchBanner(true)
+    this.fetchMerchantCates(true)
+    this.fetchRecommendUser(true)
+    this.fetchRecommendNew(true)
   },
 
   onReachBottom: function () {
@@ -268,9 +272,9 @@ Page({
     })
   },
 
-  fetchBanner: function () { // 横幅
+  fetchBanner: function (isRefresh) { // 横幅
     const { activityFetching, activityLoaded} = this.data
-    if (activityFetching || activityLoaded) {
+    if (activityFetching || (activityLoaded && !isRefresh)) {
       return false
     }
     this.setData({
@@ -293,9 +297,9 @@ Page({
     })
   },
 
-  fetchMerchantCates: function () {
+  fetchMerchantCates: function (isRefresh) {
     const { catesFetching, catesLoaded } = this.data
-    if (catesFetching || catesLoaded) {
+    if (catesFetching || (catesLoaded && !isRefresh)) {
       return false
     }
     this.setData({
@@ -317,9 +321,9 @@ Page({
     })
   },
 
-  fetchRecommendUser: function () { // 拉取为您优选数据
+  fetchRecommendUser: function (isRefresh) { // 拉取为您优选数据
     const { recommendUserFetching, recommendUserLoaded } = this.data
-    if (recommendUserFetching || recommendUserLoaded) {
+    if (recommendUserFetching || (recommendUserLoaded && !isRefresh)) {
       return false
     }
     this.setData({
@@ -341,9 +345,9 @@ Page({
     })
   },
 
-  fetchRecommendNew: function () { // 拉取新店优选数据
+  fetchRecommendNew: function (isRefresh) { // 拉取新店优选数据
     const { recommendNewFetching, recommendNewLoaded } = this.data
-    if (recommendNewFetching || recommendNewLoaded) {
+    if (recommendNewFetching || (recommendNewLoaded && !isRefresh)) {
       return false
     }
     this.setData({
