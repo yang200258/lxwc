@@ -24,7 +24,9 @@ Component({
   },
 
   ready: function () {
-    const { maxStar, score} = this.data
+    console.log('stars');
+    const { maxStar } = this.data
+    const score = this.properties.score
     let stars = []
     const scoreText = score.toFixed(1)
     let fullLen = parseInt(score)

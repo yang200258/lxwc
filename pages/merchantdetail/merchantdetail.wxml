@@ -3,8 +3,9 @@
   <!-- 商家概览 -->
   <view class='merchant-overview'>
     <view class='title'>{{merchantData.name}}</view>
-    <view wx:if="{{merchantData.star}}" class='star'>
-      <star-box score="{{merchantData.star}}" />
+    <!-- <view wx:if="{{merchantData.rate}}" class='star'> -->
+    <view class='star'>
+      <star-box score="{{merchantData.rate}}" />
     </view>
     <!-- 商家图片轮播 -->
     <view wx:if="{{merchantData.covers && merchantData.covers.length}}" class='merchant-covers'>
@@ -32,9 +33,9 @@
       </view>
     </view>
     <!-- 商家地址及电话 -->
-    <view wx:if="{{merchantData.position}}" class='location-and-phone'>
+    <view wx:if="{{merchantData.address}}" class='location-and-phone'>
       <image class='location-image' src="/assets/images/location_icon.png" mode="aspectFit"></image>
-      <text class='location-text'>{{merchantData.position}}</text>
+      <text class='location-text'>{{merchantData.address}}</text>
       <view wx:if="{{merchantData.phone}}" class='line-separator-v' style="height:28rpx;margin-left:28rpx;"></view>
       <text wx:if="{{merchantData.phone}}" class='iconfont icon-phone' catchtap="callMerchant"></text>
     </view>

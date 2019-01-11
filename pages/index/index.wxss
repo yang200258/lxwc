@@ -112,7 +112,7 @@ page{
   display: block;
   width: 100%;
   height: 100%;
-  border-radius: 16rpx;
+  border-radius: 20rpx;
 }
 .activity-indicator{
   width: 100%;
@@ -192,7 +192,7 @@ page{
   margin-left: 0;
 }
 .rec-merchants-header-title.current{
-  color: #333;
+  color: #FF9500;
   font-weight: bold;
 }
 .rec-merchants-header-title-line{
@@ -206,7 +206,7 @@ page{
 }
 .rec-merchants-header-line{
   width: 100%;
-  height: 2rpx;
+  height: 0rpx;
   position: absolute;
   left: 0;
   bottom: 0;
@@ -223,7 +223,8 @@ page{
   overflow: hidden;
 }
 .merchant-card{
-  width: 48%;
+  width: 47%;
+  margin-top: 10rpx;
   margin-bottom: 30rpx;
 }
 
@@ -245,7 +246,7 @@ page{
   z-index: 2;
 }
 .lx-merchants-header-title.current{
-  color: #333;
+  color: #FF9500;
   font-weight: bold;
 }
 .lx-merchants-header-title-line{
@@ -259,7 +260,7 @@ page{
 }
 .lx-merchants-header-line{
   width: 100%;
-  height: 2rpx;
+  height: 0rpx;
   position: absolute;
   left: 0;
   bottom: 0;
@@ -306,5 +307,5 @@ page{
 }
 
 .lx-merchants-body{
-  padding: 16rpx 32rpx 46rpx;
+  padding: 0rpx 32rpx 45rpx;
 }

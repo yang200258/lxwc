@@ -7,15 +7,17 @@
       <text class='location-text'>{{location.address}}</text>
       <text class='iconfont icon-next'></text>
     </view>
-    <view class='message-box' catchtap="goMessageList">
+    <!-- <view class='message-box' catchtap="goMessageList">
       <image class='message-icon' src="/assets/images/message_icon2.png" mode="aspectFit"></image>
       <view wx:if="{{messageCount}}" class='message-count'>
         <text class='message-text'>{{messageCount > 99 ? '99+' : messageCount}}</text>
       </view>
-    </view>
+    </view>  -->
+    <!-- <message-box> </message-box> -->
+       
   </view>
   <!-- 搜索框 -->
-  <view class='search-box-wrapper'>
+  <!-- <view class='search-box-wrapper'>
     <view class="search-box-content {{searchFixed ? 'fixed' : ''}}">
       <view class='search-box' catchtap="goSearch">
         <text class='iconfont icon-search'></text>
@@ -23,8 +25,8 @@
       </view>
       <view hidden="{{!searchFixed}}" class='line-separator-h' style="position:absolute;left:0;bottom:0"></view>
     </view>
-  </view>
-  <!-- 活动 -->
+  </view> -->
+  <!-- 轮播图 -->
   <view wx:if="{{activitys && activitys[0]}}" class='activity-box'>
     <swiper class='activity-swiper' autoplay circular interval="{{2500}}" duration="{{300}}" bindchange="changeActivityCurrent">
       <swiper-item wx:for="{{activitys}}" wx:for-item="activity" wx:key="shopid">

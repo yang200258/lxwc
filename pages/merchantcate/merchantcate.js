@@ -1,4 +1,5 @@
 // pages/merchantcate/merchantcate.js
+import util from '../../utils/util.js'
 Page({
 
   /**
@@ -6,38 +7,7 @@ Page({
    */
   data: {
     cateFixed: false,
-    merchantCates: [
-      {
-        id: 1,
-        title: '快餐小吃',
-        banner: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3023308141,3535526767&fm=200&gp=0.jpg'
-      },
-      {
-        id: 2,
-        title: '中国地方菜',
-        banner: 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1383599882,3589720252&fm=200&gp=0.jpg'
-      },
-      {
-        id: 3,
-        title: '异国料理',
-        banner: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=335081894,2281243220&fm=200&gp=0.jpg'
-      },
-      {
-        id: 4,
-        title: '休闲茶饮',
-        banner: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2478955624,2967016924&fm=26&gp=0.jpg'
-      },
-      {
-        id: 5,
-        title: '火锅',
-        banner: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1243655571,2094742982&fm=200&gp=0.jpg'
-      },
-      {
-        id: 6,
-        title: '意面披萨',
-        banner: 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2757423851,547269891&fm=26&gp=0.jpg'
-      }
-    ],
+    merchantCates: [],
     currentSort: 0, // 0:按距离排序，    1:按人气排序
     currentCate: 0,
     lxCates: [
@@ -63,7 +33,9 @@ Page({
       }
     ],
     loadingLxMerchants: false, // 是否正在加载乐享商家
+    isLoadSecondCate: false,   //是否点击二级分类
     page: {},
+    merchantCard: [],
     lxMerchants: [
       {
         id: '1',
@@ -189,14 +161,43 @@ Page({
         title: options.name
       })
     }
+    this.getSecondCate(options.id)
     this.setCatesBoxFixed()
   },
-
+  //得到二级类函数
+   getSecondCate(id){
+    util.request('/shop/list',{
+      cateid: id
+    }).then(res=> {
+      console.log(res.data.list);
+      this.setData({
+        merchantCates: res.data.tags,
+        lxMerchants: res.data.list
+      })
+    })
+   },
+   //得到全部二级类商家信息
+   getAllSecondShop(id){  
+    //  util.request('/shop/list',{
+    //    tagid: id
+    //  })
+   },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
+  fetchSecondShop: function(e) {
+    util.request('/shop/list',{
+      tagid: e.currentTarget.dataset.cate.id
+    }).then(res=> {
+      console.log(res);
+      this.setData({
+        lxMerchants: res.data.list,
+        isLoadSecondCate: true
+      })
+    })
+  },
   onReady: function () {
-
+    
   },
 
   setCatesBoxFixed: function () {

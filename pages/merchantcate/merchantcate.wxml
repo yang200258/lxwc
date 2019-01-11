@@ -12,9 +12,9 @@
     <view class="merchant-cate-box {{cateFixed ? 'fixed' : ''}}">
       <scroll-view class='merchant-cate' scroll-x>
         <view class='merchant-cate-content'>
-          <view class="cate{{idx === 0 ? ' first' : ''}}{{(idx === (merchantCates.length - 1)) ? ' last' : ''}}" wx:for="{{merchantCates}}" wx:for-item="cate" wx:for-index="idx" wx:key="id">
+          <view class="cate{{idx === 0 ? ' first' : ''}}{{(idx === (merchantCates.length - 1)) ? ' last' : ''}}" wx:for="{{merchantCates}}" wx:for-item="cate" wx:for-index="idx" wx:key="id" catchtap="fetchSecondShop" data-cate="{{cate}}">
             <image class='cate-image image-bg' src="{{cate.banner}}" mode="aspectFill"></image>
-            <view class='cate-text'>{{cate.title}}</view>
+            <view class='cate-text'>{{cate.name}}</view>
           </view>
         </view>
       </scroll-view>
@@ -44,6 +44,7 @@
   </view>
   <view class='lx-merchants-body'>
     <merchant-overview wx:for="{{lxMerchants}}" wx:for-item="merchant" wx:key="id" merchant="{{merchant}}" />
+    <!-- <merchant-card wx:if="{{isLoadSecondCate}}" wx:for="{{merchantCard}}" wx:for-item="merchant" wx:key="id" merchant="{{merchant}}"></merchant-card> -->
   </view>
   <list-footer bg="#FFFFFF" loading="{{loadingLxMerchants}}" page="{{page}}" show-no-more="{{lxMerchants && lxMerchants[5]}}" />
   <iphone-bottom-adapter />

@@ -219,7 +219,7 @@ Page({
   callMerchant: function() {
     const {
       phone
-    } = this.data.overview
+    } = this.data.merchantData
     if (phone) {
       wx.makePhoneCall({
         phoneNumber: phone.toString()
