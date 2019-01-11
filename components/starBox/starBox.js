@@ -6,7 +6,13 @@ Component({
   properties: {
     score: {
       type: Number,
-      value: 0
+      value: 0,
+      observer: function(newval,oldval) {
+        if(newval == oldval) {
+          return;
+        }
+        this.updateScore()
+      }
     },
     size: {
       type: Number,
@@ -24,9 +30,19 @@ Component({
   },
 
   ready: function () {
-    console.log('stars');
+    // console.log('stars');
+    
+  },
+  
+  /**
+   * 组件的方法列表
+   */
+  methods: {
+    //监测score变化更新
+  updateScore() {
     const { maxStar } = this.data
     const score = this.properties.score
+    console.log(score);
     let stars = []
     const scoreText = score.toFixed(1)
     let fullLen = parseInt(score)
@@ -44,12 +60,6 @@ Component({
       stars,
       scoreText
     })
-  },
-
-  /**
-   * 组件的方法列表
-   */
-  methods: {
-
+  }
   }
 })

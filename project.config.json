@@ -12,7 +12,7 @@
 		"autoAudits": false
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.4.2",
+	"libVersion": "1.7.4",
 	"appid": "wxde8f7cb4bac99b2c",
 	"projectname": "miniapp-lxwc",
 	"debugOptions": {
