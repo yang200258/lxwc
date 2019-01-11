@@ -59,7 +59,12 @@ Page({
     //     url: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3737093608,1532771841&fm=200&gp=0.jpg'
     //   }
     // ],
-    merchantData: {}
+    merchantDataText: {
+      
+    },
+    merchantData: {
+
+    }
   },
 
   /**

@@ -10,142 +10,116 @@ Page({
     merchantCates: [],
     currentSort: 0, // 0:按距离排序，    1:按人气排序
     currentCate: 0,
-    lxCates: [
-      {
-        id: '1',
-        title: '分类1'
-      },
-      {
-        id: '2',
-        title: '分类2'
-      },
-      {
-        id: '3',
-        title: '分类3'
-      },
-      {
-        id: '4',
-        title: '分类4'
-      },
-      {
-        id: '5',
-        title: '分类5'
-      }
-    ],
+    lxCates: [],
     loadingLxMerchants: false, // 是否正在加载乐享商家
-    isLoadSecondCate: false,   //是否点击二级分类
+    currentCateIdx: 0,   //二级分类索引
     page: {},
-    merchantCard: [],
-    lxMerchants: [
+    cateId: '',
+    lxMerchants: [],  
+    lxMerchantsText: [   //测试数据
       {
-        id: '1',
-        title: '香港满记甜品(文三路店）收到了饭就文三路店）收到了饭就随大流风景随大流风景',
-        image: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3737093608,1532771841&fm=200&gp=0.jpg',
+        shopid: '4',
+        name: '香港满记甜品(文三路店）收到了饭就文三路店）收到了饭就随大流风景随大流风景',
+        pic: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3737093608,1532771841&fm=200&gp=0.jpg',
         star: 4.5,
-        activitys: [
+        huodong: [
           {
             id: 1,
-            type: '1', // type: 1(首减), 2(满减), 3(折扣), 4(满赠),
-            title: '平台新用户立减10元'
+            type: 'platnew', // type: 1(首减), 2(满减), 3(折扣), 4(满赠),
+            value:5,//立减5元
           },
           {
             id: 2,
-            type: '2', // type: 1(首减), 2(满减), 3(折扣), 4(满赠),
-            title: '满20减5，满30减10'
+            type: 'shopnew', // type: 1(首减), 2(满减), 3(折扣), 4(满赠),
+            value:5,      //立减5元
           },
           {
             id: 3,
-            type: '3', // type: 1(首减), 2(满减), 3(折扣), 4(满赠),
-            title: '到店消费8折'
+            type: 'shopyouhui', // type: 1(首减), 2(满减), 3(折扣), 4(满赠),
+            youhui:[
+              {
+                id:1234,//满减号id
+                cond_count:100,//满100
+                value:20,//减20
+              },
+              {
+                id:124,//满减号id
+                cond_count:50,//满50
+                value:10,//减10
+              }
+            ]
           },
-          {
-            id: 4,
-            type: '4', // type: 1(首减), 2(满减), 3(折扣), 4(满赠),
-            title: '满100赠送大米一包'
-          }
+          // {
+          //   id: 4,
+          //   type: 'getcoupon', // type: 1(首减), 2(满减), 3(折扣), 4(满赠),
+          //   coupons: [
+          //     {
+          //       id:1234,   //优惠券id
+          //       cond_count:28,//满28
+          //       value:5,//减5
+          //       status: 0 //1为未领取，2为已领取,3为已使用
+          //     },
+          //     {
+          //         "id":1234,//优惠券id
+          //         "cond_count":28,//满28
+          //         "value":5,//减5
+          //         "status": 0 //1为未领取，2为已领取,3为已使用
+          //     },
+          //   ]
+          // }
         ],
         distance: '300m',
       },
       {
-        id: '2',
-        title: '华莱士(文昌店）',
-        image: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3737093608,1532771841&fm=200&gp=0.jpg',
-        star: 4,
-        activitys: [
-          {
-            id: 5,
-            type: '1', // type: 1(首减), 2(满减), 3(折扣), 4(满赠),
-            title: '平台新用户立减10元'
-          },
-          {
-            id: 6,
-            type: '2', // type: 1(首减), 2(满减), 3(折扣), 4(满赠),
-            title: '满20减5，满30减10'
-          },
-          {
-            id: 7,
-            type: '3', // type: 1(首减), 2(满减), 3(折扣), 4(满赠),
-            title: '到店消费8折'
-          }
-        ],
-        distance: '912m',
-        notice: '公告：乐享会员支付送中乐一杯'
-      },
-      {
-        id: '3',
-        title: '香港满记甜品(文三路店）收到了饭就文三路店）收到了饭就随大流风景随大流风景',
-        image: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3737093608,1532771841&fm=200&gp=0.jpg',
+        shopid: '4',
+        name: '香港满记甜品(文三路店）收到了饭就文三路店）收到了饭就随大流风景随大流风景',
+        pic: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3737093608,1532771841&fm=200&gp=0.jpg',
         star: 4.5,
-        activitys: [
+        huodong: [
           {
             id: 1,
-            type: '1', // type: 1(首减), 2(满减), 3(折扣), 4(满赠),
-            title: '平台新用户立减10元'
+            type: 'platnew', // type: 1(首减), 2(满减), 3(折扣), 4(满赠),
+            value:5,//立减5元
           },
           {
             id: 2,
-            type: '2', // type: 1(首减), 2(满减), 3(折扣), 4(满赠),
-            title: '满20减5，满30减10'
+            type: 'shopnew', // type: 1(首减), 2(满减), 3(折扣), 4(满赠),
+            value:5,      //立减5元
           },
           {
             id: 3,
-            type: '3', // type: 1(首减), 2(满减), 3(折扣), 4(满赠),
-            title: '到店消费8折'
+            type: 'shopyouhui', // type: 1(首减), 2(满减), 3(折扣), 4(满赠),
+            youhui:[
+              {
+                id:1234,//满减号id
+                cond_count:100,//满100
+                value:20,//减20
+              },
+              {
+                id:124,//满减号id
+                cond_count:50,//满50
+                value:10,//减10
+              }
+            ]
           },
-          {
-            id: 4,
-            type: '4', // type: 1(首减), 2(满减), 3(折扣), 4(满赠),
-            title: '满100赠送大米一包'
-          }
-        ],
-        distance: '300m',
-      },
-      {
-        id: '4',
-        title: '香港满记甜品(文三路店）收到了饭就文三路店）收到了饭就随大流风景随大流风景',
-        image: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3737093608,1532771841&fm=200&gp=0.jpg',
-        star: 4.5,
-        activitys: [
-          {
-            id: 1,
-            type: '1', // type: 1(首减), 2(满减), 3(折扣), 4(满赠),
-            title: '平台新用户立减10元'
-          },
-          {
-            id: 2,
-            type: '2', // type: 1(首减), 2(满减), 3(折扣), 4(满赠),
-            title: '满20减5，满30减10'
-          },
-          {
-            id: 3,
-            type: '3', // type: 1(首减), 2(满减), 3(折扣), 4(满赠),
-            title: '到店消费8折'
-          },
-          {
-            id: 4,
-            type: '4', // type: 1(首减), 2(满减), 3(折扣), 4(满赠),
-            title: '满100赠送大米一包'
-          }
+          // {
+          //   id: 4,
+          //   type: 'getcoupon', // type: 1(首减), 2(满减), 3(折扣), 4(满赠),
+          //   coupons: [
+          //     {
+          //       id:1234,   //优惠券id
+          //       cond_count:28,//满28
+          //       value:5,//减5
+          //       status: 0 //1为未领取，2为已领取,3为已使用
+          //     },
+          //     {
+          //         "id":1234,//优惠券id
+          //         "cond_count":28,//满28
+          //         "value":5,//减5
+          //         "status": 0 //1为未领取，2为已领取,3为已使用
+          //     },
+          //   ]
+          // }
         ],
         distance: '300m',
       },
@@ -161,6 +135,9 @@ Page({
         title: options.name
       })
     }
+    this.setData({
+      cateId: options.id
+    })
     this.getSecondCate(options.id)
     this.setCatesBoxFixed()
   },
@@ -169,33 +146,44 @@ Page({
     util.request('/shop/list',{
       cateid: id
     }).then(res=> {
-      console.log(res.data.list);
+      console.log(res);
       this.setData({
-        merchantCates: res.data.tags,
-        lxMerchants: res.data.list
+        lxCates: res.data.tags,
+        lxMerchants: res.data.list,
+        currentCateIdx: id,
       })
     })
    },
-   //得到全部二级类商家信息
-   getAllSecondShop(id){  
-    //  util.request('/shop/list',{
-    //    tagid: id
-    //  })
+   //点击获取全部商家信息
+   fetchAllSecondShop: function(e){
+      const cateId = this.data.cateId;
+      // this.getSecondCate(cateId)
+      util.request('/shop/list',{
+        cateid: cateId
+      }).then(res=> {
+        console.log(res);
+        this.setData({
+          lxMerchants: res.data.list,
+          currentCateIdx: cateId
+        })
+      })
    },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
+   //点击获取二级类商家信息
   fetchSecondShop: function(e) {
+    console.log(e);
     util.request('/shop/list',{
       tagid: e.currentTarget.dataset.cate.id
     }).then(res=> {
-      console.log(res);
+      // console.log(res);
       this.setData({
         lxMerchants: res.data.list,
-        isLoadSecondCate: true
+        currentCateIdx: e.currentTarget.dataset.cate.id
       })
     })
   },
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
   onReady: function () {
     
   },

@@ -46,11 +46,17 @@
 }
 .merchant-cate{
   padding: 20rpx 0 2rpx;
+  display: flex;
+  flex-direction: row;
+  white-space: nowrap;
+}
+.merchant-view {
+  display: flex;
 }
 .merchant-cate-content{
   display: flex;
 }
-.cate{
+/* .cate{
   flex-shrink: 0;
   width: 142rpx;
   display: flex;
@@ -78,6 +84,49 @@
   line-height: 68rpx;
   color: #333;
   text-align: center;
+} */
+
+/* 二级类图片出之前样式 */
+
+.cate{
+  flex-shrink: 0;
+  width: 142rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: content-box;
+  background-color: #ccc;
+  margin-left: 10rpx;
+  border-radius: 15rpx;
+}
+.cate.currentCate {
+  background-color: #FF9500;
+}
+
+.cate.first{
+  margin-left: 20rpx;
+}
+.cate.last{
+  margin-right: 20rpx;
+}
+.cate-image{
+  display: block;
+  width: 94rpx;
+  height: 94rpx;
+}
+.cate-text{
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 28rpx;
+  line-height: 68rpx;
+  color: #000;
+  text-align: center;
+}
+.cate-text.currentCate {
+  color: #fff;
+  font-weight: 700;
 }
 
 /* 乐享商家 */

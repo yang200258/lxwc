@@ -15,23 +15,30 @@ Component({
    */
   data: {
     actIconSize: {
-      width: 60,
+      width: 120,
       height: 32
     },
+    // active: [],
     colorObj: {
       1: '#007AFF',
       2: '#E8541E',
       3: '#7ED321',
-      4: '#FFCC00'
+      // 4: '#FFCC00'
     },
     textObj: {
-      1: '首减',
-      2: '满减',
-      3: '折扣',
-      4: '满赠'
+      platnew : '平台新客',
+      shopnew : '门店新客',
+      shopyouhui: '商家满减',
+      // getcoupon: '领取优惠'
+    },
+    titleObj: {
+      platnew : '满',
+      shopnew : '门店新客',
+      shopyouhui: '商家满减',
     }
   },
-
+  ready: function(){
+  },
   /**
    * 组件的方法列表
    */
@@ -41,6 +48,6 @@ Component({
       wx.navigateTo({
         url: '/pages/merchantdetail/merchantdetail?id=' + id
       })
-    }
+    },
   }
 })

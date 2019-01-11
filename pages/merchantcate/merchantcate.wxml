@@ -11,10 +11,18 @@
   <view class='merchant-cate-wrapper'>
     <view class="merchant-cate-box {{cateFixed ? 'fixed' : ''}}">
       <scroll-view class='merchant-cate' scroll-x>
-        <view class='merchant-cate-content'>
-          <view class="cate{{idx === 0 ? ' first' : ''}}{{(idx === (merchantCates.length - 1)) ? ' last' : ''}}" wx:for="{{merchantCates}}" wx:for-item="cate" wx:for-index="idx" wx:key="id" catchtap="fetchSecondShop" data-cate="{{cate}}">
-            <image class='cate-image image-bg' src="{{cate.banner}}" mode="aspectFill"></image>
-            <view class='cate-text'>{{cate.name}}</view>
+        <view class="merchant-view">
+          <!-- 全部二级类商家标签 -->
+          <view class="merchant-cate-content">
+            <view class="cate first {{currentCateIdx === cateId ? 'currentCate' : ''}}" catchtap="fetchAllSecondShop">
+              <view class="cate-text {{currentCateIdx === cateId ? 'currentCate' : ''}}">全部商家</view>
+            </view>
+          </view>
+          <view class='merchant-cate-content'>
+            <view class="cate{{(idx === (merchantCates.length - 1)) ? ' last' : ''}} {{currentCateIdx === cate.id ? 'currentCate' : ''}}" wx:for="{{lxCates}}" wx:for-item="cate" wx:for-index="idx" wx:key="id" catchtap="fetchSecondShop" data-cate="{{cate}}">
+              <!-- <image class='cate-image image-bg' src="{{cate.banner}}" mode="aspectFill"></image> -->
+              <view class="cate-text {{currentCateIdx === cate.id ? 'currentCate' : ''}}">{{cate.name}}</view>
+            </view>
           </view>
         </view>
       </scroll-view>
@@ -44,7 +52,6 @@
   </view>
   <view class='lx-merchants-body'>
     <merchant-overview wx:for="{{lxMerchants}}" wx:for-item="merchant" wx:key="id" merchant="{{merchant}}" />
-    <!-- <merchant-card wx:if="{{isLoadSecondCate}}" wx:for="{{merchantCard}}" wx:for-item="merchant" wx:key="id" merchant="{{merchant}}"></merchant-card> -->
   </view>
   <list-footer bg="#FFFFFF" loading="{{loadingLxMerchants}}" page="{{page}}" show-no-more="{{lxMerchants && lxMerchants[5]}}" />
   <iphone-bottom-adapter />
