@@ -290,12 +290,16 @@ Page({
     if (!phone || !this.shopid) {
       return false
     }
-    const goNext = () => {
-      wx.navigateTo({
-        url: '/pages/pay/pay?id=' + this.shopid + '&title=' + merchantData.name
-      })
-    }
-    this.checkBalance(goNext)
+    // const goNext = () => {
+    //   wx.navigateTo({
+    //     url: '/pages/pay/pay?id=' + this.shopid + '&title=' + merchantData.name
+    //   })
+    // }
+    // this.checkBalance(goNext)
+    //测试付款页面
+    wx.navigateTo({
+      url: '/pages/pay/pay?id=' + this.shopid + '&title=' + merchantData.name
+    })
   },
 
   getPhone: function (res) {

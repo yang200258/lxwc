@@ -54,6 +54,6 @@
     <list-loader visible="{{!indexMerchantsLoaded}}" />
     <merchant-overview wx:for="{{lxMerchants}}" wx:for-item="merchant" wx:key="id" merchant="{{merchant}}" />
   </view>
-  <list-footer bg="#FFFFFF" loading="{{loadingLxMerchants}}" page="{{page}}" show-no-more="{{lxMerchants && lxMerchants[5]}}" />
+  <list-footer bg="#FFFFFF" loading="{{loadingLxMerchants}}" page="{{page}}" show-no-more="{{lxMerchants ? 'true' : 'false'}}" />
   <iphone-bottom-adapter />
 </view>

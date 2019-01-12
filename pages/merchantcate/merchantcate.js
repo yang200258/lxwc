@@ -159,7 +159,6 @@ Page({
    },
    //获取商家信息
    fetchLxMerchant: function (page,id,grade) { // 获取乐享商家
-    console.log('请求ID',id);
     let { loadingLxMerchants} = this.data
     if (loadingLxMerchants) { // 如果正在加载乐享商家列表，则中断
       console.log(page);
@@ -203,6 +202,17 @@ Page({
         let _obj = {}
         _obj.page = page
         _obj.indexMerchantsLoaded = true
+        //监测是否获取到商家信息
+        if(!list || !list.length) {
+          console.log('列表为空');
+          this.setData({
+            page: {
+              pn:0,
+              isend: true
+            }
+          })
+          return;
+        }
         if (page && page.pn && page.pn.toString() !== '0') { // 不是第一页
           console.log('不是第一页',this.data)
           let len = (lxMerchants && lxMerchants.length) ? lxMerchants.length : 0
@@ -216,6 +226,7 @@ Page({
           _obj['lxMerchants'] = list
         }
         this.setData(_obj)
+        console.log(this.data);
       }
     }).catch(err => {
       console.log('获取数据失败', err)
@@ -228,11 +239,14 @@ Page({
       })
     })
   },
-   //点击获取二级类商家信息
-  fetchSecondShop: function(e) {
-    this.fetchLxMerchant(0,e.currentTarget.dataset.cate.id,2)
-  },
-
+    //点击获取二级类中所有商家信息
+    fetchAllSecondShop: function(e){
+      this.fetchLxMerchant(0,this.data.cateId,1)
+    },
+    //点击获取二级类别商家信息
+    fetchSecondShop: function(e) {
+      this.fetchLxMerchant(0,e.currentTarget.dataset.cate.id,2)
+    },
   setCatesBoxFixed: function () {
     if (wx.createIntersectionObserver) {
       wx.createIntersectionObserver().relativeToViewport({ top: 0 }).observe('#search-box-wrapper', (res) => {
@@ -249,10 +263,7 @@ Page({
       })
     }
   },
-  //点击获取二级类中商家信息
-  fetchAllSecondShop: function(e){
-    this.fetchLxMerchant(0,this.data.cateId,1)
-  },
+
 
   /**
    * 页面上拉触底事件的处理函数

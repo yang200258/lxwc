@@ -13,6 +13,7 @@ page{
   justify-content: space-between;
   align-items: center;
   padding: 30rpx 0 0;
+  margin-bottom: 40rpx;
 }
 .location-box{
   display: flex;
@@ -99,6 +100,7 @@ page{
 /* 活动 */
 .activity-box{
   padding: 0 0 26rpx;
+  margin-top: 10rpx;
 }
 .activity-swiper{
   width: 100%;

@@ -12,7 +12,7 @@ Page({
     selectedVoucher: null,
     userVouchers: [],
     canUseRedpacket: 0,
-    userRedpackets: [],
+    // userRedpackets: [],    //红包功能弃用
     total: '',
     ignore: '',
     actual: '',
@@ -122,6 +122,7 @@ Page({
           phone
         } = res.data
         let userVouchers = []
+        let merchantDiscounts = []
         if (huodong && huodong[0]) {
           userVouchers = huodong.filter(item => item.type.toString() === '1') // type为1的表示满减优惠券
           if (userVouchers && userVouchers[0]) {
@@ -129,6 +130,7 @@ Page({
               item.shopname = name
             })
           }
+          merchantDiscounts = huodong.filter(item => item.type.toString() !== '1') //表示平台、门店新客、满减活动
         }
         if (name) {
           wx.setNavigationBarTitle({
@@ -140,8 +142,10 @@ Page({
           userVouchers,
           name,
           shopid,
-          phone
+          phone,
+          merchantDiscounts
         })
+        console.log(this.data);
         if (name) { // 有店家名称，设置title
           wx.setNavigationBarTitle({
             title: name
