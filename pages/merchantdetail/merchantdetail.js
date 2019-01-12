@@ -22,16 +22,39 @@ Page({
       //     received: true
       //   }
       // ],
-      // fullcut: [ // 满减
-      //   {
-      //     id: '1',
-      //     title: '满20减3元'
-      //   },
-      //   {
-      //     id: '2',
-      //     title: '满35减5元'
-      //   }
+      // shopnew: [
+      //     {
+      //       type:"shopnew",//门店新客
+      //       id:123, //活动id
+      //       value:5,//立减5元
+      //     },
       // ],
+      // platnew: [
+      //   {
+      //     type:"platnew",//平台新客
+      //     id:123, //活动id
+      //     value:5,//立减5元
+      //   },
+      // ],
+      // shopyouhui: [
+      //   {
+      //     type:"shopyouhui",//商家满减活动
+      //     id:"1234",//活动id
+      //     youhui: [
+      //         {
+      //             "id":1234,//满减号id
+      //             "cond_count":100,//满100
+      //             "value":20,//减20
+      //         },
+      //         {
+      //             "id":124,//满减号id
+      //             "cond_count":50,//满50
+      //             "value":10,//减10
+      //         },
+      //       ],
+      //   }
+        
+      // ]
       // fullgift: [{
       //     id: '1',
       //     title: '满100元送果盘'
@@ -169,9 +192,10 @@ Page({
         }
         let _obj = {
           merchantData: res.data,
-          'activitys.voucher': voucher
+          'activitys.voucher': voucher,
         }
         this.setData(_obj)
+        console.log('获取到的活动：',this.data.activitys);
       }
     }).catch(err => {
       console.log('获取商家数据失败', err)

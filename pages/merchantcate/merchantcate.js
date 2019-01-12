@@ -15,6 +15,9 @@ Page({
     currentCateIdx: 0,   //二级分类索引
     page: {},
     cateId: '',
+    shopId: '',
+    rData: {}, //记录请求数据
+    indexMerchantsLoaded: false,
     lxMerchants: [],  
     lxMerchantsText: [   //测试数据
       {
@@ -136,9 +139,11 @@ Page({
       })
     }
     this.setData({
-      cateId: options.id
+      cateId: options.id,
+      currentCateIdx: options.id,
     })
     this.getSecondCate(options.id)
+    this.fetchLxMerchant(0,options.id,1)
     this.setCatesBoxFixed()
   },
   //得到二级类函数
@@ -146,46 +151,86 @@ Page({
     util.request('/shop/list',{
       cateid: id
     }).then(res=> {
-      console.log(res);
       this.setData({
         lxCates: res.data.tags,
-        lxMerchants: res.data.list,
         currentCateIdx: id,
       })
     })
    },
-   //点击获取全部商家信息
-   fetchAllSecondShop: function(e){
-      const cateId = this.data.cateId;
-      // this.getSecondCate(cateId)
-      util.request('/shop/list',{
-        cateid: cateId
-      }).then(res=> {
-        console.log(res);
-        this.setData({
-          lxMerchants: res.data.list,
-          currentCateIdx: cateId
-        })
+   //获取商家信息
+   fetchLxMerchant: function (page,id,grade) { // 获取乐享商家
+    console.log('请求ID',id);
+    let { loadingLxMerchants} = this.data
+    if (loadingLxMerchants) { // 如果正在加载乐享商家列表，则中断
+      console.log(page);
+      if (!page || page === '0') {
+        wx.stopPullDownRefresh()
+      }
+      return false
+    }
+    this.setData({
+      loadingLxMerchants: true
+    })
+    if(grade === 1) {
+       this.setData({
+        grade: grade,
+        currentCateIdx: id,
+        rData: {
+        cateid: id,
+        page,
+        limit: 10
+        }
       })
-   },
-   //点击获取二级类商家信息
-  fetchSecondShop: function(e) {
-    console.log(e);
-    util.request('/shop/list',{
-      tagid: e.currentTarget.dataset.cate.id
-    }).then(res=> {
-      // console.log(res);
+    } else if(grade === 2){
       this.setData({
-        lxMerchants: res.data.list,
-        currentCateIdx: e.currentTarget.dataset.cate.id
+        grade: grade,
+        currentCateIdx: id,
+        rData: {
+        tagid: id,
+        page,
+        limit: 10
+        }
+      })
+    }
+    this.setData({
+      loadingLxMerchants: true
+    })
+    util.request('/shop/list', this.data.rData).then(res => {
+      console.log('乐享商家', res)
+      if (res && res.data && !res.error) { // 成功获取数据
+        let {list, page} = res.data
+        let {lxMerchants} = this.data
+        let _obj = {}
+        _obj.page = page
+        _obj.indexMerchantsLoaded = true
+        if (page && page.pn && page.pn.toString() !== '0') { // 不是第一页
+          console.log('不是第一页',this.data)
+          let len = (lxMerchants && lxMerchants.length) ? lxMerchants.length : 0
+          if (list && list.length) {
+            list.forEach((item, idx) => {
+              _obj['lxMerchants[' + (len + idx) + ']'] = item
+            })
+          }
+        } else { // 第一页
+          console.log('第一页')
+          _obj['lxMerchants'] = list
+        }
+        this.setData(_obj)
+      }
+    }).catch(err => {
+      console.log('获取数据失败', err)
+    }).finally(res => {
+      if (!page || page === '0') { // 第一页
+        wx.stopPullDownRefresh()
+      }
+      this.setData({
+        loadingLxMerchants: false
       })
     })
   },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-    
+   //点击获取二级类商家信息
+  fetchSecondShop: function(e) {
+    this.fetchLxMerchant(0,e.currentTarget.dataset.cate.id,2)
   },
 
   setCatesBoxFixed: function () {
@@ -204,40 +249,21 @@ Page({
       })
     }
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
+  //点击获取二级类中商家信息
+  fetchAllSecondShop: function(e){
+    this.fetchLxMerchant(0,this.data.cateId,1)
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+      const {page, loadingLxMerchants} = this.data
+      if ((page && page.isend) || loadingLxMerchants) {
+        return false
+      }
+      console.log('chudi',page);
+      this.fetchLxMerchant(page.pn + 1,this.data.currentCateIdx,this.data.grade)
   },
 
   /**

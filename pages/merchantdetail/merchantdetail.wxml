@@ -1,4 +1,6 @@
 <!--pages/merchantdetail/merchantdetail.wxml-->
+<wxs module="filter" src="../../app.wxs"></wxs>
+
 <view class='page-merchantdetail'>
   <!-- 商家概览 -->
   <view class='merchant-overview'>
@@ -41,7 +43,7 @@
     </view>
   </view>
   <!-- 商家优惠活动 -->
-  <view wx:if="{{(activitys.voucher && activitys.voucher.length) || (activitys.fullcut && activitys.fullcut.length) || (activitys.fullgift && activitys.fullgift.length)}}" class='merchant-activity'>
+  <view wx:if="{{(activitys.voucher && activitys.voucher.length) || (activitys.shopyouhui && activitys.shopyouhui.length) || (activitys.fullgift && activitys.fullgift.length)}}" class='merchant-activity'>
     <view class='block-separator'></view>
     <view class='activity-header'>商家优惠</view>
     <!-- 代金券 -->
@@ -57,15 +59,34 @@
         </view>
       </view>
     </view>
-    <!-- 满减 -->
-    <view wx:if="{{activitys.fullcut && activitys.fullcut.length}}" class='fullcut-box'>
+    <!-- 平台新客户 -->
+    <view class='fullcut-box' wx:if="{{activitys.shopnew && activitys.shopnew.length}}">
       <view class='line-separator-h'></view>
       <view class='fullcut-content-wrapper'>
-        <view wx:for="{{activitys.fullcut}}" wx:for-item="fullcut" wx:key="id" class='fullcut-item'>
-          <view class='fullcut-text'>{{fullcut.title}}</view>
+        <view wx:for="{{activitys.shopnew}}" wx:for-item="shopnew" wx:key="" class='fullcut-item'>
+          <view class='fullcut-text'>{{filter.filterTitle(shopnew)}}</view>
         </view>
       </view>
     </view>
+    <!-- 商家新新客户 -->
+    <view class='fullcut-box' wx:if="{{activitys.platnew && activitys.platnew.length}}">
+      <view class='line-separator-h'></view>
+      <view class='fullcut-content-wrapper'>
+        <view wx:for="{{activitys.platnew}}" wx:for-item="platnew" wx:key="" class='fullcut-item'>
+          <view class='fullcut-text'>{{filter.filterTitle(platnew)}}</view>
+        </view>
+      </view>
+    </view>
+    <!-- 满减 -->
+    <view class='fullcut-box' wx:if="{{activitys.shopyouhui && activitys.shopyouhui.length}}">
+      <view class='line-separator-h'></view>
+      <view class='fullcut-content-wrapper'>
+        <view wx:for="{{activitys.shopyouhui}}" wx:for-item="shopyouhui" wx:key="" class='fullcut-item'>
+          <view class='fullcut-text'>{{filter.filterTitle(shopyouhui)}}</view>
+        </view>
+      </view>
+    </view>
+    
     <!-- 满赠 -->
     <view wx:if="{{activitys.fullgift && activitys.fullgift.length}}" class='fullgift-box'>
       <view class='line-separator-h'></view>

@@ -1,12 +1,12 @@
 <!--pages/merchantcate/merchantcate.wxml-->
 <view class='page-merchantcate'>
   <!-- 搜索框 -->
-  <view class='search-box-wrapper' id="search-box-wrapper">
+  <!-- <view class='search-box-wrapper' id="search-box-wrapper">
     <view class='search-box' catchtap="goSearchPage">
       <text class='iconfont icon-search'></text>
       <text class='search-text'>搜索品牌、门店、商品...</text>
     </view>
-  </view>
+  </view> -->
   <!-- 二级分类 -->
   <view class='merchant-cate-wrapper'>
     <view class="merchant-cate-box {{cateFixed ? 'fixed' : ''}}">
@@ -51,6 +51,7 @@
     </view>
   </view>
   <view class='lx-merchants-body'>
+    <list-loader visible="{{!indexMerchantsLoaded}}" />
     <merchant-overview wx:for="{{lxMerchants}}" wx:for-item="merchant" wx:key="id" merchant="{{merchant}}" />
   </view>
   <list-footer bg="#FFFFFF" loading="{{loadingLxMerchants}}" page="{{page}}" show-no-more="{{lxMerchants && lxMerchants[5]}}" />

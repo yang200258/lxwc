@@ -2,6 +2,7 @@
 
 .loadmore-tip{
   height: 92rpx;
+  width: 100%;
   text-align: center;
   font-size: 24rpx;
   line-height: 32rpx;
@@ -10,4 +11,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  
+}
+.loadmore-tip text {
+  vertical-align: top;
+}
+.dash {
+  display: inline-block;
+  border-top: 1px dashed #999;
+  width: 32%;
+  margin: 0 16rpx;
 }
