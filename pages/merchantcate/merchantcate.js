@@ -203,16 +203,6 @@ Page({
         _obj.page = page
         _obj.indexMerchantsLoaded = true
         //监测是否获取到商家信息
-        if(!list || !list.length) {
-          console.log('列表为空');
-          this.setData({
-            page: {
-              pn:0,
-              isend: true
-            }
-          })
-          return;
-        }
         if (page && page.pn && page.pn.toString() !== '0') { // 不是第一页
           console.log('不是第一页',this.data)
           let len = (lxMerchants && lxMerchants.length) ? lxMerchants.length : 0
@@ -227,6 +217,16 @@ Page({
         }
         this.setData(_obj)
         console.log(this.data);
+      }
+      if(!res.data.list || (res.data.list && res.data.list.length<10)) {
+        console.log('列表为空');
+        this.setData({
+          page: {
+            pn:0,
+            isend: true
+          },
+        })
+        return;
       }
     }).catch(err => {
       console.log('获取数据失败', err)

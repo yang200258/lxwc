@@ -185,7 +185,7 @@ Page({
         let { huodong } = res.data
         let voucher = []
         if (huodong && huodong[0]) {
-          voucher = huodong.filter(item => item.type.toString() === '1') // type为1的活动表示 满减优惠券
+          voucher = huodong.filter(item => item.type.toString() === 'getcoupon') // type为1的活动表示 满减优惠券
           if (voucher && voucher.length) {
             voucher = this.getVoucherView(voucher)
           }

@@ -47,13 +47,13 @@
         <view class='line-separator-v' style="height:24rpx;"></view>
         <view catchtap="changeSort" data-sort="{{1}}" class="sort-type-hot {{currentSort === 1 ? 'current' : ''}}">人气</view>
       </view>
-      <view class='lx-merchants-header-line'></view>
+      <!-- <view class='lx-merchants-header-line'></view> -->
     </view>
   </view>
   <view class='lx-merchants-body'>
     <list-loader visible="{{!indexMerchantsLoaded}}" />
     <merchant-overview wx:for="{{lxMerchants}}" wx:for-item="merchant" wx:key="id" merchant="{{merchant}}" />
   </view>
-  <list-footer bg="#FFFFFF" loading="{{loadingLxMerchants}}" page="{{page}}" show-no-more="{{lxMerchants ? 'true' : 'false'}}" />
+  <list-footer bg="#F7F7F7" loading="{{loadingLxMerchants}}" page="{{page}}" show-no-more="{{lxMerchants ? 'true' : 'false'}}" />
   <iphone-bottom-adapter />
 </view>

@@ -37,6 +37,9 @@ Page({
 
       })
     }
+    util.request('/pay/done').then(res=> {
+      console.log(res);
+    })
   },
 
   /**

@@ -12,6 +12,39 @@ Page({
     selectedVoucher: null,
     userVouchers: [],
     canUseRedpacket: 0,
+    merchantDiscounts: [
+      //   {
+      //     "type":"platnew",//平台新客
+      //     "id":123, //活动id
+      //     "value":5,//立减5元
+      // },
+      // {
+      //     "type":"shopnew",//门店新客
+      //     "id":123, //活动id
+      //     "value":5,//立减5元
+      // },
+      // {
+      //  type:"shopyouhui",//商家满减活动
+      //  id:"1234",//活动id
+      //  youhui: [
+      //       {
+      //           id:1234,//满减号id
+      //           cond_count:20,//满100
+      //           value:20,//减20
+      //       },
+      //       {
+      //         id:124,//满减号id
+      //         cond_count:50,//满50
+      //         value:10,//减10
+      //       },
+      //       {
+      //         id:124,//满减号id
+      //         cond_count:40,//满50
+      //         value:30,//减10
+      //       },
+      //     ]
+      // }
+    ],
     // userRedpackets: [],    //红包功能弃用
     total: '',
     ignore: '',
@@ -143,7 +176,7 @@ Page({
           name,
           shopid,
           phone,
-          merchantDiscounts
+          merchantDiscounts,
         })
         console.log(this.data);
         if (name) { // 有店家名称，设置title
@@ -169,13 +202,72 @@ Page({
     return total - ignore
   },
 
-  calActual: function (total, ignore, userVouchers) {
+  calActual: function (total, ignore, userVouchers,merchantDiscounts) {
     total = parseFloat(total || 0)
     ignore = parseFloat(ignore || 0)
     let before = this.calFullCutAct(total, ignore)
-    let actual = 0
+    let actual = total
     let voucherDiscount = 0
+    let platnew =[]
+    let shopnew = []
+    let shopyouhui = []
+    let arr = []
     if (before >= 0.01) { // 原始需支付大于最低支付金额
+      if(merchantDiscounts && merchantDiscounts.length) {
+        merchantDiscounts.forEach(item=> {
+          if(item.type == 'platnew') {
+            platnew = item;
+          }
+          if(item.type == 'shopnew'){
+            shopnew = item
+          }
+          if(item.type == 'shopyouhui') {
+            shopyouhui = item.youhui
+          }
+        })
+      }
+      console.log('验证',platnew.length);
+      //计算平台新客
+      if(platnew && platnew.length) {
+        console.log('计算platnew');
+        if(platnew.value >= actual - ignore) {
+          actual = ignore
+        } else {
+          actual = actual - platnew.value
+        }
+        console.log('platnew',actual);
+      }
+      //计算门店新客
+      if(shopnew && shopnew.length) {
+        console.log('计算shopnew');
+        if(shopnew.value >= actual - ignore) {
+          actual = ignore
+        } else {
+          actual = actual - platnew.value
+        }
+        console.log('shopnew',actual);
+      }
+      //计算商铺优惠
+      if(shopyouhui && shopyouhui.length) {
+        console.log('计算shopyouhui');
+        shopyouhui.forEach(item=> {
+          arr.push({"cond_count":item.cond_count,"value":item.value})
+        })
+        console.log(arr);
+        arr.sort(function compare(a,b){
+          return b.cond_count-a.cond_count
+        })
+        if(arr && arr.length) {
+          for(var i = 0;i<arr.length;i++) {
+            console.log(arr[i]);
+            if(arr[i].cond_count <= actual - ignore) {
+              actual = actual - arr[i].value
+              return actual
+            }
+          }
+        }
+      }
+      //计算个人优惠
       if (userVouchers && userVouchers.length) {
         userVouchers.forEach(item => {
           if (item.useful && item.selected && item.value > voucherDiscount) {
@@ -183,8 +275,10 @@ Page({
           }
         })
       }
+      console.log('merchantDiscounts',merchantDiscounts);
     }
-    actual = (before - voucherDiscount + ignore).toFixed(2)
+    actual = (actual - voucherDiscount).toFixed(2)
+    actual = actual >=0 ? actual : 0
     return actual
   },
 
@@ -192,6 +286,7 @@ Page({
     total = parseFloat(total || 0)
     ignore = parseFloat(ignore || 0)
     let {
+      merchantDiscounts,
       userVouchers
     } = this.data
     let before = this.calFullCutAct(total, ignore)
@@ -207,7 +302,7 @@ Page({
           selectedVoucher: null,
           userVouchers: _userVouchers,
           canUseVoucher: 0,
-          actual: this.calActual(total, ignore, _userVouchers)
+          actual: this.calActual(total, ignore, _userVouchers,merchantDiscounts)
         })
       }
       return 0
@@ -216,7 +311,7 @@ Page({
       this.setData({
         selectedVoucher: null,
         canUseVoucher: 0,
-        actual: this.calActual(total, ignore, _userVouchers)
+        actual: this.calActual(total, ignore, _userVouchers,merchantDiscounts)
       })
       return 0
     }
@@ -234,7 +329,7 @@ Page({
         selectedVoucher: canUseVoucher ? this.data.selectedVoucher : null,
         userVouchers: _userVouchers,
         canUseVoucher: canUseVoucher,
-        actual: this.calActual(total, ignore, _userVouchers)
+        actual: this.calActual(total, ignore, _userVouchers,merchantDiscounts)
       })
       return canUseVoucher
     }
@@ -347,13 +442,14 @@ Page({
   },
 
   pay: function () {
-    let {total, ignore, actual, shopid, selectedVoucher, paying} = this.data
+    let {total, ignore, actual, shopid, selectedVoucher, paying,phone} = this.data
     if (paying || !actual || (actual && parseFloat(actual) < 0.01)) { // 正在付款时中断
       return false
     }
     if (!phone) { // 无手机号，不是会员
       return false
     }
+    
     let coupon_id = selectedVoucher ? selectedVoucher.id : ''
     let rData = {
       shopid,
@@ -362,12 +458,13 @@ Page({
       actual_amount: actual ? parseFloat(actual): 0,
       coupon_id
     }
+    console.log(rData);
     this.setData({
       paying: true
     })
     util.request('/pay/request', rData, { dontToast: true}).then(res => {
       if (res && !res.error) { // 支付成功，跳转成功页面
-        // console.lig('付款成功', res.data)
+        // console.log('付款成功', res.data)
         let url = ''
         let {name} = this.data
         if (name) {
@@ -399,6 +496,9 @@ Page({
       this.setData({
         paying: false
       })
+      // wx.redirectTo({
+      //   url: '/pages/paysuccess/paysuccess'
+      // })
     })
   },
 

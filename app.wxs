@@ -1,17 +1,19 @@
   //商家活动类型
   var filterTitle = function(activity){
-    console.log(999999999);
-    console.log('传入的数据',activity[0]);
+    console.log('传入的数据',activity);
     var str='';
     if(activity.type == 'platnew' || activity.type == 'shopnew') {
-        str = '立减'+activity.value+'元'
+        str = '立减'+activity.value+'元 '
         console.log('传出的数据',str);
         return str;
-    } else {
+    } else if(activity.type == 'shopyouhui' && activity.youhui && activity.youhui.length){
       for(var i = 0;i<activity.youhui.length;i++) {
         str += "满" + activity.youhui[i].cond_count + "减" + activity.youhui[i].value + "元 "
       }
       console.log('传出的数据',str);
+      return str;
+    } else if(activity.type == 'shopyouhui' && activity.cond_count) {
+      str += "满" + activity.cond_count + "减" + activity.value + "元"
       return str;
     }
   }

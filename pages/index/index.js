@@ -25,11 +25,11 @@ Page({
     recommendNewFetching: false,
     recommendTabs: [
       {
-        title: '为您优选',
+        title: '乐享优选',
         merchants: []
       },
       {
-        title: '新店优选',
+        title: '乐享新店',
         merchants: []
       }
     ],

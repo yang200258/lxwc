@@ -43,7 +43,7 @@
     </view>
   </view>
   <!-- 商家优惠活动 -->
-  <view wx:if="{{(activitys.voucher && activitys.voucher.length) || (activitys.shopyouhui && activitys.shopyouhui.length) || (activitys.fullgift && activitys.fullgift.length)}}" class='merchant-activity'>
+  <view wx:if="{{(activitys.voucher && activitys.voucher.length) || (activitys.shopyouhui && activitys.shopyouhui.length) || (activitys.shopnew && activitys.shopnew.length) || (activitys.platnew && activitys.platnew.length)}}" class='merchant-activity'>
     <view class='block-separator'></view>
     <view class='activity-header'>商家优惠</view>
     <!-- 代金券 -->
@@ -68,12 +68,12 @@
         </view>
       </view>
     </view>
-    <!-- 商家新新客户 -->
-    <view class='fullcut-box' wx:if="{{activitys.platnew && activitys.platnew.length}}">
+    <!-- 商家新客户 -->
+    <view class='fullcut-box' wx:if="{{activitys.paltnew && activitys.paltnew.length}}">
       <view class='line-separator-h'></view>
       <view class='fullcut-content-wrapper'>
-        <view wx:for="{{activitys.platnew}}" wx:for-item="platnew" wx:key="" class='fullcut-item'>
-          <view class='fullcut-text'>{{filter.filterTitle(platnew)}}</view>
+        <view wx:for="{{activitys.paltnew}}" wx:for-item="paltnew" wx:key="" class='fullcut-item'>
+          <view class='fullcut-text'>{{filter.filterTitle(paltnew)}}</view>
         </view>
       </view>
     </view>
@@ -88,6 +88,16 @@
     </view>
     
     <!-- 满赠 -->
+    <!-- <view wx:if="{{activitys.fullgift && activitys.fullgift.length}}" class='fullgift-box'>
+      <view class='line-separator-h'></view>
+      <view class='fullgift-content-wrapper'>
+        <view wx:for="{{activitys.fullgift}}" wx:for-item="fullgift" wx:key="id" class='fullgift-item'>
+          <view class='fullgift-text'>{{fullgift.title}}</view>
+        </view>
+      </view>
+    </view> -->
+
+    <!-- 优惠券
     <view wx:if="{{activitys.fullgift && activitys.fullgift.length}}" class='fullgift-box'>
       <view class='line-separator-h'></view>
       <view class='fullgift-content-wrapper'>
@@ -95,7 +105,8 @@
           <view class='fullgift-text'>{{fullgift.title}}</view>
         </view>
       </view>
-    </view>
+    </view> -->
+
   </view>
   <!-- 商家简介 -->
   <view wx:if="{{intro && intro.length}}" class='merchant-intro'>
