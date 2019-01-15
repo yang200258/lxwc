@@ -47,10 +47,10 @@
     <view class='block-separator'></view>
     <view class='activity-header'>商家优惠</view>
     <!-- 代金券 -->
-    <view wx:if="{{activitys.voucher && activitys.voucher.length}}" class='voucher-box'>
+    <view wx:if="{{activitys.voucher[0] && activitys.voucher[0].coupons.length}}" class='voucher-box'>
       <view class='line-separator-h'></view>
       <view class='voucher-content-wrapper'>
-        <view wx:for="{{activitys.voucher}}" wx:for-item="voucher" wx:key="id" class='voucher-item'>
+        <view wx:for="{{activitys.voucher[0].coupons}}" wx:for-item="voucher" wx:key="id" class='voucher-item'>
           <view class='voucher-text'>{{voucher.title}}</view>
           <view class="voucher-btn {{voucher.status == 1 ? '' : 'disabled'}}" catchtap="getVoucher" data-voucher="{{voucher}}">
             <text>{{voucher.status == 1 ? '领取' : '已领取'}}</text>
@@ -97,8 +97,8 @@
       </view>
     </view> -->
 
-    <!-- 优惠券
-    <view wx:if="{{activitys.fullgift && activitys.fullgift.length}}" class='fullgift-box'>
+    <!-- 优惠券 -->
+    <!-- <view wx:if="{{activitys.fullgift && activitys.fullgift.length}}" class='fullgift-box'>
       <view class='line-separator-h'></view>
       <view class='fullgift-content-wrapper'>
         <view wx:for="{{activitys.fullgift}}" wx:for-item="fullgift" wx:key="id" class='fullgift-item'>
@@ -109,19 +109,20 @@
 
   </view>
   <!-- 商家简介 -->
-  <view wx:if="{{intro && intro.length}}" class='merchant-intro'>
+  <view wx:if="{{merchantData.introduce}}" class='merchant-intro'>
     <view class='block-separator'></view>
     <view class='intro-header'>
       <text>商家简介</text>
       <view class='line-separator-h'></view>
     </view>
     <view class='intro-detail'>
-      <block wx:for="{{intro}}" wx:for-item="introItem" wx:key="*this">
+      <!-- <block wx:for="{{introduce}}" wx:for-item="introItem" wx:key="*this"> -->
         <!-- 文字 -->
-        <view wx:if="{{introItem.type == 1}}" class='intro-text'>{{introItem.content}}</view>
+        <!-- <view wx:if="{{introItem.type == 1}}" class='intro-text'>{{introItem.content}}</view> -->
         <!-- 图片 -->
-        <image wx:if="{{introItem.type == 2}}" class='intro-image' src="{{introItem.url}}" mode="widthFix"></image>
-      </block>
+        <!-- <image wx:if="{{introItem.type == 2}}" class='intro-image' src="{{introItem.url}}" mode="widthFix"></image> -->
+        <view class="intro-text" >{{merchantData.introduce}}</view>
+      <!-- </block> -->
     </view>
   </view>
   <!-- 优惠买单 -->

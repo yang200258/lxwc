@@ -228,27 +228,27 @@ Page({
       }
       console.log('验证',platnew.length);
       //计算平台新客
-      if(platnew && platnew.length) {
+      if(platnew) {
         console.log('计算platnew');
         if(platnew.value >= actual - ignore) {
           actual = ignore
         } else {
-          actual = actual - platnew.value
+          actual = actual - (platnew.value || 0)
         }
         console.log('platnew',actual);
       }
       //计算门店新客
-      if(shopnew && shopnew.length) {
+      if(shopnew) {
         console.log('计算shopnew');
         if(shopnew.value >= actual - ignore) {
           actual = ignore
         } else {
-          actual = actual - platnew.value
+          actual = actual - (shopnew.value || 0)
         }
         console.log('shopnew',actual);
       }
       //计算商铺优惠
-      if(shopyouhui && shopyouhui.length) {
+      if(shopyouhui) {
         console.log('计算shopyouhui');
         shopyouhui.forEach(item=> {
           arr.push({"cond_count":item.cond_count,"value":item.value})
@@ -261,7 +261,7 @@ Page({
           for(var i = 0;i<arr.length;i++) {
             console.log(arr[i]);
             if(arr[i].cond_count <= actual - ignore) {
-              actual = actual - arr[i].value
+              actual = actual - (arr[i].value || 0)
               return actual
             }
           }

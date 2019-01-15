@@ -35,7 +35,7 @@ page{
   transition: all 0.4s;
 }
 .header-item.current{
-  color: #FF9500;
+  color: #CC0000;
 }
 .indicator-box{
   padding-top: 6rpx;
@@ -50,7 +50,7 @@ page{
   height: 6rpx;
   top: 0;
   left: -33rpx;
-  background: #FF9500;
+  background: #CC0000;
   transition: all 0.4s;
 }
 .tab-content-wrapper{
@@ -89,7 +89,7 @@ page{
   color: #333;
 }
 .right.in{
-  color: #FF9500;
+  color: #CC0000;
 }
 .title{
   font-size: 34rpx;

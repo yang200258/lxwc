@@ -234,6 +234,9 @@ Page({
   activityTap: function (e) {
     const { shopid } = e.currentTarget.dataset.activity
     console.log('shopid', shopid, e)
+    if(shopid == '0') {
+      return 
+    }
     wx.navigateTo({
       url: '/pages/merchantdetail/merchantdetail?id=' + shopid
     })

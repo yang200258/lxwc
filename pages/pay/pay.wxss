@@ -174,7 +174,7 @@ page {
 .order-btn{
   width: 200rpx;
   height: 94rpx;
-  background: #FF9500;
+  background: #CC0000;
   color: #fff;
   font-size: 32rpx;
   line-height: 44rpx;
@@ -183,5 +183,5 @@ page {
   align-items: center;
 }
 .order-btn.disabled{
-  background: #FFCA7F;
+  background: rgb(226, 94, 94);
 }

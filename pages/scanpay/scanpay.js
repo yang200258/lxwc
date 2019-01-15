@@ -68,7 +68,7 @@ Page({
 
   onTabItemTap(item) {
     console.log('onTabItemTap', item)
-    this.scanCode()
+    // this.scanCode()
   },
 
   scanCode: function () {

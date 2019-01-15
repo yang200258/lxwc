@@ -113,54 +113,6 @@ Page({
     this.bottomButtonAdapt()
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function() {
-
-  },
 
   bottomButtonAdapt: function () {
     const systemInfo = wx.getSystemInfoSync()
@@ -184,18 +136,31 @@ Page({
       if (res && res.data && !res.msg) { // 获取成功
         let { huodong } = res.data
         let voucher = []
+        let shopnew =[]
+        let platnew = []
+        let shopyouhui = []
         if (huodong && huodong[0]) {
           voucher = huodong.filter(item => item.type.toString() === 'getcoupon') // type为1的活动表示 满减优惠券
-          if (voucher && voucher.length) {
+          shopnew = huodong.filter(item => item.type.toString() === 'shopnew')
+          platnew = huodong.filter(item => item.type.toString() === 'platnew')
+          shopyouhui = huodong.filter(item => item.type.toString() === 'shopyouhui')
+          console.log(voucher);
+          if (voucher[0] && voucher[0].coupons) {
+            console.log(77777);
             voucher = this.getVoucherView(voucher)
           }
+          
         }
         let _obj = {
           merchantData: res.data,
+          'activitys.platnew': platnew,
+          'activitys.shopnew': shopnew,
+          'activitys.shopyouhui': shopyouhui,
           'activitys.voucher': voucher,
         }
         this.setData(_obj)
         console.log('获取到的活动：',this.data.activitys);
+        console.log(voucher);
       }
     }).catch(err => {
       console.log('获取商家数据失败', err)
@@ -205,6 +170,7 @@ Page({
   getVoucher: function (e) { // 领取满减优惠券
     const voucherId = e.currentTarget.dataset.voucher.id
     const status = e.currentTarget.dataset.voucher.status
+    console.log('status',status);
     const {phone} = this.data
     if (!phone || this.voucherGetting[voucherId.toString()] || status.toString() !== '1') { // 正在获取对应的优惠券时，中断当前操作，未领取状态才能再次领取
       return false
@@ -221,7 +187,7 @@ Page({
             let _voucher = JSON.parse(JSON.stringify(voucher))
             _voucher.forEach(item => {
               if (item.id.toString() === voucherId.toString()) {
-                item.status = '2'
+                item.coupons.status = '2'
               }
             })
             this.setData({
@@ -239,7 +205,7 @@ Page({
   },
 
   getVoucherView: function (vouchers) { // 向满减优惠券数组中添加title字段
-    vouchers.forEach(item => {
+    vouchers[0].coupons.forEach(item => {
       item.title = item.value + '元代金券（满' + item.cond_count + '元可用)'
     })
     return vouchers
@@ -290,16 +256,16 @@ Page({
     if (!phone || !this.shopid) {
       return false
     }
-    // const goNext = () => {
-    //   wx.navigateTo({
-    //     url: '/pages/pay/pay?id=' + this.shopid + '&title=' + merchantData.name
-    //   })
-    // }
-    // this.checkBalance(goNext)
+    const goNext = () => {
+      wx.navigateTo({
+        url: '/pages/pay/pay?id=' + this.shopid + '&title=' + merchantData.name
+      })
+    }
+    this.checkBalance(goNext)
     //测试付款页面
-    wx.navigateTo({
-      url: '/pages/pay/pay?id=' + this.shopid + '&title=' + merchantData.name
-    })
+    // wx.navigateTo({
+    //   url: '/pages/pay/pay?id=' + this.shopid + '&title=' + merchantData.name
+    // })
   },
 
   getPhone: function (res) {

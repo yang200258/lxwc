@@ -96,12 +96,12 @@
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  border: 1px solid #FF9500;
-  color: #FF9500;
+  border: 1px solid #CC0000;
+  color: #CC0000;
   transition: all 0.2s;
 }
 .recharge-item.current{
-  background: #FF9500;
+  background: #CC0000;
   color: #fff;
 }
 .original-price{
@@ -120,6 +120,6 @@
   height: 74rpx;
   font-size: 34rpx;
   color: #fff;
-  background: #FF9500;
+  background: #CC0000;
   border-radius: 8rpx;
 }

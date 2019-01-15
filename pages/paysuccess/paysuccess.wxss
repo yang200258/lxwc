@@ -100,7 +100,7 @@ page{
   flex: 1;
   height: 94rpx;
   border-radius: 8rpx;
-  background: #FF9500;
+  background: #CC0000;
   color: #fff;
   font-size: 36rpx;
   line-height: 50rpx;
