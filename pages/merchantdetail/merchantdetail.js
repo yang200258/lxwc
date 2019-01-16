@@ -181,6 +181,7 @@ Page({
         util.request('/shop/get_coupon', {
           id: voucherId
         }).then(res => {
+          console.log('coupons',res);
           this.voucherGetting[voucherId.toString()] = false
           if (res && res.data && !res.msg) { // 领取成功
             let { activitys: { voucher } } = this.data

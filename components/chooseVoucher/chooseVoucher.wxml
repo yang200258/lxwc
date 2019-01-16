@@ -1,7 +1,7 @@
 <!--components/chooseVoucher/chooseVoucher.wxml-->
 <view class="wrapper {{voucher.useful ? '' : 'disabled'}}" catchtap="chooseVoucher">
   <view class='left'>
-    <image class='image' src="{{voucher.pic}}" mode="aspectFill"></image>
+    <image class='image' src="{{voucher.logo}}" mode="aspectFill"></image>
     <view class='overview'>
       <view class='value-and-title'>
         <text class='iconfont icon-renminbi'></text>
