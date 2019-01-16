@@ -29,9 +29,9 @@
     <!-- 商家营业时间 -->
     <view wx:if="{{merchantData.business_time}}" class='business-time-wrapper'>
       <view class='line-separator-h'></view>
-      <view class='business-time'>
+      <view class='business-time'  wx:for="{{merchantData.business_time}}" wx:for-item="business_time" wx:key="*this">
         <image class='shop-image' src="/assets/images/merchant_icon.png" mode="aspectFit"></image>
-        <text class='business-time-text'>{{merchantData.business_time}}</text>
+        <view class='business-time-text'>{{business_time + '  '}}</view>
       </view>
     </view>
     <!-- 商家地址及电话 -->

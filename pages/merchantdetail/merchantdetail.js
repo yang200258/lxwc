@@ -180,19 +180,22 @@ Page({
         util.request('/shop/get_coupon', {
           id: voucherId
         }).then(res => {
-          console.log('coupons',res);
+          // console.log('coupons',res);
           this.voucherGetting[voucherId.toString()] = false
           if (res && res.data && !res.msg) { // 领取成功
+            console.log('领取成功',res);
             let { activitys: { voucher } } = this.data
             let _voucher = JSON.parse(JSON.stringify(voucher))
-            _voucher.forEach(item => {
+            _voucher[0].coupons.forEach(item => {
               if (item.id.toString() === voucherId.toString()) {
-                item.coupons.status = '2'
+                console.log('修改status成功');
+                item.status = '2'
               }
             })
             this.setData({
               'activitys.voucher': _voucher
             })
+            console.log('_voucher',_voucher);
           }
         }).catch(err => {
           this.voucherGetting[voucherId.toString()] = false
