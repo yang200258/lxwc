@@ -146,7 +146,6 @@ Page({
           shopyouhui = huodong.filter(item => item.type.toString() === 'shopyouhui')
           console.log(voucher);
           if (voucher[0] && voucher[0].coupons) {
-            console.log(77777);
             voucher = this.getVoucherView(voucher)
           }
           

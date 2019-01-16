@@ -60,20 +60,20 @@
       </view>
     </view>
     <!-- 平台新客户 -->
-    <view class='fullcut-box' wx:if="{{activitys.shopnew && activitys.shopnew.length}}">
+    <view class='fullcut-box' wx:if="{{activitys.platnew && activitys.platnew.length}}">
       <view class='line-separator-h'></view>
       <view class='fullcut-content-wrapper'>
-        <view wx:for="{{activitys.shopnew}}" wx:for-item="shopnew" wx:key="" class='fullcut-item'>
-          <view class='fullcut-text'>{{filter.filterTitle(shopnew)}}</view>
+        <view wx:for="{{activitys.platnew}}" wx:for-item="platnew" wx:key="" class='fullcut-item'>
+          <view class='fullcut-text'>平台新客：  {{filter.filterTitle(platnew)}}</view>
         </view>
       </view>
     </view>
     <!-- 商家新客户 -->
-    <view class='fullcut-box' wx:if="{{activitys.paltnew && activitys.paltnew.length}}">
+    <view class='fullcut-box' wx:if="{{activitys.shopnew && activitys.shopnew.length}}">
       <view class='line-separator-h'></view>
       <view class='fullcut-content-wrapper'>
-        <view wx:for="{{activitys.paltnew}}" wx:for-item="paltnew" wx:key="" class='fullcut-item'>
-          <view class='fullcut-text'>{{filter.filterTitle(paltnew)}}</view>
+        <view wx:for="{{activitys.shopnew}}" wx:for-item="shopnew" wx:key="" class='fullcut-item'>
+          <view class='fullcut-text'>门店新客：   {{filter.filterTitle(shopnew)}}</view>
         </view>
       </view>
     </view>
@@ -82,7 +82,7 @@
       <view class='line-separator-h'></view>
       <view class='fullcut-content-wrapper'>
         <view wx:for="{{activitys.shopyouhui}}" wx:for-item="shopyouhui" wx:key="" class='fullcut-item'>
-          <view class='fullcut-text'>{{filter.filterTitle(shopyouhui)}}</view>
+          <view class='fullcut-text'>商家满减：   {{filter.filterTitle(shopyouhui)}}</view>
         </view>
       </view>
     </view>

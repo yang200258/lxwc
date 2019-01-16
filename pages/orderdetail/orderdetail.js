@@ -81,6 +81,7 @@ Page({
     }
     util.request('/order/info', rData).then(res => {
       if (res && res.data && !res.error) { // 成功获取数据
+        console.log('获取订单数据', res)
         this.setData({
           order: res.data
         })

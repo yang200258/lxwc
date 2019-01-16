@@ -17,7 +17,7 @@
       <view class='merchant-discount-header'>商家优惠</view>
       <view class='line-separator-h' style="width:718rpx;margin-left:32rpx;background:#999"></view>
       <view class='merchant-discount-content'>
-        <view wx:for="{{merchantDiscounts}}" wx:for-item="merchantDiscount" wx:key="id" class='merchant-discount-item'>{{filter.filterTitle(merchantDiscount)}}</view>
+        <view wx:for="{{merchantDiscounts}}" wx:for-item="merchantDiscount" wx:key="id" class='merchant-discount-item'>{{filter.filterPay(merchantDiscount)}}</view>
       </view>
     </view>
   </view>

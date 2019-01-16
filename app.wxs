@@ -2,7 +2,7 @@
   var filterTitle = function(activity){
     // console.log('传入的数据',activity);
     var str='';
-    if(activity.type == 'platnew' || activity.type == 'shopnew') {
+    if(activity.type == 'shopnew') {
         str = '立减'+activity.value+'元 '
         console.log('传出的数据',str);
         return str;
@@ -12,26 +12,44 @@
       }
       console.log('传出的数据',str);
       return str;
-    } else if(activity.type == 'shopyouhui' && activity.cond_count) {
-      str += "满" + activity.cond_count + "减" + activity.value + "元"
+    } else if(activity.type == 'platnew') {
+      str = "立减" + activity.value + "元"
+      console.log('传出的pingtaixinke数据',str);
       return str;
+    } else if(activity.type == 'getcoupon') {
+      for(var i = 0;i< activity.coupons.length;i++) {
+        str += "满" + activity.coupons[i].cond_count + "元减" + activity.coupons[i].value + "元 "
+      }
+      return str
     }
   }
-  var filterGift = function(activity){
+  var filterPay = function(activity){
+    // console.log('传入的数据',activity);
     var str='';
-    if(activity.type == 'platnew' || activity.type == 'shopnew') {
-        str = '立减'+activity.value+'元'
+    if(activity.type == 'shopnew') {
+        str = '门店新客：立减'+activity.value+'元 '
         console.log('传出的数据',str);
         return str;
-    } else {
+    } else if(activity.type == 'shopyouhui' && activity.youhui){
       for(var i = 0;i<activity.youhui.length;i++) {
         str += "满" + activity.youhui[i].cond_count + "减" + activity.youhui[i].value + "元 "
       }
+      str = '商家满减：' + str
       console.log('传出的数据',str);
       return str;
+    } else if(activity.type == 'platnew') {
+      str = "平台新客：立减" + activity.value + "元"
+      console.log('传出的pingtaixinke数据',str);
+      return str;
+    } else if(activity.type == 'getcoupon') {
+      for(var i = 0;i< activity.coupons.length;i++) {
+        str += "满" + activity.coupons[i].cond_count + "元减" + activity.coupons[i].value + "元 "
+      }
+      str = '优惠券：' + str
+      return str
     }
   }
   module.exports = {
       filterTitle : filterTitle,
-      // filterGift: filterGift
+      filterPay: filterPay
   }

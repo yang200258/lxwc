@@ -20,10 +20,10 @@ Component({
     },
     // active: [],
     colorObj: {
-      1: '#007AFF',
-      2: '#E8541E',
-      3: '#7ED321',
-      4: '#FFCC00'
+      platnew: '#007AFF',
+      shopnew: '#E8541E',
+      shopyouhui: '#7ED321',
+      getcoupon: '#FFCC00'
     },
     textObj: {
       platnew : '平台新客',
