@@ -49,7 +49,16 @@
       return str
     }
   }
+  var filterDistance = function(distance) {
+    if(distance >= 1000) {
+      distance =  (distance/1000).toFixed(1)
+      return distance + 'km'
+    } else {
+      return distance + 'm'
+    }
+  }
   module.exports = {
       filterTitle : filterTitle,
-      filterPay: filterPay
+      filterPay: filterPay,
+      filterDistance: filterDistance
   }

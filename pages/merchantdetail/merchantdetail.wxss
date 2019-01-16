@@ -54,13 +54,13 @@
   margin-right: 10rpx;
 }
 .notice-header-title{
-  font-size: 28rpx;
+  font-size: 32rpx;
   font-weight: bold;
   color: #666;
   line-height: 36rpx;
 }
 .notice-content{
-  font-size: 24rpx;
+  font-size: 28rpx;
   line-height: 32rpx;
   color: #999;
   padding-left: 38rpx;
@@ -138,7 +138,7 @@
 }
 .voucher-text{
   flex: 1;
-  font-size: 28rpx;
+  font-size: 32rpx;
   line-height: 36rpx;
   color: #333;
   padding-right: 20rpx;
@@ -149,7 +149,7 @@
   align-items: center;
   width: 112rpx;
   height: 44rpx;
-  font-size: 24rpx;
+  font-size: 32rpx;
   color: #fff;
   line-height: 28rpx;
   border-radius: 4rpx;
@@ -170,10 +170,11 @@
   display: flex;
   align-items: center;
   padding: 4rpx 0;
+  /* font-size: 32rpx; */
 }
 .fullcut-text{
   flex: 1;
-  font-size: 28rpx;
+  font-size: 32rpx;
   line-height: 36rpx;
   color: #333;
 }

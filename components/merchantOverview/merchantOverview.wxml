@@ -6,7 +6,7 @@
     <view class='overview'>
       <view class='title-and-distance'>
         <view class='title'>{{merchant.name}}</view>
-        <view class='distance' wx:if="{{merchant.distance}}">{{merchant.distance}}</view>
+        <view class='distance' wx:if="{{merchant.distance}}">{{filter.filterDistance(merchant.distance)}}</view>
       </view>
       <star-box wx:if="{{merchant.rate}}" score="{{merchant.rate}}" />
       <view wx:else style="height:6rpx"></view>

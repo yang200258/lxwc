@@ -33,7 +33,7 @@ Page({
         merchants: []
       }
     ],
-    currentSort: 0, // 0:按距离排序，    1:按人气排序
+    currentSort: 1, // 0:按距离排序，    1:按人气排序
     currentCate: 0,
     indexCates: [],
     indexMerchants: [],
@@ -43,7 +43,8 @@ Page({
 
   onLoad: function () {
     console.log('index---------------')
-    this.fetchLxMerchant(0, 0)
+    this.getLngLat()
+    this.fetchLxMerchant(0, this.data.currentSort + 1)
     if (wx.getStorageSync('token')) { // 存在token才弹出获取位置弹窗
       this.getUserLocation()
     }
@@ -157,6 +158,7 @@ Page({
           'location.lat': latitude,
           locationGetting: false
         })
+        console.log('cdfavfa',location);
         // 请求接口拿到地理位置
       },
       fail: res => {
@@ -204,7 +206,7 @@ Page({
   },
 
   onPullDownRefresh: function () {
-    this.fetchLxMerchant(0, 0)
+    this.fetchLxMerchant(0, this.data.currentSort + 1)
     this.fetchBanner(true)
     this.fetchMerchantCates(true)
     this.fetchRecommendUser(true)
@@ -216,7 +218,7 @@ Page({
     if ((page && page.isend) || loadingIndexMerchants) {
       return false
     }
-    this.fetchLxMerchant(page.pn + 1, 0)
+    this.fetchLxMerchant(page.pn + 1, this.data.currentSort + 1)
   },
 
   goMessageList: function () {
@@ -267,6 +269,7 @@ Page({
     this.setData({
       currentSort: e.currentTarget.dataset.sort
     })
+    this.fetchLxMerchant(0,e.currentTarget.dataset.sort + 1)
   },
 
   changeIndexCate: function (e) {
@@ -373,18 +376,30 @@ Page({
   },
 
   fetchLxMerchant: function (page, type) { // 获取乐享商家
-    let { loadingIndexMerchants} = this.data
+    let { loadingIndexMerchants,location} = this.data
     if (loadingIndexMerchants) { // 如果正在加载乐享商家列表，则中断
       if (!page || page === '0') {
         wx.stopPullDownRefresh()
       }
       return false
     }
-    let rData = {
-      type,
-      page,
-      limit: 20
+    let rData = {}
+    if(type.toString() == '1') {
+        rData = {
+          type,
+          page,
+          lat:location.lat,
+          lon: location.lng,
+          limit: 20
+        }
+    } else {
+       rData = {
+        type,
+        page,
+        limit: 20
+      }
     }
+    console.log('rData',rData);
     this.setData({
       loadingIndexMerchants: true
     })
