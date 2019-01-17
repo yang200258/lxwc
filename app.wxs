@@ -68,9 +68,17 @@
     console.log('str',business_time);
     return str
   }
+  var formatIntro = function(text){
+    if(!text){
+        return
+    }
+    var reg = getRegExp('\\\\n','g')
+    return text.replace(reg, '\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;')
+}
   module.exports = {
       filterTitle : filterTitle,
       filterPay: filterPay,
       filterDistance: filterDistance,
-      filterTime: filterTime
+      filterTime: filterTime,
+      formatIntro: formatIntro
   }

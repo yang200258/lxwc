@@ -32,7 +32,7 @@
             <image class='wallet-image' src="/assets/images/balance_icon.png" mode="aspectFit"></image>
           </view>
           <view class='wallet-title'>余额</view>
-          <view class='wallet-text'>{{userWallet.balance || 0.00}}</view>
+          <view class='wallet-text'>{{userWallet.balance || 0.00}}元</view>
         </view>
         <view class='wallet-item' catchtap="goRedPacketList">
           <view class='wallet-image-box'>

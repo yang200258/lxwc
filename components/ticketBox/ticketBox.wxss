@@ -38,7 +38,7 @@
 }
 .value-and-title{
   font-size: 30rpx;
-  color: #CC0000;
+  color: #FF0000;
   line-height: 40rpx;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -46,7 +46,7 @@
 }
 .icon-renminbi{
   font-size: 26rpx;
-  color: #CC0000;
+  color: #FF0000;
 }
 .value{
   font-size: 54rpx;

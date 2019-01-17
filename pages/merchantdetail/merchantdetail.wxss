@@ -153,7 +153,7 @@
   color: #fff;
   line-height: 28rpx;
   border-radius: 4rpx;
-  background: #CC0000;
+  background: #FF0000;
   position: relative;
 }
 .voucher-btn.disabled{
@@ -210,12 +210,12 @@
   overflow: hidden;
 }
 .intro-text{
-  font-size: 28rpx;
+  font-size: 30rpx;
   line-height: 40rpx;
   margin: 20rpx 0;
   color: #666;
   text-align: justify;
-  text-indent: 56rpx;
+  text-indent: 60rpx;
   white-space: pre-wrap
 }
 .intro-image{
@@ -241,7 +241,7 @@
 }
 .pay-btn{
   height: 94rpx;
-  background: #CC0000;
+  background: #FF0000;
   font-size: 36rpx;
   color: #fff;
   display: flex;

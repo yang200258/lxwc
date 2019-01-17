@@ -22,7 +22,7 @@ page{
 }
 .icon-location_xcx{
   font-size: 32rpx;
-  color: #CC0000;
+  color: #FF0000;
   margin-right: 20rpx;
 }
 .location-text{
@@ -194,13 +194,13 @@ page{
   margin-left: 0;
 }
 .rec-merchants-header-title.current{
-  color: #CC0000;
+  color: #FF0000;
   font-weight: bold;
 }
 .rec-merchants-header-title-line{
   width: 100%;
   height: 4rpx;
-  background: #CC0000;
+  background: #FF0000;
   position: absolute;
   left: 0;
   bottom: 0;
@@ -248,13 +248,13 @@ page{
   z-index: 2;
 }
 .lx-merchants-header-title.current{
-  color: #CC0000;
+  color: #FF0000;
   font-weight: bold;
 }
 .lx-merchants-header-title-line{
   width: 100%;
   height: 4rpx;
-  background: #CC0000;
+  background: #FF0000;
   position: absolute;
   left: 0;
   bottom: 0;
@@ -302,7 +302,7 @@ page{
 }
 .sort-type-distance.current,.sort-type-hot.current{
   font-weight: bold;
-  color: #CC0000;
+  color: #FF0000;
 }
 .sort-type-hot{
   padding-right: 0;

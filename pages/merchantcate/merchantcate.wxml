@@ -43,7 +43,7 @@
         <text class='iconfont icon-pull_down'></text>
       </view> -->
       <view class='sort-type'>
-        <view catchtap="changeSort" data-sort="{{0}}" class="sort-type-distance {{currentSort === 0 ? 'current' : ''}}">距离</view>
+        <view catchtap="changeSort" data-sort="{{0}}" class="sort-type-distance {{currentSort === 0 ? 'current' : ''}}">附近</view>
         <view class='line-separator-v' style="height:24rpx;"></view>
         <view catchtap="changeSort" data-sort="{{1}}" class="sort-type-hot {{currentSort === 1 ? 'current' : ''}}">人气</view>
       </view>

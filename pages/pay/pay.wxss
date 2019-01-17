@@ -174,7 +174,7 @@ page {
 .order-btn{
   width: 200rpx;
   height: 94rpx;
-  background: #CC0000;
+  background: #FF0000;
   color: #fff;
   font-size: 32rpx;
   line-height: 44rpx;
