@@ -228,7 +228,6 @@ Page({
           }
         })
       }
-      console.log('验证',platnew.length);
       //计算平台新客
       if(platnew) {
         console.log('计算platnew');
@@ -273,41 +272,55 @@ Page({
       }
       console.log('计算shopyouhui',actual);
       //计算个人优惠券
-      
-      userVouchers = userVouchers[0] || userVouchers
-      console.log('userVouchers',userVouchers);
+      if(userVouchers === undefined) {
+        actual = actual >=0 ? actual : 0
+        console.log('最终计算金额：',actual);
+        return actual
+      }
+      if(userVouchers[0]){
+        userVouchers = userVouchers.filter(item => item.selected)[0]
+      } else {
+        userVouchers = userVouchers
+      }
+      console.log('计算中的userVouchers',userVouchers);
       if (userVouchers && userVouchers.selected) {
-          if (userVouchers.useful && userVouchers.selected && userVouchers.value > 0) {
-            if(userVouchers.cond_count <= actual - ignore) {
-              actual = actual - userVouchers.value
-            } else {
-              actual = actual
-            }
+        console.log('计算优惠券',actual);
+        if (userVouchers.useful && userVouchers.selected && userVouchers.value > 0) {
+          console.log(userVouchers.cond_count,actual - ignore);
+          if(userVouchers.cond_count <= actual - ignore) {
+            actual = actual - userVouchers.value
+          } else {
+            actual = actual
           }
+        }
       }
       console.log('merchantDiscounts',merchantDiscounts);
     }
     actual = actual.toFixed(2)
+    this.setData({
+      actual
+    })
     actual = actual >=0 ? actual : 0
+    console.log('最终计算金额：',actual);
     return actual
-  },
-  calVoucher: function() {
-
   },
 
   getUseableVoucher: function(total, ignore) { // 计算可用优惠券张数
     total = parseFloat(total || 0)
     ignore = parseFloat(ignore || 0)
+    console.log('输入的数据：',total,ignore);
     let {
       merchantDiscounts,
-      userVouchers
+      userVouchers,
+      // actual
     } = this.data
     console.log('userVouchers',userVouchers);
-    let before = this.calFullCutAct(total, ignore)
-    console.log('getUseableVoucher', total, ignore, before)
+    let actual = this.calActual(total, ignore, userVouchers,merchantDiscounts)
+    let before = this.calFullCutAct(actual, ignore)
+    console.log('getUseableVoucher', total, ignore, actual)
     let _userVouchers = [].concat(userVouchers)
     console.log('_userVouchers',_userVouchers);
-    console.log(before);
+    console.log('actual',actual);
     if (before < 0.01) {
       if (_userVouchers || _userVouchers[0]) { // 存在优惠券
         _userVouchers = _userVouchers.map(item => {
@@ -332,22 +345,25 @@ Page({
       return 0
     }
     if (_userVouchers && _userVouchers[0]) { // 存在优惠券
+      console.log('存在优惠券：',_userVouchers);
       let canUseVoucher = 0
       _userVouchers = _userVouchers.map(item => {
         console.log('item.cond_count',item.cond_count);
         console.log('item.value',item.value);
-        if (before - item.value >= 0.01) {
+        console.log('actual值：',actual);
+        if (before - item.cond_count >= 0) {
           canUseVoucher += 1
         }
         let useful = (before >= item.cond_count) && (before - item.value >= 0.01)
-        console.log(before, item.value)
+        console.log(actual, item.value)
         return Object.assign({}, item, { useful: useful, selected: item.selected && useful })
       })
+      console.log('canUseVoucher值：',canUseVoucher);
       this.setData({
         selectedVoucher: canUseVoucher ? this.data.selectedVoucher : null,
         userVouchers: _userVouchers,
         canUseVoucher: canUseVoucher,
-        actual: this.calActual(total, ignore, _userVouchers,merchantDiscounts)
+        // actual: this.calActual(total, ignore, _userVouchers,merchantDiscounts)
       })
       return canUseVoucher
     }
@@ -395,8 +411,6 @@ Page({
     let {
       total,
       ignore,
-      userVouchers,
-      merchantDiscounts
     } = this.data
     if (ignore && (!value || (value && this.isNumber(value) && (parseFloat(value) - parseFloat(ignore) < 0.01)))) {
       ignore = ''
@@ -447,9 +461,8 @@ Page({
       actual: this.calActual(total, ignore, selectedVoucher,merchantDiscounts)
     }, () => {
       const {total, ignore} = this.data
-      this.getUseableVoucher(total || 0, ignore || 0)
+      // this.getUseableVoucher(total || 0, ignore || 0)
     })
-    
   },
 
   getUserVouchers: function () {
@@ -457,9 +470,9 @@ Page({
   },
 
   chooseVoucher: function () {
-    const { canUseVoucher} = this.data
+    const { canUseVoucher,actual} = this.data
     // console.log(canUseVoucher);
-    if (canUseVoucher) {
+    if (canUseVoucher ) {
       wx.navigateTo({
         url: '/pages/choosevoucher/choosevoucher'
       })

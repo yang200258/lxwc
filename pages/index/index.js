@@ -1,5 +1,7 @@
 //index.js
 import util from '../../utils/util.js'
+var QQMapWX = require('../../assets/js/qqmap-wx-jssdk.js')
+var qqmapsdk;
 
 Page({
   data: {
@@ -42,6 +44,10 @@ Page({
   },
 
   onLoad: function () {
+    qqmapsdk = new QQMapWX({
+      key: 'RCRBZ-JYTKW-WJCR2-OUUHF-RSZ5V-RKF76', // 必填
+      // sig: 'YdSj1eVkpOsyHuQbB9YkPLUgw8kzK7Dh'
+    }); 
     console.log('index---------------')
     this.getLngLat()
     this.fetchLxMerchant(0, this.data.currentSort + 1)
@@ -153,13 +159,36 @@ Page({
         if (location.lng && location.lat) { // 已存在经纬度时，终止操作(考虑到当正在定位中时，手动获取位置并已返回结果))
           return false
         }
+        console.log('获取地址');
+        qqmapsdk.reverseGeocoder({
+          location: {
+            latitude,
+            longitude
+          },
+          success: (res)=>{
+            console.log(this);
+            console.log(res);
+            this.setData({
+              'location.lng': longitude,
+              'location.lat': latitude,
+              'location.address': res.result.address,
+              locationGetting: false
+            })
+          },
+          fail: function(err){
+            console.log('获取地址失败：',err);
+          },
+          complete: function(res){
+            console.log('地址操作完成：',res);
+          }
+        })
+        console.log('经纬度获取完成',location);
+        // 请求接口拿到地理位置
         this.setData({
           'location.lng': longitude,
           'location.lat': latitude,
           locationGetting: false
         })
-        console.log('cdfavfa',location);
-        // 请求接口拿到地理位置
       },
       fail: res => {
         this.resetLocation()

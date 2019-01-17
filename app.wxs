@@ -57,8 +57,20 @@
       return distance + 'm'
     }
   }
+  var filterTime = function(business_time) {
+    var str = ''
+    console.log('计算营业时间');
+    // for(var i=0;i<arr.length;i++) {
+    //   str += arr[i] + ' '
+    //   console.log('i',arr[i]);
+    // }
+    
+    console.log('str',business_time);
+    return str
+  }
   module.exports = {
       filterTitle : filterTitle,
       filterPay: filterPay,
-      filterDistance: filterDistance
+      filterDistance: filterDistance,
+      filterTime: filterTime
   }
