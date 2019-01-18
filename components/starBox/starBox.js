@@ -40,24 +40,24 @@ Component({
   methods: {
     //监测score变化更新
   updateScore() {
-    const { maxStar } = this.data
+    // const { maxStar } = this.data
     const score = this.properties.score
-    console.log(score);
-    let stars = []
+    console.log('score',score);
+    // let stars = []
     const scoreText = score.toFixed(1)
-    let fullLen = parseInt(score)
-    let decimal = score - fullLen
-    for (let i = 0; i < maxStar; i++) {
-      if (i < fullLen) {
-        stars.push({key: i, rate: 1})
-      } else if (i === fullLen) {
-        stars.push({ key: i, rate: decimal })
-      } else {
-        stars.push({ key: i, rate: 0 })
-      }
-    }
+    // let fullLen = parseInt(score)
+    // let decimal = score - fullLen
+    // for (let i = 0; i < maxStar; i++) {
+    //   if (i < fullLen) {
+    //     stars.push({key: i, rate: 1})
+    //   } else if (i === fullLen) {
+    //     stars.push({ key: i, rate: decimal })
+    //   } else {
+    //     stars.push({ key: i, rate: 0 })
+    //   }
+    // }
     this.setData({
-      stars,
+      // stars,
       scoreText
     })
   }

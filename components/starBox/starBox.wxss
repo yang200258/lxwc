@@ -1,5 +1,5 @@
 /* components/starBox/starBox.wxss */
-.star-wrapper{
+/* .star-wrapper{
   display: flex;
   align-items: center;
   padding: 10rpx 0;
@@ -23,8 +23,22 @@
   width: 100%;
   height: 100%;
   z-index: 2;
-}
+} */
 .score-text{
   color: #FF9500;
   margin-left: 20rpx;
+  padding-top: 4rpx;
+}
+.container {
+  display: flex;
+  margin: 4rpx 0;
+}
+.star-full,.star-empty {
+  display: flex;
+  flex-direction: row;
+}
+.star-full-image,.star-empty-image {
+  display: inline-block;
+  width: 32rpx;
+  height: 32rpx;
 }

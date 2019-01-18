@@ -206,7 +206,17 @@
 .sort-type-hot{
   padding-right: 0;
 }
-
+.sort-type-line-distance,.sort-type-line-hot {
+  height: 4rpx;
+  width: 60rpx;
+  background-color: #FF0000;
+}
+.sort-type-line-hot {
+  margin-left: 16rpx;
+}
+.sort-type-line-distance {
+  margin-left: 12rpx;
+}
 .lx-merchants-body{
   padding: 16rpx 32rpx 46rpx;
 }

@@ -3,22 +3,30 @@
     // console.log('传入的数据',activity);
     var str='';
     if(activity.type == 'shopnew') {
-        str = '立减'+activity.value+'元 '
+        str = '门店新客立减'+activity.value+'元 '
         console.log('传出的数据',str);
         return str;
     } else if(activity.type == 'shopyouhui' && activity.youhui){
       for(var i = 0;i<activity.youhui.length;i++) {
-        str += "满" + activity.youhui[i].cond_count + "减" + activity.youhui[i].value + "元 "
+        if(i !== activity.youhui.length - 1) {
+          str += "满" + activity.youhui[i].cond_count + "减" + activity.youhui[i].value + "；"
+        } else {
+          str += "满" + activity.youhui[i].cond_count + "减" + activity.youhui[i].value
+        }
       }
       console.log('传出的数据',str);
       return str;
     } else if(activity.type == 'platnew') {
-      str = "立减" + activity.value + "元"
+      str = "平台首单立减" + activity.value + "元"
       console.log('传出的pingtaixinke数据',str);
       return str;
     } else if(activity.type == 'getcoupon') {
       for(var i = 0;i< activity.coupons.length;i++) {
-        str += "满" + activity.coupons[i].cond_count + "元减" + activity.coupons[i].value + "元 "
+        if(i !== activity.coupons.length - 1) {
+          str +=  activity.coupons[i].value + "元代金券；"
+        } else {
+          str +=  activity.coupons[i].value + "元代金券"
+        }
       }
       return str
     }

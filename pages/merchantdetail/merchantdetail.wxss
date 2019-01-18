@@ -1,5 +1,6 @@
 /* pages/merchantdetail/merchantdetail.wxss */
 @import "../../assets/styles/common-page.wxss";
+@import "../../assets/styles/common-icon.wxss";
 
 .page-merchantdetail{
   padding-bottom: 180rpx;
@@ -47,16 +48,18 @@
   height: 28rpx;
   margin-right: 10rpx;
   flex-shrink: 0;
+  color: #CC0000;
 }
 .icon-notice{
   font-size: 28rpx;
-  color: #999;
+  color: #000;
+  font-weight: 700;
   margin-right: 10rpx;
 }
 .notice-header-title{
-  font-size: 32rpx;
+  font-size: 30rpx;
   font-weight: bold;
-  color: #666;
+  color: #000;
   line-height: 36rpx;
 }
 .notice-content{
@@ -73,7 +76,7 @@
   margin: 0 32rpx;
 }
 .business-time{
-  padding: 22rpx 0;
+  padding-top: 22rpx;
   display: flex;
   align-items: center;
 }
@@ -84,9 +87,16 @@
   margin-top: 2rpx;
 }
 .business-time-text{
+  display: inline-block;
   font-size: 28rpx;
-  font-weight: bold;
-  color: #666;
+  line-height: 32rpx;
+  color: #999;
+  padding-left: 38rpx;
+  /* padding-bottom: 22rpx; */
+}
+.business_time-title {
+  font-size: 30rpx;
+  font-weight: 700;
   line-height: 36rpx;
 }
 
@@ -125,6 +135,9 @@
   color: #333;
 }
 /* 代金券 */
+.act-icon {
+  margin-right: 10rpx;
+}
 .voucher-box{
   margin: 0 32rpx;
 }
@@ -135,10 +148,11 @@
   display: flex;
   align-items: center;
   padding: 8rpx 0;
+  padding-left: 20rpx;
 }
 .voucher-text{
   flex: 1;
-  font-size: 32rpx;
+  font-size: 28rpx;
   line-height: 36rpx;
   color: #333;
   padding-right: 20rpx;
@@ -170,6 +184,7 @@
   display: flex;
   align-items: center;
   padding: 4rpx 0;
+  padding-left: 20rpx;
   /* font-size: 32rpx; */
 }
 .fullcut-text{

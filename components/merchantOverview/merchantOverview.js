@@ -15,21 +15,21 @@ Component({
    */
   data: {
     actIconSize: {
-      width: 120,
+      width: 60,
       height: 32
     },
     // active: [],
     colorObj: {
       platnew: '#007AFF',
-      shopnew: '#E8541E',
-      shopyouhui: '#7ED321',
+      shopnew: '#F925FD',
+      shopyouhui: '#E8541E',
       getcoupon: '#FFCC00'
     },
     textObj: {
-      platnew : '平台新客',
-      shopnew : '门店新客',
-      shopyouhui: '商家满减',
-      getcoupon: '领取优惠'
+      platnew : '首单',
+      shopnew : '新客',
+      shopyouhui: '满减',
+      getcoupon: '领券'
     },
     titleObj: {
       platnew : '满',

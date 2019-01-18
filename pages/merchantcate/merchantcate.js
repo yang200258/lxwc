@@ -16,6 +16,8 @@ Page({
     page: {},
     cateId: '',
     shopId: '',
+    lat: '',
+    lng: '',
     rData: {}, //记录请求数据
     indexMerchantsLoaded: false,
     lxMerchants: [],  
@@ -139,11 +141,13 @@ Page({
       })
     }
     this.setData({
+      lat: options.lat,
+      lng: options.lng,
       cateId: options.id,
       currentCateIdx: options.id,
     })
     this.getSecondCate(options.id)
-    this.fetchLxMerchant(0,options.id,1)
+    this.fetchLxMerchant(1,0,options.id,1)
     this.setCatesBoxFixed()
   },
   //得到二级类函数
@@ -158,8 +162,8 @@ Page({
     })
    },
    //获取商家信息
-   fetchLxMerchant: function (page,id,grade) { // 获取乐享商家
-    let { loadingLxMerchants} = this.data
+   fetchLxMerchant: function (type,page,id,grade) { // 获取乐享商家
+    let { loadingLxMerchants,lat,lng} = this.data
     if (loadingLxMerchants) { // 如果正在加载乐享商家列表，则中断
       console.log(page);
       if (!page || page === '0') {
@@ -170,24 +174,56 @@ Page({
     this.setData({
       loadingLxMerchants: true
     })
-    if(grade === 1) {
+    console.log(grade,type,lat,lng);
+    if(grade === 1 && type===1) {
        this.setData({
         grade: grade,
         currentCateIdx: id,
         rData: {
-        cateid: id,
-        page,
-        limit: 10
+          type,
+          cateid: id,
+          page,
+          limit: 10,
+          lat,
+          lon: lng
         }
       })
-    } else if(grade === 2){
+    }
+    if(grade === 1 && type===2) {
       this.setData({
         grade: grade,
         currentCateIdx: id,
         rData: {
-        tagid: id,
-        page,
-        limit: 10
+          type,
+          cateid: id,
+          page,
+          limit: 10,
+        }
+      })
+    }
+    if(grade === 2 && type === 1){
+      this.setData({
+        grade: grade,
+        currentCateIdx: id,
+        rData: {
+          type,
+          tagid: id,
+          page,
+          limit: 10,
+          lat,
+          lon: lng
+        }
+      })
+    }
+    if(grade === 2 && type === 2) {
+      this.setData({
+        grade: grade,
+        currentCateIdx: id,
+        rData: {
+          type,
+          tagid: id,
+          page,
+          limit: 10,
         }
       })
     }
@@ -241,11 +277,18 @@ Page({
   },
     //点击获取二级类中所有商家信息
     fetchAllSecondShop: function(e){
-      this.fetchLxMerchant(0,this.data.cateId,1)
+      this.fetchLxMerchant(1,0,this.data.cateId,1)
+      this.setData({
+        currentSort: 0
+      })
     },
     //点击获取二级类别商家信息
     fetchSecondShop: function(e) {
-      this.fetchLxMerchant(0,e.currentTarget.dataset.cate.id,2)
+      console.log('二级类ID',e.currentTarget.dataset.cate);
+      this.fetchLxMerchant(1,0,e.currentTarget.dataset.cate.id,2)
+      this.setData({
+        currentSort: 0
+      })
     },
   setCatesBoxFixed: function () {
     if (wx.createIntersectionObserver) {
@@ -273,8 +316,7 @@ Page({
       if ((page && page.isend) || loadingLxMerchants) {
         return false
       }
-      console.log('chudi',page);
-      this.fetchLxMerchant(page.pn + 1,this.data.currentCateIdx,this.data.grade)
+      this.fetchLxMerchant(this.data.currentSort + 1,page.pn + 1,this.data.currentCateIdx,this.data.grade)
   },
 
   /**
@@ -294,6 +336,7 @@ Page({
     this.setData({
       currentSort: e.currentTarget.dataset.sort
     })
+    this.fetchLxMerchant(e.currentTarget.dataset.sort + 1,0,this.data.currentCateIdx,this.data.grade)
   },
 
   changeLxCate: function (e) {

@@ -276,8 +276,9 @@ Page({
   goMerchantCate: function (e) { // 商家分类相关的接口未实现，赞不允许进入
     // return false
     const {id, name} = e.currentTarget.dataset.cate
+    const {lat, lng} = this.data.location
     wx.navigateTo({
-      url: '/pages/merchantcate/merchantcate?id=' + id + '&name=' + name
+      url: '/pages/merchantcate/merchantcate?id=' + id + '&name=' + name + '&lat=' + lat + '&lng=' + lng
     })
   },
 

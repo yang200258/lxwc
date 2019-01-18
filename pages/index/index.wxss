@@ -248,7 +248,7 @@ page{
   z-index: 2;
 }
 .lx-merchants-header-title.current{
-  color: #FF0000;
+  color: #000;
   font-weight: bold;
 }
 .lx-merchants-header-title-line{
@@ -290,7 +290,7 @@ page{
 }
 .sort-type{
   flex: 1;
-  font-size: 24rpx;
+  font-size: 26rpx;
   line-height: 36rpx;
   height: 100%;
   display: flex;
@@ -300,9 +300,25 @@ page{
 .sort-type-distance,.sort-type-hot{
   padding: 5rpx 20rpx;
 }
+.sort-distance,.sort-hot {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 .sort-type-distance.current,.sort-type-hot.current{
   font-weight: bold;
   color: #FF0000;
+}
+.sort-type-line-distance,.sort-type-line-hot {
+  height: 4rpx;
+  width: 60rpx;
+  background-color: #FF0000;
+}
+.sort-type-line-hot {
+  margin-left: 16rpx;
+}
+.sort-type-line-distance {
+  margin-left: 12rpx;
 }
 .sort-type-hot{
   padding-right: 0;

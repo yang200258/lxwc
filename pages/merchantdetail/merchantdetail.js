@@ -8,6 +8,23 @@ Page({
    */
   data: {
     balance: null,
+    actIconSize: {
+      width: 60,
+      height: 32
+    },
+    // active: [],
+    colorObj: {
+      platnew: '#007AFF',
+      shopnew: '#F925FD',
+      shopyouhui: '#E8541E',
+      getcoupon: '#FFCC00'
+    },
+    textObj: {
+      platnew : '首单',
+      shopnew : '新客',
+      shopyouhui: '满减',
+      getcoupon: '领券'
+    },
     phone: '',
     activitys: {
       // voucher: [ // 代金券

@@ -34,7 +34,7 @@
     <view class='lx-merchants-header'>
       <view class="lx-merchants-header-title current">
         <text>乐享商家</text>
-        <view class='lx-merchants-header-title-line'></view>
+        <!-- <view class='lx-merchants-header-title-line'></view> -->
       </view>
       <!-- <view class='lx-filter'>
         <picker bindchange="changeLxCate" value="{{currentCate}}" range="{{lxCates}}" range-key="title">
@@ -43,9 +43,17 @@
         <text class='iconfont icon-pull_down'></text>
       </view> -->
       <view class='sort-type'>
-        <view catchtap="changeSort" data-sort="{{0}}" class="sort-type-distance {{currentSort === 0 ? 'current' : ''}}">附近</view>
+        <view class="sort-distance">
+          <view catchtap="changeSort" data-sort="{{0}}" class="sort-type-distance {{currentSort === 0 ? 'current' : ''}}">附近</view>
+          <view class="sort-type-line-distance" wx:if="{{currentSort === 0}}"></view>
+        </view>
         <view class='line-separator-v' style="height:24rpx;"></view>
-        <view catchtap="changeSort" data-sort="{{1}}" class="sort-type-hot {{currentSort === 1 ? 'current' : ''}}">人气</view>
+        <view class="sort-hot">
+          <view catchtap="changeSort" data-sort="{{1}}" class="sort-type-hot {{currentSort === 1 ? 'current' : ''}}">人气</view>
+          <view class="sort-type-line-hot" wx:if="{{currentSort === 1}}"></view>
+        </view>
+        
+        
       </view>
       <!-- <view class='lx-merchants-header-line'></view> -->
     </view>
