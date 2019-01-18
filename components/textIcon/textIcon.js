@@ -7,7 +7,7 @@ Component({
     size: {
       type: Object,
       value: {
-        width: 60,
+        width: 80,
         height: 32
       }
     },
@@ -29,7 +29,7 @@ Component({
    * 组件的初始数据
    */
   data: {
-
+    
   },
 
   /**

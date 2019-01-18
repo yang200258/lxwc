@@ -24,15 +24,17 @@
   height: 100%;
   z-index: 2;
 } */
+.container {
+  display: flex;
+  margin: 8rpx 0;
+  align-items: center;
+}
 .score-text{
   color: #FF9500;
   margin-left: 20rpx;
-  padding-top: 4rpx;
+  padding: 6rpx;
 }
-.container {
-  display: flex;
-  margin: 4rpx 0;
-}
+
 .star-full,.star-empty {
   display: flex;
   flex-direction: row;

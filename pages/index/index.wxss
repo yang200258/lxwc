@@ -318,7 +318,7 @@ page{
   margin-left: 16rpx;
 }
 .sort-type-line-distance {
-  margin-left: 12rpx;
+  margin-left: 16rpx;
 }
 .sort-type-hot{
   padding-right: 0;

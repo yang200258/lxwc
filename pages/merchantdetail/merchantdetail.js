@@ -9,15 +9,15 @@ Page({
   data: {
     balance: null,
     actIconSize: {
-      width: 60,
+      width: 80,
       height: 32
     },
     // active: [],
     colorObj: {
-      platnew: '#007AFF',
-      shopnew: '#F925FD',
-      shopyouhui: '#E8541E',
-      getcoupon: '#FFCC00'
+      platnew: '#33CC33',
+      shopnew: '#F8C300',
+      shopyouhui: '#FF0000',
+      getcoupon: '#CC3366'
     },
     textObj: {
       platnew : '首单',

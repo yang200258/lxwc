@@ -16,7 +16,7 @@ Component({
     },
     size: {
       type: Number,
-      value: 24
+      value: 28
     }
   },
 

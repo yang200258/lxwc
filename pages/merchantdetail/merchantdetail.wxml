@@ -34,15 +34,18 @@
         <text class="iconfont icon-time3 shop-image"></text>
         <view class="business_time-title">营业时间</view>
       </view>
-      <view class='business-time-text' wx:for="{{merchantData.business_time}}" wx:for-item="time" wx:for-index="idx" wx:key="*this">{{time}}{{idx == merchantData.business_time.length - 1? '' :','}}</view>
+      <view class="business_time_wrapper">
+        <view class='business-time-text' wx:for="{{merchantData.business_time}}" wx:for-item="time" wx:for-index="idx" wx:key="*this">{{time}}{{idx == merchantData.business_time.length - 1? '' :','}}</view>
+      </view>
     </view>
     <!-- 商家地址及电话 -->
     <view wx:if="{{merchantData.address}}" class='location-and-phone'>
-      <image class='location-image' src="/assets/images/location_icon.png" mode="aspectFit"></image>
+      <view class="location-image-wrapper">
+        <view class="iconfont icon-position location-image"></view>
+      </view>
       <text class='location-text'>{{merchantData.address}}</text>
-      <view wx:if="{{merchantData.phone}}" class='line-separator-v' style="height:28rpx;margin-left:28rpx;"></view>
-      <!-- <text wx:if="{{merchantData.phone}}" class='iconfont icon-phone' catchtap="callMerchant"></text> -->
-      <text wx:if="{{merchantData.phone}}" class='iconfont icon-phone-call' catchtap="callMerchant"></text>
+        <view wx:if="{{merchantData.phone}}" class='line-separator-v' style="height:38rpx;margin-left:28rpx;"></view>
+        <text wx:if="{{merchantData.phone}}" class='iconfont icon-phone-call' style="font-size:38rpx;margin:0 20rpx" catchtap="callMerchant"></text>
     </view>
   </view>
   <!-- 商家优惠活动 -->
@@ -65,7 +68,7 @@
     </view>
     <!-- 平台新客户 -->
     <view class='fullcut-box' wx:if="{{activitys.platnew && activitys.platnew.length}}">
-      <view class='line-separator-h'></view>
+      <!-- <view class='line-separator-h'></view> -->
       <view class='fullcut-content-wrapper'>
         <view wx:for="{{activitys.platnew}}" wx:for-item="platnew" wx:key="" class='fullcut-item'>
           <text-icon class='act-icon' size="{{actIconSize}}" font-size="{{28}}" color="{{'#007AFF'}}" text="{{'首单'}}" />
@@ -75,7 +78,7 @@
     </view>
     <!-- 商家新客户 -->
     <view class='fullcut-box' wx:if="{{activitys.shopnew && activitys.shopnew.length}}">
-      <view class='line-separator-h'></view>
+      <!-- <view class='line-separator-h'></view> -->
       <view class='fullcut-content-wrapper'>
         <view wx:for="{{activitys.shopnew}}" wx:for-item="shopnew" wx:key="" class='fullcut-item'>
           <text-icon class='act-icon' size="{{actIconSize}}" font-size="{{28}}" color="{{'#F925FD'}}" text="{{'新客'}}" />
@@ -85,7 +88,7 @@
     </view>
     <!-- 满减 -->
     <view class='fullcut-box' wx:if="{{activitys.shopyouhui && activitys.shopyouhui.length}}">
-      <view class='line-separator-h'></view>
+      <!-- <view class='line-separator-h'></view> -->
       <view class='fullcut-content-wrapper'>
         <view wx:for="{{activitys.shopyouhui}}" wx:for-item="shopyouhui" wx:key="" class='fullcut-item'>
           <text-icon class='act-icon' size="{{actIconSize}}" font-size="{{28}}" color="{{'#E8541E'}}" text="{{'满减'}}" />
@@ -119,7 +122,7 @@
   <view wx:if="{{merchantData.introduce}}" class='merchant-intro'>
     <view class='block-separator'></view>
     <view class='intro-header'>
-      <text>商家简介</text>
+      <text  class='intro-header-title'>商家简介</text>
       <view class='line-separator-h'></view>
     </view>
     <view class='intro-detail'>

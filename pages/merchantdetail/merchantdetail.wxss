@@ -50,6 +50,12 @@
   flex-shrink: 0;
   color: #CC0000;
 }
+.shop-image {
+  position: relative;
+  bottom: 2rpx;
+  font-size: 32rpx;
+}
+
 .icon-notice{
   font-size: 28rpx;
   color: #000;
@@ -57,7 +63,7 @@
   margin-right: 10rpx;
 }
 .notice-header-title{
-  font-size: 30rpx;
+  font-size: 34rpx;
   font-weight: bold;
   color: #000;
   line-height: 36rpx;
@@ -86,16 +92,19 @@
   margin-right: 10rpx;
   margin-top: 2rpx;
 }
+.business_time_wrapper {
+  padding-left: 38rpx;
+}
 .business-time-text{
   display: inline-block;
   font-size: 28rpx;
   line-height: 32rpx;
   color: #999;
-  padding-left: 38rpx;
-  /* padding-bottom: 22rpx; */
+  padding-bottom: 22rpx;
+  padding-left: 4rpx;
 }
 .business_time-title {
-  font-size: 30rpx;
+  font-size: 34rpx;
   font-weight: 700;
   line-height: 36rpx;
 }
@@ -105,16 +114,23 @@
   margin: 0 28rpx 0 32rpx;
   padding: 22rpx 0;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
 }
+.location-image-wrapper {
+  height: 72rpx;
+}
+/* .location-image {
+  position: relative;
+  top: 0;
+} */
 .icon-location_xcx{
   font-size: 28rpx;
   color: #999;
   margin-right: 10rpx;
 }
 .location-text{
-  font-size: 28rpx;
-  font-weight: bold;
+  height: 72rpx;
+  font-size: 34rpx;
   color: #666;
   line-height: 36rpx;
   margin-right: 4rpx;
@@ -189,7 +205,7 @@
 }
 .fullcut-text{
   flex: 1;
-  font-size: 32rpx;
+  font-size: 28rpx;
   line-height: 36rpx;
   color: #333;
 }
@@ -219,6 +235,9 @@
   padding: 12rpx 32rpx 0;
   font-weight: bold;
   color: #333;
+}
+.intro-header-title {
+  font-size: 34rpx;
 }
 .intro-detail{
   margin: 0 32rpx;

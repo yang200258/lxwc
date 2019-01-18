@@ -40,7 +40,11 @@
         return str;
     } else if(activity.type == 'shopyouhui' && activity.youhui){
       for(var i = 0;i<activity.youhui.length;i++) {
-        str += "满" + activity.youhui[i].cond_count + "减" + activity.youhui[i].value + "元 "
+        if(i !== activity.youhui.length - 1) {
+          str += "满" + activity.youhui[i].cond_count + "减" + activity.youhui[i].value + ";"
+        } else {
+          str += "满" + activity.youhui[i].cond_count + "减" + activity.youhui[i].value
+        }
       }
       str = '商家满减：' + str
       console.log('传出的数据',str);
@@ -51,7 +55,10 @@
       return str;
     } else if(activity.type == 'getcoupon') {
       for(var i = 0;i< activity.coupons.length;i++) {
-        str += "满" + activity.coupons[i].cond_count + "元减" + activity.coupons[i].value + "元 "
+        if(i !== activity.coupons.length - 1) {
+          str += "满" + activity.coupons[i].cond_count + "减" + activity.coupons[i].value + ";"
+        }
+        str += "满" + activity.coupons[i].cond_count + "减" + activity.coupons[i].value
       }
       str = '优惠券：' + str
       return str

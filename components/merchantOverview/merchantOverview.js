@@ -15,15 +15,15 @@ Component({
    */
   data: {
     actIconSize: {
-      width: 60,
+      width: 80,
       height: 32
     },
     // active: [],
     colorObj: {
-      platnew: '#007AFF',
-      shopnew: '#F925FD',
-      shopyouhui: '#E8541E',
-      getcoupon: '#FFCC00'
+      platnew: '#F8C300',
+      shopnew: '#33CC33',
+      shopyouhui: '#FF0000',
+      getcoupon: '#CC3366'
     },
     textObj: {
       platnew : '首单',
@@ -31,11 +31,6 @@ Component({
       shopyouhui: '满减',
       getcoupon: '领券'
     },
-    titleObj: {
-      platnew : '满',
-      shopnew : '门店新客',
-      shopyouhui: '商家满减',
-    }
   },
   ready: function(){
     // console.log(this.properties.merchant);
