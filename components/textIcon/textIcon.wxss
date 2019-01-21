@@ -2,6 +2,7 @@
 @import "../../assets/styles/common-icon.wxss";
 .wrapper{
   position: relative;
+  box-sizing: border-box;
 }
 .container{
   position: absolute;
@@ -16,7 +17,7 @@
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  letter-spacing: 12rpx;
+  
 }
 /* .bg{
   position: absolute;
@@ -27,3 +28,10 @@
   top: 0;
   left: 0;
 } */
+.text {
+  line-height: 16rpx;
+  width: 100%;
+  text-indent: 10rpx;
+  letter-spacing: 10rpx;
+  text-align: center;
+}

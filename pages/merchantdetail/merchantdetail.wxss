@@ -114,7 +114,10 @@
   margin: 0 28rpx 0 32rpx;
   padding: 22rpx 0;
   display: flex;
-  align-items: flex-start;
+  justify-content: space-between;
+}
+.location-wrapper {
+  display: flex;
 }
 .location-image-wrapper {
   height: 72rpx;

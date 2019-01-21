@@ -1,4 +1,5 @@
 /* components/starBox/starBox.wxss */
+@import "../../assets/styles/common-icon.wxss";
 /* .star-wrapper{
   display: flex;
   align-items: center;
@@ -38,6 +39,12 @@
 .star-full,.star-empty {
   display: flex;
   flex-direction: row;
+}
+.star-full-image {
+  color:#F8C300;
+}
+.star-empty-image {
+  color: #cdcdcd;
 }
 .star-full-image,.star-empty-image {
   display: inline-block;

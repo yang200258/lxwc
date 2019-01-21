@@ -297,13 +297,13 @@ page{
   justify-content: flex-end;
   align-items: center;
 }
-.sort-type-distance,.sort-type-hot{
-  padding: 5rpx 20rpx;
-}
 .sort-distance,.sort-hot {
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+.sort-type-distance,.sort-type-hot {
+  font-size: 26rpx;
 }
 .sort-type-distance.current,.sort-type-hot.current{
   font-weight: bold;
@@ -311,17 +311,13 @@ page{
 }
 .sort-type-line-distance,.sort-type-line-hot {
   height: 4rpx;
-  width: 60rpx;
   background-color: #FF0000;
 }
-.sort-type-line-hot {
-  margin-left: 16rpx;
-}
 .sort-type-line-distance {
-  margin-left: 16rpx;
+  width: 100%;
 }
-.sort-type-hot{
-  padding-right: 0;
+.line-separator-v {
+  margin: 0 18rpx;
 }
 
 .lx-merchants-body{

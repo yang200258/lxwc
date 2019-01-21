@@ -35,7 +35,7 @@ Component({
    */
   data: {
     actIconSize: {
-      width: 60,
+      width: 80,
       height: 32
     }
   },

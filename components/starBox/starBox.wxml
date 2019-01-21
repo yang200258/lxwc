@@ -8,10 +8,12 @@
 </view> -->
 <view class="container" wx:if="{{score}}">
   <view class="star-full" wx:for="{{score}}" wx:key="*this">
-    <image class="star-full-image" src="../../assets/images/star-full.png" mode="aspectFit" lazy-load="true" />
+    <!-- <image class="star-full-image" src="../../assets/images/star-full.png" mode="aspectFit" lazy-load="true" /> -->
+    <view class="iconfont icon-star star-full-image"></view>
   </view>
   <view class="star-empty" wx:for="{{maxStar - score}}"  wx:key="*this">
-    <image class="star-empty-image" src="../../assets/images/star-empty.png" mode="aspectFit"   lazy-load="true" />
+    <!-- <image class="star-empty-image" src="../../assets/images/star-empty.png" mode="aspectFit"   lazy-load="true" /> -->
+    <view class="iconfont icon-star star-empty-image"></view>
   </view>
   <text class='score-text' style="font-size:{{size}}rpx;line-height:{{size}}rpx;">{{scoreText}}</text>
 </view>

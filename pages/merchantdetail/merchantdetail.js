@@ -26,6 +26,7 @@ Page({
       getcoupon: '领券'
     },
     phone: '',
+    location: '',
     activitys: {
       // voucher: [ // 代金券
       //   {
@@ -141,7 +142,11 @@ Page({
       })
     }
   },
-
+  findMap: function(e) {
+    console.log('click address',e);
+    let location = this.data.location
+    wx.navigateTo({ url: '/pages/merchantmap/merchantmap?location=' + location });
+  },
   voucherGetting: {},
 
   fetchMerchantData: function (id) {
@@ -173,6 +178,7 @@ Page({
           'activitys.shopnew': shopnew,
           'activitys.shopyouhui': shopyouhui,
           'activitys.voucher': voucher,
+          location: res.data.position
         }
         this.setData(_obj)
         console.log('获取到的活动：',this.data.activitys);

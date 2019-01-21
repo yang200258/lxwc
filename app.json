@@ -20,7 +20,8 @@
     "pages/paysuccess/paysuccess",
     "pages/rechargesuccess/rechargesuccess",
     "pages/confirmphone/confirmphone",
-    "pages/rebindphone/rebindphone"
+    "pages/rebindphone/rebindphone",
+    "pages/merchantmap/merchantmap"
   ],
   "window": {
     "backgroundTextStyle": "light",

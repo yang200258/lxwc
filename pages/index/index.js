@@ -174,6 +174,7 @@ Page({
               'location.address': res.result.address,
               locationGetting: false
             })
+            this.setUserLocation(latitude,longitude)
           },
           fail: function(err){
             console.log('获取地址失败：',err);
@@ -195,6 +196,13 @@ Page({
       }
     })
   },
+  setUserLocation: function(latitude,longitude) {
+    if(!latitude || !longitude) {
+      return false
+    }
+    wx.setStorageSync('userLat',latitude)
+    wx.setStorageSync('userLng',longitude)
+  },
 
   setCurrentAddress: function () {
     wx.chooseLocation({
@@ -205,6 +213,7 @@ Page({
           location: { address, lng, lat},
           locationGetting: false
         })
+        this.setUserLocation(lat,lng)
         // this.setData({
         //   address: res
         // })
@@ -296,10 +305,11 @@ Page({
   },
 
   changeSort: function (e) {
+    const type = e.currentTarget.dataset.sort
+    this.fetchLxMerchant(0,type + 1)
     this.setData({
-      currentSort: e.currentTarget.dataset.sort
+      currentSort: type
     })
-    this.fetchLxMerchant(0,e.currentTarget.dataset.sort + 1)
   },
 
   changeIndexCate: function (e) {

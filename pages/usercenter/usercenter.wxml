@@ -4,7 +4,7 @@
   <view class='header'>
     <!-- 用户基本信息 -->
     <view class='user-info'>
-      <image class='user-info-bg' src="/assets/images/usercenter_banner.png" mode="aspectFill"></image>
+      <image class='user-info-bg' src="/assets/images/usercenter_banner.jpg" mode="aspectFill"></image>
       <!-- 消息模块未做好，暂时隐藏入口 -->
       <!-- <view class='message-box' catchtap="goMessageList">
         <image class='message-image' src="/assets/images/message_icon.png" mode="aspectFit"></image>
