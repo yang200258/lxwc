@@ -94,6 +94,6 @@
       filterTitle : filterTitle,
       filterPay: filterPay,
       filterDistance: filterDistance,
-      filterTime: filterTime,
+      // filterTime: filterTime,
       formatIntro: formatIntro
   }

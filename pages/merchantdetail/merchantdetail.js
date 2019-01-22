@@ -10,7 +10,7 @@ Page({
     balance: null,
     actIconSize: {
       width: 80,
-      height: 32
+      height: 36
     },
     // active: [],
     colorObj: {

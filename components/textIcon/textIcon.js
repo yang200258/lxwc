@@ -8,7 +8,7 @@ Component({
       type: Object,
       value: {
         width: 80,
-        height: 32
+        height: 36
       }
     },
     fontSize: {

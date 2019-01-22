@@ -61,7 +61,7 @@
       <view class='line-separator-h'></view>
       <view class='voucher-content-wrapper'>
         <view wx:for="{{activitys.voucher[0].coupons}}" wx:for-item="voucher" wx:key="id" class='voucher-item'>
-          <text-icon class='act-icon' size="{{actIconSize}}" font-size="{{28}}" color="{{'#CC3366'}}" text="{{'领券'}}" />
+          <text-icon class='act-icon' size="{{actIconSize}}" font-size="{{24}}" color="{{'#CC3366'}}" text="{{'领券'}}" />
           <view class='voucher-text'>{{voucher.title}}</view>
           <view class="voucher-btn {{voucher.status == 1 ? '' : 'disabled'}}" catchtap="getVoucher" data-voucher="{{voucher}}">
             <text>{{voucher.status == 1 ? '领取' : '已领取'}}</text>
@@ -75,7 +75,7 @@
       <!-- <view class='line-separator-h'></view> -->
       <view class='fullcut-content-wrapper'>
         <view wx:for="{{activitys.platnew}}" wx:for-item="platnew" wx:key="" class='fullcut-item'>
-          <text-icon class='act-icon' size="{{actIconSize}}" font-size="{{28}}" color="{{'#33CC33'}}" text="{{'新客'}}" />
+          <text-icon class='act-icon' size="{{actIconSize}}" font-size="{{24}}" color="{{'#F8C300'}}" text="{{'首单'}}" />
           <view class='fullcut-text'>{{filter.filterTitle(platnew)}}</view>
         </view>
       </view>
@@ -85,7 +85,7 @@
       <!-- <view class='line-separator-h'></view> -->
       <view class='fullcut-content-wrapper'>
         <view wx:for="{{activitys.shopnew}}" wx:for-item="shopnew" wx:key="" class='fullcut-item'>
-          <text-icon class='act-icon' size="{{actIconSize}}" font-size="{{28}}" color="{{'#F8C300'}}" text="{{'首单'}}" />
+          <text-icon class='act-icon' size="{{actIconSize}}" font-size="{{24}}" color="{{'#33CC33'}}" text="{{'新客'}}" />
           <view class='fullcut-text'>{{filter.filterTitle(shopnew)}}</view>
         </view>
       </view>
@@ -95,7 +95,7 @@
       <!-- <view class='line-separator-h'></view> -->
       <view class='fullcut-content-wrapper'>
         <view wx:for="{{activitys.shopyouhui}}" wx:for-item="shopyouhui" wx:key="" class='fullcut-item'>
-          <text-icon class='act-icon' size="{{actIconSize}}" font-size="{{28}}" color="{{'#FF0000'}}" text="{{'满减'}}" />
+          <text-icon class='act-icon' size="{{actIconSize}}" font-size="{{24}}" color="{{'#FF0000'}}" text="{{'满减'}}" />
           <view class='fullcut-text'>{{filter.filterTitle(shopyouhui)}}</view>
         </view>
       </view>
