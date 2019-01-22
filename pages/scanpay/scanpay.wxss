@@ -1,6 +1,6 @@
 /* pages/scanpay/scanpay.wxss */
 @import "../../assets/styles/common-page.wxss";
-
+@import "../../assets/styles/common-icon.wxss";
 .steps{
   margin: 0 32rpx;
   height: 324rpx;
@@ -45,3 +45,30 @@
   color: #666;
   text-align: center;
 }
+/* .scan-wrapper {
+  width: 362rpx;
+  height: 362rpx;
+  background-color: rgb(223, 211, 211);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 154rpx auto 32rpx;
+  z-index: 2;
+}
+.scan {
+  width: 362rpx;
+  height: 362rpx;
+  background-color: #FF0000;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 88;
+  opacity: 1;
+}
+.saomiao {
+  z-index: 99;
+  color: #fff;
+  font-size: 152rpx;
+} */

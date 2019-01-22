@@ -21,120 +21,13 @@ Page({
     rData: {}, //记录请求数据
     indexMerchantsLoaded: false,
     lxMerchants: [],  
-    lxMerchantsText: [   //测试数据
-      {
-        shopid: '4',
-        name: '香港满记甜品(文三路店）收到了饭就文三路店）收到了饭就随大流风景随大流风景',
-        pic: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3737093608,1532771841&fm=200&gp=0.jpg',
-        star: 4.5,
-        huodong: [
-          {
-            id: 1,
-            type: 'platnew', // type: 1(首减), 2(满减), 3(折扣), 4(满赠),
-            value:5,//立减5元
-          },
-          {
-            id: 2,
-            type: 'shopnew', // type: 1(首减), 2(满减), 3(折扣), 4(满赠),
-            value:5,      //立减5元
-          },
-          {
-            id: 3,
-            type: 'shopyouhui', // type: 1(首减), 2(满减), 3(折扣), 4(满赠),
-            youhui:[
-              {
-                id:1234,//满减号id
-                cond_count:100,//满100
-                value:20,//减20
-              },
-              {
-                id:124,//满减号id
-                cond_count:50,//满50
-                value:10,//减10
-              }
-            ]
-          },
-          // {
-          //   id: 4,
-          //   type: 'getcoupon', // type: 1(首减), 2(满减), 3(折扣), 4(满赠),
-          //   coupons: [
-          //     {
-          //       id:1234,   //优惠券id
-          //       cond_count:28,//满28
-          //       value:5,//减5
-          //       status: 0 //1为未领取，2为已领取,3为已使用
-          //     },
-          //     {
-          //         "id":1234,//优惠券id
-          //         "cond_count":28,//满28
-          //         "value":5,//减5
-          //         "status": 0 //1为未领取，2为已领取,3为已使用
-          //     },
-          //   ]
-          // }
-        ],
-        distance: '300m',
-      },
-      {
-        shopid: '4',
-        name: '香港满记甜品(文三路店）收到了饭就文三路店）收到了饭就随大流风景随大流风景',
-        pic: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3737093608,1532771841&fm=200&gp=0.jpg',
-        star: 4.5,
-        huodong: [
-          {
-            id: 1,
-            type: 'platnew', // type: 1(首减), 2(满减), 3(折扣), 4(满赠),
-            value:5,//立减5元
-          },
-          {
-            id: 2,
-            type: 'shopnew', // type: 1(首减), 2(满减), 3(折扣), 4(满赠),
-            value:5,      //立减5元
-          },
-          {
-            id: 3,
-            type: 'shopyouhui', // type: 1(首减), 2(满减), 3(折扣), 4(满赠),
-            youhui:[
-              {
-                id:1234,//满减号id
-                cond_count:100,//满100
-                value:20,//减20
-              },
-              {
-                id:124,//满减号id
-                cond_count:50,//满50
-                value:10,//减10
-              }
-            ]
-          },
-          // {
-          //   id: 4,
-          //   type: 'getcoupon', // type: 1(首减), 2(满减), 3(折扣), 4(满赠),
-          //   coupons: [
-          //     {
-          //       id:1234,   //优惠券id
-          //       cond_count:28,//满28
-          //       value:5,//减5
-          //       status: 0 //1为未领取，2为已领取,3为已使用
-          //     },
-          //     {
-          //         "id":1234,//优惠券id
-          //         "cond_count":28,//满28
-          //         "value":5,//减5
-          //         "status": 0 //1为未领取，2为已领取,3为已使用
-          //     },
-          //   ]
-          // }
-        ],
-        distance: '300m',
-      },
-    ]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setCatesBoxFixed()
     if (options && options.name) { // 传入标题时设置顶部标题
       wx.setNavigationBarTitle({
         title: options.name
@@ -148,7 +41,7 @@ Page({
     })
     this.getSecondCate(options.id)
     this.fetchLxMerchant(1,0,options.id,1)
-    this.setCatesBoxFixed()
+    
   },
   //得到二级类函数
    getSecondCate(id){
@@ -174,8 +67,10 @@ Page({
     this.setData({
       loadingLxMerchants: true
     })
+    lat = type===1 ? lat : ''
+    lng = type===1 ? lng : ''
     console.log(grade,type,lat,lng);
-    if(grade === 1 && type===1) {
+    if(grade === 1) {
        this.setData({
         grade: grade,
         currentCateIdx: id,
@@ -189,19 +84,7 @@ Page({
         }
       })
     }
-    if(grade === 1 && type===2) {
-      this.setData({
-        grade: grade,
-        currentCateIdx: id,
-        rData: {
-          type,
-          cateid: id,
-          page,
-          limit: 10,
-        }
-      })
-    }
-    if(grade === 2 && type === 1){
+    if(grade === 2){
       this.setData({
         grade: grade,
         currentCateIdx: id,
@@ -212,18 +95,6 @@ Page({
           limit: 10,
           lat,
           lon: lng
-        }
-      })
-    }
-    if(grade === 2 && type === 2) {
-      this.setData({
-        grade: grade,
-        currentCateIdx: id,
-        rData: {
-          type,
-          tagid: id,
-          page,
-          limit: 10,
         }
       })
     }
@@ -290,9 +161,30 @@ Page({
         currentSort: 0
       })
     },
+  // setCatesBoxFixed: function () {
+  //   if (wx.createIntersectionObserver) {
+  //     wx.createIntersectionObserver().relativeToViewport({ top: 0 }).observe('#search-box-wrapper', (res) => {
+  //       let { intersectionRatio } = res
+  //       console.log('区域相交',res);
+  //       if (intersectionRatio > 0) { // 可见
+  //         this.setData({
+  //           cateFixed: false
+  //         })
+  //       } else { // 不可见
+  //         this.setData({
+  //           cateFixed: true
+  //         })
+  //       }
+  //     })
+  //   }
+  // },
   setCatesBoxFixed: function () {
+    console.log('wx.createIntersectionObserver',wx.createIntersectionObserver);
     if (wx.createIntersectionObserver) {
-      wx.createIntersectionObserver().relativeToViewport({ top: 0 }).observe('#search-box-wrapper', (res) => {
+      wx.createIntersectionObserver()
+      .relativeToViewport({top: 0})
+      .observe('.lx-merchants', (res) => {
+        console.log('区域相交',res);
         let { intersectionRatio } = res
         if (intersectionRatio > 0) { // 可见
           this.setData({
@@ -319,13 +211,6 @@ Page({
       this.fetchLxMerchant(this.data.currentSort + 1,page.pn + 1,this.data.currentCateIdx,this.data.grade)
   },
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  },
-
   goSearchPage: function () {
     wx.navigateTo({
       url: '/pages/search/search'
@@ -345,3 +230,4 @@ Page({
     })
   }
 })
+

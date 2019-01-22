@@ -122,6 +122,10 @@
 .location-image-wrapper {
   height: 72rpx;
 }
+.phone-wrapper {
+  display: flex;
+  justify-content: flex-end;
+}
 /* .location-image {
   position: relative;
   top: 0;

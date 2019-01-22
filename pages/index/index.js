@@ -35,7 +35,7 @@ Page({
         merchants: []
       }
     ],
-    currentSort: 1, // 0:按距离排序，    1:按人气排序
+    currentSort: 0, // 0:按距离排序，    1:按人气排序
     currentCate: 0,
     indexCates: [],
     indexMerchants: [],
@@ -50,7 +50,6 @@ Page({
     }); 
     console.log('index---------------')
     this.getLngLat()
-    this.fetchLxMerchant(0, this.data.currentSort + 1)
     if (wx.getStorageSync('token')) { // 存在token才弹出获取位置弹窗
       this.getUserLocation()
     }
@@ -65,6 +64,7 @@ Page({
   },
 
   setSearchBoxFixed: function () {
+    console.log('wx.createIntersectionObserver',wx.createIntersectionObserver);
     if (wx.createIntersectionObserver) {
       wx.createIntersectionObserver().relativeToViewport({ top: 0 }).observe('#locatlion-wrapper', (res) => {
         let { intersectionRatio} = res
@@ -190,6 +190,7 @@ Page({
           'location.lat': latitude,
           locationGetting: false
         })
+        this.fetchLxMerchant(0, this.data.currentSort + 1)
       },
       fail: res => {
         this.resetLocation()
@@ -306,10 +307,11 @@ Page({
 
   changeSort: function (e) {
     const type = e.currentTarget.dataset.sort
-    this.fetchLxMerchant(0,type + 1)
     this.setData({
       currentSort: type
     })
+    this.fetchLxMerchant(0,type + 1)
+    
   },
 
   changeIndexCate: function (e) {
@@ -424,20 +426,12 @@ Page({
       return false
     }
     let rData = {}
-    if(type.toString() == '1') {
-        rData = {
-          type,
-          page,
-          lat:location.lat,
-          lon: location.lng,
-          limit: 20
-        }
-    } else {
-       rData = {
-        type,
-        page,
-        limit: 20
-      }
+    rData = {
+      type,
+      page,
+      lat:location.lat || '',
+      lon: location.lng || '',
+      limit: 20
     }
     console.log('rData',rData);
     this.setData({

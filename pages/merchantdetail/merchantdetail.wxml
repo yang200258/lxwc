@@ -46,8 +46,10 @@
         </view>
         <text class='location-text'>{{merchantData.address}}</text>
       </view>
-      <view wx:if="{{merchantData.phone}}" class='line-separator-v' style="height:38rpx;margin-left:28rpx;"></view>
-      <text wx:if="{{merchantData.phone}}" class='iconfont icon-phone-call' style="font-size:38rpx;margin:0 20rpx" catchtap="callMerchant"></text>
+      <view class="phone-wrapper">
+        <view wx:if="{{merchantData.phone}}" class='line-separator-v' style="height:38rpx;margin-left:28rpx;"></view>
+        <text wx:if="{{merchantData.phone}}" class='iconfont icon-phone-call' style="font-size:38rpx;margin:0 20rpx" catchtap="callMerchant"></text>
+      </view>
     </view>
   </view>
   <!-- 商家优惠活动 -->
