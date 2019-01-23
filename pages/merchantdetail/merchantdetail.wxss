@@ -160,6 +160,11 @@
 /* 代金券 */
 .act-icon {
   margin-right: 10rpx;
+  display: block;
+  width: 112rpx;
+  height: 49rpx;
+  transform: scale(0.8, 0.8);
+  transform-origin: 50% 50%;
 }
 .voucher-box{
   margin: 0 32rpx;
