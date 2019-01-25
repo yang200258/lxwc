@@ -238,7 +238,7 @@ Page({
         let _obj = {}
         wx.setStorageSync('phone', phone)
         _obj.phone = phone
-        _obj['userInfo.avatar'] = avatar
+        _obj['userInfo.avatar'] = avatar || util.getStorageSync('avatar')
         _obj['userInfo.name'] = name
         _obj['userInfo.id'] = id
         _obj['userWallet.balance'] = balance

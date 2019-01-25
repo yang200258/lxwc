@@ -37,7 +37,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 16,
+			"current": 17,
 			"list": [
 				{
 					"id": -1,
@@ -139,6 +139,12 @@
 					"id": -1,
 					"name": "重新绑定手机号",
 					"pathName": "pages/rebindphone/rebindphone",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "3恶女2",
+					"pathName": "pages/login/login",
 					"query": ""
 				}
 			]
