@@ -114,17 +114,29 @@
         </view>
       </view>
     </view> -->
-
-    <!-- 优惠券 -->
-    <!-- <view wx:if="{{activitys.fullgift && activitys.fullgift.length}}" class='fullgift-box'>
-      <view class='line-separator-h'></view>
-      <view class='fullgift-content-wrapper'>
-        <view wx:for="{{activitys.fullgift}}" wx:for-item="fullgift" wx:key="id" class='fullgift-item'>
-          <view class='fullgift-text'>{{fullgift.title}}</view>
+    <!-- 返现 -->
+    <view wx:if="{{activitys.fanxian[0] && activitys.fanxian[0].level.length}}" class='voucher-box'>
+      <!-- <view class='line-separator-h'></view> -->
+      <view class='voucher-content-wrapper'>
+        <view wx:for="{{activitys.fanxian[0]}}" wx:for-item="fanxian" wx:key="id" class='voucher-item'>
+          <!-- <text-icon class='act-icon' size="{{actIconSize}}" font-size="{{24}}" color="{{'#CC3366'}}" text="{{'领券'}}" /> -->
+          <image class="act-icon" src="../../assets/images/fanquan.png" mode="aspectFill" />
+          <view class='voucher-text'>{{filter.filterTitle(fanxian)}}</view>
         </view>
       </view>
-    </view> -->
+    </view>
 
+    <!-- 返券 -->
+    <view wx:if="{{activitys.fanquan[0] && activitys.fanquan[0].coupons.length}}" class='voucher-box'>
+      <!-- <view class='line-separator-h'></view> -->
+      <view class='voucher-content-wrapper'>
+        <view wx:for="{{activitys.fanquan[0]}}" wx:for-item="fanquan" wx:key="id" class='voucher-item'>
+          <!-- <text-icon class='act-icon' size="{{actIconSize}}" font-size="{{24}}" color="{{'#CC3366'}}" text="{{'领券'}}" /> -->
+          <image class="act-icon" src="../../assets/images/fanquan.png" mode="aspectFill" />
+          <view class='voucher-text'>{{filter.filterTitle(fanquan)}}</view>
+        </view>
+      </view>
+    </view>
   </view>
   <!-- 商家简介 -->
   <view wx:if="{{merchantData.introduce}}" class='merchant-intro'>

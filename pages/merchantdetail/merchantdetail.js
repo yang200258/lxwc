@@ -14,16 +14,24 @@ Page({
     },
     // active: [],
     colorObj: {
-      platnew: '#33CC33',
-      shopnew: '#F8C300',
+      platnew: '#F8C300',
+      shopnew: '#33CC33',
       shopyouhui: '#FF0000',
-      getcoupon: '#CC3366'
+      getcoupon: '#CC3366',
+      shopzeng: '#00ccff',
+      sale: '#cc3399',
+      fanquan: '#009933',
+      backcash: '#6699ff',
     },
     textObj: {
       platnew : '首单',
       shopnew : '新客',
       shopyouhui: '满减',
-      getcoupon: '领券'
+      getcoupon: '领券',
+      shopzeng: '满赠',
+      sale: '折扣',
+      fanquan: '返券',
+      backcash: '返现',
     },
     phone: '',
     location: '',
@@ -161,16 +169,23 @@ Page({
         let shopnew =[]
         let platnew = []
         let shopyouhui = []
+        let shopzeng = []
+        let fanquan = []
+        let fanxian = []
+        let zhekou = []
         if (huodong && huodong[0]) {
-          voucher = huodong.filter(item => item.type.toString() === 'getcoupon') // type为1的活动表示 满减优惠券
-          shopnew = huodong.filter(item => item.type.toString() === 'shopnew')
-          platnew = huodong.filter(item => item.type.toString() === 'platnew')
-          shopyouhui = huodong.filter(item => item.type.toString() === 'shopyouhui')
+          voucher = huodong.filter(item => item.type.toString() === 'getcoupon') || '' // type为1的活动表示 满减优惠券
+          shopnew = huodong.filter(item => item.type.toString() === 'shopnew') || ''
+          platnew = huodong.filter(item => item.type.toString() === 'platnew') || ''
+          shopyouhui = huodong.filter(item => item.type.toString() === 'shopyouhui') || ''
+          shopzeng = huodong.filter(item => item.type.toString() === 'shopzeng') || ''
+          fanquan = huodong.filter(item => item.type.toString() === 'fanquan') || ''
+          fanxian = huodong.filter(item => item.type.toString() === 'fanxian') || ''
+          zhekou = huodong.filter(item => item.type.toString() === 'zhekou') || ''
           console.log(voucher);
           if (voucher[0] && voucher[0].coupons) {
             voucher = this.getVoucherView(voucher)
           }
-          
         }
         let _obj = {
           merchantData: res.data,
@@ -178,6 +193,10 @@ Page({
           'activitys.shopnew': shopnew,
           'activitys.shopyouhui': shopyouhui,
           'activitys.voucher': voucher,
+          'activitys.zhekou': zhekou,
+          'activitys.fanxian': fanxian,
+          'activitys.fanquan': fanquan,
+          'activitys.shopzeng': shopzeng,
           location: res.data.position
         }
         this.setData(_obj)

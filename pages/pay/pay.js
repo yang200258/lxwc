@@ -370,22 +370,22 @@ Page({
     return 0
   },
 
-  getUseableRedpacket: function(beforePrice) { // 传入计算可用红包之前所剩的应付金额beforePrice,未传入时将通过页面的data来计算，有点延迟，可能导致bug
-    let before = parseFloat(beforePrice || 0)
-    if (!before || Object.prototype.toString.call(before) !== '[object Number]') { // 如果未传入，或者不是number类型的变量，则用data数据来算
+  // getUseableRedpacket: function(beforePrice) { // 传入计算可用红包之前所剩的应付金额beforePrice,未传入时将通过页面的data来计算，有点延迟，可能导致bug
+  //   let before = parseFloat(beforePrice || 0)
+  //   if (!before || Object.prototype.toString.call(before) !== '[object Number]') { // 如果未传入，或者不是number类型的变量，则用data数据来算
 
-    }
-    let {
-      userRedpackets
-    } = this.data
-    if (!userRedpackets || (userRedpackets && !userRedpackets[0])) { // 不存在红包
-      return 0
-    }
-    if (userRedpackets && userRedpackets[0]) {
-      let canUseRedpackets = userRedpackets.filter(item => (before > item.cond_count && before - item.value >= 0.01))
-      return canUseRedpackets.length
-    }
-  },
+  //   }
+  //   let {
+  //     userRedpackets
+  //   } = this.data
+  //   if (!userRedpackets || (userRedpackets && !userRedpackets[0])) { // 不存在红包
+  //     return 0
+  //   }
+  //   if (userRedpackets && userRedpackets[0]) {
+  //     let canUseRedpackets = userRedpackets.filter(item => (before > item.cond_count && before - item.value >= 0.01))
+  //     return canUseRedpackets.length
+  //   }
+  // },
 
   getDiscountTitle: function(voucher) {
     let title = ''
@@ -504,6 +504,9 @@ Page({
     this.setData({
       paying: true
     })
+    if(!paying) {
+      return false
+    }
     util.request('/pay/request', rData, { dontToast: true}).then(res => {
       if (res && !res.error) { // 支付成功，跳转成功页面
         // console.log('付款成功', res.data)

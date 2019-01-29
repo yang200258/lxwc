@@ -29,6 +29,22 @@
         }
       }
       return str
+    } else if(activity.type == 'fanxian') {
+      for(var i = 0;i< activity.level.length;i++) {
+        if(i !== activity.level.length - 1) {
+          str +=  "满" + activity.level[i].single_amount + "返现" + activity.level[i].value + "元;"
+        } else {
+          str +=  '满' + activity.level[i].single_amount + "返现" + activity.level[i].value + "元"
+        }
+      }
+    } else if(activity.type == 'fanquan') {
+      for(var i = 0;i< activity.coupons.length;i++) {
+        if(i !== activity.coupons.length - 1) {
+          str +=  "满" + activity.coupons[i].single_amount + "返券" + activity.coupons[i].value + "元;"
+        } else {
+          str +=  '满' + activity.coupons[i].single_amount + "返券" + activity.coupons[i].value + "元"
+        }
+      }
     }
   }
   var filterPay = function(activity){

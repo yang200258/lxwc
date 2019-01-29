@@ -23,13 +23,21 @@ Component({
       platnew: '#F8C300',
       shopnew: '#33CC33',
       shopyouhui: '#FF0000',
-      getcoupon: '#CC3366'
+      getcoupon: '#CC3366',
+      shopzeng: '#00ccff',
+      sale: '#cc3399',
+      fanquan: '#009933',
+      backcash: '#6699ff',
     },
     textObj: {
       platnew : '首单',
       shopnew : '新客',
       shopyouhui: '满减',
-      getcoupon: '领券'
+      getcoupon: '领券',
+      shopzeng: '满赠',
+      sale: '折扣',
+      fanquan: '返券',
+      backcash: '返现',
     },
   },
   ready: function(){
