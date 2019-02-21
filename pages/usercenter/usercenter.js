@@ -16,7 +16,7 @@ Page({
       id: ''
     },
     userWallet: {
-      balance: '',
+      balance: 0,
       redPacket: 0,
       voucher: 0
     },
@@ -143,13 +143,6 @@ Page({
     })
   },
 
-  goRedPacketList: function () { // 红包功能还没做好，暂时不给入口
-    return false
-    wx.navigateTo({
-      url: '/pages/redpacketlist/redpacketlist'
-    })
-  },
-
   goTicketList: function () {
     wx.navigateTo({
       url: '/pages/ticketlist/ticketlist'
@@ -238,7 +231,7 @@ Page({
         let _obj = {}
         wx.setStorageSync('phone', phone)
         _obj.phone = phone
-        _obj['userInfo.avatar'] = avatar || util.getStorageSync('avatar')
+        _obj['userInfo.avatar'] = avatar || wx.getStorageSync('avatar')
         _obj['userInfo.name'] = name
         _obj['userInfo.id'] = id
         _obj['userWallet.balance'] = balance
@@ -246,9 +239,9 @@ Page({
         this.setData(_obj)
       }
     }).catch(err => {
-
+      console.log(err);
     }).finally(res => {
-
+      console.log('this.data',this.data);
     })
   },
 

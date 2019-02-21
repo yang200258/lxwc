@@ -22,7 +22,6 @@ Component({
     fetching: false,
     submitting: false
   },
-
   ready: function () {
     this.getRechargeData()
   },

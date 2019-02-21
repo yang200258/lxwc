@@ -9,7 +9,7 @@
         <text class='title'>{{ticket.title}}</text>
       </view>
       <view class='content'>{{ticket.content}}</view>
-      <view class='time'>{{ticket.valid_btime}}-{{ticket.valid_etime}}</view>
+      <view class='time'>到期时间：{{ticket.valid_etime}}</view>
     </view>
   </view>
   <view class='separator'></view>

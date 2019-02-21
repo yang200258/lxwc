@@ -166,6 +166,7 @@ const showRechargeModal = (options) => {
   const ctx = getCtx(selector)
 
   ctx.showRechargeBox(options)
+  ctx.getRechargeData()
 }
 
 const showRedpacketModal = (options) => {

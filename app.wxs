@@ -1,12 +1,14 @@
   //商家活动类型
   var filterTitle = function(activity){
-    // console.log('传入的数据',activity);
+    console.log('传入的数据',activity);
     var str='';
     if(activity.type == 'shopnew') {
         str = '门店新客立减'+activity.value+'元 '
         console.log('传出的数据',str);
         return str;
-    } else if(activity.type == 'shopyouhui' && activity.youhui){
+    }
+
+    if(activity.type == 'shopyouhui' && activity.youhui){
       for(var i = 0;i<activity.youhui.length;i++) {
         if(i !== activity.youhui.length - 1) {
           str += "满" + activity.youhui[i].cond_count + "减" + activity.youhui[i].value + "；"
@@ -16,11 +18,14 @@
       }
       console.log('传出的数据',str);
       return str;
-    } else if(activity.type == 'platnew') {
+    } 
+    if(activity.type == 'platnew') {
       str = "平台首单立减" + activity.value + "元"
       console.log('传出的pingtaixinke数据',str);
       return str;
-    } else if(activity.type == 'getcoupon') {
+    }
+    
+    if(activity.type == 'getcoupon') {
       for(var i = 0;i< activity.coupons.length;i++) {
         if(i !== activity.coupons.length - 1) {
           str +=  activity.coupons[i].value + "元代金券；"
@@ -29,22 +34,29 @@
         }
       }
       return str
-    } else if(activity.type == 'fanxian') {
+    }
+    
+    if(activity.type == 'fanxian') {
+      console.log('activity',activity.level);
       for(var i = 0;i< activity.level.length;i++) {
         if(i !== activity.level.length - 1) {
-          str +=  "满" + activity.level[i].single_amount + "返现" + activity.level[i].value + "元;"
+          str +=  "满" + activity.level[i].single_amount + "返现" + activity.level[i].value + "元；"
         } else {
           str +=  '满' + activity.level[i].single_amount + "返现" + activity.level[i].value + "元"
         }
       }
-    } else if(activity.type == 'fanquan') {
+      return str
+    }
+    
+    if(activity.type == 'fanquan') {
       for(var i = 0;i< activity.coupons.length;i++) {
         if(i !== activity.coupons.length - 1) {
-          str +=  "满" + activity.coupons[i].single_amount + "返券" + activity.coupons[i].value + "元;"
+          str +=  "满" + activity.coupons[i].cond_count + "返券" + activity.coupons[i].value + "元；"
         } else {
-          str +=  '满' + activity.coupons[i].single_amount + "返券" + activity.coupons[i].value + "元"
+          str +=  '满' + activity.coupons[i].cond_count + "返券" + activity.coupons[i].value + "元"
         }
       }
+      return str
     }
   }
   var filterPay = function(activity){
@@ -106,10 +118,16 @@
     var reg = getRegExp('\\\\n','g')
     return text.replace(reg, '\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;')
 }
+var filterNumber= function(number){
+  console.log(number,number.toFixed(1));
+  return number = number.toFixed(1)
+
+}
+
   module.exports = {
       filterTitle : filterTitle,
       filterPay: filterPay,
       filterDistance: filterDistance,
-      // filterTime: filterTime,
+      filterNumber: filterNumber,
       formatIntro: formatIntro
   }

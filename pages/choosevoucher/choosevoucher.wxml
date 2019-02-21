@@ -1,6 +1,6 @@
 <!--pages/choosevoucher/choosevoucher.wxml-->
 <view class='page-choosevoucher'>
-  <view wx:for="{{vouchers}}" wx:for-item="voucher" wx:for-index="idx" wx:key="id" class='voucher-item'>
+  <view wx:for="{{vouchers}}" wx:for-item="voucher" wx:for-index="idx" wx:key="*this" class='voucher-item'>
     <choose-voucher voucher="{{voucher}}" bindvouchertap="choosevoucher" />
   </view>
 </view>

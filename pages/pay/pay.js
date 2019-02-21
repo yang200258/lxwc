@@ -503,10 +503,29 @@ Page({
     console.log(rData);
     this.setData({
       paying: true
+    },()=>{
+      this.payRequest(rData)
     })
-    if(!paying) {
-      return false
-    }
+  },
+
+  showRechargeDialog: function () {
+    console.log('showRechargeDialog')
+    wx.showModal({
+      title: '',
+      content: '余额不足，请充值！',
+      confirmText: '去充值',
+      confirmColor: '#108EE9',
+      success: res => {
+        if (res.confirm) {
+          console.log('用户点击确定')
+          util.showRechargeModal()
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+  },
+  payRequest: function(rData){
     util.request('/pay/request', rData, { dontToast: true}).then(res => {
       if (res && !res.error) { // 支付成功，跳转成功页面
         // console.log('付款成功', res.data)
@@ -544,24 +563,6 @@ Page({
       // wx.redirectTo({
       //   url: '/pages/paysuccess/paysuccess'
       // })
-    })
-  },
-
-  showRechargeDialog: function () {
-    console.log('showRechargeDialog')
-    wx.showModal({
-      title: '',
-      content: '余额不足，请充值！',
-      confirmText: '去充值',
-      confirmColor: '#108EE9',
-      success: res => {
-        if (res.confirm) {
-          console.log('用户点击确定')
-          util.showRechargeModal()
-        } else if (res.cancel) {
-          console.log('用户点击取消')
-        }
-      }
     })
   }
 })

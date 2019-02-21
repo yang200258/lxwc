@@ -21,6 +21,7 @@ Page({
     rData: {}, //记录请求数据
     indexMerchantsLoaded: false,
     lxMerchants: [],  
+    allimg: ''
   },
 
   /**
@@ -38,6 +39,7 @@ Page({
       lng: options.lng,
       cateId: options.id,
       currentCateIdx: options.id,
+      allimg: options.allimg
     })
     this.getSecondCate(options.id)
     this.fetchLxMerchant(1,0,options.id,1)
@@ -48,6 +50,7 @@ Page({
     util.request('/shop/list',{
       cateid: id
     }).then(res=> {
+      console.log(res);
       this.setData({
         lxCates: res.data.tags,
         currentCateIdx: id,

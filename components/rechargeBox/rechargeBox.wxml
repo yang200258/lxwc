@@ -1,4 +1,5 @@
 <!--components/rechargeBox/rechargeBox.wxml-->
+<wxs module="filter" src="../../app.wxs"></wxs>
 <view class="recharge-wrapper {{rechargeBox ? 'show' : 'hide'}}" catchtap="hideRechargeBox" catchtouchmove="stopPropagation">
   <view class="recharge-box-bg {{rechargeBox ? 'show' : 'hide'}}"></view>
   <view class="recharge-box {{rechargeBox ? 'show' : 'hide'}}" catchtap="stopPropagation">
@@ -14,7 +15,7 @@
           <text>{{recharge.sale}}</text>
         </view>
         <view wx:if="{{recharge.value && recharge.sale && (recharge.value - recharge.sale) > 0}}" class="price {{rechargeCurrent === idx ? 'current' : ''}}">
-          <text>赠{{recharge.value - recharge.sale}}元</text>
+          <text>赠{{filter.filterNumber(recharge.value - recharge.sale)}}元</text>
         </view>
       </view>
     </view>

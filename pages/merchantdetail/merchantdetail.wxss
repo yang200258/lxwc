@@ -163,19 +163,19 @@
   display: block;
   width: 112rpx;
   height: 49rpx;
-  transform: scale(0.6, 0.6);
+  transform: scale(0.7, 0.7);
   transform-origin: 50% 50%;
 }
 .voucher-box{
   margin: 0 32rpx;
 }
 .voucher-content-wrapper{
-  padding: 22rpx 0;
+  padding: 4rpx  0;
 }
 .voucher-item{
   display: flex;
   align-items: center;
-  padding: 8rpx 0;
+  padding: 0 0;
   padding-left: 20rpx;
 }
 .voucher-text{
@@ -206,7 +206,7 @@
   margin: 0 32rpx;
 }
 .fullcut-content-wrapper{
-  padding: 22rpx 0;
+  padding: 4rpx 0;
 }
 .fullcut-item{
   display: flex;
@@ -226,7 +226,7 @@
   margin: 0 32rpx;
 }
 .fullgift-content-wrapper{
-  padding: 22rpx 0;
+  padding: 4rpx 0;
 }
 .fullgift-item{
   display: flex;

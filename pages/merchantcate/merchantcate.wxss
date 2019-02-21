@@ -56,7 +56,7 @@
 .merchant-cate-content{
   display: flex;
 }
-/* .cate{
+.cate{
   flex-shrink: 0;
   width: 142rpx;
   display: flex;
@@ -84,11 +84,15 @@
   line-height: 68rpx;
   color: #333;
   text-align: center;
-} */
+}
+.cate-text.currentCate {
+  color: #FF0000;
+  font-weight: 700;
+}
 
 /* 二级类图片出之前样式 */
 
-.cate{
+/* .cate{
   flex-shrink: 0;
   width: 142rpx;
   display: flex;
@@ -127,11 +131,11 @@
 .cate-text.currentCate {
   color: #fff;
   font-weight: 700;
-}
+} */
 
 /* 乐享商家 */
 .lx-merchants{
-  padding-top: 10rpx;
+  padding-top: 50rpx;
 }
 .lx-merchants-header{
   display: flex;

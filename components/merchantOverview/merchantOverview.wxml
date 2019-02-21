@@ -10,7 +10,7 @@
       </view>
       <star-box wx:if="{{merchant.rate}}" score="{{merchant.rate}}" />
       <view wx:else style="height:6rpx"></view>
-      <view class='merchant-act' wx:for="{{merchant.huodong}}" wx:for-item="activity" wx:key="id">
+      <view class='merchant-act' wx:for="{{merchant.huodong}}" wx:for-item="activity" wx:key="activity.type">
         <!-- <text-icon class='act-icon' size="{{actIconSize}}" font-size="{{24}}" color="{{colorObj[activity.type]}}" text="{{textObj[activity.type]}}" /> -->
         <image class="act-icon" src="../../assets/images/{{activity.type}}.png" mode="aspectFill" />
         <text class='act-text'>{{filter.filterTitle(activity)}}</text>

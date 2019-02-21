@@ -285,10 +285,10 @@ Page({
 
   goMerchantCate: function (e) { // 商家分类相关的接口未实现，赞不允许进入
     // return false
-    const {id, name} = e.currentTarget.dataset.cate
+    const {id, name,icon} = e.currentTarget.dataset.cate
     const {lat, lng} = this.data.location
     wx.navigateTo({
-      url: '/pages/merchantcate/merchantcate?id=' + id + '&name=' + name + '&lat=' + lat + '&lng=' + lng
+      url: '/pages/merchantcate/merchantcate?id=' + id + '&name=' + name + '&lat=' + lat + '&lng=' + lng + '&allimg=' + icon
     })
   },
 
@@ -355,6 +355,7 @@ Page({
     })
     util.request('/index/cate').then(res => {
       if (res && res.data && !res.error) {
+        console.log('merchantCates',res.data);
         this.setData({
           merchantCates: res.data,
           catesLoaded: true
