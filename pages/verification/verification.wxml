@@ -1,0 +1,14 @@
+<!--pages/verification/verification.wxml-->
+<view class='page-verification'>
+  <view wx:if="{{status == 1}}" class='able-view'>
+    <image class='able-image' src=""></image>
+    <view class='able-tip'>确认领取</view>
+    <view class='able-btn' catchtap="getHexiao">确认</view>
+  </view>
+  <view wx:if="{{status == 2}}" class='able-view'>
+    <image class='able-image' src=""></image>
+    <view class='able-tip'>您已经领取过了</view>
+    <view class='able-tip'>领取次数已用完</view>
+    <view class='able-btn' catchtap="goIndex">确认</view>
+  </view>
+</view>

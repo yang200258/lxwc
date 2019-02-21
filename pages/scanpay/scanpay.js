@@ -74,6 +74,7 @@ Page({
   scanCode: function () {
     wx.scanCode({
       success: res => {
+        console.log(res.path)
         let idx = res.path.indexOf('scene=')
         if (idx !== -1) { // path里带有scene值，获取scene值
           let scene = decodeURIComponent(res.path.split('scene=')[1])

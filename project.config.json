@@ -37,7 +37,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 17,
+			"current": 18,
 			"list": [
 				{
 					"id": -1,
@@ -146,6 +146,12 @@
 					"name": "3恶女2",
 					"pathName": "pages/login/login",
 					"query": ""
+				},
+				{
+					"id": 18,
+					"name": "核销",
+					"pathName": "pages/verification/verification",
+					"query": "scene=id%3D1"
 				}
 			]
 		}
