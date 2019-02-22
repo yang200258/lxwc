@@ -151,7 +151,7 @@
 					"id": 18,
 					"name": "核销",
 					"pathName": "pages/verification/verification",
-					"query": "scene=id%3D1"
+					"query": "scene=id%3D4"
 				}
 			]
 		}

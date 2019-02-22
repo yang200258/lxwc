@@ -16,6 +16,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    if (options.id) {
+      this.hexiaoid = options.id
+      this.setData({
+        hexiaoid: options.id
+      })
+      this.checkStatus(options.id)
+    }
     if (options.scene) { // 扫码进入
       const sceneParams = util.getParams(decodeURIComponent(options.scene))
       if (sceneParams.id) {
@@ -62,34 +69,22 @@ Page({
       console.log('领取核销', res)
       this.setData({ getting: false })
       if (res && res.data && !res.error) { // 获取成功
-        if (res.msg) {
-          wx.showToast({
-            title: res.msg,
-            icon: 'none',
-            complete: () => {
-              this.goIndex()
-            }
-          })
-        }
+        wx.showToast({
+          title: res.msg || '核销成功',
+          icon: 'none'
+        })
+        setTimeout(this.goIndex, 1500)
       } else {
         wx.showToast({
           title: res.msg || '核销失败',
-          icon: 'none',
-          complete: () => {
-            this.goIndex()
-          }
+          icon: 'none'
         })
+        setTimeout(this.goIndex, 1500)
       }
     }).catch(err => {
       console.log('err', err)
       this.setData({ getting: false })
-      wx.showToast({
-        title: err.msg || '核销出错',
-        icon: 'none',
-        complete: () => {
-          this.goIndex()
-        }
-      })
+      setTimeout(this.goIndex, 1500)
     })
   },
 

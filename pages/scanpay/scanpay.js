@@ -91,6 +91,11 @@ Page({
                 url: '/pages/pay/pay?id=' + sceneParams.id
               })
             }
+            if (res.path.indexOf('/verification/verification') > -1) { // 匹配核销页，避免扫描其他页面的码时跳转到核销页面
+              wx.navigateTo({
+                url: '/pages/verification/verification?id=' + sceneParams.id
+              })
+            }
           }
         }
       }
