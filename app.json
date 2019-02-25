@@ -22,7 +22,8 @@
     "pages/confirmphone/confirmphone",
     "pages/rebindphone/rebindphone",
     "pages/merchantmap/merchantmap",
-    "pages/verification/verification"
+    "pages/verification/verification",
+    "pages/givescore/givescore"
   ],
   "window": {
     "backgroundTextStyle": "light",

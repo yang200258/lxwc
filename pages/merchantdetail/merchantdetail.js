@@ -112,8 +112,15 @@ Page({
       
     },
     merchantData: {
-
-    }
+      
+    },
+    commentStatusRequesting: false,
+    commentData: {
+      stat: [],
+      list: [],
+      page: {}
+    },
+    showForbid: false
   },
 
   /**
@@ -130,10 +137,12 @@ Page({
       const sceneParams = util.getParams(decodeURIComponent(options.scene))
       if (sceneParams.id) {
         this.fetchMerchantData(sceneParams.id)
+        this.fetchComment(sceneParams.id)
       }
     }
     if (options && options.id) {
       this.fetchMerchantData(options.id)
+      this.fetchComment(options.id)
     }
     // 底部按钮样式适配，如果是iphone x等有下巴的异形屏，则按钮宽度收窄
     this.bottomButtonAdapt()
@@ -403,6 +412,95 @@ Page({
           console.log('用户点击取消')
         }
       }
+    })
+  },
+
+  giveScore: function () {
+    let { merchantData, commentStatusRequesting} = this.data
+    if (!merchantData.shopid || commentStatusRequesting) { // 商家数据尚未获取到 或 正在获取是否可评价信息
+      return false
+    }
+    let rData = {
+      shopid: merchantData.shopid
+    }
+    util.request('/comment/status', rData).then(res => {
+      console.log('/comment/status', res)
+      this.setData({
+        commentStatusRequesting: false
+      })
+      if (res && res.data && !res.error) { // 获取状态成功
+        if (res.data.count && res.data.count > 0) {
+          wx.navigateTo({
+            url: '/pages/givescore/givescore?id=' + merchantData.shopid
+          })
+        } else {
+          this.setData({
+            showForbid: true
+          })
+        }
+      }
+    }).catch(err => {
+      console.log('获取状态失败', err)
+      this.setData({
+        commentStatusRequesting: false
+      })
+    })
+  },
+  fetchComment: function (shopid) {
+    let { merchantData} = this.data
+    shopid = shopid || merchantData.shopid
+    if (!(shopid || merchantData.shopid)) {
+      return false
+    }
+    let rData = {
+      shopid,
+      type: 0
+    }
+    util.request('/comment/list', rData).then(res => {
+      console.log('/comment/list', res)
+      if (res && res.data && !res.error) { // 获取评价数据成功
+        let {stat, list, page} = res.data
+        let statArr = []
+        let titleMap = {
+          all: '全部',
+          good: '好评',
+          normal: '一般',
+          bad: '差评'
+        }
+        let typeMap = {
+          all: '0',
+          good: '1',
+          normal: '2',
+          bad: '3'
+        }
+        for (let key in stat) {
+          statArr.push({
+            title: titleMap[key],
+            key: key,
+            type: typeMap[key],
+            num: stat[key]
+          })
+        }
+        this.setData({
+          commentData: {
+            stat: statArr,
+            list,
+            page
+          }
+        })
+      }
+    }).catch(err => {
+      console.log('/comment/list_catch', err)
+    })
+  },
+
+  stopPropagation: function () {
+    return false
+  },
+
+  hideForbid: function () {
+    this.setData({
+      showForbid: false
     })
   }
 })

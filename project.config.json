@@ -12,7 +12,7 @@
 		"autoAudits": false
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.5.0",
+	"libVersion": "2.6.1",
 	"appid": "wxde8f7cb4bac99b2c",
 	"projectname": "452",
 	"debugOptions": {
@@ -37,7 +37,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 18,
+			"current": 19,
 			"list": [
 				{
 					"id": -1,
@@ -152,6 +152,12 @@
 					"name": "核销",
 					"pathName": "pages/verification/verification",
 					"query": "scene=id%3D4"
+				},
+				{
+					"id": 19,
+					"name": "打分页面",
+					"pathName": "pages/givescore/givescore",
+					"query": ""
 				}
 			]
 		}

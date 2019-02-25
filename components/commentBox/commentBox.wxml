@@ -1,0 +1,24 @@
+<!--components/commentBox/commentBox.wxml-->
+<view class='wrapper'>
+  <image class='avatar' mode="aspectFill" src="{{comment.avatar}}"></image>
+  <view class='right-box'>
+    <view class='head'>
+      <view class='name-and-time'>
+        <view class='name'>{{comment.username}}</view>
+        <view class='time'>{{comment.date}}</view>
+      </view>
+      <view class='score'>
+        <star-box score="{{comment.rate}}" />
+      </view>
+    </view>
+    <view class='content'>{{comment.content}}</view>
+    <view wx:if="{{comment.imgs && comment.imgs[0]}}" class='image-box'>
+      <view wx:for="{{comment.imgs}}" wx:for-item="image" wx:for-index="idx" wx:key="*this" class='image-item' style="margin-left:{{idx % 3 === 0 ? 0 : '2%'}}">
+        <image mode="aspectFill" class='image' src="{{image}}"></image>
+      </view>
+    </view>
+    <view wx:if="{{comment.reply}}" class='reply-box'>
+      <view class='official-reply'>商家回复：{{comment.reply}}</view>
+    </view>
+  </view>
+</view>

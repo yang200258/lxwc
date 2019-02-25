@@ -17,6 +17,10 @@ Component({
     size: {
       type: Number,
       value: 28
+    },
+    editAbled: {
+      type: Boolean,
+      value: false
     }
   },
 
@@ -24,6 +28,7 @@ Component({
    * 组件的初始数据
    */
   data: {
+    star: 0,
     maxStar: 5,
     stars: [],
     scoreText: ''
@@ -39,27 +44,34 @@ Component({
    */
   methods: {
     //监测score变化更新
-  updateScore() {
-    // const { maxStar } = this.data
-    const score = this.properties.score
-    // console.log('score',score);
-    // let stars = []
-    const scoreText = score.toFixed(1)
-    // let fullLen = parseInt(score)
-    // let decimal = score - fullLen
-    // for (let i = 0; i < maxStar; i++) {
-    //   if (i < fullLen) {
-    //     stars.push({key: i, rate: 1})
-    //   } else if (i === fullLen) {
-    //     stars.push({ key: i, rate: decimal })
-    //   } else {
-    //     stars.push({ key: i, rate: 0 })
-    //   }
-    // }
-    this.setData({
-      // stars,
-      scoreText
-    })
-  }
+    updateScore(star) {
+      // const { maxStar } = this.data
+      const score = star || this.properties.score
+      // console.log('score',score);
+      // let stars = []
+      const scoreText = score.toFixed(1)
+      // let fullLen = parseInt(score)
+      // let decimal = score - fullLen
+      // for (let i = 0; i < maxStar; i++) {
+      //   if (i < fullLen) {
+      //     stars.push({key: i, rate: 1})
+      //   } else if (i === fullLen) {
+      //     stars.push({ key: i, rate: decimal })
+      //   } else {
+      //     stars.push({ key: i, rate: 0 })
+      //   }
+      // }
+      this.setData({
+        star: score,
+        // stars,
+        scoreText
+      }, () => {
+        this.triggerEvent('change', { score })
+      })
+    },
+    starTap (e) {
+      let {score} = e.currentTarget.dataset
+      this.updateScore(score)
+    }
   }
 })
