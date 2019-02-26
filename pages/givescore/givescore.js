@@ -18,6 +18,7 @@ Page({
     // },
     images: [],
     imageTotal: 6,
+    imageLen: 0,
     score: 0,
     text: '',
     anonymous: [],
@@ -113,6 +114,13 @@ Page({
   submitScore: function () {
     let { shopid, score, text, anonymous, images, submitting} = this.data
     console.log('submitScore', score, text, anonymous)
+    if (score <= 0) {
+      wx.showToast({
+        title: '请选择星级',
+        icon: 'none'
+      })
+      return false
+    }
     let imgs = []
     images.forEach(item => {
       if (item.uploading) {
@@ -151,15 +159,28 @@ Page({
         submitting: false
       })
       console.log('提交评价回调', res)
-      if (res && res.data && !res.error) { // 提交评价成功
+      if (res && !res.error) { // 提交评价成功
         let currentPages = getCurrentPages()
-        let prePage = (currentPages && currentPages.length > 1) ? currentPages[currentPages.length - 1] : null
-        if (prePage) {
-          prePage.fetchMerchantData(prePage.data.merchantData.shopid)
+        for (let i = 0; i < currentPages.length; i++) {
+          if (currentPages[i].route === 'pages/merchantdetail/merchantdetail' || currentPages[i].route === 'pages/merchantscore/merchantscore') { // 商家详情 或 商家评价
+            currentPages[i].reloadComment && currentPages[i].reloadComment()
+          }
         }
-        wx.navigateBack({
-          delta: 1
-        })
+        if (res.msg) { // 有msg消息则提示完后再返回
+          wx.showToast({
+            title: res.msg,
+            icon: 'none'
+          })
+          setTimeout(() => {
+            wx.navigateBack({
+              delta: 1
+            })
+          }, 1500)
+        } else { // 否则直接返回
+          wx.navigateBack({
+            delta: 1
+          })
+        }
       }
     }).catch(err => {
       console.log('提交评价失败', err)
@@ -167,6 +188,19 @@ Page({
         submitting: false
       })
     })
+  },
+
+  deleteImage: function (e) {
+    let {sign} = e.currentTarget.dataset
+    let {images, imageLen} = this.data
+    let newImages = images.filter(item => item.sign !== sign)
+    this.setData({
+      images: newImages,
+      imageLen: newImages.length
+    })
+    if (this['uploadTask' + sign] && this['uploadTask' + sign].abort) {
+      this['uploadTask' + sign].abort()
+    }
   },
 
   chooseImage: function (e) {
@@ -192,16 +226,19 @@ Page({
           let chooseLen = res.tempFilePaths.length
           for (let i = 0; i < chooseLen; i++) {
             let obj = {}
+            let sign = new Date().getTime() + i
             obj['images[' + (uploadedLen + i) + ']'] = {
               'url': res.tempFilePaths[i],
-              'uploading': true
+              'uploading': true,
+              'sign': sign
             }
+            obj['imageLen'] = uploadedLen + i + 1 // 实时更新图片的数量
             this.setData(obj)
-            if (this['uploadTask' + (i + 1)] && this['uploadTask' + (i + 1)].abort) {
-              this['uploadTask' + (i + 1)].abort()
+            if (this['uploadTask' + sign] && this['uploadTask' + sign].abort) {
+              this['uploadTask' + sign].abort()
             }
             console.log('res.tempFilePaths[i]', res.tempFilePaths[i])
-            this['uploadTask' + (i + 1)] = wx.uploadFile({
+            this['uploadTask' + sign] = wx.uploadFile({
               url: app.config.baseUrl + app.config.apiVersion + '/upload/pic',
               filePath: res.tempFilePaths[i],
               name: 'image',
@@ -233,7 +270,7 @@ Page({
                 console.log('上传失败', res)
               },
               complete: res => {
-                this['uploadTask' + (i + 1)] = null
+                this['uploadTask' + sign] = null
                 let _obj = {}
                 _obj['images[' + (uploadedLen + i) + '].uploading'] = false
                 this.setData(_obj)

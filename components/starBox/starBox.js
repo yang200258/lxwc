@@ -16,9 +16,13 @@ Component({
     },
     size: {
       type: Number,
-      value: 28
+      value: 32
     },
-    editAbled: {
+    editabled: {
+      type: Boolean,
+      value: false
+    },
+    alwaysShow: {
       type: Boolean,
       value: false
     }
@@ -31,7 +35,7 @@ Component({
     star: 0,
     maxStar: 5,
     stars: [],
-    scoreText: ''
+    scoreText: '0.0'
   },
 
   ready: function () {
@@ -70,6 +74,9 @@ Component({
       })
     },
     starTap (e) {
+      if (!this.data.editabled) {
+        return false
+      }
       let {score} = e.currentTarget.dataset
       this.updateScore(score)
     }

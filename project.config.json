@@ -37,7 +37,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 19,
+			"current": 22,
 			"list": [
 				{
 					"id": -1,
@@ -157,6 +157,24 @@
 					"id": 19,
 					"name": "打分页面",
 					"pathName": "pages/givescore/givescore",
+					"query": "id=100003"
+				},
+				{
+					"id": 20,
+					"name": "全部评价",
+					"pathName": "pages/merchantscore/merchantscore",
+					"query": "id=100003"
+				},
+				{
+					"id": -1,
+					"name": "我的评价",
+					"pathName": "pages/usercomment/usercomment",
+					"query": ""
+				},
+				{
+					"id": 22,
+					"name": "会员须知",
+					"pathName": "pages/membernotes/membernote",
 					"query": ""
 				}
 			]

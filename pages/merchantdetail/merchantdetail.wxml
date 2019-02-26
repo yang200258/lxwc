@@ -157,19 +157,33 @@
       <!-- </block> -->
     </view>
   </view>
-  <view class='comment-block'>
-    <view class='comment-head'>商家评价</view>
+  <view class='comment-block' wx:if="{{commentData.stat.length}}">
+    <view class='block-separator'></view>
+    <view class='comment-head'>
+      <view class='comment-head-title'>商家评价</view>
+      <view class='comment-head-btn' catchtap="giveScore">
+        <text class='iconfont icon-shuru comment-head-btn-icon'></text>
+        <text class='comment-head-btn-text'>我要评价</text>
+      </view>
+    </view>
+    <view class='line-separator-h' style="width:686rpx;margin:0 auto"></view>
     <view wx:if="{{commentData.stat && commentData.stat.length}}" class='comment-filter'>
-      <view wx:for="{{commentData.stat}}" wx:for-item="tab" wx:for-index="idx" wx:key="title" class="filter-item {{idx === 0 ? 'actived' : ''}}" catchtap="giveScore">{{tab.title}} {{tab.num}}</view>
+      <view wx:for="{{commentData.stat}}" wx:for-item="tab" wx:for-index="idx" wx:key="title" class="filter-item {{idx === 0 ? 'actived' : ''}}" catchtap="goAllComment">{{tab.title}} {{tab.num}}</view>
     </view>
     <view wx:if="{{commentData.list && commentData.list.length}}" class='comment-list-wrapper'>
       <block wx:for="{{commentData.list}}" wx:for-index="idx" wx:key="id">
-        <comment-box wx:if="{{idx < 3}}" comment="{{item}}" />
+        <comment-box wx:if="{{idx < 3}}" bottom-separator comment="{{item}}" />
       </block>
     </view>
-    <view wx:if="{{commentData.list && commentData.list.length > 3}}" class='see-more'>查看更多评价>></view>
-    <view wx:if="{{!commentData.list || !commentData.list.length}}" class='see-more'>--暂无更多评价--</view>
-    <view catchtap="giveScore">我要评价</view>
+    <view wx:if="{{commentData.list && commentData.list.length && commentData.list.length > 3}}" class='no-more-tip' catchtap="goAllComment">
+      <text>查看更多评价</text>
+      <text class="iconfont icon-next more-comment-icon"></text>
+    </view>
+    <view wx:if="{{!commentData.list || !commentData.list.length || commentData.list.length < 3}}" class='no-more-tip'>
+      <view class="dash"></view>
+      <text>暂无更多评价</text>
+      <view class="dash"></view>
+    </view>
   </view>
   <!-- 优惠买单 -->
   <view class='pay-btn-wrapper'>

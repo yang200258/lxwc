@@ -120,7 +120,8 @@ Page({
       list: [],
       page: {}
     },
-    showForbid: false
+    showForbid: false,
+    commentLoaded: false
   },
 
   /**
@@ -148,6 +149,12 @@ Page({
     this.bottomButtonAdapt()
   },
 
+  // onShow: function () {
+  //   let { merchantData, commentLoaded} = this.data
+  //   if (merchantData.shopid && !commentLoaded) {
+  //     this.fetchComment(merchantData.shopid)
+  //   }
+  // },
 
   bottomButtonAdapt: function () {
     const systemInfo = wx.getSystemInfoSync()
@@ -176,6 +183,7 @@ Page({
   voucherGetting: {},
 
   fetchMerchantData: function (id) {
+    id = id || this.data.merchantData.shopid
     this.shopid = id // 立即记录当前商家id,不可删掉，页面其他地方需要
     util.request('/shop/info', {
       id
@@ -225,6 +233,10 @@ Page({
     }).catch(err => {
       console.log('获取商家数据失败', err)
     })
+  },
+
+  reloadComment: function () {
+    this.fetchComment(this.data.merchantData.shopid)
   },
 
   getVoucher: function (e) { // 领取满减优惠券
@@ -415,6 +427,16 @@ Page({
     })
   },
 
+  goAllComment: function () {
+    let {merchantData} = this.data
+    if (!merchantData.shopid) {
+      return false
+    }
+    wx.navigateTo({
+      url: '/pages/merchantscore/merchantscore?id=' + merchantData.shopid
+    })
+  },
+
   giveScore: function () {
     let { merchantData, commentStatusRequesting} = this.data
     if (!merchantData.shopid || commentStatusRequesting) { // 商家数据尚未获取到 或 正在获取是否可评价信息
@@ -423,6 +445,9 @@ Page({
     let rData = {
       shopid: merchantData.shopid
     }
+    this.setData({
+      commentStatusRequesting: true
+    })
     util.request('/comment/status', rData).then(res => {
       console.log('/comment/status', res)
       this.setData({
@@ -486,7 +511,8 @@ Page({
             stat: statArr,
             list,
             page
-          }
+          },
+          commentLoaded: true
         })
       }
     }).catch(err => {

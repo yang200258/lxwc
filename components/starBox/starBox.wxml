@@ -6,14 +6,14 @@
   </view>
   <text class='score-text' style="font-size:{{size}}rpx;line-height:{{size}}rpx;">{{scoreText}}</text>
 </view> -->
-<view class="container" wx:if="{{star}}">
+<view class="container" wx:if="{{star || alwaysShow}}">
   <view class="star-full" wx:for="{{star}}" wx:key="*this" data-score="{{index + 1}}" catchtap="starTap">
     <!-- <image class="star-full-image" src="../../assets/images/star-full.png" mode="aspectFit" lazy-load="true" /> -->
-    <view class="iconfont icon-star star-full-image"></view>
+    <view class="iconfont icon-star star-full-image" style="font-size:{{size}}rpx"></view>
   </view>
   <view class="star-empty" wx:for="{{maxStar - star}}" wx:key="*this" data-score="{{star + item + 1}}" catchtap="starTap">
     <!-- <image class="star-empty-image" src="../../assets/images/star-empty.png" mode="aspectFit"   lazy-load="true" /> -->
-    <view class="iconfont icon-star star-empty-image"></view>
+    <view class="iconfont icon-star star-empty-image" style="font-size:{{size}}rpx"></view>
   </view>
   <text class='score-text' style="font-size:{{size}}rpx;line-height:{{size}}rpx;">{{scoreText}}</text>
 </view>

@@ -1,24 +1,30 @@
 <!--components/commentBox/commentBox.wxml-->
 <view class='wrapper'>
-  <image class='avatar' mode="aspectFill" src="{{comment.avatar}}"></image>
-  <view class='right-box'>
-    <view class='head'>
-      <view class='name-and-time'>
-        <view class='name'>{{comment.username}}</view>
-        <view class='time'>{{comment.date}}</view>
+  <view wx:if="{{topSeparator}}" class='block-separator'></view>
+  <view class='inner-wrapper'>
+    <image class='avatar' mode="aspectFill" src="{{comment.avatar}}"></image>
+    <view class='right-box'>
+      <view class='head'>
+        <view class='name-and-time'>
+          <view class='name'>{{comment.username}}水电费撒发放阿四方阿善良false</view>
+          <view class='time'>{{comment.date}}</view>
+        </view>
+        <view class='score'>
+          <view class='score-head'>评分</view>
+          <star-box score="{{comment.rate}}" size="{{28}}" />
+        </view>
       </view>
-      <view class='score'>
-        <star-box score="{{comment.rate}}" />
+      <view wx:if="{{comment.content}}" class='content'>{{comment.content}}</view>
+      <view wx:if="{{comment.imgs && comment.imgs[0]}}" class='image-box'>
+        <view wx:for="{{comment.imgs}}" wx:for-item="image" wx:for-index="idx" wx:key="*this" class='image-item' style="margin-left:{{idx % 3 === 0 ? 0 : '6.84%'}};margin-top:{{idx < 3 ? 0 : '3.04%'}}">
+          <image mode="aspectFill" class='image' src="{{image}}" catchtap="previewImage" data-url="{{image}}"></image>
+        </view>
       </view>
-    </view>
-    <view class='content'>{{comment.content}}</view>
-    <view wx:if="{{comment.imgs && comment.imgs[0]}}" class='image-box'>
-      <view wx:for="{{comment.imgs}}" wx:for-item="image" wx:for-index="idx" wx:key="*this" class='image-item' style="margin-left:{{idx % 3 === 0 ? 0 : '2%'}}">
-        <image mode="aspectFill" class='image' src="{{image}}"></image>
+      <view wx:if="{{comment.reply}}" class='reply-box'>
+        <view class='official-reply'><text style="color:#333;font-weight:bold">商家回复：</text>{{comment.reply}}</view>
       </view>
-    </view>
-    <view wx:if="{{comment.reply}}" class='reply-box'>
-      <view class='official-reply'>商家回复：{{comment.reply}}</view>
     </view>
   </view>
+  <view wx:if="{{bottomSeparator}}" class='line-separator-h'></view>
 </view>
+
