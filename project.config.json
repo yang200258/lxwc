@@ -12,7 +12,7 @@
 		"autoAudits": false
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.5.0",
+	"libVersion": "2.6.1",
 	"appid": "wxde8f7cb4bac99b2c",
 	"projectname": "452",
 	"debugOptions": {
@@ -37,7 +37,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 18,
+			"current": 22,
 			"list": [
 				{
 					"id": -1,
@@ -148,9 +148,34 @@
 					"query": ""
 				},
 				{
+					"id": 18,
+					"name": "核销",
+					"pathName": "pages/verification/verification",
+					"query": "scene=id%3D4"
+				},
+				{
+					"id": 19,
+					"name": "打分页面",
+					"pathName": "pages/givescore/givescore",
+					"query": "id=100003"
+				},
+				{
+					"id": 20,
+					"name": "全部评价",
+					"pathName": "pages/merchantscore/merchantscore",
+					"query": "id=100003"
+				},
+				{
 					"id": -1,
-					"name": "1352103",
-					"pathName": "pages/paysuccess/paysuccess"
+					"name": "我的评价",
+					"pathName": "pages/usercomment/usercomment",
+					"query": ""
+				},
+				{
+					"id": 22,
+					"name": "会员须知",
+					"pathName": "pages/membernotes/membernote",
+					"query": ""
 				}
 			]
 		}

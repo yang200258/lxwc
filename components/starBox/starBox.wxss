@@ -33,7 +33,7 @@
 .score-text{
   color: #FF9500;
   margin-left: 20rpx;
-  padding: 6rpx;
+  /* padding: 6rpx; */
 }
 
 .star-full,.star-empty {
@@ -46,8 +46,8 @@
 .star-empty-image {
   color: #cdcdcd;
 }
-.star-full-image,.star-empty-image {
+/* .star-full-image,.star-empty-image {
   display: inline-block;
   width: 32rpx;
   height: 32rpx;
-}
+} */

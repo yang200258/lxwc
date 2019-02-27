@@ -148,7 +148,7 @@
   <view wx:if="{{merchantData.introduce}}" class='merchant-intro'>
     <view class='block-separator'></view>
     <view class='intro-header'>
-      <text  class='intro-header-title'>商家简介</text>
+      <text class='intro-header-title'>商家简介</text>
       <view class='line-separator-h'></view>
     </view>
     <view class='intro-detail'>
@@ -161,6 +161,34 @@
       <!-- </block> -->
     </view>
   </view>
+  <view class='comment-block' wx:if="{{commentData.stat.length}}">
+    <view class='block-separator'></view>
+    <view class='comment-head'>
+      <view class='comment-head-title'>商家评价</view>
+      <view class='comment-head-btn' catchtap="giveScore">
+        <text class='iconfont icon-shuru comment-head-btn-icon'></text>
+        <text class='comment-head-btn-text'>我要评价</text>
+      </view>
+    </view>
+    <view class='line-separator-h' style="width:686rpx;margin:0 auto"></view>
+    <view wx:if="{{commentData.stat && commentData.stat.length}}" class='comment-filter'>
+      <view wx:for="{{commentData.stat}}" wx:for-item="tab" wx:for-index="idx" wx:key="title" class="filter-item {{idx === 0 ? 'actived' : ''}}" hover-class="filter-item-hover" hover-stop-propagation hover-start-time="{{10}}" hover-stay-time="{{100}}" catchtap="goAllComment" data-type="{{tab.type}}">{{tab.title}} {{tab.num}}</view>
+    </view>
+    <view wx:if="{{commentData.list && commentData.list.length}}" class='comment-list-wrapper'>
+      <block wx:for="{{commentData.list}}" wx:for-index="idx" wx:key="id">
+        <comment-box wx:if="{{idx < 3}}" bottom-separator comment="{{item}}" />
+      </block>
+    </view>
+    <view wx:if="{{commentData.list && commentData.list.length && commentData.list.length > 3}}" class='no-more-tip' catchtap="goAllComment">
+      <text>查看更多评价</text>
+      <text class="iconfont icon-next more-comment-icon"></text>
+    </view>
+    <view wx:if="{{!commentData.list || !commentData.list.length || commentData.list.length < 3}}" class='no-more-tip'>
+      <view class="dash"></view>
+      <text>暂无更多评价</text>
+      <view class="dash"></view>
+    </view>
+  </view>
   <!-- 优惠买单 -->
   <view class='pay-btn-wrapper'>
     <view class="pay-btn-content">
@@ -171,6 +199,12 @@
       <iphone-bottom-adapter />
     </view>
     <iphone-bottom-adapter />
+  </view>
+</view>
+<view wx:if="{{showForbid}}" class='forbid-score-modal-wrapper' catchtouchmove="stopPropagation">
+  <view class='forbid-score-modal'>
+    <view class='forbid-content'>您好，您没有可评价该店铺的订单！</view>
+    <view class='hide-forbid-btn' catchtap="hideForbid">确定</view>
   </view>
 </view>
 <recharge-box id="recharge-box" />

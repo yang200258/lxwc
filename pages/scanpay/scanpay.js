@@ -74,6 +74,7 @@ Page({
   scanCode: function () {
     wx.scanCode({
       success: res => {
+        console.log(res.path)
         let idx = res.path.indexOf('scene=')
         if (idx !== -1) { // path里带有scene值，获取scene值
           let scene = decodeURIComponent(res.path.split('scene=')[1])
@@ -88,6 +89,11 @@ Page({
             if (res.path.indexOf('/pay/pay') > -1) { // 匹配付款页，避免扫描其他页面的码时跳转到付款页面
               wx.navigateTo({
                 url: '/pages/pay/pay?id=' + sceneParams.id
+              })
+            }
+            if (res.path.indexOf('/verification/verification') > -1) { // 匹配核销页，避免扫描其他页面的码时跳转到核销页面
+              wx.navigateTo({
+                url: '/pages/verification/verification?id=' + sceneParams.id
               })
             }
           }

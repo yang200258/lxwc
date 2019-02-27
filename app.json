@@ -21,7 +21,12 @@
     "pages/rechargesuccess/rechargesuccess",
     "pages/confirmphone/confirmphone",
     "pages/rebindphone/rebindphone",
-    "pages/merchantmap/merchantmap"
+    "pages/merchantmap/merchantmap",
+    "pages/verification/verification",
+    "pages/givescore/givescore",
+    "pages/merchantscore/merchantscore",
+    "pages/usercomment/usercomment",
+    "pages/membernotes/membernote"
   ],
   "window": {
     "backgroundTextStyle": "light",

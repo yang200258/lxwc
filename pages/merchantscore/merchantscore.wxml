@@ -1,0 +1,27 @@
+<!--pages/merchantscore/merchantscore.wxml-->
+<view class='page-merchantscore'>
+  <view class='fixed-nav'>
+    <view class='comment-head'>
+      <view class='comment-head-title'>商家评价</view>
+      <view class='comment-head-btn' catchtap="giveScore">
+        <text class='iconfont icon-shuru comment-head-btn-icon'></text>
+        <text class='comment-head-btn-text'>我要评价</text>
+      </view>
+    </view>
+    <view class='comment-filter'>
+      <view wx:for="{{header}}" wx:for-item="tab" wx:for-index="idx" wx:key="title" class="filter-item {{currentTab === idx ? 'actived' : ''}}" catchtap="tabChange" data-tab="{{idx}}"><text>{{tab.title}} {{tab.num > 99 ? '999+' : tab.num}}</text></view>
+    </view>
+  </view>
+  <list-loader visible="{{!tabData[currentTab].loaded}}" />
+  <view wx:if="{{tabData[currentTab] && tabData[currentTab].comments && tabData[currentTab].comments.length}}" class='comment-list-wrapper'>
+    <comment-box wx:for="{{tabData[currentTab].comments}}" wx:for-index="idx" wx:key="id" bottom-separator comment="{{item}}" />
+  </view>
+  <list-footer loading="{{tabData[currentTab].fetching}}" page="{{tabData[currentTab].page}}" show-no-more="{{tabData[currentTab].comments && tabData[currentTab].comments.length}}" no-more-text="暂无更多评价" />
+  <iphone-bottom-adapter />
+</view>
+<view wx:if="{{showForbid}}" class='forbid-score-modal-wrapper' catchtouchmove="stopPropagation">
+  <view class='forbid-score-modal'>
+    <view class='forbid-content'>您好，您没有可评价该店铺的订单！</view>
+    <view class='hide-forbid-btn' catchtap="hideForbid">确定</view>
+  </view>
+</view>

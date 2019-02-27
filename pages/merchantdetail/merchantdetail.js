@@ -112,8 +112,16 @@ Page({
       
     },
     merchantData: {
-
-    }
+      
+    },
+    commentStatusRequesting: false,
+    commentData: {
+      stat: [],
+      list: [],
+      page: {}
+    },
+    showForbid: false,
+    commentLoaded: false
   },
 
   /**
@@ -130,15 +138,23 @@ Page({
       const sceneParams = util.getParams(decodeURIComponent(options.scene))
       if (sceneParams.id) {
         this.fetchMerchantData(sceneParams.id)
+        this.fetchComment(sceneParams.id)
       }
     }
     if (options && options.id) {
       this.fetchMerchantData(options.id)
+      this.fetchComment(options.id)
     }
     // 底部按钮样式适配，如果是iphone x等有下巴的异形屏，则按钮宽度收窄
     this.bottomButtonAdapt()
   },
 
+  // onShow: function () {
+  //   let { merchantData, commentLoaded} = this.data
+  //   if (merchantData.shopid && !commentLoaded) {
+  //     this.fetchComment(merchantData.shopid)
+  //   }
+  // },
 
   bottomButtonAdapt: function () {
     const systemInfo = wx.getSystemInfoSync()
@@ -167,6 +183,7 @@ Page({
   voucherGetting: {},
 
   fetchMerchantData: function (id) {
+    id = id || this.data.merchantData.shopid
     this.shopid = id // 立即记录当前商家id,不可删掉，页面其他地方需要
     util.request('/shop/info', {
       id
@@ -216,6 +233,10 @@ Page({
     }).catch(err => {
       console.log('获取商家数据失败', err)
     })
+  },
+
+  reloadComment: function () {
+    this.fetchComment(this.data.merchantData.shopid)
   },
 
   getVoucher: function (e) { // 领取满减优惠券
@@ -403,6 +424,110 @@ Page({
           console.log('用户点击取消')
         }
       }
+    })
+  },
+
+  goAllComment: function (e) {
+    let {type} = e.currentTarget.dataset
+    let {merchantData} = this.data
+    if (!merchantData.shopid) {
+      return false
+    }
+    wx.navigateTo({
+      url: '/pages/merchantscore/merchantscore?id=' + merchantData.shopid + '&type=' + (type || '')
+    })
+  },
+
+  giveScore: function () {
+    let { merchantData, commentStatusRequesting} = this.data
+    if (!merchantData.shopid || commentStatusRequesting) { // 商家数据尚未获取到 或 正在获取是否可评价信息
+      return false
+    }
+    let rData = {
+      shopid: merchantData.shopid
+    }
+    this.setData({
+      commentStatusRequesting: true
+    })
+    util.request('/comment/status', rData).then(res => {
+      console.log('/comment/status', res)
+      this.setData({
+        commentStatusRequesting: false
+      })
+      if (res && res.data && !res.error) { // 获取状态成功
+        if (res.data.count && res.data.count > 0) {
+          wx.navigateTo({
+            url: '/pages/givescore/givescore?id=' + merchantData.shopid
+          })
+        } else {
+          this.setData({
+            showForbid: true
+          })
+        }
+      }
+    }).catch(err => {
+      console.log('获取状态失败', err)
+      this.setData({
+        commentStatusRequesting: false
+      })
+    })
+  },
+  fetchComment: function (shopid) {
+    let { merchantData} = this.data
+    shopid = shopid || merchantData.shopid
+    if (!(shopid || merchantData.shopid)) {
+      return false
+    }
+    let rData = {
+      shopid,
+      type: 0
+    }
+    util.request('/comment/list', rData).then(res => {
+      console.log('/comment/list', res)
+      if (res && res.data && !res.error) { // 获取评价数据成功
+        let {stat, list, page} = res.data
+        let statArr = []
+        let titleMap = {
+          all: '全部',
+          good: '好评',
+          normal: '一般',
+          bad: '差评'
+        }
+        let typeMap = {
+          all: '0',
+          good: '1',
+          normal: '2',
+          bad: '3'
+        }
+        for (let key in stat) {
+          statArr.push({
+            title: titleMap[key],
+            key: key,
+            type: typeMap[key],
+            num: stat[key]
+          })
+        }
+        this.setData({
+          commentData: {
+            stat: statArr,
+            list,
+            page
+          },
+          commentLoaded: true
+        })
+      }
+    }).catch(err => {
+      console.log('/comment/list_catch', err)
+    })
+  },
+
+  stopPropagation: function () {
+    return false
+  },
+
+  hideForbid: function () {
+    this.setData({
+      showForbid: false
     })
   }
 })
