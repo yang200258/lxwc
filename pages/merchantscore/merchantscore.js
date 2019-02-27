@@ -73,11 +73,20 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let { currentTab} = this.data
+    let { currentTab, header} = this.data
+    let customType = options.type ? options.type.toString() : null
+    let customTab = currentTab
+    for (let i = 0; i < header.length; i++) {
+      if (header[i].type === customType) {
+        customTab = i
+        break
+      }
+    }
     this.setData({
-      shopid: options.id
+      shopid: options.id,
+      currentTab: customTab
     })
-    this.fetchComments(0, currentTab, options.id)
+    this.fetchComments(0, customTab, options.id)
   },
 
   /**

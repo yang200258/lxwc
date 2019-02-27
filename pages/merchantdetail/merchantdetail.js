@@ -427,13 +427,14 @@ Page({
     })
   },
 
-  goAllComment: function () {
+  goAllComment: function (e) {
+    let {type} = e.currentTarget.dataset
     let {merchantData} = this.data
     if (!merchantData.shopid) {
       return false
     }
     wx.navigateTo({
-      url: '/pages/merchantscore/merchantscore?id=' + merchantData.shopid
+      url: '/pages/merchantscore/merchantscore?id=' + merchantData.shopid + '&type=' + (type || '')
     })
   },
 

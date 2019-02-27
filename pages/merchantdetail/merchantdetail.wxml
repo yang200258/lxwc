@@ -168,7 +168,7 @@
     </view>
     <view class='line-separator-h' style="width:686rpx;margin:0 auto"></view>
     <view wx:if="{{commentData.stat && commentData.stat.length}}" class='comment-filter'>
-      <view wx:for="{{commentData.stat}}" wx:for-item="tab" wx:for-index="idx" wx:key="title" class="filter-item {{idx === 0 ? 'actived' : ''}}" catchtap="goAllComment">{{tab.title}} {{tab.num}}</view>
+      <view wx:for="{{commentData.stat}}" wx:for-item="tab" wx:for-index="idx" wx:key="title" class="filter-item {{idx === 0 ? 'actived' : ''}}" catchtap="goAllComment" data-type="{{tab.type}}">{{tab.title}} {{tab.num}}</view>
     </view>
     <view wx:if="{{commentData.list && commentData.list.length}}" class='comment-list-wrapper'>
       <block wx:for="{{commentData.list}}" wx:for-index="idx" wx:key="id">
