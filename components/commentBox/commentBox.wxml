@@ -6,7 +6,7 @@
     <view class='right-box'>
       <view class='head'>
         <view class='name-and-time'>
-          <view class='name'>{{comment.username}}水电费撒发放阿四方阿善良false</view>
+          <view class='name'>{{comment.username}}</view>
           <view class='time'>{{comment.date}}</view>
         </view>
         <view class='score'>
