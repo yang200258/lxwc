@@ -1,4 +1,5 @@
 <!--components/ticketBox/ticketBox.wxml-->
+<wxs module="filter" src="../../app.wxs"></wxs>
 <view class='wrapper'>
   <view class='left'>
     <image class='image' src="{{ticket.pic}}" mode="aspectFill"></image>
@@ -9,7 +10,7 @@
         <text class='title'>{{ticket.title}}</text>
       </view>
       <view class='content'>{{ticket.content}}</view>
-      <view class='time'>到期时间：{{ticket.valid_etime}}</view>
+      <view class='time'>{{filter.filterDate(ticket.valid_btime)}}-{{filter.filterDate(ticket.valid_etime)}}</view>
     </view>
   </view>
   <view class='separator'></view>

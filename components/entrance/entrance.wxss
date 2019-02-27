@@ -77,6 +77,10 @@
 .icon-next.hide{
   opacity: 0;
 }
+.usercenter-phone {
+  width: 37rpx;
+  height: 35rpx;
+}
 @keyframes opacityChange {
   from {
     opacity: 0;

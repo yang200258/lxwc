@@ -1,4 +1,5 @@
 <!--pages/ticketlist/ticketlist.wxml-->
+
 <list-loader visible="{{!loaded}}" />
 <view wx:if="{{tickets && tickets[0]}}" class='page-ticketlist'>
   <view wx:for="{{tickets}}" wx:for-item="ticket" wx:for-index="idx" wx:key="id" class='ticket-item'>

@@ -10,16 +10,19 @@ Page({
   data: {
     phone: phone,
     userInfo: {
-      unreadMessage: 888,
+      unreadmessage: 0,
       avatar: '',
       name: '',
-      id: ''
+      id: '',
+      background: ''
     },
     userWallet: {
       balance: 0,
       redPacket: 0,
       voucher: 0
     },
+    kefu_tel: '',
+    tousu_tel: '',
     promotion: [
       {
         id: '1',
@@ -39,17 +42,38 @@ Page({
         }
       },
       {
-        image: '/assets/images/order_icon.png',
-        title: '我的订单',
-        extraData: {
-          route: '/pages/orderlist/orderlist'
-        }
-      },
-      {
-        image: '/assets/images/vip_icon.png',
+        image: '/assets/images/user.png',
         title: '会员信息',
         extraData: {
           route: '/pages/userinfo/userinfo'
+        }
+      },
+      {
+        image: '/assets/images/comment.png',
+        title: '我的评价',
+        extraData: {
+          route: ''
+        }
+      },
+      {
+        image: '/assets/images/member.png',
+        title: '会员须知',
+        extraData: {
+          route: ''
+        }
+      },
+      {
+        image: '/assets/images/custom.png',
+        title: '客服中心',
+        extraData: {
+          route: 'custom'
+        }
+      },
+      {
+        image: '/assets/images/complain.png',
+        title: '我要投诉',
+        extraData: {
+          route: 'complain'
         }
       }
     ],
@@ -148,11 +172,33 @@ Page({
       url: '/pages/ticketlist/ticketlist'
     })
   },
+  goRedPacketList: function(){
+    wx.navigateTo({
+      url: '/pages/redpacketlist/redpacketlist'
+    })
+  },
 
   entranceTap: function (e) {
-    wx.navigateTo({
-      url: e.detail.route
-    })
+    if(e.detail.route != 'custom' && e.detail.route != 'complain') {
+      wx.navigateTo({
+        url: e.detail.route
+      })
+    } else if(e.detail.route == 'custom'){
+      const kefu_tel = this.data.kefu_tel
+      if (kefu_tel) {
+        wx.makePhoneCall({
+          phoneNumber: kefu_tel.toString()
+        })
+      }
+    } else if(e.detail.route == 'complain') {
+      const tousu_tel = this.data.tousu_tel
+      if (tousu_tel) {
+        wx.makePhoneCall({
+          phoneNumber: tousu_tel.toString()
+        })
+      }
+    }
+    
   },
 
   showRechargeBox: function () {
@@ -227,15 +273,22 @@ Page({
     util.request('/user/center').then(res => {
       if (res && res.data && !res.error) { // 获取用户数据成功
         console.log('用户数据', res.data)
-        let { phone, avatar, balance, id, name, coupons} = res.data
+        let { phone, avatar, balance, id, name, coupons,kefu_tel,tousu_tel,background,unread} = res.data
+        if(unread) {
+          wx.setStorageSync('unread',unread)
+        }
         let _obj = {}
         wx.setStorageSync('phone', phone)
         _obj.phone = phone
         _obj['userInfo.avatar'] = avatar || wx.getStorageSync('avatar')
         _obj['userInfo.name'] = name
         _obj['userInfo.id'] = id
+        _obj['userInfo.background'] = background
+        _obj['userInfo.unread'] = unread
         _obj['userWallet.balance'] = balance
         _obj['userWallet.voucher'] = coupons
+        _obj['kefu_tel'] = kefu_tel
+        _obj['tousu_tel'] = tousu_tel
         this.setData(_obj)
       }
     }).catch(err => {

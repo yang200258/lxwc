@@ -1,28 +1,16 @@
 // pages/message/message.js
+import util from '../../utils/util'
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    loaded: false,
+    loaded: true,
     loading: false,
     page: {},
     messages: [
-      {
-        id: '1',
-        readed: false,
-        title: '百果园满59减35！',
-        content: '全场满59减35！优惠期至2018-12-31，快去享用吧',
-        time: '13:26'
-      },
-      {
-        id: '2',
-        readed: true,
-        title: '百果园满59减35！',
-        content: '',
-        time: '2018-12-2'
-      }
+      
     ]
   },
 
@@ -30,7 +18,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.fetchMessage()
   },
 
   /**
@@ -45,6 +33,27 @@ Page({
    */
   onShow: function () {
 
+  },
+  fetchMessage: function(){
+    this.setData({
+      loading: true,
+      loaded:false
+    })
+    util.request('/message/list').then(res=> {
+      if(res && !res.error) {
+        this.setData({
+          messages: res.data.list,
+          page: res.data.page
+        })
+      }
+    }).catch(err=> {
+      console.log(err);
+    }).finally(res=> {
+      this.setData({
+        loading: false,
+        loaded: true
+      })
+    })
   },
 
   /**

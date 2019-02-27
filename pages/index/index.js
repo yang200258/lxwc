@@ -12,7 +12,7 @@ Page({
       lat: null
     },
     searchFixed: false,
-    messageCount: 100,
+    unread: 0,
     activityLoaded: false,
     activityFetching: false,
     activityCurrent: 0,
@@ -79,6 +79,13 @@ Page({
         }
       })
     }
+  },
+  //获取用户未读消息
+  getUnread: function(){
+    const unread = wx.getStorageSync('unread')
+    this.setData({
+      unread
+    })
   },
 
   locationTap: function () {

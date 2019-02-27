@@ -15,7 +15,7 @@ Component({
   data: {
     rechargeBox: false,
     rechargeData: {
-      ad: '/assets/images/recharge_banner.png',
+      ad: '',
       rechargeList: []
     },
     rechargeCurrent: 1,
@@ -48,7 +48,8 @@ Component({
         console.log('获取充值数据', res)
         if (res && res.data && !res.msg) { // 获取数据成功
           this.setData({
-            'rechargeData.rechargeList': res.data
+            'rechargeData.rechargeList': res.data.list,
+            'rechargeData.ad': res.data.background
           })
         }
       }).catch(err => {

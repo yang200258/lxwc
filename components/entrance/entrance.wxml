@@ -12,7 +12,9 @@
       <open-data wx:if="{{subImage && subImage === 'wx-avatar'}}" class="entrance-sub-image" type="userAvatarUrl"></open-data>
       <view wx:if="{{subMask}}" class='entrance-sub-image-mask'></view>
     </view>
-    <text class="iconfont icon-next {{nextIcon ? '' : 'hide'}}"></text>
+    <image class="usercenter-phone"  wx:if="{{extraData.route == 'custom' || extraData.route == 'complain'}}" src="../../assets/images/usercenter-phone.png" mode="aspectFit"/>
+    <text class="iconfont icon-next {{nextIcon ? '' : 'hide'}}" wx:else></text>
+    
   </view>
   <view wx:if="{{bottomBorder}}" class='line-separator-h'></view>
 </view>

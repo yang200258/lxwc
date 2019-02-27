@@ -26,6 +26,7 @@ Page({
         btn: 'phone'
       }
     },
+    nickname: '',
     name: {
       value: '',
       text: '',
@@ -52,7 +53,8 @@ Page({
     },
     nameInputValue: '',
     nameBox: false,
-    requiredSubmitting: false
+    requiredSubmitting: false,
+    nickname: ''
   },
 
   saveLocalUserInfo: function () {
@@ -71,6 +73,10 @@ Page({
 
   getLocalUserInfo: function () {
     const userInfoLocal = wx.getStorageSync('userInfoLocal') ? JSON.parse(wx.getStorageSync('userInfoLocal')) : null
+    const nickname = wx.getStorageSync('nickname')
+    this.setData({
+      nickname
+    })
     const { name, gender, birthday } = this.data
     let arr = [name, gender, birthday]
     if (userInfoLocal && Object.keys(userInfoLocal).length) {

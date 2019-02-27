@@ -4,7 +4,7 @@
     <view class='search-box'>
       <view class='search-left' catchtap="showSearch">
         <text class='iconfont icon-search'></text>
-        <input class='search-input' disabled="{{true}}" placeholder="搜索品牌、门店、商品..." value="{{searchText}}"></input>
+        <input class='search-input' disabled="{{true}}" placeholder="请输入您要搜索的店铺名称..." value="{{searchText}}"></input>
       </view>
       <view class="search-btn {{searchText ? 'able' : ''}}">
         <text>搜索</text>

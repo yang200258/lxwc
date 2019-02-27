@@ -123,11 +123,15 @@ var filterNumber= function(number){
   return number = number.toFixed(1)
 
 }
+var filterDate = function(date) {
+  return date.split(' ')[0].split('-')[0] + '.' + date.split(' ')[0].split('-')[1] + '.' + date.split(' ')[0].split('-')[2]
+}
 
   module.exports = {
       filterTitle : filterTitle,
       filterPay: filterPay,
       filterDistance: filterDistance,
       filterNumber: filterNumber,
-      formatIntro: formatIntro
+      formatIntro: formatIntro,
+      filterDate: filterDate
   }

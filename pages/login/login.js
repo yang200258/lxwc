@@ -58,6 +58,7 @@ Page({
       });
     }else if(e.detail.rawData){
       let rData = e.detail.userInfo
+      wx.setStorageSync('nickname',rData.nickName)
       wx.setStorageSync('avatar',rData.avatarUrl)
       util.request('/user/savewxinfo',{
         name: rData.nickName,

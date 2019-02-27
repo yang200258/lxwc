@@ -1,7 +1,10 @@
 <!--pages/paysuccess/paysuccess.wxml-->
 <view class='page-paysuccess'>
   <view class='info-box'>
-    <image class='success-icon' src="/assets/images/success_icon.png" mode="aspectFit"></image>
+    <!-- <image class='success-icon' src="/assets/images/success_icon.png" mode="aspectFit"></image> -->
+    <!-- <view class='user-avatar'>
+        <user-avatar avatar="{{userInfo.avatar}}" />
+    </view> -->
     <view class='success-tip'>支付成功</view>
     <view class='actual'>
       <text class='iconfont icon-renminbi'></text>
@@ -25,10 +28,10 @@
     </view>
   </view>
   <!-- 红包功能暂未实现，暂时隐藏 -->
-  <!-- <view class="repacket-open-banner-wrapper">
+  <view class="repacket-open-banner-wrapper">
     <image class="repacket-open-banner" src="/assets/images/repacket_open_banner.png" mode="aspectFit"></image>
     <view class='repacket-open-btn' catchtap="getRedpacket"></view>
-  </view> -->
+  </view>
   <view class='confirm-wrapper'>
     <view class='confirm-content'>
       <view class='confirm-box'>

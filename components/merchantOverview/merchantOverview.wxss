@@ -2,12 +2,33 @@
 @import "../../app.wxss";
 
 .merchant-wrapper {
+  position: relative;
   padding: 27rpx 16rpx;
   margin-top: 50rpx;
   position: relative;
   overflow: visible;
   border-radius: 20rpx;
   border: 1px solid #D8D8D8;
+}
+.rest-bgc {
+  background-color: #ebebeb;
+}
+.rest-txt {
+  width: 134rpx;
+  height: 46rpx;
+  border-radius: 14rpx;
+  background-color: #aaa9a9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: 16rpx;
+  top: 74rpx;
+  z-index: 99;
+}
+.rest-txt > text {
+  color: #FFF;
+  font-size: 30rpx;
 }
 
 @media screen and (min-resolution: 2dppx) {

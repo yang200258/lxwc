@@ -13,7 +13,7 @@
   <view class='step-item'>
     <image class='step-num' src="/assets/images/step3_num.png"></image>
     <image class='step-image' src="/assets/images/step3_image.png"></image>
-    <view class='step-text'>购买成功</view>
+    <view class='step-text'>付款成功</view>
   </view>
   <view class='line-separator-h' style="position:absolute;left:0;bottom:0;"></view>
 </view>

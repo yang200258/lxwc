@@ -163,6 +163,19 @@
   align-items: center;
   color: #FF9500;
 }
+.vip-image > image,.novip > image {
+  width: 30rpx;
+  height: 26rpx;
+  margin-right: 4rpx;
+}
+.vip-image > text {
+  color: #F8C854;
+  font-size: 25rpx;
+}
+.novip > text {
+  color: #DDDDDD;
+  font-size: 25rpx;
+}
 
 /* 推广banner */
 .promotion-box{

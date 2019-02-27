@@ -4,21 +4,29 @@
   <view class='header'>
     <!-- 用户基本信息 -->
     <view class='user-info'>
-      <image class='user-info-bg' src="/assets/images/usercenter_banner.jpg" mode="aspectFill"></image>
-      <!-- 消息模块未做好，暂时隐藏入口 -->
-      <!-- <view class='message-box' catchtap="goMessageList">
+      <image class='user-info-bg' src="{{userInfo.background}}" mode="aspectFill"></image>
+      <!-- 消息模块 -->
+      <view class='message-box' catchtap="goMessageList">
         <image class='message-image' src="/assets/images/message_icon.png" mode="aspectFit"></image>
-        <view wx:if="{{userInfo.unreadMessage}}" class='message-count'>
-          <text>{{userInfo.unreadMessage > 99 ? '99+' : userInfo.unreadMessage}}</text>
+        <view wx:if="{{userInfo.unread}}" class='message-count'>
+          <text>{{userInfo.unread > 99 ? '99+' : userInfo.unread}}</text>
         </view>
-      </view> -->
+      </view>
       <view class='user-avatar'>
         <user-avatar avatar="{{userInfo.avatar}}" />
       </view>
       <view class='username-and-usernum'>
         <user-name name="{{userInfo.name}}" />
         <view class='line-separator-v' style="height:28rpx;background:#fff;margin:0 16rpx;"></view>
-        <text class='usernum'>{{userInfo.id}}</text>
+        <!-- <text class='usernum'>{{userInfo.id}}</text> -->
+        <view class="vip-image" wx:if="{{userWallet.balance > 0}}">
+          <image class="" src="../../assets/images/vip.png" mode="aspectFit" lazy-load="false" />
+          <text class="vip-text"  decode="false">VIP</text>
+        </view>
+        <view class="novip" wx:if="{{userWallet.balance <= 0}}">
+          <image class="" src="../../assets/images/novip.png" mode="aspectFit" lazy-load="false" />
+          <text class="novip-text"  decode="false">VIP</text>
+        </view>
       </view>
       <view class='recharge-btn' catchtap="showRechargeBox">
         <text>我要充值</text>
@@ -75,7 +83,7 @@
     <image class='visitor-banner-image' src="/assets/images/visitor_banner.png" mode="aspectFill"></image>
     <button class='bindphone-btn' open-type="getPhoneNumber" bindgetphonenumber="getPhone"></button>
   </view>
-  <view class='promotion-header'>开通会员乐享全城优</view>
+  <view class='promotion-header'>开通会员乐享全城优惠</view>
   <view class='promotion-card-list'>
     <view wx:for="{{promotionCards}}" wx:for-item="promotionCard" wx:key="title" class='promotion-card-item'>
       <view class='top'>
