@@ -58,6 +58,17 @@
       }
       return str
     }
+
+    if (activity.type == 'shopzeng') {
+      for (var i = 0; i < activity.items.length; i++) {
+        if (i !== activity.items.length - 1) {
+          str += "满" + activity.items[i].cond_count + "赠送" + activity.items[i].present + "；"
+        } else {
+          str += "满" + activity.items[i].cond_count + "赠送" + activity.items[i].present
+        }
+      }
+      return str
+    }
   }
   var filterPay = function(activity){
     // console.log('传入的数据',activity);

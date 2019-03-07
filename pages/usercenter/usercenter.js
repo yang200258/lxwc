@@ -52,14 +52,14 @@ Page({
         image: '/assets/images/comment.png',
         title: '我的评价',
         extraData: {
-          route: ''
+          route: '/pages/usercomment/usercomment'
         }
       },
       {
         image: '/assets/images/member.png',
         title: '会员须知',
         extraData: {
-          route: ''
+          route: '/pages/membernotes/membernotes'
         }
       },
       {
@@ -284,7 +284,7 @@ Page({
         _obj['userInfo.name'] = name
         _obj['userInfo.id'] = id
         _obj['userInfo.background'] = background
-        _obj['userInfo.unread'] = unread
+        _obj['userInfo.unread'] = unread || 0
         _obj['userWallet.balance'] = balance
         _obj['userWallet.voucher'] = coupons
         _obj['kefu_tel'] = kefu_tel

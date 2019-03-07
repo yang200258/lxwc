@@ -8,7 +8,7 @@
       <!-- 消息模块 -->
       <view class='message-box' catchtap="goMessageList">
         <image class='message-image' src="/assets/images/message_icon.png" mode="aspectFit"></image>
-        <view wx:if="{{userInfo.unread}}" class='message-count'>
+        <view wx:if="{{userInfo.unread && userInfo.unread !== '0'}}" class='message-count'>
           <text>{{userInfo.unread > 99 ? '99+' : userInfo.unread}}</text>
         </view>
       </view>
