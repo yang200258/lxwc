@@ -69,6 +69,18 @@
       }
       return str
     }
+    
+    if(activity.type == 'zhekou'){
+      for(var i = 0;i<activity.sales.length;i++) {
+        if(i !== activity.sales.length - 1) {
+          str += "满" + activity.sales[i].cond_count + "打" + activity.sales[i].dis_rate + "折；"
+        } else {
+          str += "满" + activity.sales[i].cond_count + "打" + activity.sales[i].dis_rate + "折"
+        }
+      }
+      console.log('传出的数据',str);
+      return str;
+    } 
   }
   var filterPay = function(activity){
     // console.log('传入的数据',activity);

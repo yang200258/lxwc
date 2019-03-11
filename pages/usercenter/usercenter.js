@@ -23,16 +23,7 @@ Page({
     },
     kefu_tel: '',
     tousu_tel: '',
-    promotion: [
-      {
-        id: '1',
-        banner: 'http://img4.imgtn.bdimg.com/it/u=167133033,101847931&fm=26&gp=0.jpg'
-      },
-      {
-        id: '2',
-        banner: 'http://img5.imgtn.bdimg.com/it/u=2699344871,3846599038&fm=200&gp=0.jpg'
-      }
-    ],
+    promotion: [],
     entrances: [
       {
         image: '/assets/images/bill_icon.png',
@@ -77,32 +68,7 @@ Page({
         }
       }
     ],
-    promotionCards: [
-      {
-        title: '超低价促销',
-        tip: '乐享会员专享'
-      },
-      {
-        title: '海量满减',
-        tip: '乐享会员专享'
-      },
-      {
-        title: '会员生日红包',
-        tip: '乐享会员专享'
-      },
-      {
-        title: '会员日免费礼品',
-        tip: '乐享会员专享'
-      },
-      {
-        title: '新店免费试吃',
-        tip: '乐享会员专享'
-      },
-      {
-        title: '到店折上折',
-        tip: '乐享会员专享'
-      }
-    ]
+    promotionCards: []
   },
 
   /**

@@ -91,15 +91,29 @@
       </view>
     </view>
     
-    <!-- 满赠 -->
-    <!-- <view wx:if="{{activitys.fullgift && activitys.fullgift.length}}" class='fullgift-box'>
-      <view class='line-separator-h'></view>
-      <view class='fullgift-content-wrapper'>
-        <view wx:for="{{activitys.fullgift}}" wx:for-item="fullgift" wx:key="id" class='fullgift-item'>
-          <view class='fullgift-text'>{{fullgift.title}}</view>
+    <!-- 折扣 -->
+    <view class='fullcut-box' wx:if="{{activitys.zhekou && activitys.zhekou.length}}">
+      <!-- <view class='line-separator-h'></view> -->
+      <view class='fullcut-content-wrapper'>
+        <view wx:for="{{activitys.zhekou}}" wx:for-item="zhekou" wx:key="" class='fullcut-item'>
+          <!-- <text-icon class='act-icon' size="{{actIconSize}}" font-size="{{24}}" color="{{'#FF0000'}}" text="{{'满减'}}" /> -->
+          <image class="act-icon" src="../../assets/images/zhekou.png" mode="aspectFill" />
+          <view class='fullcut-text'>{{filter.filterTitle(zhekou)}}</view>
         </view>
       </view>
-    </view> -->
+    </view>
+
+    <!-- 满赠 -->
+    <view class='fullcut-box' wx:if="{{activitys.shopzeng && activitys.shopzeng.length}}">
+      <!-- <view class='line-separator-h'></view> -->
+      <view class='fullcut-content-wrapper'>
+        <view wx:for="{{activitys.shopzeng}}" wx:for-item="shopzeng" wx:key="" class='fullcut-item'>
+          <!-- <text-icon class='act-icon' size="{{actIconSize}}" font-size="{{24}}" color="{{'#FF0000'}}" text="{{'满减'}}" /> -->
+          <image class="act-icon" src="../../assets/images/shopzeng.png" mode="aspectFill" />
+          <view class='fullcut-text'>{{filter.filterTitle(shopzeng)}}</view>
+        </view>
+      </view>
+    </view>
     
     <!-- 代金券 -->
     <view wx:if="{{activitys.voucher[0] && activitys.voucher[0].coupons.length}}" class='voucher-box'>

@@ -17,7 +17,7 @@
           <text style="color:#FF3B30">优惠</text>
           <text>
             <text class='iconfont icon-renminbi' style="font-size:24rpx;color:#FF3B30"></text>
-          <text style="color:#FF3B30">{{order.discount}}</text>
+            <text style="color:#FF3B30">{{order.discount}}</text>
           </text>
         </view>
         <view class='discount-item'>

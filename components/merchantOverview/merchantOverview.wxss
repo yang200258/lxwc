@@ -112,9 +112,9 @@
 .act-icon {
   margin-right: 10rpx;
   display: block;
-  width: 112rpx;
-  height: 49rpx;
-  transform: scale(0.6, 0.6);
+  width: 160rpx;
+  height: 64rpx;
+  transform: scale(0.5, 0.5);
   transform-origin: 50% 50%;
 }
 

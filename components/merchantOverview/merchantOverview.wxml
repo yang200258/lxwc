@@ -1,6 +1,6 @@
 <!--components/merchantoverview/merchantoverview.wxml-->
 <wxs module="filter" src="../../app.wxs"></wxs>
-<view class="merchant-wrapper box-thin-border {{merchant.rest ? rest-bgc : ''}}" catchtap="merchantTap" data-id="{{merchant.shopid}}">
+<view class="merchant-wrapper box-thin-border {{merchant.rest ? 'rest-bgc' : ''}}" catchtap="merchantTap" data-id="{{merchant.shopid}}">
   <view class="rest-txt" wx:if="{{merchant.rest}}">
     <text>休息中</text>
   </view>
