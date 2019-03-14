@@ -1,8 +1,0 @@
-{
-  "navigationBarBackgroundColor": "#FAFAFA",
-  "navigationBarTitleText": "",
-  "backgroundColor": "#F7F7F7",
-  "usingComponents": {
-    "iphone-bottom-adapter": "/components/iphoneBottomAdapter/iphoneBottomAdapter"
-  }
-}

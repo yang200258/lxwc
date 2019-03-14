@@ -1,7 +1,0 @@
-<!--components/listFooter/listFooter.wxml-->
-<view wx:if="{{page && (page.pn || page.pn === 0) && !page.isend}}" class='loadmore-tip' style="background:{{bg}}"><text>{{loading ? '加载中...' : '上拉加载更多'}}</text></view>
-<view wx:if="{{showNoMore && page && (page.pn || page.pn === 0) && page.isend}}" class='loadmore-tip' style="background:{{bg}}">
-    <view class="dash"></view>
-    <text>{{noMoreText}}</text>
-    <view class="dash"></view>
-</view>

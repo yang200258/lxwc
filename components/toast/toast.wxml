@@ -1,5 +1,0 @@
-<!--components/toast/toast.wxml-->
-<view class="ft-toast-mask" wx:if="{{ visible && mask }}" bindtap="handleHide"></view>
-<view class="ft-toast" wx:if="{{ visible }}">
-  <view class="ft-toast-content" wx:if="{{ content }}">{{ content }}</view>
-</view>

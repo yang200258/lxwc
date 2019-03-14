@@ -1,6 +1,0 @@
-{
-  "component": true,
-  "usingComponents": {
-    "text-icon": "/components/textIcon/textIcon"
-  }
-}
