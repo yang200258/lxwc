@@ -118,7 +118,7 @@
     display: block;
     width: 160rpx;
     height: 64rpx;
-    transform: scale(0.4, 0.4);
+    transform: scale(0.45, 0.45);
     transform-origin: 50% 50%;
     margin-left: -44rpx;
 }

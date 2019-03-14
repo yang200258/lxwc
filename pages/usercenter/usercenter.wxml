@@ -1,17 +1,17 @@
 <!--pages/usercenter/usercenter.wxml-->
 <!-- 会员 -->
-<view wx:if="{{phone}}" class='vip'>
+<view class='vip'>
   <view class='header'>
     <!-- 用户基本信息 -->
     <view class='user-info'>
       <image class='user-info-bg' src="{{userInfo.background}}" mode="aspectFill"></image>
-      <!-- 消息模块 -->
+      <!-- 消息模块 
       <view class='message-box' catchtap="goMessageList">
         <image class='message-image' src="/assets/images/message_icon.png" mode="aspectFit"></image>
         <view wx:if="{{userInfo.unread && userInfo.unread !== '0'}}" class='message-count'>
           <text>{{userInfo.unread > 99 ? '99+' : userInfo.unread}}</text>
         </view>
-      </view>
+      </view>-->
       <view class='user-avatar'>
         <user-avatar avatar="{{userInfo.avatar}}" />
       </view>
@@ -77,7 +77,7 @@
     <entrance wx:for="{{entrances}}" wx:key="title" wx:for-item="entrance" wx:for-index="idx" image="{{entrance.image}}" title="{{entrance.title}}" bottom-border="{{true}}" extra-data="{{entrance.extraData}}" bindentrancetap="entranceTap" />
   </view>
 </view>
-<!-- 非会员 -->
+<!-- 非会员 
 <view wx:if="{{!phone}}" class='visitor'>
   <view class='visitor-banner'>
     <image class='visitor-banner-image' src="/assets/images/visitor_banner.png" mode="aspectFill"></image>
@@ -86,16 +86,16 @@
   <view class='promotion-header'>开通会员乐享全城优惠</view>
   <view class='promotion-card-list'>
     <view wx:for="{{promotionCards}}" wx:for-item="promotionCard" wx:key="title" class='promotion-card-item'>
-      <view class='top'>
+      <view class='top'>-->
         <!-- <view class='red-sign'></view>
-        <view class='font-sign'>券</view> -->
+        <view class='font-sign'>券</view> 
         <view class='promotion-card-title'>{{promotionCard.title}}</view>
       </view>
       <view class='bottom'>{{promotionCard.tip}}</view>
       <view class='half-circle-left'></view>
       <view class='half-circle-right'></view>
     </view>
-  </view>
+  </view>-->
   <!-- <view class='more-promotion'>
     <text class='more-promotion-text'>更多优惠，点击查看></text>
   </view> -->
@@ -107,7 +107,7 @@
         <image class='promotion-image' src="{{banner.banner}}" mode="aspectFill"></image>
       </swiper-item>
     </swiper>
-  </view> -->
+  </view> 
   <view class='tech-tip'>乐享文昌由文昌乐享科技有限公司提供</view>
-</view>
+</view>-->
 <recharge-box id="recharge-box" />

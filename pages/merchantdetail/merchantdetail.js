@@ -341,7 +341,7 @@ Page({
     showRechargeDialog: function() {
         wx.showModal({
             title: '',
-            content: '余额不足，请充值！',
+            content: '充值成为会员，乐享文昌全城优惠！',
             confirmText: '去充值',
             confirmColor: '#108EE9',
             success: res => {

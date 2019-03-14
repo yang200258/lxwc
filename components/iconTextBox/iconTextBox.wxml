@@ -1,7 +1,8 @@
 <!--components/iconTextBox/iconTextBox.wxml-->
 <view class='wrapper'>
   <view wx:if="{{textIcon}}" class='text-icon'>
-    <text-icon size="{{actIconSize}}" font-size="{{24}}" color="{{textIconColor}}" text="{{textIcon}}" />
+    <!--  <text-icon size="{{actIconSize}}" font-size="{{24}}" color="{{textIconColor}}" text="{{textIcon}}" /> -->
+    <image class="act-icon" src="../../assets/images/{{textIcon}}.png" mode="aspectFill"></image>
   </view>
   <image wx:if="{{imageIcon}}" class='image-icon' style="width:{{actIconSize.width}}rpx;height:{{actIconSize.height}}rpx" src="{{imageIcon}}" mode="aspectFit"></image>
   <text wx:if="{{title}}" class='title'>{{title}}</text>

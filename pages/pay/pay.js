@@ -19,7 +19,8 @@ Page({
         total: '',
         ignore: '',
         actual: '',
-        paying: false // 是否正在付款，禁止多次点击
+        paying: false, // 是否正在付款，禁止多次点击,
+        ignore: true,
     },
 
     /**

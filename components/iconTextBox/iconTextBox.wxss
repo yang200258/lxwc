@@ -1,39 +1,55 @@
 /* components/iconTextBox/iconTextBox.wxss */
+
 @import "../../assets/styles/iconfont.wxss";
-.wrapper{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  min-height: 48rpx;
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 48rpx;
 }
-.text-icon{
-  flex-shrink: 0;
-  flex-grow: 0;
-  margin-right: 30rpx;
+
+.text-icon {
+    flex-shrink: 0;
+    flex-grow: 0;
+    margin-right: 30rpx;
 }
-.image-icon{
-  display: block;
-  margin-right: 30rpx;
-  flex-shrink: 0;
+
+.image-icon {
+    display: block;
+    margin-right: 30rpx;
+    flex-shrink: 0;
 }
-.title{
-  color: #6E6E6E;
-  font-size: 26rpx;
-  line-height: 34rpx;
-  margin-right: 30rpx;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  flex: 1;
+
+.title {
+    color: #6E6E6E;
+    font-size: 26rpx;
+    line-height: 34rpx;
+    margin-right: 30rpx;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex: 1;
 }
-.sub-title{
-  color: #F24724;
-  font-size: 26rpx;
-  line-height: 30rpx;
-  flex-shrink: 0;
+
+.sub-title {
+    color: #F24724;
+    font-size: 26rpx;
+    line-height: 30rpx;
+    flex-shrink: 0;
 }
-.minus-sign, .icon-renminbi{
-  flex-shrink: 0;
-  color: #F24724;
-  line-height: 30rpx;
+
+.minus-sign,
+.icon-renminbi {
+    flex-shrink: 0;
+    color: #F24724;
+    line-height: 30rpx;
+}
+
+.act-icon {
+    /* margin-right: 10rpx; */
+    display: block;
+    width: 160rpx;
+    height: 64rpx;
+    transform: scale(0.5, 0.5);
+    transform-origin: 50% 50%;
 }

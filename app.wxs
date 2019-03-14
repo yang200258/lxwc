@@ -51,9 +51,9 @@
       if (activity.type == 'fanquan') {
           for (var i = 0; i < activity.coupons.length; i++) {
               if (i !== activity.coupons.length - 1) {
-                  str += "满" + activity.coupons[i].cond_count + "返券" + activity.coupons[i].value + "元；"
+                  str += "满" + activity.coupons[i].single_amount + "返券" + activity.coupons[i].value + "元；"
               } else {
-                  str += '满' + activity.coupons[i].cond_count + "返券" + activity.coupons[i].value + "元"
+                  str += '满' + activity.coupons[i].single_amount + "返券" + activity.coupons[i].value + "元"
               }
           }
           return str

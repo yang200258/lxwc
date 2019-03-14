@@ -32,6 +32,13 @@ Page({
                 }
             },
             {
+                image: '/assets/images/message_icon2.png',
+                title: '我的消息',
+                extraData: {
+                    route: '/pages/messagelist/messagelist'
+                }
+            },
+            {
                 image: '/assets/images/user.png',
                 title: '会员信息',
                 extraData: {
