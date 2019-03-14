@@ -1,128 +1,152 @@
 /* components/rechargeBox/rechargeBox.wxss */
+
 @import "../../assets/styles/iconfont.wxss";
 
 /* 充值弹窗 */
-.recharge-wrapper{
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: -1;
+
+.recharge-wrapper {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: -1;
 }
-.recharge-wrapper.show{
-  z-index: 99;
-  visibility: visible;
+
+.recharge-wrapper.show {
+    z-index: 99;
+    visibility: visible;
 }
-.recharge-wrapper.hide{
-  opacity: 0;
-  transition: all 0.3s;
-  /* z-index: -1; */
-  /* visibility: hidden; */
+
+.recharge-wrapper.hide {
+    opacity: 0;
+    transition: all 0.3s;
+    /* z-index: -1; */
+    /* visibility: hidden; */
 }
-.recharge-box-bg{
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  left: 0;
-  top: 0;
-  background: rgba(0,0,0,0.5);
-  z-index: 1;
-  opacity: 0;
-  transition: all 0.2s;
+
+.recharge-box-bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    opacity: 0;
+    transition: all 0.2s;
 }
-.recharge-box-bg.show{
-  opacity: 1;
+
+.recharge-box-bg.show {
+    opacity: 1;
 }
-.recharge-box-bg.hide{
-  opacity: 0;
-  transition: all 0.3s;
+
+.recharge-box-bg.hide {
+    opacity: 0;
+    transition: all 0.3s;
 }
-.recharge-box{
-  width: 686rpx;
-  height: 630rpx;
-  background: #fff;
-  border-radius: 4rpx;
-  padding-top: 32rpx;
-  box-sizing: border-box;
-  position: relative;
-  z-index: 2;
-  transition: transform 0.2s;
+
+.recharge-box {
+    width: 686rpx;
+    height: 696rpx;
+    background: #fff;
+    border-radius: 4rpx;
+    padding-top: 32rpx;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 2;
+    transition: transform 0.2s;
 }
-.recharge-box.show{
-  transform: scale(1, 1);
+
+.recharge-box.show {
+    transform: scale(1, 1);
 }
-.recharge-box.hide{
-  transform: scale(0.8, 0.8);
-  transition: all 0.3s;
-  visibility: hidden;
+
+.recharge-box.hide {
+    transform: scale(0.8, 0.8);
+    transition: all 0.3s;
+    visibility: hidden;
 }
-.recharge-ad{
-  display: block;
-  width: 622rpx;
-  margin: 0 auto;
-  height: 72rpx;
-  background: #FAFAFA;
+
+.recharge-ad {
+    display: block;
+    width: 630rpx;
+    margin: 0 auto;
+    height: 180rpx;
+    background: #FAFAFA;
 }
-.title{
-  padding: 0 28rpx 0 32rpx;
-  height: 86rpx;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: #999;
-  font-size: 32rpx;
-  font-weight: bold;
-  line-height: 40rpx;
+
+.title {
+    padding: 0 28rpx 0 32rpx;
+    height: 86rpx;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #999;
+    font-size: 32rpx;
+    font-weight: bold;
+    line-height: 40rpx;
 }
-.icon-guanbi{
-  font-size: 36rpx;
-  color: #8D8D8D;
+
+.icon-guanbi {
+    font-size: 36rpx;
+    color: #8D8D8D;
 }
-.recharge-list{
-  padding-top: 5rpx;
-  margin: 0 26rpx;
-  display: flex;
-  flex-wrap: wrap;
-  overflow: hidden;
+
+.guanbi {
+    width: 32rpx;
+    height: 32rpx;
 }
-.recharge-item{
-  width: 31.33%;
-  margin: 0 1% 32rpx;
-  height: 104rpx;
-  border-radius: 14rpx;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  box-sizing: border-box;
-  border: 1px solid #FF0000;
-  color: #FF0000;
-  transition: all 0.2s;
+
+.recharge-list {
+    padding-top: 5rpx;
+    margin: 0 26rpx;
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
 }
-.recharge-item.current{
-  background: #FF0000;
-  color: #fff;
+
+.recharge-item {
+    width: 31.33%;
+    margin: 0 1% 32rpx;
+    height: 104rpx;
+    border-radius: 14rpx;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    border: 1px solid #FF0000;
+    color: #FF0000;
+    transition: all 0.2s;
 }
-.original-price{
-  font-size: 36rpx;
-  line-height: 40rpx;
+
+.recharge-item.current {
+    background: #FF0000;
+    color: #fff;
 }
-.price{
-  font-size: 24rpx;
-  line-height: 28rpx;
+
+.original-price {
+    font-size: 36rpx;
+    line-height: 40rpx;
 }
-.rechage-submit-btn{
-  margin: 28rpx 32rpx 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 74rpx;
-  font-size: 34rpx;
-  color: #fff;
-  background: #FF0000;
-  border-radius: 8rpx;
+
+.price {
+    font-size: 24rpx;
+    line-height: 28rpx;
+}
+
+.rechage-submit-btn {
+    margin: 28rpx 32rpx 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 74rpx;
+    font-size: 34rpx;
+    color: #fff;
+    background: #FF0000;
+    border-radius: 8rpx;
 }

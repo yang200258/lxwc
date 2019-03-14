@@ -76,6 +76,7 @@ Page({
         this.setData({
             searchText: e.currentTarget.dataset.text
         })
+        this.getMerchants(0, this.data.searchText)
     },
 
     stopPropagation: function() {

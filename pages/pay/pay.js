@@ -103,9 +103,9 @@ Page({
             wx.navigateBack({
                 delta: 1
             })
-        } else { // 重定向到商家详情页
-            wx.redirectTo({
-                url: '/pages/merchantdetail/merchantdetail?id=' + this.shopid
+        } else { // 重定向到首页
+            wx.switchTab({
+                url: '/pages/index/index'
             })
         }
     },
@@ -178,7 +178,20 @@ Page({
             }
         }).catch(err => {
             console.log('err', err)
-            this.goMerchant()
+            wx.showModal({
+                    title: '',
+                    content: err.msg,
+                    confirmText: '确定',
+                    confirmColor: '#108EE9',
+                    success: res => {
+                        if (res.confirm) {
+                            this.goMerchant()
+                        } else if (res.cancel) {
+                            this.goMerchant()
+                        }
+                    }
+                })
+                // this.goMerchant()
         })
     },
 
@@ -681,7 +694,7 @@ Page({
                 } else {
                     if (res.msg) {
                         wx.showToast({
-                            title: res.msg,
+                            title: 'res.msg',
                             icon: 'none'
                         })
                     }

@@ -6,7 +6,8 @@
     <image wx:if="{{rechargeData.ad}}" class='recharge-ad' src="{{rechargeData.ad}}" mode="aspectFill"></image>
     <view class='title'>
       <text>充值额</text>
-      <text class='iconfont icon-guanbi' catchtap="hideRechargeBox"></text>
+      <!-- <text class='iconfont icon-guanbi' catchtap="hideRechargeBox"></text> -->
+      <image class="guanbi" src="../../assets/images/guanbi.png" mode="aspectFill"catchtap="hideRechargeBox"></image>
     </view>
     <view class='recharge-list'>
       <view class="recharge-item {{rechargeCurrent === idx ? 'current' : ''}}" wx:for="{{rechargeData.rechargeList}}" wx:for-item="recharge" wx:for-index="idx" wx:key="sale" catchtap="changeCurrentRecharge" data-idx="{{idx}}">
