@@ -69,7 +69,8 @@ Page({
 
     hideSearch: function() {
         this.setData({
-            searchFocus: false
+            searchFocus: false,
+            searchText: ''
         })
     },
     resetSearch: function(e) {

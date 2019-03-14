@@ -26,11 +26,11 @@
         </view>
       </view>
     </view>
-     <!-- 红包功能-->
+     <!-- 红包功能
     <view class="repacket-open-banner-wrapper" catchtap="getRedpacket">
-    <image class="repacket-open-banner" src="../../assets/images/recharge_success_banner.png" mode="aspectFit"></image>
-    <view class='repacket-open-btn'></view>
-  </view>
+      <image class="repacket-open-banner" src="../../assets/images/recharge_success_banner.png" mode="aspectFit"></image>
+      <view class='repacket-open-btn'></view>  
+    </view> -->
   <!-- 完成功能-->
   <view class='confirm-wrapper'>
     <view class='confirm-content'>
