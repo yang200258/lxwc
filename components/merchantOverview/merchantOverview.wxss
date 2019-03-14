@@ -109,16 +109,18 @@
     height: 42rpx;
     display: flex;
     align-items: center;
+    justify-content: flex-start;
     margin-bottom: 4rpx;
 }
 
 .act-icon {
-    margin-right: 10rpx;
+    /* margin-right: 10rpx; */
     display: block;
     width: 160rpx;
     height: 64rpx;
     transform: scale(0.4, 0.4);
     transform-origin: 50% 50%;
+    margin-left: -44rpx;
 }
 
 .act-text {
