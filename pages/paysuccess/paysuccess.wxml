@@ -2,22 +2,22 @@
 <view class='page-paysuccess'>
   <view class='info-box'>
     <!-- <image class='success-icon' src="/assets/images/success_icon.png" mode="aspectFit"></image> -->
-    <!-- <view class='user-avatar'>
-        <user-avatar avatar="{{userInfo.avatar}}" />
-    </view> -->
+    <view class='user-avatar'>
+        <user-avatar avatar="{{avatar}}" />
+    </view>
     <view class='success-tip'>支付成功</view>
     <view class='actual'>
       <text class='iconfont icon-renminbi'></text>
       <text class='actual-text'>{{order.actual}}</text>
     </view>
     <view class='dicount-box-wrapper'>
-      <view class='line-separator-h' style="width:{{622}}rpx;margin-left:32rpx"></view>
+      <!-- <view class='line-separator-h' style="width:{{622}}rpx;margin-left:32rpx"></view> -->
       <view class='discount-box'>
         <view wx:if="{{order.discount && order.discount !== '0'}}" class='discount-item'>
-          <text style="color:#FF3B30">优惠</text>
+          <text style="color:#CC3300">优惠</text>
           <text>
-            <text class='iconfont icon-renminbi' style="font-size:24rpx;color:#FF3B30"></text>
-            <text style="color:#FF3B30">{{order.discount}}</text>
+            <text class='iconfont icon-renminbi' style="font-size:24rpx;color:#CC3300"></text>
+            <text style="color:#CC3300">{{order.discount}}</text>
           </text>
         </view>
         <view class='discount-item'>
@@ -26,12 +26,12 @@
         </view>
       </view>
     </view>
+     <!-- 红包功能-->
+    <view class="repacket-open-banner-wrapper" catchtap="getRedpacket">
+    <image class="repacket-open-banner" src="../../assets/images/recharge_success_banner.png" mode="aspectFit"></image>
+    <view class='repacket-open-btn'></view>
   </view>
-  <!-- 红包功能暂未实现，暂时隐藏 -->
-  <view class="repacket-open-banner-wrapper">
-    <image class="repacket-open-banner" src="/assets/images/repacket_open_banner.png" mode="aspectFit"></image>
-    <view class='repacket-open-btn' catchtap="getRedpacket"></view>
-  </view>
+  <!-- 完成功能-->
   <view class='confirm-wrapper'>
     <view class='confirm-content'>
       <view class='confirm-box'>
@@ -42,6 +42,7 @@
       <iphone-bottom-adapter />
     </view>
     <iphone-bottom-adapter />
+  </view>
   </view>
 </view>
 <redpacket-box id="redpacket-box" />

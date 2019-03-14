@@ -5,7 +5,7 @@
     <ticket-box ticket="{{redpacket}}" />
   </view>
   <!-- 大于10条信息才展示没有更多的提示 -->
-  <list-footer loading="{{fetching}}" page="{{page}}" show-no-more="{{tickets && tickets[10]}}" no-more-text="没有更多了~" />
+  <list-footer loading="{{fetching}}" page="{{page}}" show-no-more="{{redpackets}}" no-more-text="没有更多了~" />
   <iphone-bottom-adapter />
 </view>
 <view wx:if="{{(!redpackets || (redpackets && !redpackets[0])) && loaded}}" class='empty-redpacket'>

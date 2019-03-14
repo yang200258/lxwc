@@ -1,7 +1,7 @@
 <!--pages/choosevoucher/choosevoucher.wxml-->
 <view class='page-choosevoucher'>
-  <view wx:for="{{vouchers}}" wx:for-item="voucher" wx:for-index="idx" wx:key="{{voucher.id}}" class='voucher-item'>
-    <choose-voucher voucher="{{voucher}}" bindvouchertap="choosevoucher" />
+  <view wx:for="{{redpackets}}" wx:for-item="redpacket" wx:for-index="idx" wx:key="{{redpacket.id}}" class='voucher-item'>
+    <choose-voucher voucher="{{redpacket}}" bindvouchertap="chooseRedPacket" />
   </view>
 </view>
 <view class='fixed-button-wrapper'>

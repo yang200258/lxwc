@@ -15,7 +15,7 @@
     </view> 
   </view>
   <!-- 搜索框 -->
-  <!-- <view class='search-box-wrapper'>
+   <view class='search-box-wrapper'>
     <view class="search-box-content {{searchFixed ? 'fixed' : ''}}">
       <view class='search-box' catchtap="goSearch">
         <text class='iconfont icon-search'></text>
@@ -23,7 +23,7 @@
       </view>
       <view hidden="{{!searchFixed}}" class='line-separator-h' style="position:absolute;left:0;bottom:0"></view>
     </view>
-  </view> -->
+  </view>
   <!-- 轮播图 -->
   <view wx:if="{{activitys && activitys[0]}}" class='activity-box'>
     <swiper class='activity-swiper' autoplay circular interval="{{2500}}" duration="{{300}}" bindchange="changeActivityCurrent">

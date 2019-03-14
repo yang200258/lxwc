@@ -17,7 +17,7 @@
       <view class='merchant-discount-header'>商家优惠</view>
       <view class='line-separator-h' style="width:718rpx;margin-left:32rpx;background:#999"></view>
       <view class='merchant-discount-content'>
-        <view wx:for="{{merchantDiscounts}}" wx:for-item="merchantDiscount" wx:key="id" class='merchant-discount-item'>{{filter.filterPay(merchantDiscount)}}</view>
+        <view wx:for="{{merchantDiscounts}}" wx:for-item="merchantDiscount" wx:key="id" class='merchant-discount-item'>{{filter.filterTitle(merchantDiscount)}}</view>
       </view>
     </view>
   </view>
@@ -26,19 +26,19 @@
     <view class='lx-voucher' catchtap="chooseVoucher">
       <text class='lx-selected-text' wx:if="{{selectedVoucher}}">满{{selectedVoucher.cond_count}}减{{selectedVoucher.value}}</text>
       <text wx:if="{{!selectedVoucher && canUseVoucher}}" class='lx-has-use'>您有<text class='lx-can-use-num'>{{canUseVoucher}}</text>张可用优惠券</text>
-      <text wx:if="{{!selectedVoucher && !canUseVoucher}}" class='lx-none-use'>暂无可用</text>
+      <text wx:if="{{!selectedVoucher && !canUseVoucher}}" class='lx-none-use'>暂无可用优惠券</text>
       <text class="iconfont icon-next {{canUseVoucher ? '' : 'disabled'}}"></text>
     </view>
   </view>
-  <!-- <view class='lx-repacket-box'>
+   <view class='lx-repacket-box'>
     <view class='lx-repacket-header'>乐享红包</view>
     <view class='lx-redpacket' catchtap="chooseRedpacket">
-      <text class='lx-selected-text' wx:if="{{selectedRedpacket}}">满{{selectedRedpacket.cond_count}}减{{selectedRedpacket.value}}</text>
-      <text wx:if="{{!selectedRedpacket && canUseRedpacket}}" class='lx-has-use'>您有<text class='lx-can-use-num'>{{canUseRedpacket}}</text>个可用红包</text>
-      <text wx:if="{{!selectedRedpacket && !canUseRedpacket}}" class='lx-none-use'>暂无可用</text>
+      <text class='lx-selected-text' wx:if="{{selectedRedPacket}}">满{{selectedRedPacket.cond_count}}减{{selectedRedPacket.value}}</text>
+      <text wx:if="{{!selectedRedPacket && canUseRedpacket}}" class='lx-has-use'>您有<text class='lx-can-use-num'>{{canUseRedpacket}}</text>个乐享红包</text>
+      <text wx:if="{{!selectedRedPacket && !canUseRedpacket}}" class='lx-none-use'>暂无可用红包</text>
       <text class="iconfont icon-next {{canUseRedpacket ? '' : 'disabled'}}"></text>
     </view>
-  </view> -->
+  </view> 
   <view class='fixed-button-wrapper'>
     <view class='fixed-button-content'>
       <view class='fixed-button-box'>

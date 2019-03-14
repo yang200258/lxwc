@@ -6,7 +6,7 @@
     </view>
     <view class='indicator-box'>
       <view class='line-separator-h'></view>
-      <view class='indicator' style="transform:translateX({{(currentTab + 0.5) * 250}}rpx)"></view>
+      <view class='indicator' style="transform:translateX({{currentTab * 190}}rpx)"></view>
     </view>
   </view>
   <view class='tab-content-wrapper'>

@@ -26,7 +26,8 @@
     "pages/givescore/givescore",
     "pages/merchantscore/merchantscore",
     "pages/usercomment/usercomment",
-    "pages/membernotes/membernotes"
+    "pages/membernotes/membernotes",
+    "pages/chooseredpacket/chooseredpacket"
   ],
   "window": {
     "backgroundTextStyle": "light",

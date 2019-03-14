@@ -1,9 +1,10 @@
 {
-  "navigationBarBackgroundColor": "#FAFAFA",
-  "navigationBarTitleText": "支付成功",
-  "backgroundColor": "#F7F7F7",
-  "usingComponents": {
-    "redpacket-box": "/components/redpacketBox/redpacketBox",
-    "iphone-bottom-adapter": "/components/iphoneBottomAdapter/iphoneBottomAdapter"
-  }
+    "navigationBarBackgroundColor": "#FAFAFA",
+    "navigationBarTitleText": "支付成功",
+    "backgroundColor": "#F7F7F7",
+    "usingComponents": {
+        "redpacket-box": "/components/redpacketBox/redpacketBox",
+        "iphone-bottom-adapter": "/components/iphoneBottomAdapter/iphoneBottomAdapter",
+        "user-avatar": "/components/userAvatar/userAvatar"
+    }
 }

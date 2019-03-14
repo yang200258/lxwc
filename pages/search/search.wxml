@@ -4,20 +4,26 @@
     <view class='search-box'>
       <view class='search-left' catchtap="showSearch">
         <text class='iconfont icon-search'></text>
-        <input class='search-input' disabled="{{true}}" placeholder="请输入您要搜索的店铺名称..." value="{{searchText}}"></input>
+        <input class='search-input' placeholder="请输入您要搜索的店铺名称..." value="{{searchText}}"></input>
       </view>
       <view class="search-btn {{searchText ? 'able' : ''}}">
         <text>搜索</text>
       </view>
     </view>
     <view class='result-header'>
-      <text class='iconfont icon-iconfontshangjia'></text>
+      <text class='iconfont icon-iconfontshangjia' style="color: #FF0000;"></text>
       <text>全部商家</text>
-      <view class='sort-type'>
-        <view catchtap="changeSort" data-sort="{{0}}" class="sort-type-distance {{currentSort === 0 ? 'current' : ''}}">距离</view>
+      <!-- <view class='sort-type'>
+        <view class="sort-distance">
+          <view catchtap="changeSort" data-sort="{{0}}" class="sort-type-distance {{currentSort === 0 ? 'current' : ''}}">附近</view>
+          <view class="sort-type-line-distance" hidden="{{currentSort !== 0}}"></view>
+        </view>
         <view class='line-separator-v' style="height:24rpx;"></view>
-        <view catchtap="changeSort" data-sort="{{1}}" class="sort-type-hot {{currentSort === 1 ? 'current' : ''}}">人气</view>
-      </view>
+        <view class="sort-hot">
+          <view catchtap="changeSort" data-sort="{{1}}" class="sort-type-hot {{currentSort === 1 ? 'current' : ''}}">人气</view>
+          <view class="sort-type-line-hot" hidden="{{currentSort !== 1}}"></view>
+        </view>
+      </view> -->
       <view class='line-separator-h' style="position:absolute;left:0;bottom:0;"></view>
     </view>
   </view>
@@ -37,7 +43,7 @@
     <view class='search-box'>
       <view class='search-left'>
         <text class='iconfont icon-search'></text>
-        <input class='search-input' confirm-type="search" focus="{{searchFocus}}" placeholder="搜索品牌、门店、商品..." value="{{searchText}}" bindinput="textChange"></input>
+        <input class='search-input' confirm-type="search" bind:confirm="onConfirm" auto-focus="true" focus="{{searchFocus}}" placeholder="请输入您要搜索的店铺名称..." value="{{searchText}}" bindinput="textChange"></input>
       </view>
       <view class="search-btn" catchtap="hideSearch">
         <text>取消</text>
@@ -47,7 +53,7 @@
       <view class='history-header'>
         <text>历史搜索</text>
         <view class='delete-btn'>
-          <text class='iconfont icon-shanchu'></text>
+          <text class='iconfont icon-shanchu' catchtap="clearHistory"></text>
         </view>
         <view class='line-separator-h' style="position:absolute;left:0;bottom:0;"></view>
       </view>
