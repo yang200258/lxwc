@@ -7,7 +7,7 @@
       <input class='total-input' value="{{total}}" placeholder-style='color:#ccc' placeholder='请输入消费金额' type="digit" bindinput='totalInput'></input>
     </view>
     <view class='line-separator-h' style="718rpx;margin-left:32rpx"></view>
-    <view class='ignore' wx:if="{{ignore}}">
+    <view class='ignore' wx:if="{{isIgnore}}">
       <view class='ignore-title'>不参与优惠金额(元)</view>
       <input class='ignore-input' value="{{ignore}}" placeholder-style='color:#ccc' placeholder='请询问服务员后输入' type="digit" bindinput='ignoreInput'></input>
     </view>
