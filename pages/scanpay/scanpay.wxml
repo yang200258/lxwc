@@ -1,0 +1,26 @@
+<!--pages/scanpay/scanpay.wxml-->
+<view class='steps'>
+  <view class='step-item'>
+    <image class='step-num' src="/assets/images/step1_num.png"></image>
+    <image class='step-image' src="/assets/images/step1_image.png"></image>
+    <view class='step-text'>扫描商家二维码</view>
+  </view>
+  <view class='step-item'>
+    <image class='step-num' src="/assets/images/step2_num.png"></image>
+    <image class='step-image' src="/assets/images/step2_image.png"></image>
+    <view class='step-text'>余额支付</view>
+  </view>
+  <view class='step-item'>
+    <image class='step-num' src="/assets/images/step3_num.png"></image>
+    <image class='step-image' src="/assets/images/step3_image.png"></image>
+    <view class='step-text'>付款成功</view>
+  </view>
+  <view class='line-separator-h' style="position:absolute;left:0;bottom:0;"></view>
+</view>
+<image class='scan-btn' src="/assets/images/scan_btn.png" catchtap="scanCode"></image>
+<!-- <view class="scan-wrapper" catchtap="scanCode">
+  <view class="scan">
+    <view class="iconfont icon-erweimasaomiao saomiao"></view>
+  </view>
+</view> -->
+<view class='scan-tip'>点击此处扫描商家二维码</view>

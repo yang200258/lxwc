@@ -1,0 +1,18 @@
+<!--components/redpacketBox/redpacketBox.wxml-->
+<view class="redpacket-wrapper {{redpacketBox ? 'show' : 'hide'}}" catchtouchmove="stopPropagation">
+  <view class="redpacket-box-bg {{redpacketBox ? 'show' : 'hide'}}"></view>
+  <view class='confirm' catchtap="hideRedpacketBox"></view>
+  <view class="redpacket-box {{redpacketBox ? 'show' : 'hide'}}" catchtap="stopPropagation">
+    <image src="/assets/images/redpacketbox.png" class='repacket-image' mode="aspectFit" />
+    <view class='overview'>
+      <view class='price'>
+        <text style="font-size:46rpx">10.08</text><text style="font-size:40rpx">元</text>
+      </view>
+      <view class='right'>
+        <view class='title'>红包</view>
+        <view class='condition'>满100可用，不含参与活动金额</view>
+        <view class='time'>到期时间：2018.12.31</view>
+      </view>
+    </view>
+  </view>
+</view>

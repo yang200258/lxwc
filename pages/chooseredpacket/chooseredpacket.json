@@ -1,0 +1,9 @@
+{
+    "navigationBarBackgroundColor": "#FAFAFA",
+    "navigationBarTitleText": "选择红包",
+    "backgroundColor": "#FFFFFF",
+    "usingComponents": {
+        "choose-voucher": "/components/chooseVoucher/chooseVoucher",
+        "iphone-bottom-adapter": "/components/iphoneBottomAdapter/iphoneBottomAdapter"
+    }
+}

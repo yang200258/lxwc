@@ -1,0 +1,5 @@
+<!--components/userAvatar/userAvatar.wxml-->
+<view class='wrapper' style="width:{{width}};height:{{height}}">
+  <image wx:if="{{avatar}}" src="{{avatar}}" class='avatar' mode="aspectFill"></image>
+  <open-data wx:else class="avatar" type="userAvatarUrl"></open-data>
+</view>

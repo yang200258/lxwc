@@ -1,0 +1,47 @@
+/* components/merchantCard/merchantCard.wxss */
+@import "../../assets/styles/common-flex.wxss";
+@import "../../app.wxss";
+
+.wrapper{
+  overflow: hidden;
+  border-radius: 20rpx;
+  box-shadow: 0 3rpx 6rpx 0 rgba(0,0,0,0.15);
+}
+.image-wrapper{
+  width: 100%;
+  padding-top: 50%;
+  height: 0;
+  box-sizing: content-box;
+  position: relative;
+}
+.image{
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+}
+.title{
+  font-size: 30rpx;
+  line-height: 42rpx;
+  min-height: 42rpx;
+  padding: 14rpx 14rpx 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: bold;
+  color: #333;
+  box-sizing: content-box;
+}
+.intro{
+  font-size: 28rpx;
+  line-height: 34rpx;
+  min-height: 34rpx;
+  padding: 8rpx 14rpx 14rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #999;
+  box-sizing: content-box;
+}

@@ -1,0 +1,3 @@
+<!--components/userName/userName.wxml-->
+<text wx:if="{{name}}">{{name}}</text>
+<open-data wx:else type="userNickName"></open-data>

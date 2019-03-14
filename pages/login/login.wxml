@@ -1,0 +1,51 @@
+<view id="bindPhonePage">
+  <view class="page bindPhone-wrap" id="bindPhonePage" data-router="bindPhonePage" style="{{isPageBottom ? 'padding-bottom:600rpx' : ''}}">
+    <view class="header-wrap">
+      <view class="title-wrap" style="font-size:50rpx">
+        乐享文昌
+      </view>
+    </view>
+    <view class="bind-new-tel-wrap" >
+      <view class="main-wrap">
+        <view class="options">
+          <!-- <view class="quick-bind active" data-type="quick" catchtap='changeType'>快速绑定</view> -->
+          <!-- <view class="message-check {{!isQuick ? 'active' : ''}}" data-type="message" catchtap='changeType'>短信验证</view> -->
+        </view>
+        <block>
+          <button class="authorization" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
+            <icon class="ico-moon icon-full-weixin"></icon>
+            <view>微信授权登录</view>
+          </button>
+        </block>
+        <!-- <block wx:else>
+          <view class="any-message">
+            <view class='verify-row phonenum'>
+              <view>+{{nationCode}}</view>
+              <picker class="area-collect" bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+                <view class="picker">
+                  当前选择：{{array[index]}}
+                </view>
+              </picker>
+              <icon class="ico-moon icon-rightarrow"></icon>
+              <input placeholder-class="phcolor" class="code-tel" bindinput="inputPhone" placeholder='手机号' cursor-spacing="200"></input>
+            </view>
+            <view class='verify-row getCode'>
+              <input placeholder-class="phcolor" class="pic-code-input" cursor-spacing="140" bindinput="inputNewPhonePicCode" placeholder='图片验证码'></input>
+              <view class="pic-code-wrap">
+                <image class="pic-code" mode="aspectFit" src="{{ newPhonePicCodeUrl }}" bindtap="refreshNewPhonePicCode"></image>
+              </view>
+            </view>
+            <view class='verify-row postCode'>
+              <input placeholder-class="phcolor" bindinput="inputNewCode" placeholder="请输入验证码" cursor-spacing="80" />
+              <view class="get-code-btn" bindtap="sendCodeToNewPhone">{{ newCodeStatus }}</view>
+            </view>
+          </view>
+          <view class="option-btn bind-new-tel-btn {{ !newPhone || !newCode ? 'disabled' : '' }}" bindtap="bindNewPhone">
+            登录
+          </view>
+        </block> -->
+      </view>
+    </view>
+    <!-- <view class="back-home-btn icon-back-to-home ico-moon" wx:if="{{showBackHomeButton}}" catchtap="backToHomePage"></view> -->
+  </view>
+</view>

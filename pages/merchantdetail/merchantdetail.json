@@ -1,0 +1,13 @@
+{
+  "navigationBarBackgroundColor": "#FAFAFA",
+  "navigationBarTitleText": "",
+  "backgroundColor": "#FFFFFF",
+  "usingComponents": {
+    "star-box": "/components/starBox/starBox",
+    "comment-box": "/components/commentBox/commentBox",
+    "list-footer": "/components/listFooter/listFooter",
+    "recharge-box": "/components/rechargeBox/rechargeBox",
+    "iphone-bottom-adapter": "/components/iphoneBottomAdapter/iphoneBottomAdapter",
+    "text-icon": "/components/textIcon/textIcon"
+  }
+}

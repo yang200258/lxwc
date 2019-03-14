@@ -1,0 +1,41 @@
+<!--components/ticketBox/ticketBox.wxml-->
+<wxs module="filter" src="../../app.wxs"></wxs>
+<view class='wrapper'>
+
+  <view class='left' wx:if="{{ticket.shopname}}">
+    <image class='image' src="{{ticket.pic}}" mode="aspectFill"></image>
+    <view class='overview'>
+      <view class='value-and-title'>
+        <text class='iconfont icon-renminbi'></text>
+        <text class='value'>{{ticket.value}}</text>
+        <text class='title'>（{{ticket.valid_etime}}到期）</text>
+      </view>
+      <view class='time'>{{ticket.shopname}}</view>
+      <view class='content'>满{{ticket.cond_count}}元可用，不含参与活动的金额</view>
+    </view>
+  </view>
+
+
+  <view class='left' wx:if="{{ticket.name}}">
+    <image class='image' src="../../assets/images/redpacket.png" mode="aspectFill"></image>
+    <view class='overview'>
+      <view class='value-and-title'>
+        <text class='iconfont icon-renminbi'></text>
+        <text class='value'>{{ticket.value}}</text>
+        <text class='title'>({{ticket.name}})</text>
+      </view>
+      <view class='time'>到期时间：{{ticket.valid_etime}}</view>
+      <view class='content'>满{{ticket.cond_count}}元可用，不含参与活动的金额</view>
+    </view>
+  </view>
+
+
+  <view class='separator'></view>
+  <view class='top-white'></view>
+  <view class='bottom-white'></view>
+  <view class='right'>
+    <view class='use-btn' catchtap="useTap">
+      <text>未使用</text>
+    </view>
+  </view>
+</view>

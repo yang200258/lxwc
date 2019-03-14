@@ -1,0 +1,11 @@
+{
+  "navigationBarBackgroundColor": "#FAFAFA",
+  "navigationBarTitleText": "我的红包",
+  "backgroundColor": "#FFFFFF",
+  "usingComponents": {
+    "list-loader": "/components/listLoader/listLoader",
+    "list-footer": "/components/listFooter/listFooter",
+    "ticket-box": "/components/ticketBox/ticketBox",
+    "iphone-bottom-adapter": "/components/iphoneBottomAdapter/iphoneBottomAdapter"
+  }
+}

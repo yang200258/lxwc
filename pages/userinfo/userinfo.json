@@ -1,0 +1,9 @@
+{
+  "navigationBarBackgroundColor": "#FAFAFA",
+  "navigationBarTitleText": "会员信息",
+  "backgroundColor": "#FFFFFF",
+  "usingComponents": {
+    "entrance": "/components/entrance/entrance",
+    "iphone-bottom-adapter": "/components/iphoneBottomAdapter/iphoneBottomAdapter"
+  }
+}

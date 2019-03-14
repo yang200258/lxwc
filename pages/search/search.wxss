@@ -1,0 +1,246 @@
+/* pages/search/search.wxss */
+
+@import "../../assets/styles/common-page.wxss";
+page {
+    min-height: 100%;
+}
+
+.search-page {
+    height: 100%;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    padding: 32rpx 0 12rpx 32rpx;
+    flex-shrink: 0;
+}
+
+.search-left {
+    flex: 1;
+    height: 74rpx;
+    background: #F2F1EF;
+    border-radius: 8rpx;
+    padding-left: 45rpx;
+    display: flex;
+    align-items: center;
+}
+
+.icon-search {
+    font-size: 30rpx;
+    color: #999;
+    margin-right: 12rpx;
+}
+
+.search-input {
+    height: 100%;
+    flex: 1;
+    font-size: 28rpx;
+    color: #333;
+}
+
+.search-text {
+    height: 100%;
+    font-size: 28rpx;
+    color: #333;
+    display: flex;
+    align-items: center;
+}
+
+.search-btn {
+    width: 128rpx;
+    height: 100%;
+    font-size: 32rpx;
+    line-height: 40rpx;
+    color: #999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-btn.able {
+    color: #FF9500;
+}
+
+.search-history {
+    padding-top: 10rpx;
+}
+
+.history-header {
+    height: 68rpx;
+    font-size: 28rpx;
+    color: #333;
+    margin: 0 32rpx;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.delete-btn {
+    width: 50rpx;
+    height: 50rpx;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.icon-shanchu {
+    font-size: 30rpx;
+    color: #999;
+}
+
+.history-content {
+    margin: 0 22rpx;
+    display: flex;
+    flex-wrap: wrap;
+    padding-bottom: 20rpx;
+}
+
+.history-item {
+    height: 64rpx;
+    padding: 0 20rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24rpx;
+    color: #333;
+    background: #F4F4F4;
+    border-radius: 8rpx;
+    margin: 20rpx 10rpx 0;
+}
+
+.searching {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    transition: all 0.3s;
+}
+
+.searching.show {
+    z-index: 999;
+    opacity: 1;
+}
+
+.searching.hide {
+    z-index: -1;
+    opacity: 0;
+}
+
+.search-result {
+    position: relative;
+}
+
+.result-fixed {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    top: 0;
+    z-index: 4;
+    background: #fff;
+}
+
+.empty-tip {
+    line-height: 80rpx;
+    text-align: center;
+    color: #999;
+    font-size: 24rpx;
+}
+
+.result-loading {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: 3;
+    background: #fff;
+    box-sizing: border-box;
+    padding-top: 182rpx;
+}
+
+.loading-tip {
+    line-height: 80rpx;
+    text-align: center;
+    color: #999;
+    font-size: 24rpx;
+}
+
+.result-header {
+    height: 64rpx;
+    font-size: 24rpx;
+    display: flex;
+    color: #666;
+    align-items: center;
+    margin: 0 32rpx;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.icon-iconfontshangjia {
+    font-size: 28rpx;
+    margin-right: 10rpx;
+    margin-top: 4rpx;
+    color: #999;
+}
+
+.sort-type {
+    flex: 1;
+    font-size: 26rpx;
+    line-height: 36rpx;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.sort-distance,
+.sort-hot {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.sort-type-distance,
+.sort-type-hot {
+    font-size: 26rpx;
+}
+
+.sort-type-distance.current,
+.sort-type-hot.current {
+    font-weight: bold;
+    color: #FF0000;
+}
+
+.sort-type-line-distance,
+.sort-type-line-hot {
+    height: 4rpx;
+    background-color: #FF0000;
+}
+
+.sort-type-line-distance {
+    width: 100%;
+}
+
+.sort-type-distance,
+.sort-type-hot {
+    padding: 5rpx 20rpx;
+}
+
+.sort-type-distance.current,
+.sort-type-hot.current {
+    font-weight: bold;
+}
+
+.sort-type-hot {
+    padding-right: 0;
+}
+
+.result-body {
+    margin: 0 32rpx;
+    padding-top: 182rpx;
+    width: auto;
+}

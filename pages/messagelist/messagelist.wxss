@@ -1,0 +1,76 @@
+/* pages/message/message.wxss */
+@import "../../assets/styles/common-page.wxss";
+
+page{
+  background: #F7F7F7;
+}
+.page-message{
+  background: #fff
+}
+.message-item{
+  position: relative;
+  padding: 24rpx 32rpx 0;
+}
+.title-and-time{
+  display: flex;
+  align-items: center;
+  padding-left: 20rpx;
+}
+.title{
+  font-size: 30rpx;
+  line-height: 46rpx;
+  font-weight: bold;
+  color: #333;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.time{
+  font-size: 24rpx;
+  color: #999;
+  line-height: 32rpx;
+}
+.content{
+  padding-left: 20rpx;
+  padding-bottom: 24rpx;
+  font-size: 26rpx;
+  color: #999;
+  line-height: 42rpx;
+  min-height: 42rpx;
+  box-sizing: content-box;
+}
+
+.empty-message{
+  padding-top: 360rpx;
+}
+.empty-image{
+  display: block;
+  width: 268rpx;
+  height: 222rpx;
+  margin: 0 auto;
+}
+.empty-tip{
+  font-size: 32rpx;
+  color: #666;
+  line-height: 42rpx;
+  padding-top: 30rpx;
+  text-align: center;
+}
+
+.loading-tip{
+  font-size: 24rpx;
+  line-height: 80rpx;
+  color: #999;
+  text-align: center;
+}
+
+.unread-sign{
+  width: 12rpx;
+  height: 12rpx;
+  border-radius: 50%;
+  background: #FF9500;
+  position: absolute;
+  left: 26rpx;
+  top: 42rpx;
+}

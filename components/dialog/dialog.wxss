@@ -1,0 +1,121 @@
+/* components/dialog/dialog.wxss */
+
+.ft-dialog{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: rgba(0,0,0,0.4);
+  z-index: 999999999;
+}
+.ft-dialog-box{
+  background: #fff;
+  margin: 0 auto;
+  position: absolute;
+  top: 50%;
+  left: 14%;
+  transform: translateY(-50%);
+}
+.ft-dialog-box.ios{
+  left: 14%;
+  width: 72%;
+  border-radius: 24rpx;
+  text-align: center;
+  padding: 25rpx 0 0;
+}
+.ft-dialog-box.android{
+  left: 6.67%;
+  width: 86.66%;
+  border-radius: 4rpx;
+  text-align: left;
+  padding: 25rpx 0 0;
+}
+.title{
+  font-size: 34rpx;
+  line-height: 48rpx;
+  font-weight: 600;
+  color: #030303;
+}
+.title.ios{
+  padding: 5rpx 30rpx 15rpx;
+}
+.title.android{
+  padding: 0 30rpx 17rpx;
+}
+.content.ios{
+  font-size: 26rpx;
+  line-height: 32rpx;
+  color: #111;
+  padding: 15rpx 30rpx;
+  white-space: normal;
+}
+.content.android{
+  font-size: 30rpx;
+  line-height: 36rpx;
+  color: #111;
+  padding: 4rpx 30rpx;
+  white-space: normal;
+}
+.buttons{
+  height: 86rpx;
+  display: flex;
+  align-items: stretch;
+  position: relative;
+}
+.ios-top-bottom{
+  width: 100%;
+  height: 1rpx;
+  background: #cfcfcf;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 2;
+}
+.buttons.ios{
+  margin-top: 25rpx;
+  justify-content: center;
+}
+.buttons.android{
+  margin-top: 18rpx;
+  justify-content: flex-end;
+}
+.button-item{
+  font-size: 34rpx;
+  line-height: 48rpx;
+  color: #007AFF;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+button.button-item{
+  padding: unset;
+  box-sizing: unset;
+  text-align: unset;
+  text-decoration: unset;
+  border-radius: unset;
+  -webkit-tap-highlight-color: unset;
+  overflow: unset;
+  background-color: unset;
+  margin: 0;
+}
+button.button-item:before, button.button-item:after{
+  display: none;
+}
+.button-item.ios{
+  flex: 1;
+  border-right: 1rpx solid #cfcfcf;
+}
+.button-item.ios:last-child{
+  border-right: none;
+}
+.button-item.android{
+  padding: 0 30rpx 0 40rpx;
+}
+.button-item.android:first-child{
+  color: #999;
+}
+
+/* .wx-button-cover-view-wrapper{
+  border: none !important;
+} */

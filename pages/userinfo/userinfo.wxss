@@ -1,0 +1,138 @@
+/* pages/userinfo/userinfo.wxss */
+@import "../../assets/styles/common-page.wxss";
+
+.tip{
+  font-size: 24rpx;
+  line-height: 32rpx;
+  padding: 28rpx 32rpx;
+  color: #FF3B30;
+}
+.info-entrance{
+  position: relative;
+  overflow: hidden;
+}
+.birthday-picker{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0;
+}
+.birthday-picker-content{
+  width: 100%;
+  height: 100%;
+  line-height: 300rpx;
+  opacity: 0;
+}
+
+.submit-btn{
+  margin: 28rpx 32rpx;
+  height: 94rpx;
+  color: #FF9500;
+  font-size: 36rpx;
+  border: 2rpx solid #FF9500;
+  border-radius: 8rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 填写姓名弹窗 */
+.name-wrapper{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 99;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.name-wrapper.show{
+  z-index: 99;
+  visibility: visible;
+}
+.name-wrapper.hide{
+  z-index: -1;
+  visibility: hidden;
+}
+.name-box-bg{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 1;
+  transition: all 0.2s;
+}
+.name-box-bg.show{
+  opacity: 1;
+}
+.name-box-bg.hide{
+  opacity: 0;
+  transition: all 0s;
+}
+.name-box{
+  position: relative;
+  z-index: 2;
+  width: 540rpx;
+  background: #EFEFEF;
+  border-radius: 24rpx;
+  transition: transform 0.2s;
+}
+.name-box.show{
+  transform: scale(1, 1);
+}
+.name-box.hide{
+  transform: scale(0.8, 0.8);
+  visibility: hidden;
+}
+.name-box-content{
+  padding-top: 34rpx;
+  padding-bottom: 34rpx;
+}
+.name-title{
+  font-size: 34rpx;
+  line-height: 44rpx;
+  color: #030303;
+  font-weight: bold;
+  padding: 0 30rpx;
+  text-align: center;
+}
+.name-tip{
+  font-size: 24rpx;
+  line-height: 34rpx;
+  color: #999;
+  padding: 0 30rpx;
+  text-align: center;
+}
+.name-input{
+  display: block;
+  border-color: #999999;
+  border-width: 1rpx;
+  border-style: solid;
+  margin: 20rpx 30rpx 0;
+  height: 58rpx;
+  padding: 0 14rpx;
+  background: #fff;
+  font-size: 30rpx;
+}
+.name-buttons{
+  height: 88rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  overflow: hidden;
+}
+.button-item{
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 34rpx;
+  color: #0076FF;
+}

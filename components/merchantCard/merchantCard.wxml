@@ -1,0 +1,8 @@
+<!--components/merchantCard/merchantCard.wxml-->
+<view class='wrapper' catchtap="merchantTap">
+<view class='image-wrapper'>
+  <image class='image image-bg' src="{{merchant.pic}}" mode="aspectFill"></image>
+</view>
+  <view class='title'>{{merchant.name}}</view>
+  <view class='intro'>{{merchant.notice}}</view>
+</view>

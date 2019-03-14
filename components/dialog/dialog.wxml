@@ -1,0 +1,18 @@
+<!--components/dialog/dialog.wxml-->
+<cover-view catchtouchmove="maskTouchMove" class="ft-dialog" wx:if="{{ visible }}">
+  <!-- <view class="ft-dialog-mask" bindtap="handleHide"></view> -->
+  <cover-view class="ft-dialog-box {{platform}}" wx:if="{{ content }}">
+    <cover-view class="title {{platform}}" wx:if="{{title}}">{{title}}</cover-view>
+    <cover-view class='content {{platform}}'>{{content}}</cover-view>
+    <cover-view class="buttons {{platform}}">
+      <cover-view wx:if="{{platform === 'ios'}}" class='ios-top-bottom'></cover-view>
+      <block wx:for="{{buttons}}" wx:for-item="button" wx:for-index="idx" wx:key="text">
+        <cover-view wx:if="{{idx !== 0 && platform === 'ios'}}" style="width:1rpx;height:100%;background:#cfcfcf"></cover-view>
+        <cover-view wx:if="{{!button.openType}}" catchtap="handleButtons" data-idx="{{idx}}" class="button-item {{platform}}{{idx === (buttons.length - 1) ? ' last' : ''}}">
+          <cover-view>{{button.text}}</cover-view>
+        </cover-view>
+        <button wx:if="{{button.openType && button.openType === 'getPhoneNumber'}}" open-type="getPhoneNumber" bindgetphonenumber='handleButtons' data-idx="{{idx}}" class="button-item {{platform}}{{idx === (buttons.length - 1) ? ' last' : ''}}"><cover-view>{{button.text}}</cover-view></button>
+      </block>
+    </cover-view>
+  </cover-view>
+</cover-view>

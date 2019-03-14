@@ -1,0 +1,19 @@
+<!--pages/message/message.wxml-->
+<view class='page-message'>
+  <!-- <list-loader visible="{{!loaded}}" /> -->
+  <view wx:for="{{messages}}" wx:for-item="message" wx:for-index="idx" wx:key="id" class='message-item'>
+    <view wx:if="{{!message.unread}}" class='unread-sign'></view>
+    <view class='title-and-time'>
+      <view class='title'>{{message.title}}</view>
+      <view class='time'>{{message.date}}</view>
+    </view>
+    <view class='content'>{{message.content}}</view>
+    <view wx:if="{{idx !== (messages.length - 1)}}" class='line-separator-h'></view>
+  </view>
+  <list-footer loading="{{loading}}" page="{{page}}" show-no-more="{{messages && messages[10]}}" no-more-text="没有更多了~" />
+  <iphone-bottom-adapter />
+</view>
+<view wx:if="{{!loading && loaded && (!messages || !(messages && messages.length))}}" class='empty-message'>
+  <image class='empty-image' src="/assets/images/empty_message.png"></image>
+  <view class='empty-tip'>暂无任何消息</view>
+</view>

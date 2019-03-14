@@ -1,0 +1,13 @@
+{
+  "navigationBarBackgroundColor": "#FAFAFA",
+  "navigationBarTitleText": "全部评价",
+  "backgroundColor": "#F7F7F7",
+  "backgroundTextStyle": "dark",
+  "onReachBottomDistance": 100,
+  "usingComponents": {
+    "list-loader": "/components/listLoader/listLoader",
+    "list-footer": "/components/listFooter/listFooter",
+    "comment-box": "/components/commentBox/commentBox",
+    "iphone-bottom-adapter": "/components/iphoneBottomAdapter/iphoneBottomAdapter"
+  }
+}

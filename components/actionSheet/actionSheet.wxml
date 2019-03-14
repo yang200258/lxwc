@@ -1,0 +1,15 @@
+<cover-view class="mask{{ visible ? ' mask-show' : '' }}" catchtouchmove="maskTouchMove"></cover-view>
+<cover-view class="action-sheet{{ visible ? ' action-sheet-show' : ''}} {{platform}}" catchtouchmove="maskTouchMove" bindtap="handleClickMask">
+  <cover-view class="actions {{platform}}">
+    <cover-view class="action-item {{platform}}" wx:for="{{ actions }}" wx:key="name">
+      <button class="action-button" catchtap="handleClickItem" app-parameter="{{item.appParameter}}" data-index="{{ index }}" data-opentype="{{item.openType}}" open-type="{{ item.openType }}" type="ghost" long binderror="buttonError">
+        <cover-view class="btn-text {{platform}}" style="{{ item.color ? 'color: ' + item.color : '' }}">{{ item.name }}</cover-view>
+      </button>
+      <cover-view class="bottom-line"></cover-view>
+    </cover-view>
+  </cover-view>
+  <cover-view class="cancel {{platform}}" wx:if="{{ showCancel && platform && platform === 'ios' }}">
+    <cover-view style="height:16rpx;background:#EBEBEB;"></cover-view>
+    <button class="action-button" type="ghost" catchtap="handleHide">{{ cancelText }}</button>
+  </cover-view>
+</cover-view>

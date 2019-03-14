@@ -1,0 +1,11 @@
+{
+  "navigationBarBackgroundColor": "#FAFAFA",
+  "navigationBarTitleText": "商家分类",
+  "backgroundColor": "#FFFFFF",
+  "usingComponents": {
+    "list-footer": "/components/listFooter/listFooter",
+    "merchant-overview": "/components/merchantOverview/merchantOverview",
+    "iphone-bottom-adapter": "/components/iphoneBottomAdapter/iphoneBottomAdapter",
+    "merchant-card":"/components/merchantCard/merchantCard"
+  }
+}

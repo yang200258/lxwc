@@ -1,0 +1,17 @@
+<!--pages/choosevoucher/choosevoucher.wxml-->
+<view class='page-choosevoucher'>
+  <view wx:for="{{redpackets}}" wx:for-item="redpacket" wx:for-index="idx" wx:key="{{redpacket.id}}" class='voucher-item'>
+    <choose-voucher voucher="{{redpacket}}" bindvouchertap="chooseRedPacket" />
+  </view>
+</view>
+<view class='fixed-button-wrapper'>
+  <view class='fixed-button-content'>
+    <view class='fixed-button'>
+      <view class='confirm-btn' catchtap="conform">
+        <text>确定</text>
+      </view>
+    </view>
+    <iphone-bottom-adapter />
+  </view>
+  <iphone-bottom-adapter />
+</view>

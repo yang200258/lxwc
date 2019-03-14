@@ -1,0 +1,187 @@
+/* pages/pay/pay.wxss */
+@import "../../assets/styles/common-page.wxss";
+
+page {
+  background: #F7F7F7;
+}
+
+.page-pay {
+  padding: 50rpx 32rpx;
+}
+
+.input-box {
+  background: #fff;
+  overflow: hidden;
+  border-radius: 0 0 8rpx 8rpx;
+}
+
+.total, .ignore {
+  display: flex;
+  padding: 0 32rpx;
+  height: 94rpx;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.total-title, .ignore-title {
+  flex: 1;
+  font-size: 30rpx;
+  line-height: 40rpx;
+  color: #333;
+  font-weight: bold;
+}
+
+.total-input, .ignore-input {
+  flex: 1;
+  height: 100%;
+  font-size: 30rpx;
+  line-height: 94rpx;
+  color: #333;
+  padding: 0;
+  text-align: right;
+}
+
+/* 折扣部分 */
+.discount-box{
+  overflow: hidden;
+  margin-top: 16rpx;
+}
+
+.merchant-discount-header{
+  font-size: 34rpx;
+  line-height: 74rpx;
+  font-weight: bold;
+  color: #333;
+  padding-top: 20rpx;
+  padding-left: 32rpx;
+}
+.merchant-discount-content{
+  padding-top: 10rpx;
+}
+.merchant-discount-item{
+  font-size: 28rpx;
+  line-height: 36rpx;
+  height: 48rpx;
+  display: flex;
+  align-items: center;
+  padding: 0 16rpx 0 32rpx;
+}
+
+.lx-voucher-box{
+  margin-bottom: 10rpx;
+}
+.lx-voucher-header, .lx-repacket-header{
+  font-size: 34rpx;
+  line-height: 74rpx;
+  font-weight: bold;
+  color: #333;
+  padding-top: 20rpx;
+  padding-left: 32rpx;
+}
+.lx-discount-content{
+  padding-top: 10rpx;
+}
+.lx-voucher, .lx-redpacket{
+  font-size: 28rpx;
+  line-height: 36rpx;
+  height: 80rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 16rpx 0 32rpx;
+  border-radius: 8rpx;
+  background: #fff;
+}
+.lx-discount-title{
+  color: #333;
+  flex: 1;
+  margin-right: 10rpx;
+}
+.lx-can-use-num{
+  color: #FF2D55;
+}
+.lx-selected-text{
+  color: #333;
+  flex-shrink: 0;
+}
+.lx-none-use{
+  color: #999;
+  flex-shrink: 0;
+}
+.lx-has-use{
+  color: #333;
+  flex-shrink: 0;
+}
+.icon-next{
+  margin-left: 10rpx;
+  font-size: 18rpx;
+  color: #666666;
+}
+.icon-next.disabled{
+  color: #999;
+}
+
+/* 底部悬浮按钮 */
+.fixed-button-wrapper{
+  position: relative;
+  padding-top: 94rpx;
+  width: 100%;
+}
+.fixed-button-content{
+  position: fixed;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  background: #fff;
+  z-index: 9;
+}
+.fixed-button-box{
+  height: 94rpx;
+  background: #fff;
+  z-index: 9;
+  display: flex;
+  justify-content: flex-end;
+  align-items: stretch;
+}
+.price-box{
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  overflow: hidden;
+  align-items: center;
+  padding: 0 32rpx;
+  font-size: 32rpx;
+  color: #333;
+}
+.price-text{
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+.icon-renminbi{
+  font-size: 36rpx;
+  line-height: 36rpx;
+  margin-top: 4rpx;
+  color: #333;
+  font-weight: bold;
+}
+.actual-price{
+  font-size: 48rpx;
+  line-height: 48rpx;
+  font-weight: bold;
+}
+.order-btn{
+  width: 200rpx;
+  height: 94rpx;
+  background: #FF0000;
+  color: #fff;
+  font-size: 32rpx;
+  line-height: 44rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.order-btn.disabled{
+  background: rgb(226, 94, 94);
+}

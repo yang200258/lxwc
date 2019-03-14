@@ -1,0 +1,63 @@
+<!--pages/pay/pay.wxml-->
+<wxs module="filter" src="../../app.wxs"></wxs> 
+<view class='page-pay'>
+  <view class='input-box'>
+    <view class='total'>
+      <view class='total-title'>消费金额(元)</view>
+      <input class='total-input' value="{{total}}" placeholder-style='color:#ccc' placeholder='请输入消费金额' type="digit" bindinput='totalInput'></input>
+    </view>
+    <view class='line-separator-h' style="718rpx;margin-left:32rpx"></view>
+    <view class='ignore'>
+      <view class='ignore-title'>不参与优惠金额(元)</view>
+      <input class='ignore-input' value="{{ignore}}" placeholder-style='color:#ccc' placeholder='请询问服务员后输入' type="digit" bindinput='ignoreInput'></input>
+    </view>
+  </view>
+  <view class='discount-box' wx:if="{{merchantDiscounts && merchantDiscounts.length}}">
+    <view class='merchant-discount'>
+      <view class='merchant-discount-header'>商家优惠</view>
+      <view class='line-separator-h' style="width:718rpx;margin-left:32rpx;background:#999"></view>
+      <view class='merchant-discount-content'>
+        <view wx:for="{{merchantDiscounts}}" wx:for-item="merchantDiscount" wx:key="id" class='merchant-discount-item'>{{filter.filterTitle(merchantDiscount)}}</view>
+      </view>
+    </view>
+  </view>
+  <view class='lx-voucher-box'>
+    <view class='lx-voucher-header'>乐享优惠券</view>
+    <view class='lx-voucher' catchtap="chooseVoucher">
+      <text class='lx-selected-text' wx:if="{{selectedVoucher}}">满{{selectedVoucher.cond_count}}减{{selectedVoucher.value}}</text>
+      <text wx:if="{{!selectedVoucher && canUseVoucher}}" class='lx-has-use'>您有<text class='lx-can-use-num'>{{canUseVoucher}}</text>张可用优惠券</text>
+      <text wx:if="{{!selectedVoucher && !canUseVoucher}}" class='lx-none-use'>暂无可用优惠券</text>
+      <text class="iconfont icon-next {{canUseVoucher ? '' : 'disabled'}}"></text>
+    </view>
+  </view>
+   <view class='lx-repacket-box'>
+    <view class='lx-repacket-header'>乐享红包</view>
+    <view class='lx-redpacket' catchtap="chooseRedpacket">
+      <text class='lx-selected-text' wx:if="{{selectedRedPacket}}">满{{selectedRedPacket.cond_count}}减{{selectedRedPacket.value}}</text>
+      <text wx:if="{{!selectedRedPacket && canUseRedpacket}}" class='lx-has-use'>您有<text class='lx-can-use-num'>{{canUseRedpacket}}</text>个乐享红包</text>
+      <text wx:if="{{!selectedRedPacket && !canUseRedpacket}}" class='lx-none-use'>暂无可用红包</text>
+      <text class="iconfont icon-next {{canUseRedpacket ? '' : 'disabled'}}"></text>
+    </view>
+  </view> 
+  <view class='fixed-button-wrapper'>
+    <view class='fixed-button-content'>
+      <view class='fixed-button-box'>
+        <view class='price-box'>
+          <view class='price-title'>
+            <text>实际付款：</text>
+          </view>
+          <view class='price-text'>
+            <text class='iconfont icon-renminbi'></text>
+            <text class='actual-price'>{{actual || '0.00'}}</text>
+          </view>
+        </view>
+        <view class="order-btn {{(actual && actual !== '0.00' && actual !== '0' && phone) ? '' : 'disabled'}}" catchtap="pay">
+          <text>优惠买单</text>
+        </view>
+      </view>
+      <iphone-bottom-adapter />
+    </view>
+    <iphone-bottom-adapter />
+  </view>
+</view>
+<recharge-box id="recharge-box" />

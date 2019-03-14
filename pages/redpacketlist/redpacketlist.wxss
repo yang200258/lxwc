@@ -1,0 +1,28 @@
+/* pages/redpacketlist/redpacketlist.wxss */
+@import "../../assets/styles/common-page.wxss";
+
+.page-redpacketlist{
+  padding-top: 14rpx;
+}
+.redpacket-item{
+  padding: 14rpx 32rpx;
+}
+
+
+/* 没有卡券 */
+.empty-redpacket{
+  padding-top: 410rpx;
+}
+.empty-image{
+  display: block;
+  width: 292rpx;
+  height: 183rpx;
+  margin: 0 auto;
+}
+.empty-tip{
+  font-size: 32rpx;
+  line-height: 44rpx;
+  color: #999;
+  padding-top: 30rpx;
+  text-align: center;
+}

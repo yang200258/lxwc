@@ -1,0 +1,183 @@
+{
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": true,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true,
+		"autoAudits": false
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.6.1",
+	"appid": "wxde8f7cb4bac99b2c",
+	"projectname": "452",
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"isGameTourist": false,
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 22,
+			"list": [
+				{
+					"id": -1,
+					"name": "商家搜索页",
+					"pathName": "pages/search/search",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "扫码页面",
+					"pathName": "pages/scanpay/scanpay",
+					"query": ""
+				},
+				{
+					"id": 2,
+					"name": "消息列表",
+					"pathName": "pages/messagelist/messagelist",
+					"query": ""
+				},
+				{
+					"id": 3,
+					"name": "商家分类页面",
+					"pathName": "pages/merchantcate/merchantcate",
+					"query": ""
+				},
+				{
+					"id": 4,
+					"name": "商家详情页面",
+					"pathName": "pages/merchantdetail/merchantdetail",
+					"query": "scene=id%3D100003"
+				},
+				{
+					"id": -1,
+					"name": "个人中心",
+					"pathName": "pages/usercenter/usercenter",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "会员信息",
+					"pathName": "pages/userinfo/userinfo",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "订单列表",
+					"pathName": "pages/orderlist/orderlist",
+					"query": ""
+				},
+				{
+					"id": 8,
+					"name": "订单详情",
+					"pathName": "pages/orderdetail/orderdetail",
+					"query": "id=100000015"
+				},
+				{
+					"id": -1,
+					"name": "我的账单",
+					"pathName": "pages/bill/bill",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "我的卡券",
+					"pathName": "pages/ticketlist/ticketlist",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "我的红包",
+					"pathName": "pages/redpacketlist/redpacketlist",
+					"query": ""
+				},
+				{
+					"id": 12,
+					"name": "支付页面",
+					"pathName": "pages/pay/pay",
+					"query": "id=100003"
+				},
+				{
+					"id": 13,
+					"name": "付款成功页面",
+					"pathName": "pages/paysuccess/paysuccess",
+					"query": "title=店铺名称&id=100000020"
+				},
+				{
+					"id": -1,
+					"name": "充值成功页面",
+					"pathName": "pages/rechargesuccess/rechargesuccess",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "验证手机",
+					"pathName": "pages/confirmphone/confirmphone",
+					"query": "phone=17508959493"
+				},
+				{
+					"id": -1,
+					"name": "重新绑定手机号",
+					"pathName": "pages/rebindphone/rebindphone",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "3恶女2",
+					"pathName": "pages/login/login",
+					"query": ""
+				},
+				{
+					"id": 18,
+					"name": "核销",
+					"pathName": "pages/verification/verification",
+					"query": "scene=id%3D4"
+				},
+				{
+					"id": 19,
+					"name": "打分页面",
+					"pathName": "pages/givescore/givescore",
+					"query": "id=100003"
+				},
+				{
+					"id": 20,
+					"name": "全部评价",
+					"pathName": "pages/merchantscore/merchantscore",
+					"query": "id=100003"
+				},
+				{
+					"id": -1,
+					"name": "我的评价",
+					"pathName": "pages/usercomment/usercomment",
+					"query": ""
+				},
+				{
+					"id": 22,
+					"name": "会员须知",
+					"pathName": "pages/membernotes/membernote",
+					"query": ""
+				}
+			]
+		}
+	}
+}

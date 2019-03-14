@@ -1,0 +1,10 @@
+{
+  "navigationBarBackgroundColor": "#FAFAFA",
+  "navigationBarTitleText": " ",
+  "backgroundColor": "#F7F7F7",
+  "backgroundTextStyle": "dark",
+  "usingComponents": {
+    "star-box": "/components/starBox/starBox",
+    "iphone-bottom-adapter": "/components/iphoneBottomAdapter/iphoneBottomAdapter"
+  }
+}

@@ -1,0 +1,26 @@
+<!--components/orderBox/orderBox.wxml-->
+<view class='wrapper' catchtap="tapOrder">
+  <view wx:if="{{topSeparator}}" class='block-separator'></view>
+  <view class='header'>
+    <image class='avatar' src="{{order.pic}}"></image>
+    <text class='title'>{{order.name}}</text>
+    <text class='status'>{{statusText[order.status]}}</text>
+  </view>
+  <view class='line-separator-h' style="width:718rpx;margin-left:32rpx;"></view>
+  <view class='content'>
+    <view class='content-item num'>
+      <text>订单号：</text>
+      <text>{{order.id}}</text>
+    </view>
+    <view class='content-item time'>
+      <text>付款时间：</text>
+      <text>{{order.date}}</text>
+    </view>
+  </view>
+  <view class='line-separator-h' style="width:718rpx;margin-left:32rpx;"></view>
+  <view class='price'>
+    <text style="color:#6E6E6E">实付：</text>
+    <text class='iconfont icon-renminbi' style="color:#F24724"></text>
+    <text style="color:#F24724">{{order.amount}}</text>
+  </view>
+</view>
