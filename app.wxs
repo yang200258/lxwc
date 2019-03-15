@@ -73,9 +73,9 @@
       if (activity.type == 'zhekou') {
           for (var i = 0; i < activity.sales.length; i++) {
               if (i !== activity.sales.length - 1) {
-                  str += "满" + activity.sales[i].cond_count + "打" + activity.sales[i].dis_rate + "折；"
+                  str += "本店消费一律" + activity.sales[i].dis_rate + "折；"
               } else {
-                  str += "满" + activity.sales[i].cond_count + "打" + activity.sales[i].dis_rate + "折"
+                  str += "本店消费一律" + activity.sales[i].dis_rate + "折"
               }
           }
           console.log('传出的数据', str);

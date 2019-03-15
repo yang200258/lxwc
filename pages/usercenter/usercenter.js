@@ -32,14 +32,14 @@ Page({
                 }
             },
             {
-                image: '/assets/images/comment.png',
+                image: '/assets/images/message_icon.png',
                 title: '我的评价',
                 extraData: {
                     route: '/pages/usercomment/usercomment'
                 }
             },
             {
-                image: '/assets/images/message_icon.png',
+                image: '/assets/images/comment.png',
                 title: '我的消息',
                 extraData: {
                     route: '/pages/messagelist/messagelist'
