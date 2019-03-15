@@ -1,13 +1,13 @@
 {
-  "navigationBarBackgroundColor": "#FAFAFA",
-  "navigationBarTitleText": "我的卡券",
-  "backgroundColor": "#FFFFFF",
-  "enablePullDownRefresh": true,
-  "onReachBottomDistance": 100,
-  "usingComponents": {
-    "list-loader": "/components/listLoader/listLoader",
-    "list-footer": "/components/listFooter/listFooter",
-    "ticket-box": "/components/ticketBox/ticketBox",
-    "iphone-bottom-adapter": "/components/iphoneBottomAdapter/iphoneBottomAdapter"
-  }
+    "navigationBarBackgroundColor": "#FAFAFA",
+    "navigationBarTitleText": "我的优惠券",
+    "backgroundColor": "#FFFFFF",
+    "enablePullDownRefresh": true,
+    "onReachBottomDistance": 100,
+    "usingComponents": {
+        "list-loader": "/components/listLoader/listLoader",
+        "list-footer": "/components/listFooter/listFooter",
+        "ticket-box": "/components/ticketBox/ticketBox",
+        "iphone-bottom-adapter": "/components/iphoneBottomAdapter/iphoneBottomAdapter"
+    }
 }
