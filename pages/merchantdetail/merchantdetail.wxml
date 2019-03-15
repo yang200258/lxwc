@@ -63,7 +63,7 @@
       <view class='fullcut-content-wrapper'>
         <view wx:for="{{activitys.platnew}}" wx:for-item="platnew" wx:key="" class='fullcut-item'>
           <!-- <text-icon class='act-icon' size="{{actIconSize}}" font-size="{{24}}" color="{{'#F8C300'}}" text="{{'首单'}}" /> -->
-          <image class="act-icon" src="../../assets/images/platnew.png" mode="aspectFill" />
+          <image class="act-icon" src="../../assets/images/platnew.png" mode="aspectFit" />
           <view class='fullcut-text'>{{filter.filterTitle(platnew)}}</view>
         </view>
       </view>
@@ -74,18 +74,34 @@
       <view class='fullcut-content-wrapper'>
         <view wx:for="{{activitys.shopnew}}" wx:for-item="shopnew" wx:key="" class='fullcut-item'>
           <!-- <text-icon class='act-icon' size="{{actIconSize}}" font-size="{{24}}" color="{{'#33CC33'}}" text="{{'新客'}}" /> -->
-          <image class="act-icon" src="../../assets/images/shopnew.png" mode="aspectFill" />
+          <image class="act-icon" src="../../assets/images/shopnew.png" mode="aspectFit" />
           <view class='fullcut-text'>{{filter.filterTitle(shopnew)}}</view>
         </view>
       </view>
     </view>
+       
+    <!-- 代金券 -->
+    <view wx:if="{{activitys.voucher[0] && activitys.voucher[0].coupons.length}}" class='voucher-box'>
+      <view class='voucher-content-wrapper'>
+        <view wx:for="{{activitys.voucher[0].coupons}}" wx:for-item="voucher" wx:key="id" class='voucher-item'>
+          <!-- <text-icon class='act-icon' size="{{actIconSize}}" font-size="{{24}}" color="{{'#CC3366'}}" text="{{'领券'}}" /> -->
+          <image class="act-icon" src="../../assets/images/getcoupon.png" mode="aspectFit" />
+          <view class='voucher-text'>{{voucher.title}}</view>
+          <view class="voucher-btn {{voucher.status == 1 ? '' : 'disabled'}}" catchtap="getVoucher" data-voucher="{{voucher}}">
+            <text>{{voucher.status == 1 ? '领取' : '已领取'}}</text>
+            <button wx:if="{{!phone}}" class='bindphone-btn' open-type="getPhoneNumber" bindgetphonenumber="getPhone"></button>
+          </view>
+        </view>
+      </view>
+    </view>
+
     <!-- 满减 -->
     <view class='fullcut-box' wx:if="{{activitys.shopyouhui && activitys.shopyouhui.length}}">
       <!-- <view class='line-separator-h'></view> -->
       <view class='fullcut-content-wrapper'>
         <view wx:for="{{activitys.shopyouhui}}" wx:for-item="shopyouhui" wx:key="" class='fullcut-item'>
           <!-- <text-icon class='act-icon' size="{{actIconSize}}" font-size="{{24}}" color="{{'#FF0000'}}" text="{{'满减'}}" /> -->
-          <image class="act-icon" src="../../assets/images/shopyouhui.png" mode="aspectFill" />
+          <image class="act-icon" src="../../assets/images/shopyouhui.png" mode="aspectFit" />
           <view class='fullcut-text'>{{filter.filterTitle(shopyouhui)}}</view>
         </view>
       </view>
@@ -97,7 +113,7 @@
       <view class='fullcut-content-wrapper'>
         <view wx:for="{{activitys.zhekou}}" wx:for-item="zhekou" wx:key="" class='fullcut-item'>
           <!-- <text-icon class='act-icon' size="{{actIconSize}}" font-size="{{24}}" color="{{'#FF0000'}}" text="{{'满减'}}" /> -->
-          <image class="act-icon" src="../../assets/images/zhekou.png" mode="aspectFill" />
+          <image class="act-icon" src="../../assets/images/zhekou.png" mode="aspectFit" />
           <view class='fullcut-text'>{{filter.filterTitle(zhekou)}}</view>
         </view>
       </view>
@@ -109,27 +125,25 @@
       <view class='fullcut-content-wrapper'>
         <view wx:for="{{activitys.shopzeng}}" wx:for-item="shopzeng" wx:key="" class='fullcut-item'>
           <!-- <text-icon class='act-icon' size="{{actIconSize}}" font-size="{{24}}" color="{{'#FF0000'}}" text="{{'满减'}}" /> -->
-          <image class="act-icon" src="../../assets/images/shopzeng.png" mode="aspectFill" />
+          <image class="act-icon" src="../../assets/images/shopzeng.png" mode="aspectFit" />
           <view class='fullcut-text'>{{filter.filterTitle(shopzeng)}}</view>
         </view>
       </view>
     </view>
-    
-    <!-- 代金券 -->
-    <view wx:if="{{activitys.voucher[0] && activitys.voucher[0].coupons.length}}" class='voucher-box'>
+ 
+<!-- 返现 -->
+    <view wx:if="{{activitys.fanxian[0]}}" class='voucher-box'>
+      <!-- <view class='line-separator-h'></view> -->
       <view class='voucher-content-wrapper'>
-        <view wx:for="{{activitys.voucher[0].coupons}}" wx:for-item="voucher" wx:key="id" class='voucher-item'>
+        <!-- <view wx:for="{{activitys.fanxian[0]}}" wx:for-item="fanxian" wx:key="id" class='voucher-item'> -->
+          <view class='voucher-item'>
           <!-- <text-icon class='act-icon' size="{{actIconSize}}" font-size="{{24}}" color="{{'#CC3366'}}" text="{{'领券'}}" /> -->
-          <image class="act-icon" src="../../assets/images/getcoupon.png" mode="aspectFill" />
-          <view class='voucher-text'>{{voucher.title}}</view>
-          <view class="voucher-btn {{voucher.status == 1 ? '' : 'disabled'}}" catchtap="getVoucher" data-voucher="{{voucher}}">
-            <text>{{voucher.status == 1 ? '领取' : '已领取'}}</text>
-            <button wx:if="{{!phone}}" class='bindphone-btn' open-type="getPhoneNumber" bindgetphonenumber="getPhone"></button>
-          </view>
+          <image class="act-icon" src="../../assets/images/fanxian.png" mode="aspectFit" />
+          <view class='voucher-text'>{{filter.filterTitle(activitys.fanxian[0])}}</view>
         </view>
       </view>
     </view>
-
+    
     <!-- 返券 -->
     <view wx:if="{{activitys.fanquan[0] && activitys.fanquan[0].coupons.length}}" class='voucher-box'>
       <!-- <view class='line-separator-h'></view> -->
@@ -137,24 +151,13 @@
         <!-- <view wx:for="{{activitys.fanquan[0]}}" wx:for-item="fanquan" wx:key="id" class='voucher-item'> -->
           <view class='voucher-item'>
           <!-- <text-icon class='act-icon' size="{{actIconSize}}" font-size="{{24}}" color="{{'#CC3366'}}" text="{{'领券'}}" /> -->
-          <image class="act-icon" src="../../assets/images/fanquan.png" mode="aspectFill" />
+          <image class="act-icon" src="../../assets/images/fanquan.png" mode="aspectFit" />
           <view class='voucher-text'>{{filter.filterTitle(activitys.fanquan[0])}}</view>
         </view>
       </view>
     </view>
 
-    <!-- 返现 -->
-    <view wx:if="{{activitys.fanxian[0]}}" class='voucher-box'>
-      <!-- <view class='line-separator-h'></view> -->
-      <view class='voucher-content-wrapper'>
-        <!-- <view wx:for="{{activitys.fanxian[0]}}" wx:for-item="fanxian" wx:key="id" class='voucher-item'> -->
-          <view class='voucher-item'>
-          <!-- <text-icon class='act-icon' size="{{actIconSize}}" font-size="{{24}}" color="{{'#CC3366'}}" text="{{'领券'}}" /> -->
-          <image class="act-icon" src="../../assets/images/fanxian.png" mode="aspectFill" />
-          <view class='voucher-text'>{{filter.filterTitle(activitys.fanxian[0])}}</view>
-        </view>
-      </view>
-    </view>
+    
 
   </view>
   <!-- 商家简介 -->
