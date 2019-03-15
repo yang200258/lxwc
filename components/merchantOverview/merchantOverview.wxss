@@ -12,7 +12,7 @@
 }
 
 .rest-bgc {
-    background-color: #ebebeb;
+    background-color: #eeeded;
 }
 
 .rest-txt {

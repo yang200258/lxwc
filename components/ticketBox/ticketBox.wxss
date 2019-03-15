@@ -32,9 +32,9 @@
 
 .image {
     display: block;
-    width: 123rpx;
-    height: 123rpx;
-    border-radius: 12rpx;
+    width: 130rpx;
+    height: 130rpx;
+    /* border-radius: 12rpx; */
     margin-right: 18rpx;
     flex-shrink: 0;
     background: #F4F4F4;

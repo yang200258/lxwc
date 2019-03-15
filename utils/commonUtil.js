@@ -162,11 +162,8 @@ dialog.hide = function(selector = '#dialog') {
 // })
 
 const showRechargeModal = (options) => {
-    console.log('options', options)
     let selector = (options && options.selector) ? options.selector : '#recharge-box'
-    console.log('selector', selector);
     const ctx = getCtx(selector)
-    console.log('ctx', ctx);
     ctx.showRechargeBox(options)
     ctx.getRechargeData()
 }
@@ -246,6 +243,15 @@ const getUrl = (path, query) => {
 }
 
 const checkLogin = (options) => {
+    const timeStamp = Date.parse(new Date())
+    const expiration = wx.getStorageSync('expiration') || 0
+    const token = wx.getStorageSync('token')
+    console.log(timeStamp, expiration)
+    if (token && timeStamp < expiration) {
+        return true
+    } else {
+        wx.clearStorageSync()
+    }
     if (storageUtil.getStorage('token')) {
         return true
     }

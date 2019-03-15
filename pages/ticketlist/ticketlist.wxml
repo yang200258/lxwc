@@ -6,7 +6,7 @@
     <ticket-box ticket="{{ticket}}" bindusetap="goMerchant" />
   </view>
   <!-- 大于10条信息才展示没有更多的提示 -->
-  <list-footer loading="{{fetching}}" page="{{page}}" show-no-more="{{tickets && tickets[10]}}" no-more-text="没有更多了~" />
+  <list-footer loading="{{fetching}}" page="{{page}}" show-no-more="{{tickets}}" no-more-text="没有更多了~" />
   <iphone-bottom-adapter />
 </view>
 <view wx:if="{{(!tickets || (tickets && !tickets[0])) && loaded}}" class='empty-ticket'>

@@ -49,9 +49,16 @@
     transition: all 0.3s;
 }
 
+.block-separator {
+    width: 100%;
+    height: 6rpx;
+    background: rgb(190, 190, 190);
+    margin-top: 28rpx;
+}
+
 .recharge-box {
     width: 686rpx;
-    height: 696rpx;
+    height: 764rpx;
     background: #fff;
     border-radius: 4rpx;
     padding-top: 32rpx;
@@ -81,7 +88,7 @@
 
 .title {
     padding: 0 28rpx 0 32rpx;
-    height: 86rpx;
+    height: 94rpx;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -97,8 +104,11 @@
 }
 
 .guanbi {
-    width: 32rpx;
-    height: 32rpx;
+    width: 50rpx;
+    height: 50rpx;
+    position: absolute;
+    right: 0;
+    top: -60rpx;
 }
 
 .recharge-list {
@@ -110,9 +120,9 @@
 }
 
 .recharge-item {
-    width: 31.33%;
-    margin: 0 1% 32rpx;
-    height: 104rpx;
+    width: 27.33%;
+    margin: 0 3% 32rpx;
+    height: 120rpx;
     border-radius: 14rpx;
     display: flex;
     flex-direction: column;
@@ -132,6 +142,7 @@
 .original-price {
     font-size: 36rpx;
     line-height: 40rpx;
+    margin: 9rpx 0;
 }
 
 .price {

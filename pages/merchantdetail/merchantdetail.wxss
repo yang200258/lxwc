@@ -96,7 +96,7 @@
 
 .business-time-wrapper {
     overflow: hidden;
-    margin: 0 32rpx;
+    margin: 0 32rpx 0 30rpx;
 }
 
 .business-time {
@@ -187,7 +187,7 @@
 .activity-header {
     font-size: 34rpx;
     line-height: 74rpx;
-    padding: 12rpx 32rpx 0;
+    padding: 12rpx 32rpx 10rpx;
     font-weight: bold;
     color: #333;
 }
@@ -198,14 +198,17 @@
 .act-icon {
     margin-right: 0rpx;
     display: block;
-    width: 160rpx;
-    height: 64rpx;
-    transform: scale(0.5, 0.5);
-    transform-origin: 50% 50%;
+    width: 80rpx;
+    height: 32rpx;
+    margin-right: 20rpx;
+    /* transform: scale(0.5, 0.5);
+    transform-origin: 50% 50%; */
 }
 
 .voucher-box {
     margin-right: 30rpx;
+    padding-left: 32rpx;
+    /* margin-bottom: 16rpx; */
 }
 
 .voucher-content-wrapper {
@@ -217,6 +220,7 @@
     align-items: center;
     justify-content: flex-start;
     padding: 0;
+    margin-bottom: 16rpx;
     /* padding-left: 20rpx; */
 }
 
@@ -250,7 +254,9 @@
 /* 满减 */
 
 .fullcut-box {
-    margin: 0;
+    /* margin: 0; */
+    padding-left: 32rpx;
+    margin-bottom: 16rpx;
 }
 
 .fullcut-content-wrapper {

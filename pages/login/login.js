@@ -21,6 +21,9 @@ Page({
                     if (res && res.data && !res.msg) { // 登录成功
                         wx.setStorageSync('token', res.data.token)
                         wx.setStorageSync('phone', res.data.phone)
+                        const timeStamp = Date.parse(new Date())
+                        const expiration = timeStamp + 1000 * 60 * 60 * 24 * 30
+                        wx.setStorageSync('expiration', expiration)
                     }
                 }).catch(err => {
                     console.log('err', err)
