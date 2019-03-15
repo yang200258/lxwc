@@ -25,7 +25,7 @@
         <text class='title'>({{ticket.name}})</text>
       </view>
       <view class='time'>到期时间：{{ticket.valid_etime}}</view>
-      <view class='content'>满{{ticket.cond_count}}元可用，不含参与活动的金额</view>
+      <view class='content'>满{{ticket.cond_count}}元可用</view>
     </view>
   </view>
 
