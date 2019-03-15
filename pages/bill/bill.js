@@ -72,7 +72,14 @@ Page({
         const { currentTab } = this.data
         this.fetchBills(0, currentTab)
     },
-
+    enterOrderDetail(e) {
+        let bill = e.currentTarget.dataset.bill || ''
+        if (bill && bill.type == 1) {
+            wx.redirectTo({
+                url: '/pages/orderdetail/orderdetail?id=' + bill.id
+            })
+        }
+    },
     /**
      * 生命周期函数--监听页面初次渲染完成
      */

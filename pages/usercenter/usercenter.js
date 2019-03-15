@@ -32,7 +32,14 @@ Page({
                 }
             },
             {
-                image: '/assets/images/message_icon2.png',
+                image: '/assets/images/comment.png',
+                title: '我的评价',
+                extraData: {
+                    route: '/pages/usercomment/usercomment'
+                }
+            },
+            {
+                image: '/assets/images/message_icon.png',
                 title: '我的消息',
                 extraData: {
                     route: '/pages/messagelist/messagelist'
@@ -45,13 +52,7 @@ Page({
                     route: '/pages/userinfo/userinfo'
                 }
             },
-            {
-                image: '/assets/images/comment.png',
-                title: '我的评价',
-                extraData: {
-                    route: '/pages/usercomment/usercomment'
-                }
-            },
+
             {
                 image: '/assets/images/member.png',
                 title: '会员须知',

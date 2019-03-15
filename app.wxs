@@ -143,7 +143,7 @@
   }
   var filterNumber = function(number) {
       console.log(number, number.toFixed(1));
-      return number = number.toFixed(1)
+      return number = number.toFixed(0)
 
   }
   var filterDate = function(date) {

@@ -11,7 +11,7 @@
         <view class='title'>{{merchant.name}}</view>
         <view class='distance' wx:if="{{merchant.distance}}">{{filter.filterDistance(merchant.distance)}}</view>
       </view>
-      <star-box wx:if="{{merchant.rate}}" score="{{merchant.rate}}" />
+      <star-box wx:if="{{merchant.rate}}" score="{{merchant.rate}}" class="star-box" />
       <view wx:else style="height:6rpx"></view>
       <view class='merchant-act' wx:for="{{merchant.huodong}}" wx:for-item="activity" wx:key="activity.type">
         <!-- <text-icon class='act-icon' size="{{actIconSize}}" font-size="{{24}}" color="{{colorObj[activity.type]}}" text="{{textObj[activity.type]}}" /> -->

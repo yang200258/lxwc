@@ -2,11 +2,11 @@
 <view class='wrapper'>
   <view wx:if="{{topSeparator}}" class='block-separator'></view>
   <view class='inner-wrapper'>
-    <image class='avatar' mode="aspectFill" src="{{comment.avatar}}"></image>
+    <image class='avatar' mode="aspectFill" src="{{comment.avatar?comment.avatar:comment.icon}}"></image>
     <view class='right-box'>
       <view class='head'>
         <view class='name-and-time'>
-          <view class='name'>{{comment.username}}</view>
+          <view class='name'>{{comment.username?comment.username:comment.shopname }}</view>
           <view class='time'>{{comment.date}}</view>
         </view>
         <view class='score'>

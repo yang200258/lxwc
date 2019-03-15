@@ -117,7 +117,6 @@
     
     <!-- 代金券 -->
     <view wx:if="{{activitys.voucher[0] && activitys.voucher[0].coupons.length}}" class='voucher-box'>
-      <view class='line-separator-h'></view>
       <view class='voucher-content-wrapper'>
         <view wx:for="{{activitys.voucher[0].coupons}}" wx:for-item="voucher" wx:key="id" class='voucher-item'>
           <!-- <text-icon class='act-icon' size="{{actIconSize}}" font-size="{{24}}" color="{{'#CC3366'}}" text="{{'领券'}}" /> -->

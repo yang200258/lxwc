@@ -14,7 +14,7 @@
       <swiper-item wx:for="{{tabData}}" wx:for-item="data" wx:for-index="idx" wx:key="type">
         <scroll-view wx:if="{{data.bills && data.bills[0]}}" scroll-y class='tab-scroll-view' lower-threshold="{{100}}" bindscrolltolower="reachBottom" data-idx="{{idx}}">
           <list-loader visible="{{!data.loaded}}" />
-          <view wx:for="{{data.bills}}" wx:for-item="bill" wx:for-index="bIdx" wx:key="id" class='bill-item-wrapper'>
+          <view wx:for="{{data.bills}}" wx:for-item="bill" wx:for-index="bIdx" wx:key="id" data-bill="{{bill}}"class='bill-item-wrapper'   catchtap="enterOrderDetail">
             <view class='bill-item'>
               <view class='left'>
                 <view class='title'>{{typeText[bill.type]}}{{bill.type == 1 ? ('-' + bill.name) : ''}}</view>

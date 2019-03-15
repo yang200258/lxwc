@@ -8,16 +8,16 @@
       <view class='value-and-title'>
         <text class='iconfont icon-renminbi'></text>
         <text class='value'>{{ticket.value}}</text>
-        <text class='title'>（{{ticket.valid_etime}}到期）</text>
+        <text class='title'>（到期时间：{{ticket.valid_etime}}）</text>
       </view>
       <view class='time'>{{ticket.shopname}}</view>
-      <view class='content'>满{{ticket.cond_count}}元可用，不含参与活动的金额</view>
+      <view class='content'>满{{ticket.cond_count}}元可用</view>
     </view>
   </view>
 
 
   <view class='left' wx:if="{{ticket.name}}">
-    <image class='image' src="../../assets/images/redpacket.png" mode="aspectFill"></image>
+    <image class='image-redpacket' src="../../assets/images/redpacket.png" mode="aspectFill"></image>
     <view class='overview'>
       <view class='value-and-title'>
         <text class='iconfont icon-renminbi'></text>
