@@ -17,7 +17,7 @@
     <view class='line-separator-h' style="width:718rpx;margin-left:32rpx;"></view>
   </view>
   <view class="info-entrance">
-    <entrance required="{{!name.filled}}" sub-title="{{name.text || 'wx-name'}}" title="姓名" next-icon="{{!name.filled}}" extra-data="{{name.extraData}}" bindentrancetap="showNameBox" />
+    <entrance required="{{!name.filled}}" sub-title="{{name.text || '未填写'}}" title="姓名" next-icon="{{!name.filled}}" extra-data="{{name.extraData}}" bindentrancetap="showNameBox" />
     <view class='line-separator-h' style="width:718rpx;margin-left:32rpx;"></view>
   </view>
   <view class="info-entrance">

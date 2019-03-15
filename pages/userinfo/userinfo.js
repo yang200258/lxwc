@@ -31,7 +31,7 @@ Page({
     name: {
       value: '',
       text: '',
-      filled: false,
+      filled: true,
       extraData: {
         btn: 'name'
       }
@@ -39,7 +39,7 @@ Page({
     gender: { // value   1:表示男，2:表示女
       value: '',
       text: '',
-      filled: false,
+      filled: true,
       extraData: {
         btn: 'gender'
       }
@@ -47,7 +47,7 @@ Page({
     birthday: {
       value: '',
       text: '',
-      filled: false,
+      filled: true,
       extraData: {
         btn: 'birthday'
       }
