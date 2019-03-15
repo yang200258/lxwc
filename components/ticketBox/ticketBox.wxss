@@ -34,7 +34,7 @@
     display: block;
     width: 130rpx;
     height: 130rpx;
-    /* border-radius: 12rpx; */
+    border-radius: 12rpx;
     margin-right: 18rpx;
     flex-shrink: 0;
     background: #F4F4F4;
@@ -72,6 +72,7 @@
 .title {
     margin-left: 10rpx;
     padding-right: 18rpx;
+    font-size: 30rpx;
 }
 
 .content {
