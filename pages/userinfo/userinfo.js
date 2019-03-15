@@ -96,13 +96,14 @@ Page({
   },
 
   changePhoneSuccess: function (e) {
-    console.log('changePhoneSuccess', e)
     let {phone} = e.detail
+    console.log('changePhoneSuccess', phone, this)
     if (phone) {
+      console.log('hasPhone')
       wx.setStorageSync('phone', phone)
       this.setData({
-        'phone.value': phone,
-        'phone.text': phone
+        'phone.value': phone,
+        'phone.text': phone
       })
     }
   },
