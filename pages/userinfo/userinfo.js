@@ -97,6 +97,7 @@ Page({
 
   getOriginUserInfo: function () {
     util.request('/user/info').then(res => {
+      console.log('/user/info', res.data)
       if (res && res.data && !res.error) { // 获取信息成功
         let {avatar, phone, name, gender, birthday} = res.data
         let genderValue = ''
