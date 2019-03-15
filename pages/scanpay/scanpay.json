@@ -2,5 +2,7 @@
   "navigationBarBackgroundColor": "#FAFAFA",
   "navigationBarTitleText": "扫码付款",
   "backgroundColor": "#FFFFFF",
-  "usingComponents": {}
+  "usingComponents": {
+    "recharge-box": "/components/rechargeBox/rechargeBox"
+  }
 }

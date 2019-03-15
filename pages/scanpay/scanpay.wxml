@@ -24,3 +24,4 @@
   </view>
 </view> -->
 <view class='scan-tip'>点击此处扫描商家二维码</view>
+<recharge-box id="recharge-box" />
