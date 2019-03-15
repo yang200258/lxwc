@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    balance: null,
     hexiaoid: '',
     status: '',
     getting: false
@@ -40,8 +41,13 @@ Page({
     }).then(res => {
       console.log('核销状态', res)
       if (res && res.data && !res.error) { // 获取成功
-        let { status } = res.data
-        this.setData({ status })
+        let { status, balance } = res.data
+        this.setData({ status, balance })
+        if (!balance || balance <= 0 || balance === '0') {
+          wx.reLaunch({
+            url: '/pages/scanpay/scanpay?recharge=true',
+          })
+        }
       } else {
         setTimeout(this.goIndex, 1500)
       }
@@ -54,6 +60,21 @@ Page({
         })
       }
       setTimeout(this.goIndex, 1500)
+    })
+  },
+
+  showRechargeDialog: function () {
+    wx.showModal({
+      title: '',
+      content: '充值成为会员，乐享文昌全城优惠！',
+      showCancel: false,
+      confirmText: '去充值',
+      confirmColor: '#108EE9',
+      success: res => {
+        wx.reLaunch({
+          url: '/pages/index/index'
+        })
+      }
     })
   },
 

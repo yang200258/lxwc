@@ -1,18 +1,19 @@
 <!--pages/userinfo/userinfo.wxml-->
 <view class='page-userinfo'>
   <view class="info-entrance">
-    <entrance sub-image="{{avatar.url || 'wx-avatar'}}" title="头像" subMask="{{avatar.uploading}}" extra-data="{{avatar.extraData}}" bindentrancetap="chooseImage" />
+    <!-- <entrance sub-image="{{avatar.url || 'wx-avatar'}}" title="头像" next-icon="{{false}}" subMask="{{avatar.uploading}}" extra-data="{{avatar.extraData}}" bindentrancetap="chooseImage" /> -->
+    <entrance sub-image="wx-avatar" title="头像" next-icon="{{false}}" subMask="{{avatar.uploading}}" extra-data="{{avatar.extraData}}" bindentrancetap="chooseImage" />
     <view class='line-separator-h' style="width:718rpx;margin-left:32rpx;"></view>
   </view>
   <view class="info-entrance">
-    <entrance sub-title="{{nickname || '' }}" title="微信名称" next-icon="{{false}}" />
+    <entrance sub-title="wx-name" title="微信名称" next-icon="{{false}}" />
     <!-- <text class="">微信名称</text>
     <text class="">{{nickname}}</text> -->
     <view class='line-separator-h' style="width:718rpx;margin-left:32rpx;"></view>
   </view>
   <!-- 换绑手机功能暂未做，不给入口 -->
   <view class="info-entrance">
-    <entrance sub-title="{{phone.text || '未填写'}}" title="手机号" next-icon="{{false}}" extra-data="{{phone.extraData}}" bindentrancetap="goConfirmPhone" />
+    <entrance sub-title="{{phone.text || '未填写'}}" title="手机号" extra-data="{{phone.extraData}}" phone-btn />
     <view class='line-separator-h' style="width:718rpx;margin-left:32rpx;"></view>
   </view>
   <view class="info-entrance">

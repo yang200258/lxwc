@@ -1,11 +1,11 @@
 <!--pages/verification/verification.wxml-->
 <view class='page-verification'>
-  <view wx:if="{{status == 2}}" class='content-view'>
+  <view wx:if="{{balance && balance > 0 && status == 2}}" class='content-view'>
     <image class='face-image' src="../../assets/images/smile.png"></image>
     <image class='tip-image1' src="../../assets/images/verification_tip1.png"></image>
     <view class='btn' style="margin-top:300rpx" catchtap="getHexiao"><text>确认</text></view>
   </view>
-  <view wx:if="{{status == 1}}" class='content-view'>
+  <view wx:if="{{balance && balance > 0 && status == 1}}" class='content-view'>
     <image class='face-image' src="../../assets/images/weep.png"></image>
     <image class='tip-image2' src="../../assets/images/verification_tip2.png"></image>
     <view class='btn' style="margin-top:180rpx" catchtap="goIndex"><text>确认</text></view>

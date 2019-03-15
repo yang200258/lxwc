@@ -14,7 +14,9 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
-
+        if (options.recharge) {
+            this.showRechargeDialog()
+        }
     },
 
     /**
@@ -100,5 +102,21 @@ Page({
                 }
             }
         })
-    }
+    },
+    showRechargeDialog: function() {
+        wx.showModal({
+            title: '',
+            content: '充值成为会员，乐享文昌全城优惠！',
+            confirmText: '去充值',
+            confirmColor: '#108EE9',
+            success: res => {
+                if (res.confirm) {
+                    console.log('用户点击确定')
+                    util.showRechargeModal(this.checkBalance)
+                } else if (res.cancel) {
+                    console.log('用户点击取消')
+                }
+            }
+        })
+    },
 })
