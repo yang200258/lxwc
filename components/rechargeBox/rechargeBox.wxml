@@ -12,7 +12,7 @@
     </view>
     <view class='recharge-list'>
       <view class="recharge-item {{rechargeCurrent === (idx + 1) ? 'current' : ''}}" wx:for="{{rechargeData.rechargeList}}" wx:for-item="recharge" wx:for-index="idx" wx:key="sale" catchtap="changeCurrentRecharge" data-idx="{{idx}}">
-        <view class="original-price {{rechargeCurrent === (idx + 1) ? 'current' : ''}}">
+        <view class="original-price {{rechargeCurrent === idx ? 'current' : ''}}">
           <text class='iconfont icon-renminbi' style="font-size:32rpx;"></text>
           <text>{{recharge.sale}}</text>
         </view>

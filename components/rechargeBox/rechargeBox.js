@@ -32,7 +32,7 @@ Component({
     methods: {
         changeCurrentRecharge: function(e) {
             this.setData({
-                rechargeCurrent: e.currentTarget.dataset.idx
+                rechargeCurrent: e.currentTarget.dataset.idx + 1
             })
         },
 
