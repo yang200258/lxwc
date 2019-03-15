@@ -70,9 +70,9 @@
 }
 
 .title {
-    /* margin-left: 10rpx; */
+    margin-left: 10rpx;
     padding-right: 18rpx;
-    font-size: 22rpx;
+    font-size: 30rpx;
 }
 
 .content {

@@ -8,9 +8,9 @@
       <view class='value-and-title'>
         <text class='iconfont icon-renminbi'></text>
         <text class='value'>{{ticket.value}}</text>
-        <text class='title'>（到期时间：{{ticket.valid_etime}}）</text>
+        <text class='title'>{{ticket.shopname}}</text>
       </view>
-      <view class='time'>{{ticket.shopname}}</view>
+      <view class='time'>到期时间：{{ticket.valid_etime}}</view>
       <view class='content'>满{{ticket.cond_count}}元可用</view>
     </view>
   </view>
