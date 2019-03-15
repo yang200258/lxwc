@@ -82,7 +82,7 @@ const request = (url, data, config = {}) => {
             },
             fail: function(res) {
                 if (res && res.errMsg && res.errMsg === 'request:fail') { // 小程序请求失败，可以在这里检查是否联网，处理断网
-
+                  
                 }
                 reject(res) // 返回错误提示信息
             },

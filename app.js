@@ -6,7 +6,7 @@ App({
   onLaunch: function (options) {
     this.globalData.launchOptions = options
     // 每过30天更新下用户昵称、头像
-    util.updateUserInfo()
+    // util.updateUserInfo()
     // 检查登录
     util.checkLogin(options)
     this.config = config

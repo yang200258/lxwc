@@ -106,10 +106,15 @@ Page({
       iv
     }).then(res => {
       console.log('绑定手机', res)
-      if (res && res.data && !res.msg) { // 绑定手机成功
+      if (res && res.data && !res.error) { // 绑定手机成功
         wx.setStorageSync('phone', res.data.phone)
         wx.navigateBack({
           delta: 1
+        })
+      } else if (res && res.error && res.msg) {
+        wx.showToast({
+          title: res.msg,
+          icon: 'none'
         })
       }
     }).catch(err => {

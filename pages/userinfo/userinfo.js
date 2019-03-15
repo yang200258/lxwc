@@ -95,6 +95,18 @@ Page({
     }
   },
 
+  changePhoneSuccess: function (e) {
+    console.log('changePhoneSuccess', e)
+    let {phone} = e.detail
+    if (phone) {
+      wx.setStorageSync('phone', phone)
+      this.setData({
+        'phone.value': phone,
+        'phone.text': phone
+      })
+    }
+  },
+
   getOriginUserInfo: function () {
     util.request('/user/info').then(res => {
       console.log('/user/info', res.data)
