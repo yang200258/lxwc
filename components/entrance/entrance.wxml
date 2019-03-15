@@ -16,5 +16,6 @@
     <text class="iconfont icon-next {{nextIcon ? '' : 'hide'}}" wx:else></text>
     
   </view>
+  <button wx:if="{{phoneBtn}}" class="phone-btn" open-type="getPhoneNumber" bindgetphonenumber="getPhone"></button>
   <view wx:if="{{bottomBorder}}" class='line-separator-h'></view>
 </view>

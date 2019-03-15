@@ -1,7 +1,8 @@
 // pages/userinfo/userinfo.js
 import util from '../../utils/util.js'
 const phone = wx.getStorageSync('phone')
-const phoneText = phone ? util.getSecureText(phone, 3, 2) : ''
+// const phoneText = phone ? util.getSecureText(phone, 3, 2) : ''
+const phoneText = phone
 
 Page({
 
@@ -26,7 +27,7 @@ Page({
         btn: 'phone'
       }
     },
-    nickname: '',
+    // nickname: '',
     name: {
       value: '',
       text: '',
@@ -54,7 +55,7 @@ Page({
     nameInputValue: '',
     nameBox: false,
     requiredSubmitting: false,
-    nickname: ''
+    // nickname: ''
   },
 
   saveLocalUserInfo: function () {
@@ -73,10 +74,10 @@ Page({
 
   getLocalUserInfo: function () {
     const userInfoLocal = wx.getStorageSync('userInfoLocal') ? JSON.parse(wx.getStorageSync('userInfoLocal')) : null
-    const nickname = wx.getStorageSync('nickname')
-    this.setData({
-      nickname
-    })
+    // const nickname = wx.getStorageSync('nickname')
+    // this.setData({
+    //   nickname
+    // })
     const { name, gender, birthday } = this.data
     let arr = [name, gender, birthday]
     if (userInfoLocal && Object.keys(userInfoLocal).length) {
@@ -104,10 +105,12 @@ Page({
         } else if (gender === '女') {
           genderValue = '2'
         }
+        // const phontText = phone ? util.getSecureText(phone, 3, 2) : ''
+        const phontText = phone || ''
         this.setData({
           'avatar.url': avatar,
           'phone.value': phone,
-          'phone.text': phone ? util.getSecureText(phone, 3, 2) : '',
+          'phone.text': phontText,
           'name.value': name,
           'name.text': name,
           'name.filled': Boolean(name),
@@ -261,6 +264,8 @@ Page({
   },
 
   chooseImage: function (e) {
+    // 目前不允许更改图片
+    return false
     // 选择图片
     wx.chooseImage({
       count: 1,

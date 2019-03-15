@@ -65,9 +65,10 @@ Page({
                 avatar: rData.avatarUrl
             }).then(res => {
                 console.log(res);
-                if (!res.error) {
+              if (res.error === 0 || res.error === '0') {
                     // let url = this.getLoginBack()
                     // console.log(url);
+                    wx.setStorageSync('lastGetUserInfo', new Date().getTime())
                     wx.reLaunch({
                         url: '/pages/index/index'
                     })

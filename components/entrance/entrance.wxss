@@ -2,6 +2,17 @@
 @import "../../app.wxss";
 @import "../../assets/styles/iconfont.wxss";
 
+.entrance-wrapper{
+  position: relative;
+}
+.phone-btn{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
 .entrance-box{
   padding: 0 28rpx 0 32rpx;
   height: 104rpx;

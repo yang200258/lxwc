@@ -13,10 +13,10 @@
         </view>
       </view>-->
       <view class='user-avatar'>
-        <user-avatar avatar="{{userInfo.avatar}}" />
+        <user-avatar />
       </view>
       <view class='username-and-usernum'>
-        <user-name name="{{userInfo.name}}" />
+        <user-name />
         <view class='line-separator-v' style="height:28rpx;background:#fff;margin:0 16rpx;"></view>
         <!-- <text class='usernum'>{{userInfo.id}}</text> -->
         <view class="vip-image" wx:if="{{userWallet.balance > 0}}">

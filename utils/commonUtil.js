@@ -245,6 +245,16 @@ const getUrl = (path, query) => {
     return url
 }
 
+const updateUserInfo = () => {
+  let lastGetUserInfo = wx.getStorageSync('lastGetUserInfo')
+  let now = new Date().getTime()
+  if (!lastGetUserInfo || (now - parseInt(lastGetUserInfo) > 30 * 24 * 60 * 60 * 1000)) { // 未记录过上次获取时间 或 上次获取是30天之前，则重新获取
+    wx.reLaunch({
+      url: '/pages/login/login'
+    })
+  }
+}
+
 const checkLogin = (options) => {
     if (storageUtil.getStorage('token')) {
         return true
@@ -304,6 +314,7 @@ module.exports = {
     showRedpacketModal: showRedpacketModal,
     actionSheet: actionSheet, // 自定义actionSheet
     isLaterVersion: isLaterVersion, // 判断小程序基础库是否高于某个版本
+    updateUserInfo: updateUserInfo, // 每隔30天，当登录小程序时，主动更新一次用户信息
     checkLogin: checkLogin, // 检查是否登录
     checkPhone: checkPhone, // 检查本地是否保存手机号
     syncGlobalData: syncGlobalData, // 将全局数据同步到某个页面
