@@ -71,8 +71,8 @@ Component({
             }
             console.log('rechargeList', rechargeList)
             console.log('rechargeCurrent', rechargeCurrent)
-            console.log('submit', rechargeList[rechargeCurrent])
-            let rData = rechargeList[rechargeCurrent]
+            console.log('submit', rechargeList[rechargeCurrent-1])
+            let rData = rechargeList[rechargeCurrent-1]
                 // let rData = {sale: 0.01, value: 0.02}
             this.setData({
                 submitting: true

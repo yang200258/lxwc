@@ -21,20 +21,20 @@
     <view class='line-separator-h' style="width:718rpx;margin-left:32rpx;"></view>
     <view wx:if="{{order.huodong && order.huodong[0]}}" class='discount-box'>
       <block wx:for="{{order.huodong}}" wx:for-item="hd" wx:key="*this">
-      <!-- 首减   -->
-        <icon-text-box wx:if="{{hd.type == 'shopnew'}}" text-icon="shopnew" text-icon-color="#F8C300" title="门店新用户立减" sub-title="{{hd.discount}}" show-money-sign="{{true}}" />
-        <!-- 新客 -->
-        <icon-text-box wx:if="{{hd.type == 'platnew'}}" text-icon="platnew" text-icon-color="#33CC33" title="平台新用户立减{{hd.discount}}元" sub-title="{{hd.discount}}" show-money-sign="{{true}}" />
+      <!-- 新客 -->
+        <icon-text-box wx:if="{{hd.type == 'platnew'}}" image-icon="/assets/images/platnew.png" title="平台新用户立减{{hd.discount}}元" sub-title="{{hd.discount}}" show-money-sign="{{true}}" />
+        <!-- 首减   -->
+        <icon-text-box wx:if="{{hd.type == 'shopnew'}}" image-icon="/assets/images/shopnew.png" title="门店新用户立减" sub-title="{{hd.discount}}" show-money-sign="{{true}}" />
         <!-- 优惠券 -->
-        <icon-text-box wx:if="{{hd.type == 'getcoupon'}}" image-icon="/assets/images/fullcut_voucher_icon.png" title="乐享优惠券" sub-title="{{hd.discount}}" show-money-sign="{{true}}" />
+        <icon-text-box wx:if="{{hd.type == 'getcoupon'}}" image-icon="/assets/images/voucher.png" title="乐享优惠券" sub-title="{{hd.discount}}" show-money-sign="{{true}}" />
         <!-- 满减   -->
-        <icon-text-box wx:if="{{hd.type == 'shopyouhui'}}" text-icon="shopyouhui" text-icon-color="#FF0000" title="满减优惠" sub-title="{{hd.discount}}" show-money-sign="{{true}}" />
+        <icon-text-box wx:if="{{hd.type == 'shopyouhui'}}" image-icon="/assets/images/shopyouhui.png" title="满减优惠" sub-title="{{hd.discount}}" show-money-sign="{{true}}" />
         <!-- 折扣   -->
-        <icon-text-box wx:if="{{hd.type == 'zhekou'}}" text-icon="zhekou" text-icon-color="#7ED321" title="折扣优惠" sub-title="{{hd.discount}}" show-money-sign="{{true}}" />
+        <icon-text-box wx:if="{{hd.type == 'zhekou'}}" image-icon="/assets/images/zhekou.png" title="折扣优惠" sub-title="{{hd.discount}}" show-money-sign="{{true}}" />
         <!-- 满赠   -->
-        <icon-text-box wx:if="{{hd.type == 'shopzeng'}}" text-icon="shopzeng" text-icon-color="#FFCC00" title="满赠优惠" sub-title="{{hd.discount}}" show-money-sign="{{true}}" />
+        <icon-text-box wx:if="{{hd.type == 'shopzeng'}}" image-icon="/assets/images/shopzeng.png" title="满赠优惠" sub-title="{{hd.discount}}" show-money-sign="{{true}}" />
         <!-- 红包-->
-        <icon-text-box wx:if="{{hd.type == 'hongbao'}}" image-icon="/assets/images/hongbao.png" title="乐享红包" sub-title="{{hd.discount}}" show-money-sign="{{true}}" />
+        <icon-text-box wx:if="{{hd.type == 'hongbao'}}" image-icon="/assets/images/redpacket2.png" title="乐享红包" sub-title="{{hd.discount}}" show-money-sign="{{true}}" />
       </block>
     </view>
     <view wx:if="{{order.huodong && order.huodong[0]}}" class='line-separator-h' style="width:718rpx;margin-left:32rpx;"></view>
