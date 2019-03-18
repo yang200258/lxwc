@@ -65,14 +65,14 @@
 }
 
 .value {
-    font-size: 54rpx;
+    font-size: 40rpx;
     line-height: 58rpx;
 }
 
 .title {
-    margin-left: 10rpx;
-    padding-right: 18rpx;
-    font-size: 30rpx;
+    margin-left: 6rpx;
+    padding-right: 10rpx;
+    font-size: 20rpx;
 }
 
 .content {
