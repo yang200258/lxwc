@@ -13,7 +13,7 @@
   </view>
   <!-- 换绑手机功能暂未做，不给入口 -->
   <view class="info-entrance">
-    <entrance sub-title="{{phone.text || '未填写'}}" title="手机号" extra-data="{{phone.extraData}}" phone-btn bindchangephonesuccess="changePhoneSuccess" />
+    <entrance sub-title="{{phone.text || '未填写'}}" title="手机号" extra-data="{{phone.extraData}}" bindentrancetap="showPhoneBox" />
     <view class='line-separator-h' style="width:718rpx;margin-left:32rpx;"></view>
   </view>
   <view class="info-entrance">
@@ -36,6 +36,27 @@
   </view>
   <view wx:if="{{(!name.filled || !gender.filled || !birthday.filled) && loaded}}" class='submit-btn' catchtap="submitRequiredInfo">
     <text>提交</text>
+  </view>
+  <!-- 填写手机号窗口 -->
+  <view class="name-wrapper {{phoneBox ? 'show' : 'hide'}}" catchtap="hidePhoneBox" catchtouchmove="stopPropagation">
+    <view class="name-box-bg {{phoneBox ? 'show' : 'hide'}}"></view>
+    <view class="name-box {{phoneBox ? 'show' : 'hide'}}" catchtap="stopPropagation">
+    <view class='name-box-content'>
+    <view class='name-title'>会员手机号</view>
+      <view class='name-tip'>长度限制11个数字</view>
+      <input class='name-input' type="number" placeholder="请输入手机号" value="{{phoneInputValue}}" bindinput="phoneInputValueChange" maxlength="{{11}}" cursor-spacing="{{120}}" />
+    </view>
+      <view class='line-separator-h' style="background:#C0C0C0"></view>
+      <view class='name-buttons'>
+        <view class='button-item name-cancel' catchtap="hidePhoneBox">
+          <text>取消</text>
+        </view>
+        <view class='line-separator-v' style="background:#C0C0C0"></view>
+        <view class='button-item name-confirm' catchtap="phoneChange">
+          <text>确定</text>
+        </view>
+      </view>
+    </view>
   </view>
   <!-- 填写姓名窗口 -->
   <view class="name-wrapper {{nameBox ? 'show' : 'hide'}}" catchtap="hideNameBox" catchtouchmove="stopPropagation">

@@ -82,26 +82,7 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
-      util.request('/user/bindphone', {
-        token: wx.getStorageSync('token'),
-        encryptedData,
-        iv
-      }).then(res => {
-        console.log('绑定手ss机', res)
-        if (res && res.data && !res.error) { // 绑定手机成功
-          console.log('绑定手机成功', res)
-          wx.setStorageSync('phone', res.data.phone)
-          this.triggerEvent('changephonesuccess', { phone: res.data.phone })
-        } else if (res.error && res.msg) {
-          console.log('绑定手机失败', res)
-          wx.showToast({
-            title: res.msg,
-            icon: 'none'
-          })
-        }
-      }).catch(err => {
-        console.log('绑定手机失败', err)
-      })
+      
     },
 
     /**

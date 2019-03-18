@@ -52,9 +52,12 @@ Page({
         btn: 'birthday'
       }
     },
+    phoneInputValue: '',
+    phoneBox: false,
     nameInputValue: '',
     nameBox: false,
     requiredSubmitting: false,
+    phoneSubmitting: false
     // nickname: ''
   },
 
@@ -388,6 +391,12 @@ Page({
       nameBox: false
     })
   },
+
+  hidePhoneBox: function () {
+    this.setData({
+      phoneBox: false
+    })
+  },
   
   showNameBox: function () {
     let {name} = this.data
@@ -399,9 +408,21 @@ Page({
     })
   },
 
+  showPhoneBox: function () {
+    this.setData({
+      phoneBox: true
+    })
+  },
+
   nameInputValueChange: function (e) {
     this.setData({
       nameInputValue: e.detail.value
+    })
+  },
+
+  phoneInputValueChange: function (e) {
+    this.setData({
+      phoneInputValue: e.detail.value
     })
   },
 
@@ -412,6 +433,59 @@ Page({
       'name.text': nameInputValue
     })
     this.hideNameBox()
+  },
+
+  phoneChange: function () {
+    const { phoneInputValue, phone } = this.data
+    if (phoneInputValue.length !== 11) {
+      wx.showToast({
+        title: '手机号必须为11位数字',
+        icon: 'none'
+      })
+      return false
+    }
+    if (phoneInputValue === phone.value) {
+      wx.showToast({
+        title: '请勿填写重复的手机号',
+        icon: 'none'
+      })
+      return false
+    }
+    if (this.data.phoneSubmitting) { // 正在提交更改
+      wx.showToast({
+        title: '正在提交更改...',
+        icon: 'none'
+      })
+      return false
+    }
+    this.setData({
+      phoneSubmitting: true
+    })
+    util.request('/user/addphone', { phone: phoneInputValue}).then(res => {
+      this.setData({
+        phoneSubmitting: false
+      })
+      if (res && (res.error === 0 || res.error === '0')) {
+        wx.setStorageSync('phone', phoneInputValue)
+        this.setData({
+          'phone.value': phoneInputValue,
+          'phone.text': phoneInputValue
+        })
+        this.hidePhoneBox()
+      } else if (res && res.error && res.error !== '0') {
+        
+      }
+    }).catch(err => {
+      if (err.error && err.msg) {
+        wx.showToast({
+          title: err.msg,
+          icon: 'none'
+        })
+      }
+      this.setData({
+        phoneSubmitting: false
+      })
+    })
   },
 
   updatePhone: function (phone) {
