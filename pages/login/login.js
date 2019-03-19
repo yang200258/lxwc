@@ -12,10 +12,13 @@ Page({
     },
     login() {
         // 登录
+        let promotionJson = wx.getStorageSync('promotion')
+        let promotion = promotionJson ? JSON.parse(promotionJson) : null
         wx.login({
             success: res => {
                 util.request('/accesstoken/login', {
-                    code: res.code
+                    code: res.code,
+                    promoteid: (promotion && promotion.time !== 'sended') ? promotion.id : '' // 推广id存在 且 未发送过
                 }).then(res => {
                     console.log('登录数据', res)
                     if (res && res.data && !res.msg) { // 登录成功
@@ -24,6 +27,10 @@ Page({
                         const timeStamp = Date.parse(new Date())
                         const expiration = timeStamp + 1000 * 60 * 60 * 24 * 30
                         wx.setStorageSync('expiration', expiration)
+                        if (promotion) { // 如果存在推广id，则该推广id设置为以发送
+                          promotion.time = 'sended'
+                          wx.setStorageSync('promotion', JSON.stringify(promotion))
+                        }
                     }
                 }).catch(err => {
                     console.log('err', err)

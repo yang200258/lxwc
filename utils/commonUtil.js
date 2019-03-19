@@ -260,7 +260,11 @@ const checkLogin = (options) => {
     if (token && timeStamp < expiration) {
         return true
     } else {
+        const promotionJson = wx.getStorageSync('promotion')
         wx.clearStorageSync()
+        if (promotionJson) { // 存在推广信息时，先取出推广信息，清缓存后重新添加
+          wx.setStorageSync('promotion', promotionJson)
+        }
     }
     if (storageUtil.getStorage('token')) {
         return true

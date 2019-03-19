@@ -37,7 +37,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 22,
+			"current": 23,
 			"list": [
 				{
 					"id": -1,
@@ -176,6 +176,12 @@
 					"name": "会员须知",
 					"pathName": "pages/membernotes/membernote",
 					"query": ""
+				},
+				{
+					"id": 23,
+					"name": "首页扫码",
+					"pathName": "pages/index/index",
+					"query": "scene=promoteid%3D4"
 				}
 			]
 		}
