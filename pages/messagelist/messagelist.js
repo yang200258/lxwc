@@ -16,7 +16,7 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
-        this.fetchMessage()
+        this.fetchMessage(0, 10)
     },
 
     /**
@@ -32,17 +32,33 @@ Page({
     onShow: function() {
 
     },
-    fetchMessage: function() {
+    fetchMessage: function(page, limit) {
         this.setData({
             loading: true,
             loaded: false
         })
-        util.request('/message/list').then(res => {
+        limit = limit || 5
+        page = page || 0
+        util.request('/message/list', { page, limit }).then(res => {
             if (res && !res.error) {
-                this.setData({
-                    messages: res.data.list,
-                    page: res.data.page
-                })
+                let { messages } = this.data
+                let { list, page } = res.data
+                if (page && page.pn && page.pn.toString() !== '0') {
+                    let len = (messages && messages.length) ? messages.length : 0
+                    list.forEach((item, i) => {
+                        messages[len + i] = item
+                    })
+                    this.setData({
+                        messages,
+                        page
+                    })
+                } else {
+                    let { list, page } = res.data
+                    this.setData({
+                        messages: list,
+                        page
+                    })
+                }
             }
         }).catch(err => {
             console.log(err);
@@ -90,7 +106,7 @@ Page({
      * 页面上拉触底事件的处理函数
      */
     onReachBottom: function() {
-
+        this.fetchMessage(this.data.page.pn + 1, 10)
     },
 
     /**
