@@ -691,7 +691,7 @@ Page({
             dontToast: true
         }).then(res => {
             if (res && !res.error) { // 支付成功，跳转成功页面
-                // console.log('付款成功', res.data)
+                console.log('付款成功', res.data)
                 let url = ''
                 let {
                     name
