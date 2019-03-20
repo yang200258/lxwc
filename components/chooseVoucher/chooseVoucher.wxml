@@ -1,5 +1,5 @@
 <!--components/chooseVoucher/chooseVoucher.wxml-->
-<view class="wrapper {{voucher.useful ? '' : 'disabled'}}" catchtap="chooseVoucher">
+<view class="wrapper {{voucher.useful ? '' : 'disabled'}}" catchtap="chooseVoucher" wx:if="{{voucher.useful}}">
   <view class='left'>
     <view wx:if="{{voucher.type === 'hongbao'}}" class='image' >
         <image    src="../../assets/images/redpacket.png" mode="aspectFill"></image>
@@ -14,7 +14,7 @@
         <text class='title'>{{voucher.title}}</text>
       </view>
       <view class='content'>{{voucher.content}}</view>
-      <!-- <view class='time'>{{voucher.valid_btime}}-{{voucher.valid_etime}}</view> -->
+      <view class='time'>到期时间：{{voucher.expire_date}}</view>
     </view>
   </view>
   <view class='separator'></view>
