@@ -20,7 +20,7 @@ Page({
         ignore: '',
         actual: '',
         paying: false, // 是否正在付款，禁止多次点击,
-        isIgnore: true,
+        showExclude: true,
     },
 
     /**
@@ -133,6 +133,7 @@ Page({
             console.log('支付优惠数据', res)
             if (res && res.data && !res.msg) { // 获取成功
                 let {
+                    show_exclude,
                     balance,
                     huodong,
                     name,
@@ -171,6 +172,7 @@ Page({
                     })
                 }
                 this.setData({
+                    showExclude: Boolean(show_exclude),
                     balance,
                     userVouchers,
                     redPackets,
