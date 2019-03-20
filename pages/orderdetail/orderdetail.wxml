@@ -20,7 +20,7 @@
     </view>
     <view class='line-separator-h' style="width:718rpx;margin-left:32rpx;"></view>
     <view wx:if="{{order.huodong && order.huodong[0]}}" class='discount-box'>
-      <block wx:for="{{order.huodong}}" wx:for-item="hd" wx:key="*this">
+      <block wx:for="{{order.huodong}}" wx:for-item="hd" wx:key="hd.type">
       <!-- 新客 -->
         <icon-text-box wx:if="{{hd.type == 'platnew'}}" image-icon="/assets/images/platnew.png" title="平台新用户立减{{hd.discount}}元" sub-title="{{hd.discount}}" show-money-sign="{{true}}" />
         <!-- 首减   -->

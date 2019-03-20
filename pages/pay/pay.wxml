@@ -1,6 +1,7 @@
 <!--pages/pay/pay.wxml-->
 <wxs module="filter" src="../../app.wxs"></wxs> 
 <view class='page-pay'>
+<form bindsubmit="formSubmit" report-submit="true">
   <view class='input-box'>
     <view class='total'>
       <view class='total-title'>消费金额(元)</view>
@@ -51,13 +52,13 @@
             <text class='actual-price'>{{actual || '0.00'}}</text>
           </view>
         </view>
-        <view class="order-btn {{(actual && actual !== '0.00' && actual !== '0' && phone) ? '' : 'disabled'}}" catchtap="pay">
-          <text>优惠买单</text>
-        </view>
+        <button style="border-radius: 0" class="order-btn {{(actual && actual !== '0.00' && actual !== '0' && phone) ? '' : 'disabled'}}" form-type="submit">优惠买单</button>
+          
       </view>
       <iphone-bottom-adapter />
     </view>
     <iphone-bottom-adapter />
   </view>
+  </form>
 </view>
 <recharge-box id="recharge-box" />
