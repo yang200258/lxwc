@@ -633,8 +633,7 @@ Page({
             })
         }
     },
-
-    pay: function() {
+    formSubmit: function(e) {
         let {
             total,
             ignore,
@@ -655,6 +654,7 @@ Page({
         let coupon_id = selectedVoucher ? selectedVoucher.id : ''
         let hongbao_id = selectedRedPacket ? selectedRedPacket.id : ''
         let rData = {
+            formid: e.detail.formId,
             shopid,
             total_amount: total ? parseFloat(total) : 0,
             exclude_amount: ignore ? parseFloat(ignore) : 0,
@@ -669,7 +669,6 @@ Page({
             this.payRequest(rData)
         })
     },
-
     showRechargeDialog: function() {
         console.log('showRechargeDialog')
         wx.showModal({
