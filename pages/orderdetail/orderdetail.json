@@ -1,10 +1,10 @@
 {
-  "navigationBarBackgroundColor": "#FAFAFA",
-  "navigationBarTitleText": "我的订单",
-  "backgroundColor": "#FFFFFF",
-  "usingComponents": {
-    "list-loader": "/components/listLoader/listLoader",
-    "icon-text-box": "/components/iconTextBox/iconTextBox",
-    "iphone-bottom-adapter": "/components/iphoneBottomAdapter/iphoneBottomAdapter"
-  }
+    "navigationBarBackgroundColor": "#FAFAFA",
+    "navigationBarTitleText": "我的账单",
+    "backgroundColor": "#FFFFFF",
+    "usingComponents": {
+        "list-loader": "/components/listLoader/listLoader",
+        "icon-text-box": "/components/iconTextBox/iconTextBox",
+        "iphone-bottom-adapter": "/components/iphoneBottomAdapter/iphoneBottomAdapter"
+    }
 }
