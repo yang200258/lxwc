@@ -644,7 +644,7 @@ Page({
             paying,
             phone
         } = this.data
-        if (paying || (actual && parseFloat(actual) < 0)) { // 正在付款时中断
+        if (paying || (actual && parseFloat(actual) < 0) || total == 0) { // 正在付款时中断
             return false
         }
         if (!phone) { // 无手机号，不是会员

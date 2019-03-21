@@ -52,7 +52,7 @@
             <text class='actual-price'>{{actual || '0.00'}}</text>
           </view>
         </view>
-        <button style="border-radius: 0" class="order-btn {{(actual  && phone) ? '' : 'disabled'}}" form-type="submit">优惠买单</button>
+        <button style="border-radius: 0" class="order-btn {{(actual && total && total !== '0.0'&& total !== '0'&& total !== '0.'&& total !== '0.00'  && phone) ? '' : 'disabled'}}" form-type="submit">优惠买单</button>
           
       </view>
       <iphone-bottom-adapter />
