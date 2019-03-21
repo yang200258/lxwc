@@ -20,7 +20,7 @@ Page({
         ignore: '',
         actual: '',
         paying: false, // 是否正在付款，禁止多次点击,
-        showExclude: true,
+        showExclude: false,
     },
 
     /**
