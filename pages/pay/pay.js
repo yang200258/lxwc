@@ -227,7 +227,7 @@ Page({
         let shopnew = []
         let shopyouhui = []
         let zhekou = []
-        if (before >= 0.01) { // 原始需支付大于最低支付金额
+        if (before >= 0) { // 原始需支付大于最低支付金额
             if (merchantDiscounts && merchantDiscounts.length) {
                 merchantDiscounts.forEach(item => {
                     if (item.type == 'platnew') {
@@ -374,7 +374,7 @@ Page({
         let _userVouchers = [].concat(userVouchers)
         console.log('_userVouchers', _userVouchers);
         console.log('actual', actual);
-        if (before < 0.01) {
+        if (before < 0) {
             if (_userVouchers || _userVouchers[0]) { // 存在优惠券
                 _userVouchers = _userVouchers.map(item => {
                     let useful = (before >= item.cond_count) && (before - item.value >= 0.01)
@@ -410,7 +410,7 @@ Page({
                 if (before - item.cond_count >= 0) {
                     canUseVoucher += 1
                 }
-                let useful = (before >= item.cond_count) && (before - item.value >= 0.01)
+                let useful = (before >= item.cond_count) && (before - item.value >= 0)
                 console.log(actual, item.value)
                 return Object.assign({}, item, {
                     useful: useful,
@@ -439,7 +439,7 @@ Page({
         if (before < 0.01) {
             if (_redPackets || _redPackets[0]) { // 存在优惠券
                 _redPackets = _redPackets.map(item => {
-                    let useful = (before >= item.cond_count) && (before - item.value >= 0.01)
+                    let useful = (before >= item.cond_count) && (before - item.value >= 0)
                     return Object.assign({}, item, {
                         useful: useful,
                         selected: item.selected && useful
@@ -472,7 +472,7 @@ Page({
                 if (before - item.cond_count >= 0) {
                     canUseRedpacket += 1
                 }
-                let useful = (before >= item.cond_count) && (before - item.value >= 0.01)
+                let useful = (before >= item.cond_count) && (before - item.value >= 0)
                 console.log(actual, item.value)
                 return Object.assign({}, item, {
                     useful: useful,
@@ -509,7 +509,7 @@ Page({
             total,
             ignore,
         } = this.data
-        if (ignore && (!value || (value && this.isNumber(value) && (parseFloat(value) - parseFloat(ignore) < 0.01)))) {
+        if (ignore && (!value || (value && this.isNumber(value) && (parseFloat(value) - parseFloat(ignore) < 0)))) {
             ignore = ''
         }
         if (this.isNumber(value) || value === '') { // 输入的值可作为数字时
@@ -538,7 +538,7 @@ Page({
             total,
             ignore
         } = this.data
-        if (total && value && this.isNumber(value) && (parseFloat(total) - parseFloat(value) < 0.01)) {
+        if (total && value && this.isNumber(value) && (parseFloat(total) - parseFloat(value) < 0)) {
             value = ignore
         }
         if (this.isNumber(value) || value === '') { // 输入的值可作为数字时
@@ -644,7 +644,7 @@ Page({
             paying,
             phone
         } = this.data
-        if (paying || !actual || (actual && parseFloat(actual) < 0.01)) { // 正在付款时中断
+        if (paying || (actual && parseFloat(actual) < 0)) { // 正在付款时中断
             return false
         }
         if (!phone) { // 无手机号，不是会员
