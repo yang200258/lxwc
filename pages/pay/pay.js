@@ -719,7 +719,20 @@ Page({
         }).catch(err => {
             console.log('支付失败', err)
             if (err && err.error && err.error.toString() === '300') {
-                this.showRechargeDialog()
+                wx.showModal({
+                    title: '',
+                    content: '余额不足，请先充值！',
+                    confirmText: '去充值',
+                    confirmColor: '#108EE9',
+                    success: res => {
+                        if (res.confirm) {
+                            console.log('用户点击确定')
+                            util.showRechargeModal()
+                        } else if (res.cancel) {
+                            console.log('用户点击取消')
+                        }
+                    }
+                })
             }
         }).finally(res => {
             this.setData({
