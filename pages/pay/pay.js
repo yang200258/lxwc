@@ -576,9 +576,9 @@ Page({
                 total,
                 ignore
             } = this.data
-            if (selectedRedPacket && !selectedRedPacket.id) {
-                this.getUseableRedpacket(total || 0, ignore || 0)
-            }
+                // if (selectedRedPacket && !selectedRedPacket.id) {
+            this.getUseableRedpacket(total || 0, ignore || 0)
+                // }
         })
     },
     updateRedPacket: function(redpackets) {
@@ -599,7 +599,8 @@ Page({
                 total,
                 ignore,
             } = this.data
-            if (selectedVoucher && !selectedVoucher.id) this.getUseableVoucher(total || 0, ignore || 0)
+                // if (selectedVoucher && !selectedVoucher.id) this.getUseableVoucher(total || 0, ignore || 0)
+            this.getUseableVoucher(total || 0, ignore || 0)
         })
     },
     getUserVouchers: function() {
