@@ -222,13 +222,14 @@ Page({
         total = parseFloat(total || 0)
         ignore = parseFloat(ignore || 0)
         let before = this.calFullCutAct(total, ignore)
-        let actual = total
+        let actual = before
         let platnew = []
         let shopnew = []
         let shopyouhui = []
         let zhekou = []
         if (before >= 0) { // 原始需支付大于最低支付金额
             if (merchantDiscounts && merchantDiscounts.length) {
+                console.log('merchantDiscounts', merchantDiscounts);
                 merchantDiscounts.forEach(item => {
                     if (item.type == 'platnew') {
                         platnew = item;
@@ -270,7 +271,7 @@ Page({
                 shopyouhui.sort(this.compare('cond_count'))
                 console.log('shopyouhui', shopyouhui);
                 for (var i = 0; i < shopyouhui.length; i++) {
-                    if (shopyouhui[i].cond_count <= actual - ignore) {
+                    if (shopyouhui[i].cond_count <= actual) {
                         actual = actual - shopyouhui[i].value
                         console.log('break', actual);
                         break
@@ -281,14 +282,15 @@ Page({
             if (zhekou) {
                 zhekou.sort(this.compare('cond_count'))
                 for (var i = 0; i < zhekou.length; i++) {
-                    if (zhekou[i].cond_count <= actual - ignore) {
+                    if (zhekou[i].cond_count <= actual) {
                         actual = actual * zhekou[i].dis_rate / 10
                         console.log('break', actual);
                         break
                     }
                 }
             }
-            console.log('计算shopyouhui', actual);
+
+            console.log('zhekou', actual);
             //计算个人优惠券
             console.log('计算userVouchers', userVouchers);
             if (userVouchers) {
@@ -304,10 +306,9 @@ Page({
                 }
                 console.log('计算中的userVouchers', userVouchers);
                 if (userVouchers && userVouchers.selected) {
-                    console.log('计算优惠券', actual);
                     if (userVouchers.useful && userVouchers.selected && userVouchers.value > 0) {
-                        console.log(userVouchers.cond_count, actual - ignore);
-                        if (userVouchers.cond_count <= actual - ignore) {
+                        console.log(userVouchers.cond_count, actual);
+                        if (userVouchers.cond_count <= actual) {
                             actual = actual - userVouchers.value
                         } else {
                             actual = actual
@@ -331,8 +332,8 @@ Page({
                 console.log('计算中的redPackets', redPackets);
                 if (redPackets && redPackets.selected) {
                     if (redPackets.selected && redPackets.value > 0) {
-                        console.log(redPackets.cond_count, actual - ignore);
-                        if (redPackets.cond_count <= actual - ignore) {
+                        console.log(redPackets.cond_count, actual);
+                        if (redPackets.cond_count <= actual) {
                             actual = actual - redPackets.value
                         } else {
                             actual = actual
@@ -342,7 +343,7 @@ Page({
             }
 
         }
-        actual = actual.toFixed(2)
+        actual = (actual + ignore).toFixed(2)
         this.setData({
             actual
         })
@@ -456,8 +457,8 @@ Page({
         }
         if (!_redPackets || (_redPackets && !_redPackets[0])) { // 不存在优惠券
             this.setData({
-                selectedVoucher: null,
-                canUseVoucher: 0,
+                selectedRedPacket: null,
+                canUseRedpacket: 0,
                 actual: this.calActual(total, ignore, userVouchers, _redPackets, merchantDiscounts)
             })
             return 0
@@ -576,7 +577,7 @@ Page({
                 total,
                 ignore
             } = this.data
-                // if (selectedRedPacket && !selectedRedPacket.id) {
+                // if (!selectedRedPacket) {
             this.getUseableRedpacket(total || 0, ignore || 0)
                 // }
         })
@@ -599,7 +600,7 @@ Page({
                 total,
                 ignore,
             } = this.data
-                // if (selectedVoucher && !selectedVoucher.id) this.getUseableVoucher(total || 0, ignore || 0)
+                // if (!selectedVoucher) this.getUseableVoucher(total || 0, ignore || 0)
             this.getUseableVoucher(total || 0, ignore || 0)
         })
     },
