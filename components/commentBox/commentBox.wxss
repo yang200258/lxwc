@@ -85,8 +85,8 @@
   margin-top: 12rpx;
 }
 .official-reply{
-  font-size: 24rpx;
-  line-height: 32rpx;
+  font-size: 28rpx;
+  line-height: 36rpx;
   white-space: pre-wrap;
   word-break: break-all;
   padding: 16rpx 20rpx 20rpx;
