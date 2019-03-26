@@ -222,13 +222,14 @@ Page({
         total = parseFloat(total || 0)
         ignore = parseFloat(ignore || 0)
         let before = this.calFullCutAct(total, ignore)
-        let actual = total
+        let actual = before
         let platnew = []
         let shopnew = []
         let shopyouhui = []
         let zhekou = []
-        if (before >= 0.01) { // 原始需支付大于最低支付金额
+        if (before >= 0) { // 原始需支付大于最低支付金额
             if (merchantDiscounts && merchantDiscounts.length) {
+                console.log('merchantDiscounts', merchantDiscounts);
                 merchantDiscounts.forEach(item => {
                     if (item.type == 'platnew') {
                         platnew = item;
@@ -270,7 +271,7 @@ Page({
                 shopyouhui.sort(this.compare('cond_count'))
                 console.log('shopyouhui', shopyouhui);
                 for (var i = 0; i < shopyouhui.length; i++) {
-                    if (shopyouhui[i].cond_count <= actual - ignore) {
+                    if (shopyouhui[i].cond_count <= actual) {
                         actual = actual - shopyouhui[i].value
                         console.log('break', actual);
                         break
@@ -281,14 +282,15 @@ Page({
             if (zhekou) {
                 zhekou.sort(this.compare('cond_count'))
                 for (var i = 0; i < zhekou.length; i++) {
-                    if (zhekou[i].cond_count <= actual - ignore) {
+                    if (zhekou[i].cond_count <= actual) {
                         actual = actual * zhekou[i].dis_rate / 10
                         console.log('break', actual);
                         break
                     }
                 }
             }
-            console.log('计算shopyouhui', actual);
+
+            console.log('zhekou', actual);
             //计算个人优惠券
             console.log('计算userVouchers', userVouchers);
             if (userVouchers) {
@@ -304,10 +306,9 @@ Page({
                 }
                 console.log('计算中的userVouchers', userVouchers);
                 if (userVouchers && userVouchers.selected) {
-                    console.log('计算优惠券', actual);
                     if (userVouchers.useful && userVouchers.selected && userVouchers.value > 0) {
-                        console.log(userVouchers.cond_count, actual - ignore);
-                        if (userVouchers.cond_count <= actual - ignore) {
+                        console.log(userVouchers.cond_count, actual);
+                        if (userVouchers.cond_count <= actual) {
                             actual = actual - userVouchers.value
                         } else {
                             actual = actual
@@ -331,8 +332,8 @@ Page({
                 console.log('计算中的redPackets', redPackets);
                 if (redPackets && redPackets.selected) {
                     if (redPackets.selected && redPackets.value > 0) {
-                        console.log(redPackets.cond_count, actual - ignore);
-                        if (redPackets.cond_count <= actual - ignore) {
+                        console.log(redPackets.cond_count, actual);
+                        if (redPackets.cond_count <= actual) {
                             actual = actual - redPackets.value
                         } else {
                             actual = actual
@@ -342,7 +343,7 @@ Page({
             }
 
         }
-        actual = actual.toFixed(2)
+        actual = (actual + ignore).toFixed(2)
         this.setData({
             actual
         })
@@ -374,7 +375,7 @@ Page({
         let _userVouchers = [].concat(userVouchers)
         console.log('_userVouchers', _userVouchers);
         console.log('actual', actual);
-        if (before < 0.01) {
+        if (before < 0) {
             if (_userVouchers || _userVouchers[0]) { // 存在优惠券
                 _userVouchers = _userVouchers.map(item => {
                     let useful = (before >= item.cond_count) && (before - item.value >= 0.01)
@@ -410,7 +411,7 @@ Page({
                 if (before - item.cond_count >= 0) {
                     canUseVoucher += 1
                 }
-                let useful = (before >= item.cond_count) && (before - item.value >= 0.01)
+                let useful = (before >= item.cond_count) && (before - item.value >= 0)
                 console.log(actual, item.value)
                 return Object.assign({}, item, {
                     useful: useful,
@@ -439,7 +440,7 @@ Page({
         if (before < 0.01) {
             if (_redPackets || _redPackets[0]) { // 存在优惠券
                 _redPackets = _redPackets.map(item => {
-                    let useful = (before >= item.cond_count) && (before - item.value >= 0.01)
+                    let useful = (before >= item.cond_count) && (before - item.value >= 0)
                     return Object.assign({}, item, {
                         useful: useful,
                         selected: item.selected && useful
@@ -456,8 +457,8 @@ Page({
         }
         if (!_redPackets || (_redPackets && !_redPackets[0])) { // 不存在优惠券
             this.setData({
-                selectedVoucher: null,
-                canUseVoucher: 0,
+                selectedRedPacket: null,
+                canUseRedpacket: 0,
                 actual: this.calActual(total, ignore, userVouchers, _redPackets, merchantDiscounts)
             })
             return 0
@@ -472,7 +473,7 @@ Page({
                 if (before - item.cond_count >= 0) {
                     canUseRedpacket += 1
                 }
-                let useful = (before >= item.cond_count) && (before - item.value >= 0.01)
+                let useful = (before >= item.cond_count) && (before - item.value >= 0)
                 console.log(actual, item.value)
                 return Object.assign({}, item, {
                     useful: useful,
@@ -509,7 +510,7 @@ Page({
             total,
             ignore,
         } = this.data
-        if (ignore && (!value || (value && this.isNumber(value) && (parseFloat(value) - parseFloat(ignore) < 0.01)))) {
+        if (ignore && (!value || (value && this.isNumber(value) && (parseFloat(value) - parseFloat(ignore) < 0)))) {
             ignore = ''
         }
         if (this.isNumber(value) || value === '') { // 输入的值可作为数字时
@@ -538,7 +539,7 @@ Page({
             total,
             ignore
         } = this.data
-        if (total && value && this.isNumber(value) && (parseFloat(total) - parseFloat(value) < 0.01)) {
+        if (total && value && this.isNumber(value) && (parseFloat(total) - parseFloat(value) < 0)) {
             value = ignore
         }
         if (this.isNumber(value) || value === '') { // 输入的值可作为数字时
@@ -576,9 +577,9 @@ Page({
                 total,
                 ignore
             } = this.data
-            if (selectedRedPacket && !selectedRedPacket.id) {
-                this.getUseableRedpacket(total || 0, ignore || 0)
-            }
+                // if (!selectedRedPacket) {
+            this.getUseableRedpacket(total || 0, ignore || 0)
+                // }
         })
     },
     updateRedPacket: function(redpackets) {
@@ -599,7 +600,8 @@ Page({
                 total,
                 ignore,
             } = this.data
-            if (selectedVoucher && !selectedVoucher.id) this.getUseableVoucher(total || 0, ignore || 0)
+                // if (!selectedVoucher) this.getUseableVoucher(total || 0, ignore || 0)
+            this.getUseableVoucher(total || 0, ignore || 0)
         })
     },
     getUserVouchers: function() {
@@ -644,7 +646,7 @@ Page({
             paying,
             phone
         } = this.data
-        if (paying || !actual || (actual && parseFloat(actual) < 0.01)) { // 正在付款时中断
+        if (paying || (actual && parseFloat(actual) < 0) || total == 0) { // 正在付款时中断
             return false
         }
         if (!phone) { // 无手机号，不是会员
@@ -691,7 +693,7 @@ Page({
             dontToast: true
         }).then(res => {
             if (res && !res.error) { // 支付成功，跳转成功页面
-                // console.log('付款成功', res.data)
+                console.log('付款成功', res.data)
                 let url = ''
                 let {
                     name
@@ -719,7 +721,20 @@ Page({
         }).catch(err => {
             console.log('支付失败', err)
             if (err && err.error && err.error.toString() === '300') {
-                this.showRechargeDialog()
+                wx.showModal({
+                    title: '',
+                    content: '余额不足，请先充值！',
+                    confirmText: '去充值',
+                    confirmColor: '#108EE9',
+                    success: res => {
+                        if (res.confirm) {
+                            console.log('用户点击确定')
+                            util.showRechargeModal()
+                        } else if (res.cancel) {
+                            console.log('用户点击取消')
+                        }
+                    }
+                })
             }
         }).finally(res => {
             this.setData({

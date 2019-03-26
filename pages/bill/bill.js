@@ -75,7 +75,7 @@ Page({
     enterOrderDetail(e) {
         let bill = e.currentTarget.dataset.bill || ''
         if (bill && bill.type == 1) {
-            wx.redirectTo({
+            wx.navigateTo({
                 url: '/pages/orderdetail/orderdetail?id=' + bill.id
             })
         }
