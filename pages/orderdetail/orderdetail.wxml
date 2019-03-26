@@ -40,7 +40,7 @@
     <view wx:if="{{order.huodong && order.huodong[0]}}" class='line-separator-h' style="width:718rpx;margin-left:32rpx;"></view>
     <view class='overview'>
       <view class='total'>
-        <text style="font-weight:bold">订单总价：</text>
+        <text style="font-weight:bold">实际消费：</text>
         <view class='right-text'>
           <text class='iconfont icon-renminbi' style="font-size:26rpx;color:#6E6E6E"></text>
           <text>{{order.total}}</text>
